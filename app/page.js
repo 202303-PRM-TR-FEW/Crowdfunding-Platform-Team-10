@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "./components/Navbar"
 import {
   QuerySnapshot,
   collection,
@@ -32,5 +33,5 @@ export default function Home() {
     </div>;
   });
 
-  return <>{propro}</>;
+  return <Navbar/>;
 }
