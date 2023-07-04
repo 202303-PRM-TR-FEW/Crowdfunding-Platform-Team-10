@@ -1,6 +1,10 @@
+"use client";
+
 import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { Inter } from "next/font/google";
+import { useRouter } from "next/navigation";
+import { AuthContextProvider, useAuth } from "./context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,11 +14,22 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // const { user } = useAuth();
+  const router = useRouter();
+
+  // Redirect to login if user is not authenticated
+  if (router.pathname === "/profile" && !user) {
+    router.push("/login");
+    return null;
+  }
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <AuthContextProvider>
+          <Navbar />
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   );
