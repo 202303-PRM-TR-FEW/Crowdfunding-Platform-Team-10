@@ -16,3 +16,9 @@
   }
 }
 
+input[type="file"]::file-selector-button {
+  display: none;
+}
+input[type="file"] {
+  width: 100%;
+}
