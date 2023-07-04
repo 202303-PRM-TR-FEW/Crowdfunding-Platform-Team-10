@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
-export const page = () => {
-  return (
-    <h1>
-          the profile page
-    </h1>
-  )
-}
+const Profile = () => {
+  // Your page component code here
+  return <div>profile</div>;
+};
+
+export default Profile;

@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
-export const page = () => {
-  return (
-    <h1>
-          the Thank you page
-    </h1>
-  )
-}
+const Thank = () => {
+  // Your page component code here
+  return <div>Thank you page</div>;
+};
+
+export default Thank;

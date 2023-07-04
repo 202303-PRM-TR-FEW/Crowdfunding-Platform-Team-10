@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
-export const page = () => {
-  return (
-    <h1>
-          the projects main page
-    </h1>
-  )
-}
+const Projects = () => {
+  // Your page component code here
+  return <div>Projects</div>;
+};
+
+export default Projects;
