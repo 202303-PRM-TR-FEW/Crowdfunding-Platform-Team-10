@@ -13,7 +13,6 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -27,8 +26,9 @@ export const AuthContextProvider = ({ children }) => {
         setUser(null);
       }
       setLoading(false);
+      console.log(user);
     });
- 
+
     return () => unsubscribe();
   }, []);
 
@@ -52,6 +52,6 @@ export const AuthContextProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () =>{
+export const useAuth = () => {
   return useContext(AuthContext);
-} 
+};
