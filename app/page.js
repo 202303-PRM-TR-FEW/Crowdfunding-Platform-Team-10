@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import ProjectForm from "./components/ProjectForm";
+import CategoryFiltering from "@/components/category/CategoryFiltering";
+import SummaryCard from "./components/cards/SummaryCard";
 const Home = () => {
   const [openProjectForm, setOpenProjectForm] = useState(false);
   const handleNewProject = () => {
@@ -20,6 +22,8 @@ const Home = () => {
         openProjectForm={openProjectForm}
         setOpenProjectForm={setOpenProjectForm}
       />
+      {/* <CategoryFiltering />
+      <SummaryCard /> */}
     </div>
   );
 };
