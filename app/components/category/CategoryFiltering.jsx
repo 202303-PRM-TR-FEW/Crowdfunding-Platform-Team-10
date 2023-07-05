@@ -75,9 +75,7 @@ const CategoryFiltering = () => {
   };
   return (
     <Box className="p-10">
-      <Typography fontFamily={"Krona One"} className={styles.header}>
-        Categories
-      </Typography>
+      <p className={styles.header}>Categories</p>
 
       <Box>
         <Box className={styles.categoryContainer}>
@@ -95,12 +93,7 @@ const CategoryFiltering = () => {
                 >
                   {cat.icon(activeCategory === cat.id ? "white" : "BasicBlack")}
                 </Box>
-                <Typography
-                  fontFamily={" Mulish"}
-                  className={styles.categoryName}
-                >
-                  {cat.name}
-                </Typography>
+                <p className={styles.categoryName}>{cat.name}</p>
               </Box>
             );
           })}

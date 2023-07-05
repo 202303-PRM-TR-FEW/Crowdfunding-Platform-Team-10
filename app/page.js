@@ -22,8 +22,8 @@ const Home = () => {
         openProjectForm={openProjectForm}
         setOpenProjectForm={setOpenProjectForm}
       />
-      {/* <CategoryFiltering />
-      <SummaryCard /> */}
+      <CategoryFiltering />
+      <SummaryCard />
     </div>
   );
 };
