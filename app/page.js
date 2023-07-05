@@ -3,6 +3,11 @@
 import React, { useState } from "react";
 
 
+import CategoryFiltering from "@/components/category/CategoryFiltering";
+import SummaryCard from "./components/cards/SummaryCard";
+
+
+
 const Home = () => {
 
 
@@ -10,7 +15,13 @@ const Home = () => {
   return (
     <div>
       Home
+
+     
+      <CategoryFiltering />
+      <SummaryCard />
+
       
+
     </div>
   );
 };
