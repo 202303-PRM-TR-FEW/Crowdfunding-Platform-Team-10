@@ -1,9 +1,10 @@
 
 import "./globals.css";
-import { Navbar } from "./components/Navbar";
+// import { Navbar } from "./components/Navbar";
 import { Inter } from "next/font/google";
 // import { useRouter } from "next/navigation";
 import { AuthContextProvider } from "./context/AuthContext";
+import Topbar from "./components/Topbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <AuthContextProvider>
-          <Navbar />
+          <Topbar />
           {children}
         </AuthContextProvider>
       </body>
