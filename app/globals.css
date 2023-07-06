@@ -22,3 +22,7 @@ input[type="file"] {
 }
 .yellow-btn {
 }
+
+div[data-floating-ui-portal] > div {
+  z-index: 99 !important;
+}
