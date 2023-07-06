@@ -1,6 +1,8 @@
 "use client";
 import { useContext } from "react"; // import to use our main context
 import { FundContext } from "../context/FundContext"; // our main context
+import CategoryFiltering from "@/components/category/CategoryFiltering";
+import SummaryCard from "@/components/cards/SummaryCard";
 
 const Projects = () => {
   // Your page component code here
@@ -9,7 +11,12 @@ const Projects = () => {
 
   console.log(users);
   console.log(projects);
-  return <div>Projects</div>;
+  return (
+    <div>
+      <CategoryFiltering />
+      <SummaryCard />
+    </div>
+  );
 };
 
 export default Projects;

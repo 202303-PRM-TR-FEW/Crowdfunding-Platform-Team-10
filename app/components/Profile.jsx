@@ -12,10 +12,19 @@ const Profile = () => {
       router.push("/login");
     }
   }, [router, user]);
-
+  console.log(user);
   // Move the text variable inside the return statement
-  return <>{user ? `You are logged in as >>>> ${user.email}` : null}</>;
+  return (
+    <>
+      {user
+        ? `You are logged in as >>>> NAME: ${user.displayName}
+ -------
+   Email is ${user.email}
+    
+    `
+        : null}
+    </>
+  );
 };
 
 export default Profile;
-
