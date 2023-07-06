@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../config/firebase";
 
@@ -21,6 +22,8 @@ export const AuthContextProvider = ({ children }) => {
           uid: user.uid,
           email: user.email,
           displayName: user.displayName,
+          contributions: [],
+          projects: [],
         });
       } else {
         setUser(null);
@@ -32,8 +35,25 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const signup = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+  const signup = (email, password, displayName, contributions, projects) => {
+    return createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
+        // Set the display name after user creation
+        return updateProfile(
+          userCredential.user,
+          { displayName },
+          { contributions },
+          { projects }
+        )
+          .then(() => {
+            // Return the updated user object
+            return userCredential.user;
+          })
+          .catch((error) => {
+            throw new Error(error.message);
+          });
+      }
+    );
   };
 
   const login = (email, password) => {
