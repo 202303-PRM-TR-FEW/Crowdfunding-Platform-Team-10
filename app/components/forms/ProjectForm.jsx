@@ -8,7 +8,7 @@ import {
   Typography,
   Select,
 } from "@material-tailwind/react";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Controller, useForm } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -44,7 +44,10 @@ const today = dayjs();
 const schema = yup
   .object({
     projectName: yup.string().required("Project Name is Required !"),
-    goal: yup.string().required("Goal is Required !"),
+    goal: yup
+      .number()
+      .typeError("Goal Amount Must Be a Number !")
+      .required("Goal is Required !"),
     startingDate: yup.string().required("Starting Date is Required !"),
     endingDate: yup.string().required("Ending Date is Required !"),
     about: yup.string().required("About is Required !"),
@@ -70,30 +73,28 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, user }) => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data.media[0]);
-    alert(data);
-
     const storage = getStorage();
     const storageRef = ref(storage, data.media[0].name);
     uploadBytes(storageRef, data.media[0]).then((snapshot) => {
       console.log(storageRef);
     });
-    // const fileRef = storageRef.child(data.media[0].name);
 
-    await addDoc(collection(db, "projects"), {
-      startingDate: data.startingDate,
-      endingDate: data.endingDate,
-      url: data.media[0].name,
-      category: data.category,
-      name: data.projectName,
-      raised: 0,
-      about: data.about,
-      goal: data.goal,
-      contributors: [],
-      creator: {
-        userName: user.displayName,
-        userId: user.uid,
-      },
+    getDownloadURL(ref(storage, data.media[0].name)).then(async (imgUrl) => {
+      await addDoc(collection(db, "projects"), {
+        startingDate: data.startingDate,
+        endingDate: data.endingDate,
+        url: imgUrl,
+        category: data.category,
+        name: data.projectName,
+        raised: 0,
+        about: data.about,
+        goal: data.goal,
+        contributors: [],
+        creator: {
+          userName: user.displayName,
+          userId: user.uid,
+        },
+      });
     });
     console.log(data);
   };
@@ -147,10 +148,10 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, user }) => {
                   variant="small"
                   className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                 >
-                  {errors.gaol && (
+                  {errors.goal && (
                     <InformationCircleIcon className="w-4 h-4 -mt-px" />
                   )}
-                  {errors.gaol?.message}
+                  {errors.goal?.message}
                 </Typography>
 
                 <div className="grid lg:grid-cols-2 gap-2">
@@ -251,6 +252,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, user }) => {
                 </div>
                 <div>
                   <Input
+                    className="cursor-pointer"
                     icon={<FileUpload />}
                     accept="image/*"
                     id="media"
