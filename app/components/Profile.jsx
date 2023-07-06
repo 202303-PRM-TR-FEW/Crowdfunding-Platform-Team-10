@@ -34,6 +34,7 @@ const Profile = () => {
       <br />
       <button onClick={handleNewProject}>sdsd</button>
       <ProjectForm
+        user={user}
         openProjectForm={openProjectForm}
         setOpenProjectForm={setOpenProjectForm}
       />
