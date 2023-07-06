@@ -22,7 +22,7 @@ input[type="file"] {
 }
 .yellow-btn {
 }
-
+/* Fixses Date Picker Popper */
 div[data-floating-ui-portal] > div {
   z-index: 99 !important;
 }
