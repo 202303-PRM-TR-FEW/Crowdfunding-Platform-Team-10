@@ -2,8 +2,16 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
+import ProjectForm from "./forms/ProjectForm";
 
 const Profile = () => {
+  const [openProjectForm, setOpenProjectForm] = useState(false);
+  const handleNewProject = () => {
+    openProjectForm === false
+      ? setOpenProjectForm(true)
+      : setOpenProjectForm(false);
+  };
   const { user, logout } = useAuth();
   const router = useRouter();
 
@@ -23,6 +31,12 @@ const Profile = () => {
     
     `
         : null}
+      <br />
+      <button onClick={handleNewProject}>sdsd</button>
+      <ProjectForm
+        openProjectForm={openProjectForm}
+        setOpenProjectForm={setOpenProjectForm}
+      />
     </>
   );
 };

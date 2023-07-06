@@ -146,12 +146,12 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                   />
                   <Typography
                     variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4 lg:order-1"
                   >
                     {errors.startingDate && (
                       <InformationCircleIcon className="w-4 h-4 -mt-px" />
                     )}
-                    {errors.projectName?.message}
+                    {errors.startingDate?.message}
                   </Typography>
 
                   <Controller
@@ -173,7 +173,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                   />
                   <Typography
                     variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4 lg:order-2"
                   >
                     {errors.endingDate && (
                       <InformationCircleIcon className="w-4 h-4 -mt-px" />
