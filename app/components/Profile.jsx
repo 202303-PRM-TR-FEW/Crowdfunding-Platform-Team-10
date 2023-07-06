@@ -32,7 +32,7 @@ const Profile = () => {
     `
         : null}
       <br />
-      <button onClick={handleNewProject}>sdsd</button>
+      <button onClick={handleNewProject}>New Project</button>
       <ProjectForm
         user={user}
         openProjectForm={openProjectForm}
