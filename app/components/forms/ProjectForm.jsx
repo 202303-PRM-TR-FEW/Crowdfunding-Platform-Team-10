@@ -8,12 +8,7 @@ import {
   Typography,
   Select,
 } from "@material-tailwind/react";
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Controller, useForm } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -30,7 +25,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
 import { addDoc, collection } from "firebase/firestore";
-import { app, db } from "@/firebase";
+import { db } from "@/firebase";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
