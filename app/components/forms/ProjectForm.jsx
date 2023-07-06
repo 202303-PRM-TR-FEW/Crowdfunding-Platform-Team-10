@@ -1,6 +1,6 @@
 "use client";
 import { IconButton } from "@mui/material";
-import { Button, Dialog, Input } from "@material-tailwind/react";
+import { Button, Dialog, Input, Typography } from "@material-tailwind/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Controller, useForm } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -12,6 +12,7 @@ import localizedFormatPlugin from "dayjs/plugin/localizedFormat";
 import isBetweenPlugin from "dayjs/plugin/isBetween";
 import utc from "dayjs/plugin/utc";
 import dayjs from "dayjs";
+import { InformationCircleIcon } from "@heroicons/react/24/solid";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
