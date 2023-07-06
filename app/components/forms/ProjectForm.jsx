@@ -98,9 +98,15 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                   variant="standard"
                   {...register("projectName")}
                 />
-                <p className="text-red-800 mb-4 mt-2">
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.projectName && (
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  )}
                   {errors.projectName?.message}
-                </p>
+                </Typography>
 
                 <Input
                   id="goal"
@@ -109,7 +115,15 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                   variant="standard"
                   {...register("goal")}
                 />
-                <p className="text-red-800 mb-4 mt-2">{errors.goal?.message}</p>
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.gaol && (
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  )}
+                  {errors.gaol?.message}
+                </Typography>
 
                 <div className="grid lg:grid-cols-2 gap-2">
                   <Controller
@@ -129,9 +143,15 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                       />
                     )}
                   />
-                  <p className="text-red-800 mb-4 mt-2 lg:order-1">
-                    {errors.startingDate?.message}
-                  </p>
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.startingDate && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
+                    {errors.projectName?.message}
+                  </Typography>
 
                   <Controller
                     control={control}
@@ -150,9 +170,15 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                       />
                     )}
                   />
-                  <p className="text-red-800 mb-4 mt-2 order-2">
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.endingDate && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
                     {errors.endingDate?.message}
-                  </p>
+                  </Typography>
                 </div>
               </div>
               <div className="grid lg:pl-6 ">
@@ -164,9 +190,15 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                     variant="standard"
                     {...register("about")}
                   />
-                  <p className="text-red-800 mt-2 mb-3">
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.about && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
                     {errors.about?.message}
-                  </p>
+                  </Typography>
                 </div>
                 <div>
                   <Input
@@ -178,9 +210,15 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                     label="Project Picture"
                     {...register("media")}
                   />
-                  <p className="text-red-800 mb-4 mt-2">
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.media && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
                     {errors.media?.message}
-                  </p>
+                  </Typography>
                 </div>
               </div>
             </div>
