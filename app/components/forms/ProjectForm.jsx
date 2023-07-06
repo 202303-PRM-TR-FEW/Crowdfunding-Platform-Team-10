@@ -1,6 +1,19 @@
 "use client";
 import { IconButton } from "@mui/material";
-import { Button, Dialog, Input, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Dialog,
+  Input,
+  Option,
+  Typography,
+  Select,
+} from "@material-tailwind/react";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  uploadBytesResumable,
+} from "firebase/storage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Controller, useForm } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -13,11 +26,11 @@ import isBetweenPlugin from "dayjs/plugin/isBetween";
 import utc from "dayjs/plugin/utc";
 import dayjs from "dayjs";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
-
+import { addDoc, collection } from "firebase/firestore";
+import { app, db } from "@/firebase";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
@@ -40,35 +53,53 @@ const schema = yup
     startingDate: yup.string().required("Starting Date is Required !"),
     endingDate: yup.string().required("Ending Date is Required !"),
     about: yup.string().required("About is Required !"),
-    media: yup.string().required("Project Picture is Required !"),
+    category: yup.string().required("Project Category is Required !"),
   })
   .required();
 
-const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
+const ProjectForm = ({ openProjectForm, setOpenProjectForm, user }) => {
   const {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
       startingDate: "",
       endingDate: "",
       media: "",
+      category: "",
     },
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    const projectData = `
-    Name: ${data.projectName}
-    goal: ${data.goal}
-    start: ${data.startingDate}
-    end: ${data.endingDate}
-    about: ${data.about}
-    media: ${data.media[0]}
-    `;
-    alert(projectData);
+  const onSubmit = async (data) => {
+    console.log(data.media[0]);
+    alert(data);
+
+    const storage = getStorage();
+    const storageRef = ref(storage, data.media[0].name);
+    uploadBytes(storageRef, data.media[0]).then((snapshot) => {
+      console.log(storageRef);
+    });
+    // const fileRef = storageRef.child(data.media[0].name);
+
+    await addDoc(collection(db, "projects"), {
+      startingDate: data.startingDate,
+      endingDate: data.endingDate,
+      url: data.media[0].name,
+      category: data.category,
+      name: data.projectName,
+      raised: 0,
+      about: data.about,
+      goal: data.goal,
+      contributors: [],
+      creator: {
+        userName: user.displayName,
+        userId: user.uid,
+      },
+    });
     console.log(data);
   };
 
@@ -116,6 +147,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                   variant="standard"
                   {...register("goal")}
                 />
+
                 <Typography
                   variant="small"
                   className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
@@ -199,6 +231,27 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm }) => {
                       <InformationCircleIcon className="w-4 h-4 -mt-px" />
                     )}
                     {errors.about?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <Select
+                    onChange={(e) => setValue("category", e)}
+                    variant="standard"
+                    label="Select Category"
+                  >
+                    <Option value="animals">Animals</Option>
+                    <Option value="educaion">Education</Option>
+                    <Option value="culture">Culture</Option>
+                    <Option value="children">Children</Option>
+                  </Select>
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.category && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
+                    {errors.category?.message}
                   </Typography>
                 </div>
                 <div>
