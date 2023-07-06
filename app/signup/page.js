@@ -16,20 +16,19 @@ const Signup = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
+    displayName: "",
   });
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setErr("")
     try {
-      await signup(data.email, data.password);
+      await signup(data.email, data.password, data.displayName);
       router.push("/profile");
     } catch (e) {
       setErr(e.message);
       console.log(e.message);
     }
-
-    console.log("im data" + data);
   };
 
   return (
@@ -68,7 +67,22 @@ const Signup = () => {
             value={data.password}
           />
         </div>
-
+        <div>
+          <label>Full Name</label>
+          <input
+            className={inputStyle}
+            type="name"
+            placeholder="Enter Your name"
+            required
+            onChange={(e) =>
+              setData({
+                ...data,
+                displayName: e.target.value,
+              })
+            }
+            value={data.displayName}
+          />
+        </div>
         <button type="submit">Signup</button>
       </form>
       <p>
