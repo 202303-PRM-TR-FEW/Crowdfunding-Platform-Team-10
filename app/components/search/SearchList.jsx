@@ -7,7 +7,6 @@ import {
   Avatar,
   Typography,
 } from "@material-tailwind/react";
-import SearchListItem from "./SearchListItem";
 const SearchList = ({ searchProjects }) => {
   return (
     <div>

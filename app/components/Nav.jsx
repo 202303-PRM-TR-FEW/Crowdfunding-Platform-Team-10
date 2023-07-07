@@ -120,7 +120,13 @@ export default function Nav() {
             >
               <span className="icon">🔍</span>
             </Button>
-            <div className="">
+            <div
+              className={`${
+                !searchProjects || searchProjects.length === 0
+                  ? "hidden"
+                  : "flex"
+              } absolute top-12 -left-3`}
+            >
               <SearchList searchProjects={searchProjects} />
             </div>
           </div>
