@@ -64,7 +64,7 @@ export default function Nav() {
             variant="gradient"
             href="/login"
             size="sm"
-            className="hidden lg:inline-block bg-basicOrange text-white px-4 py-2 rounded text-lg"
+            className="hidden lg:inline-block bg-orange-500 text-white px-4 py-2 rounded text-lg"
           >
             <span>Login</span>
           </Link>
@@ -93,7 +93,8 @@ export default function Nav() {
             />
             <Button
               type="submit"
-              className="px-3 py-1 focus:outline-none bg-basicOrange absolute right-0 top-0 bottom-0 flex items-center"
+              className="px-3 py-1 focus:outline-none absolute right-0 top-0 bottom-0 flex items-center"
+              style={{ backgroundColor: "orange" }}
             >
               <span className="icon">🔍</span>
             </Button>
@@ -103,7 +104,7 @@ export default function Nav() {
 
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 text-orange-500 hover:bg-transparent focus:bg-transparent active:bg-basicOrange lg:hidden"
+          className="ml-auto h-6 w-6 text-orange-500 hover:bg-transparent focus:bg-transparent active:bg-orange-500 lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
@@ -140,7 +141,7 @@ export default function Nav() {
         </IconButton>
       </div>
       <Collapse open={openNav}>
-        <div className="container mx-auto  py-2">
+        <div className="container mx-auto bg-orange py-2">
           {navList}
           {user ? (
             <>
@@ -153,7 +154,7 @@ export default function Nav() {
                 variant="gradient"
                 href="/login"
                 size="sm"
-                className="w-full bg-basicOrange text-white px-4 py-2 rounded"
+                className="w-full bg-orange-500 text-white px-4 py-2 rounded"
               >
                 <span>Login</span>
               </Link>
