@@ -3,6 +3,7 @@ import { useContext } from "react"; // import to use our main context
 import { FundContext } from "../context/FundContext"; // our main context
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import SummaryCard from "@/components/cards/SummaryCard";
+import { ProjectInfo } from "@/components/ProjectInfo";
 
 const Projects = () => {
   // Your page component code here
@@ -13,10 +14,25 @@ const Projects = () => {
   console.log(projects);
   return (
     <div>
-      <CategoryFiltering />
-      <SummaryCard />
+      {projects.map((project) => (
+      <ProjectInfo
+        key={project.id}
+        title={project.name}
+        owner={project.creator}
+        about={project.about}
+        taken={project.raised}
+        goal={project.goal}
+        left={project.endingDate}
+      />
+    ))}
+
+
     </div>
   );
 };
 
 export default Projects;
+
+
+//<CategoryFiltering />
+//<SummaryCard />
