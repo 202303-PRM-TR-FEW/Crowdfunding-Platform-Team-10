@@ -9,8 +9,13 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        basicYellow: "#d4ee26",
-        BasicBlack: "#0a0a0a",
+        basicYellow: "#FDE97D",
+        BasicBlack: "#000000",
+        basicBlack: "#414342",
+        basicOrange: "#ED7B49",
+        basicPink: "E9B19D",
+        matisBlue: "#B6C1E9",
+        sailBlue: "#b0e0fa",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
