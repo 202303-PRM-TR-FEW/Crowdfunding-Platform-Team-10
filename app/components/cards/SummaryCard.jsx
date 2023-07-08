@@ -79,6 +79,7 @@ const cards = [
 ];
 const SummaryCard = ({img,title,raised,goal}) => {
   return (
+
     <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-10">
       {cards.slice(0, 3).map((card, i) => {
         return (
