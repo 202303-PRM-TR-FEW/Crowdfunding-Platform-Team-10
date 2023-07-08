@@ -1,55 +1,30 @@
 import React from "react";
-import img1 from "../../../public/assets/images/img1.png";
-import img2 from "../../../public/assets/images/img2.png";
-import img3 from "../../../public/assets/images/img3.png";
-import { Box, LinearProgress, Typography } from "@mui/material";
-import Image from "next/image";
+import { div, Typography } from "@mui/material";
 import CustomizedProgressBars from "../helper/ProgressBar";
 
 const SummaryCard = ({ img, title, raised, goal }) => {
+  const pregresBar = Math.ceil((raised / goal) * 100);
   return (
-  
-      <Box className="flex flex-col self-stretch gap-3 w-[295px]">
-        <img width={295} height={165} src={img} alt="asdf" objectfit="cover" />
-        <Typography
-          fontFamily="Krona One"
-          className="text-2xl text-BasicBlack min-h-[64px]"
-        >
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-10">
+      <div className="flex flex-col self-stretch gap-3 w-[295px]">
+        <img className="w-[295px] h-[175px]" src={img} alt="asdf" />
+        <h4 fontFamily="Krona One" className="header-4 min-h-[64px]">
           {title}
-        </Typography>
-        <CustomizedProgressBars progressValue={70} />
-        <Box className="flex flex-row justify-between">
-          <Box>
-            <Typography
-              fontFamily={" Mulish"}
-              className="text-lg text-BasicBlack"
-            >
-              Raised:
-            </Typography>
-            <Typography
-              fontFamily={"Krona One"}
-              className="text-2xl text-BasicBlack"
-            >
-              ${raised}
-            </Typography>
-          </Box>
-          <Box>
-            <Typography
-              fontFamily={" Mulish"}
-              className="text-lg text-BasicBlack"
-            >
-              Goal:
-            </Typography>
-            <Typography
-              fontFamily={"Krona One"}
-              className="text-2xl text-BasicBlack"
-            >
-              ${goal}
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
-   
+        </h4>
+        <CustomizedProgressBars progressValue={pregresBar} />
+        <div className="flex flex-row justify-between">
+          <div>
+            <h4 className="sub-header">Raised:</h4>
+            <p className="header-4">${raised}</p>
+          </div>
+          <div>
+            <h4 className="sub-header">Goal:</h4>
+            <p className="header-4">${goal}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   );
 };
 

@@ -7,10 +7,12 @@ html {
   font-family: "Mulish", sans-serif;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+* {
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
+}
+body {
   background-color: rgb(250 250 250);
 }
 
@@ -20,9 +22,31 @@ input[type="file"]::file-selector-button {
 input[type="file"] {
   width: 100%;
 }
-.yellow-btn {
-}
 /* Fixses Date Picker Popper */
 div[data-floating-ui-portal] > div {
   z-index: 99 !important;
+}
+
+.header-2 {
+  @apply text-2xl md:text-4xl lg:text-6xl text-[#0a0a0a] font-bold md:!leading-[60px] lg:!leading-[80px];
+}
+.header-3 {
+  @apply text-lg md:text-xl lg:text-[32px] text-[#0a0a0a] font-bold !leading-10;
+}
+.header-4 {
+  @apply text-sm md:text-base lg:text-lg text-[#0a0a0a] font-bold !leading-6;
+}
+.sub-header {
+  @apply text-sm md:text-base lg:text-lg text-[#0a0a0a] !leading-6;
+}
+.radius {
+  border-radius: 8px;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+}
+.btn-black {
+  @apply bg-black border-black hover:border-orange-500 hover:bg-orange-500 text-white font-bold py-3 px-4 rounded-[8px] border  mt-14 text-center  transition-all duration-300 ease-in-out;
 }
