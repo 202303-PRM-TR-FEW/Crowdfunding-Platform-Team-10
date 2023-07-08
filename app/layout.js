@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { AuthContextProvider } from "./context/AuthContext";
 import { FundProvider } from "./context/FundContext";
 import Nav from "./components/Nav";
+// import NewsLetterCard from "./components/cards/NewsLetterCard";
 const inter = Inter({ subsets: ["latin"] });
 
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
           <AuthContextProvider>
             {/* <Navbar /> */}
              <Nav />
+             {/* <NewsLetterCard /> */}
             {children}
           </AuthContextProvider>
         </body>

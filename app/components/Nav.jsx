@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   Button,
   IconButton,
@@ -171,7 +171,7 @@ export default function Nav() {
           )}
         </IconButton>
       </div>
-      <MobileNav open={openNav}>
+      <Collapse open={openNav}>
         <div className="container mx-auto bg-orange py-2">
           {navList}
           {user ? (
@@ -192,7 +192,7 @@ export default function Nav() {
             </>
           )}
         </div>
-      </MobileNav>
+      </Collapse>
     </Navbar>
   );
 }
