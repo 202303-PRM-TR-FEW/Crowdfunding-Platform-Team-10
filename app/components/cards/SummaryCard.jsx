@@ -77,16 +77,16 @@ const cards = [
     },
   },
 ];
-const SummaryCard = () => {
+const SummaryCard = ({img,title,raised,goal}) => {
   return (
     <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-10">
       {cards.slice(0, 3).map((card, i) => {
         return (
           <Box key={i} className="flex flex-col self-stretch gap-3 w-[295px]">
-            <Image
+            <img
               width={295}
               height={165}
-              src={card.image}
+              src={img}
               alt="asdf"
               objectFit="cover"
             />
@@ -94,7 +94,7 @@ const SummaryCard = () => {
               fontFamily="Krona One"
               className="text-2xl text-BasicBlack min-h-[64px]"
             >
-              {card.title}
+              {title}
             </Typography>
             <CustomizedProgressBars progressValue={70} />
             <Box className="flex flex-row justify-between">
@@ -109,7 +109,7 @@ const SummaryCard = () => {
                   fontFamily={"Krona One"}
                   className="text-2xl text-BasicBlack"
                 >
-                  ${card.raised}
+                  ${raised}
                 </Typography>
               </Box>
               <Box>
@@ -123,7 +123,7 @@ const SummaryCard = () => {
                   fontFamily={"Krona One"}
                   className="text-2xl text-BasicBlack"
                 >
-                  ${card.goal}
+                  ${goal}
                 </Typography>
               </Box>
             </Box>
