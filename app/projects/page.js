@@ -1,38 +1,48 @@
 "use client";
+// import { useRouter } from "next/navigation";
+
 import { useContext } from "react"; // import to use our main context
 import { FundContext } from "../context/FundContext"; // our main context
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import SummaryCard from "@/components/cards/SummaryCard";
-import { ProjectInfo } from "@/components/ProjectInfo";
+import Link from "next/link";
 
 const Projects = () => {
   // Your page component code here
-
-  const { users, projects } = useContext(FundContext); //get our data from our main context
-
-  console.log(users);
+  const { projects } = useContext(FundContext); //get our data from our main context
   console.log(projects);
+  const projectsArray = Object.values(projects);
+
   return (
     <div>
-      {projects.map((project) => (
-      <ProjectInfo
-        key={project.id}
-        title={project.name}
-        owner={project.creator}
-        about={project.about}
-        taken={project.raised}
-        goal={project.goal}
-        left={project.endingDate}
-      />
-    ))}
-
-
+      im MAin page with app projects
+      {projectsArray.map((project) => (
+        <div key={project.id}>
+          <Link
+            href={{
+              pathname: "/projects/${project.id}",
+              query: {
+                name: `${project.name}`,
+                creator: `${project.creator.name}`,
+                about: `${project.about}`,
+                raised: `${project.raised}`,
+                goal: `${project.goal}`,
+                endingDate: `${project.endingDate}`,
+                startingDate: `${project.startingDate}`,
+                category: `${project.category}`,
+                url: `${project.url}`,
+              },
+            }}
+          >
+            <div>{project.name}</div>
+          </Link>
+        </div>
+      ))}
     </div>
   );
 };
 
 export default Projects;
-
 
 //<CategoryFiltering />
 //<SummaryCard />
