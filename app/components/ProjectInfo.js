@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import user_img from "../../public/assets/images/user_img.jpg";
 import project_img from "../../public/assets/images/project.jpg";
 import frame_hand from "../../public/assets/images/frame_hand.png";
@@ -7,11 +7,34 @@ import handImag from "../../public/assets/images/hand.png";
 import Image from "next/image";
 import DonationForm from "./forms/DonationForm";
 
-export const ProjectInfo = ({ title, owner, about, taken, goal, left,img }) => {
+export const ProjectInfo = ({
+  title,
+  owner,
+  about,
+  taken,
+  goal,
+  left,
+  img,
+}) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
-const handleDonationForm = () => {
-  openDonationForm === false ? setOpenDonationForm(true) : setOpenDonationForm(false);
-};
+  const [daysLeft, setDaysLeft] = useState(null);
+console.log(left)
+
+useEffect(() => {
+  const endDate = new Date(left);
+  const today = new Date();
+  
+  const timeDiff = endDate.getTime() - today.getTime();
+  const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  
+  setDaysLeft(daysRemaining);
+}, []);
+
+  const handleDonationForm = () => {
+    openDonationForm === false
+      ? setOpenDonationForm(true)
+      : setOpenDonationForm(false);
+  };
   const styles = {
     project_size: {
       minHeight: "600px",
@@ -57,7 +80,6 @@ const handleDonationForm = () => {
           height={300}
           alt="Picture of thanking"
           objectFit="cover"
-
         />
       </aside>
       <section className={styles.right}>
@@ -107,16 +129,20 @@ const handleDonationForm = () => {
                   d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
                 />
               </svg>
-              {left} days left
+              {daysLeft} days left
             </span>
           </div>
         </div>
         <a className={styles.button_pos}>
-          <button className={styles.button} onClick={handleDonationForm}>Fund this project</button>
+          <button className={styles.button} onClick={handleDonationForm}>
+            Fund this project
+          </button>
         </a>
-        <DonationForm openDonationForm={openDonationForm} setOpenDonationForm={setOpenDonationForm} />
+        <DonationForm
+          openDonationForm={openDonationForm}
+          setOpenDonationForm={setOpenDonationForm}
+        />
       </section>
-
     </div>
   );
 };
