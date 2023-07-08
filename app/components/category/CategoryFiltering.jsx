@@ -3,14 +3,13 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 const styles = {
-  header: "font-bold text-[64px] mb-4",
   categoryContainer: "flex flex-row gap-3",
   categoryBlock: "flex flex-col justify-center items-center gap-3",
   filterItem:
     "cursor-pointer border-[1px] border-BasicBasicBlack rounded-[8px] px-2 py-3",
   categoryName: "font-bold text-[18px]",
 };
-const CategoryFiltering = () => {
+const CategoryFiltering = ({ data, filtrindData }) => {
   const CATEGORY = [
     {
       id: "all",
@@ -69,13 +68,17 @@ const CategoryFiltering = () => {
     },
   ];
 
-  const [activeCategory, setActiveCategory] = useState(CATEGORY[0].id);
+  const [activeCategory, setActiveCategory] = useState("all");
   const onFilter = (cat) => {
     setActiveCategory(CATEGORY.find((item) => item.id === cat).id);
+    const filters = data.filter((item) =>
+      cat === "all" ? true : item.category === cat
+    );
+    filtrindData(filters);
   };
   return (
     <Box className="p-10">
-      <p className={styles.header}>Categories</p>
+      <h2 className="header-2">Categories</h2>
 
       <Box>
         <Box className={styles.categoryContainer}>
@@ -93,7 +96,7 @@ const CategoryFiltering = () => {
                 >
                   {cat.icon(activeCategory === cat.id ? "white" : "BasicBlack")}
                 </Box>
-                <p className={styles.categoryName}>{cat.name}</p>
+                <p className="sub-header">{cat.name}</p>
               </Box>
             );
           })}
