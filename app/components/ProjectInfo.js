@@ -9,7 +9,7 @@ import DonationForm from "./forms/DonationForm";
 
 export const ProjectInfo = ({
   title,
-  owner,
+  userName,
   about,
   taken,
   goal,
@@ -68,6 +68,8 @@ export const ProjectInfo = ({
     button: `bg-black hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-md border border-black mt-14 w-80 text-center ms-0 md:w-100`,
     button_pos: `flex justify-center md:justify-start`,
   };
+
+  
   return (
     <div className={styles.page}>
       <aside className={styles.left}>
@@ -92,7 +94,7 @@ export const ProjectInfo = ({
             objectfit="cover"
             style={styles.profile_size}
           />
-          <p className={styles.prof_name}>{owner}</p>
+          <p className={styles.prof_name}>{userName}</p>
         </div>
         <div id="inProject" className={styles.inproject}>
           <div id="intoProjectLeft" className={styles.intoleft}>

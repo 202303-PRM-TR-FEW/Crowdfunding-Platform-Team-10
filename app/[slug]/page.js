@@ -12,7 +12,7 @@ function Project({ params }) {
   useEffect(() => {
     const queryParams = new URLSearchParams(searchParams);
     const name = queryParams.get("name");
-    const creator = queryParams.get("creator");
+    const userName = queryParams.get("userName");
     const about = queryParams.get("about");
     const raised = queryParams.get("raised");
     const goal = queryParams.get("goal");
@@ -21,7 +21,7 @@ function Project({ params }) {
 
     const project = {
       name,
-      creator,
+      userName,
       about,
       raised,
       goal,
@@ -39,7 +39,7 @@ function Project({ params }) {
   return (
     <ProjectInfo
       title={projectData.name}
-      owner={projectData.creator}
+      userName={projectData.userName}
       about={projectData.about}
       taken={projectData.raised}
       goal={projectData.goal}

@@ -24,7 +24,6 @@ const SummaryCard = ({ img, title, raised, goal }) => {
         </div>
       </div>
     </div>
-
   );
 };
 
