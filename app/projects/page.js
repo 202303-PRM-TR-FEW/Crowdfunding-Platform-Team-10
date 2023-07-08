@@ -15,7 +15,7 @@ const Projects = () => {
   const projectsArray = Object.values(projects);
 
   const myProjects = projectsArray.map((project) => (
-    <div key={project.id}>
+    <div key={project.id} >
       <Link
         href={{
           pathname: "/projects/${project.id}",
@@ -46,7 +46,7 @@ const Projects = () => {
     <div>
       <ProjectOfTheWeek />
       <CategoryFiltering />
-      <div>{myProjects}</div>
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3 p-10 flex-wrap">{myProjects}</div>
     </div>
   );
 };
