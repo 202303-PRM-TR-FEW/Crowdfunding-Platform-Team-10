@@ -18,17 +18,16 @@ export const ProjectInfo = ({
 }) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
-console.log(left)
 
-useEffect(() => {
-  const endDate = new Date(left);
-  const today = new Date();
-  
-  const timeDiff = endDate.getTime() - today.getTime();
-  const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
-  
-  setDaysLeft(daysRemaining);
-}, [left]);
+  useEffect(() => {
+    const endDate = new Date(left);
+    const today = new Date();
+
+    const timeDiff = endDate.getTime() - today.getTime();
+    const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    setDaysLeft(daysRemaining);
+  }, [left]);
 
   const handleDonationForm = () => {
     openDonationForm === false

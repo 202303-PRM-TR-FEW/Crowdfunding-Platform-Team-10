@@ -51,9 +51,7 @@ export default function Nav() {
         color="blue-gray"
         className="p-1 font-normal text-lg"
       >
-        <Link href="/projects" className="flex items-center text-white">
-          Projects
-        </Link>
+       
       </Typography>
       {user ? (
         <>
