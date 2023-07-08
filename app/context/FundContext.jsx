@@ -6,7 +6,7 @@ import { db } from "../config/firebase";
 const FundContext = createContext();
 
 const FundProvider = ({ children }) => {
-  const [users, setUsers] = useState(null);
+  const [usersInfo, setUsersInfo] = useState(null);
   const [projects, setProjects] = useState(true);
 
   useEffect(() => {
@@ -16,10 +16,12 @@ const FundProvider = ({ children }) => {
       QuerySnapshot.forEach((doc) => {
         usersArr.push({ ...doc.data(), id: doc.id });
       });
-      setUsers(usersArr);
+      setUsersInfo(usersArr);
     });
     return () => unsubscribe();
   }, []);
+
+
   useEffect(() => {
     const q = query(collection(db, "projects"));
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
@@ -33,7 +35,7 @@ const FundProvider = ({ children }) => {
   }, []);
 
   return (
-    <FundContext.Provider value={{ users, projects }}>
+    <FundContext.Provider value={{ usersInfo, projects }}>
       {children}
     </FundContext.Provider>
   );

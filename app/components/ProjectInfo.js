@@ -28,7 +28,7 @@ useEffect(() => {
   const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
   
   setDaysLeft(daysRemaining);
-}, []);
+}, [left]);
 
   const handleDonationForm = () => {
     openDonationForm === false

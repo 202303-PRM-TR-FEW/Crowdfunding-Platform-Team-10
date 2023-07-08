@@ -10,7 +10,7 @@ import {
 const SearchList = ({ searchProjects }) => {
   return (
     <div>
-      {" "}
+      
       <Card className="w-96">
         {searchProjects &&
           searchProjects.map((project, i) => {
