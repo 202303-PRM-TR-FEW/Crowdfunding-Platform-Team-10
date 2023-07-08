@@ -1,26 +1,21 @@
 "use client";
-import {
-  List,
-  Card,
-  ListItem,
-  ListItemPrefix,
-  Avatar,
-  Typography,
-} from "@material-tailwind/react";
+import React from "react";
+import { List, Card, ListItem, ListItemPrefix, Avatar, Typography } from "@material-tailwind/react";
+
 const SearchList = ({ searchProjects }) => {
   return (
     <div>
-      
       <Card className="w-96">
         {searchProjects &&
           searchProjects.map((project, i) => {
             return (
               <ListItem key={i}>
-                <ListItemPrefix>
+                <ListItemPrefix >
                   <Avatar
                     variant="circular"
-                    alt="project.name"
+                    alt={project.name}
                     src={project.url}
+                    className="rounded w-12 h-12"
                   />
                 </ListItemPrefix>
                 <div>
@@ -31,7 +26,6 @@ const SearchList = ({ searchProjects }) => {
               </ListItem>
             );
           })}
-        <List>{/* <SearchListItem /> */}</List>
       </Card>
     </div>
   );
