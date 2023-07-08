@@ -12,7 +12,7 @@ import {
   Input,
 } from "@material-tailwind/react";
 import { collection, onSnapshot, query } from "firebase/firestore";
-import { db } from "@/firebase";
+import { db } from "../config/firebase";
 import SearchList from "./search/SearchList";
 export default function Nav() {
   const [openNav, setOpenNav] = useState(false);
