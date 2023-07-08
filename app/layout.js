@@ -1,13 +1,13 @@
+"use client";
 import "./globals.css";
 import { Inter } from "next/font/google";
-
 import { AuthContextProvider } from "./context/AuthContext";
 import { FundProvider } from "./context/FundContext";
 import Nav from "./components/Nav";
-// import NewsLetterCard from "./components/cards/NewsLetterCard";
+
+// import {  ThemeProvider } from "@material-tailwind/react";
+
 const inter = Inter({ subsets: ["latin"] });
-
-
 
 export const metadata = {
   title: "Create Next App",
@@ -15,15 +15,34 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // const theme = {
+  //   button: {
+  //       styles: {
+  //       color: "text-red-500",
+  //       sizes: {
+  //         sm: {
+  //           fontSize: "text-xs",
+  //         },
+  //         md: {
+  //           fontSize: "text-[40px]",
+  //         },
+  //         lg: {
+  //           fontSize: "text-xl",
+  //         },
+  //       },
+  //     },
+  //   },
+  // };
   return (
     <html lang="en">
       <FundProvider>
         <body className={inter.className}>
           <AuthContextProvider>
+            {/* <ThemeProvider value={theme}> */}
             {/* <Navbar /> */}
-             <Nav />
-             {/* <NewsLetterCard /> */}
-            {children}
+            <Nav />
+            <div className="p-5 md:p-7 lg:p-10">{children}</div>
+            {/* </ThemeProvider> */}
           </AuthContextProvider>
         </body>
       </FundProvider>
