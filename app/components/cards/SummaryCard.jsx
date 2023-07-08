@@ -88,7 +88,7 @@ const SummaryCard = ({img,title,raised,goal}) => {
               height={165}
               src={img}
               alt="asdf"
-              objectFit="cover"
+              objectfit="cover"
             />
             <Typography
               fontFamily="Krona One"
