@@ -28,7 +28,7 @@ useEffect(() => {
   const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
   
   setDaysLeft(daysRemaining);
-}, []);
+}, [left]);
 
   const handleDonationForm = () => {
     openDonationForm === false
@@ -43,7 +43,7 @@ useEffect(() => {
 
     profile_size: {
       height: "40px",
-      objectFit: "cover",
+      objectfit: "cover",
       width: "40px",
       borderRadius: "10px",
     },
@@ -79,7 +79,7 @@ useEffect(() => {
           width={200}
           height={300}
           alt="Picture of thanking"
-          objectFit="cover"
+          objectfit="cover"
         />
       </aside>
       <section className={styles.right}>
@@ -90,7 +90,7 @@ useEffect(() => {
             height={165}
             src={user_img}
             alt="Picture of thanking"
-            objectFit="cover"
+            objectfit="cover"
             style={styles.profile_size}
           />
           <p className={styles.prof_name}>{owner}</p>
@@ -149,4 +149,4 @@ useEffect(() => {
 
 //<img src={frame_hand} className='z-10 ' style={styles.frame_size} ></img>
 // if objects get wanted..
-// frame_size: { minHeight: "400px", height: "820px", objectFit: "cover"}
+// frame_size: { minHeight: "400px", height: "820px", objectfit: "cover"}

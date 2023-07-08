@@ -25,7 +25,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "@/firebase";
+import { db } from "../../config/firebase";
+
+import { useContext, useEffect, useState } from "react";
+import { FundContext } from "@/context/FundContext";
+
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
@@ -55,7 +59,18 @@ const schema = yup
   })
   .required();
 
-const ProjectForm = ({ openProjectForm, setOpenProjectForm, user }) => {
+const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
+  const [currentUser, setCurrentUser] = useState("");
+  const { usersInfo } = useContext(FundContext); //get our data from our main context
+  console.log(usersInfo);
+  useEffect(() => {
+    if (usersInfo) {
+      const user = usersInfo.find((user) => user.id === authUser.uid);
+      setCurrentUser(user);
+    }
+  }, []);
+  console.log(currentUser.id);
+
   const {
     register,
     handleSubmit,
@@ -91,8 +106,8 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, user }) => {
         goal: data.goal,
         contributors: [],
         creator: {
-          userName: user.displayName,
-          userId: user.uid,
+          userName: currentUser.name,
+          userId: currentUser.id,
         },
       });
     });

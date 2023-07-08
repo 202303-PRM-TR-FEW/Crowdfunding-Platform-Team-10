@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <FundProvider>
-        <body className={inter.className}>
+        <body className={inter.className} >
           <AuthContextProvider>
             {/* <ThemeProvider value={theme}> */}
             {/* <Navbar /> */}

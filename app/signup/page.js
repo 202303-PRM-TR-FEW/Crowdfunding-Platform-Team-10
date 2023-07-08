@@ -2,6 +2,15 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
+import { Input } from "@material-tailwind/react";
+import {
+  setDoc,
+  doc,
+  collection,
+  serverTimestamp,
+  addDoc,
+} from "firebase/firestore";
+import { db } from "../config/firebase";
 
 const Signup = () => {
   const inputStyle =
@@ -11,23 +20,35 @@ const Signup = () => {
   const router = useRouter();
 
   const { user, signup } = useAuth();
-
   const [err, setErr] = useState("");
+  //auth data
   const [data, setData] = useState({
     email: "",
     password: "",
-    displayName: "",
+  });
+  //db data
+  const [userData, setUserData] = useState({
+    name: "",
+    bio: "",
+    userImg: "",
+    projects:[],
+    donations:[]
   });
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setErr("")
+    setErr("");
     try {
-      await signup(data.email, data.password, data.displayName);
+      const res = await signup(data.email, data.password);
+      await setDoc(doc(db, "users", res.user.uid), {
+        ...userData,email: data.email ,
+        timeStamp: serverTimestamp(),
+      });
+      
       router.push("/profile");
     } catch (e) {
       setErr(e.message);
-      console.log(e.message);
+      
     }
   };
 
@@ -67,27 +88,48 @@ const Signup = () => {
             value={data.password}
           />
         </div>
-        <div>
-          <label>Full Name</label>
-          <input
-            className={inputStyle}
-            type="name"
-            placeholder="Enter Your name"
-            required
-            onChange={(e) =>
-              setData({
-                ...data,
-                displayName: e.target.value,
-              })
-            }
-            value={data.displayName}
-          />
-        </div>
+
+        <Input
+          size="lg"
+          label="Name"
+          type="text"
+          onChange={(e) =>
+            setUserData({
+              ...userData,
+              name: e.target.value,
+            })
+          }
+        />
+        <br />
+        <Input
+          size="lg"
+          label="Bio"
+          type="text"
+          onChange={(e) =>
+            setUserData({
+              ...userData,
+              bio: e.target.value,
+            })
+          }
+        />
+        <br />
+
+        <Input
+          size="lg"
+          label="Photo"
+          type="file"
+          accept="image/*"
+          onChange={(e) =>
+            setUserData({
+              ...userData,
+              userImg: e.target.file,
+            })
+          }
+        />
+
         <button type="submit">Signup</button>
       </form>
-      <p>
-        {err}
-      </p>
+      <p>{err}</p>
     </div>
   );
 };
