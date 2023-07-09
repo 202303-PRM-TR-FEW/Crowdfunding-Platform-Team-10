@@ -113,7 +113,7 @@ const LoginForm = () => {
         </CardBody>
         <CardFooter className="pt-0">
           <Typography variant="small" className="mt-6 flex justify-center">
-            Don't have an account?
+            Don&apos;t have an account?
             <Typography
               as="a"
               href="#signup"
