@@ -11,7 +11,8 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
-import { Input } from "@mui/material";
+import { Input } from "@material-tailwind/react";
+
 
 
 const Signup = () => {
