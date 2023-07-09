@@ -2,15 +2,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
-import { Input } from "@material-tailwind/react";
-import {
-  setDoc,
-  doc,
-  collection,
-  serverTimestamp,
-  addDoc,
-} from "firebase/firestore";
-import { db } from "../config/firebase";
 import NewsLetterCard from "./components/cards/NewsletterCard";
 
 const Signup = () => {
