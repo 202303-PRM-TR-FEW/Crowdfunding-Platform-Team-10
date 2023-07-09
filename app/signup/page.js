@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
+import NewsLetterCard from "./components/cards/NewsletterCard";
 
 const Signup = () => {
   const inputStyle =
@@ -88,6 +89,8 @@ const Signup = () => {
       <p>
         {err}
       </p>
+
+      <NewsLetterCard />
     </div>
   );
 };
