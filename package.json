@@ -20,6 +20,8 @@
     "@mui/x-date-pickers": "^6.9.1",
     "autoprefixer": "10.4.14",
     "dayjs": "^1.11.9",
+    "emailjs": "^4.0.2",
+    "emailjs-com": "^3.2.0",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "firebase": "^9.23.0",

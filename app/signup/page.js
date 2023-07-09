@@ -2,15 +2,16 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
-import { Input } from "@material-tailwind/react";
+import NewsLetterCard from "@/components/cards/NewsLetterCard";
 import {
   setDoc,
   doc,
-  collection,
   serverTimestamp,
-  addDoc,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { Input } from "@material-tailwind/react";
+
+
 
 const Signup = () => {
   const inputStyle =
@@ -58,7 +59,7 @@ const Signup = () => {
       <form onSubmit={handleSignup} className={formStyle}>
         <div>
           <label>Email address</label>
-          <input
+          <Input
             className={inputStyle}
             type="email"
             placeholder="Enter email"
@@ -130,6 +131,7 @@ const Signup = () => {
         <button type="submit">Signup</button>
       </form>
       <p>{err}</p>
+<NewsLetterCard/>
     </div>
   );
 };
