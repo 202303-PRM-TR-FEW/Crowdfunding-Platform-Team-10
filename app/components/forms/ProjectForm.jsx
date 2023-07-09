@@ -62,14 +62,14 @@ const schema = yup
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [currentUser, setCurrentUser] = useState("");
   const { usersInfo } = useContext(FundContext); //get our data from our main context
-  console.log(usersInfo);
+
   useEffect(() => {
     if (usersInfo) {
       const user = usersInfo.find((user) => user.id === authUser.uid);
       setCurrentUser(user);
     }
   }, []);
-  console.log(currentUser.id);
+
 
   const {
     register,

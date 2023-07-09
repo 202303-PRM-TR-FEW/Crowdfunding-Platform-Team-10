@@ -18,7 +18,6 @@ const Home = () => {
   }, [projects]);
 
   // Find project with maximum contributions
-
   useEffect(() => {
     let max = 0;
     if (data.length > 0) {
@@ -71,23 +70,7 @@ const Home = () => {
 
   return (
     <>
-      <Link
-        key={projectOfWeek.id}
-        href={{
-          pathname: `/${projectOfWeek.id}`,
-          query: {
-            name: `${projectOfWeek.name}`,
-            about: `${projectOfWeek.about}`,
-            raised: `${projectOfWeek.raised}`,
-            goal: `${projectOfWeek.goal}`,
-            endingDate: `${projectOfWeek.endingDate}`,
-            startingDate: `${projectOfWeek.startingDate}`,
-            category: `${projectOfWeek.category}`,
-            url: `${projectOfWeek.url}`,
-            userName: `${projectOfWeek.userName}`,
-          },
-        }}
-      >
+      <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
         <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
       </Link>
       <CategoryFiltering data={projects} filtrindData={setData} />

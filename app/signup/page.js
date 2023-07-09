@@ -1,8 +1,6 @@
 "use client";
 
-
 import NewsLetterCard from "@/components/cards/NewsLetterCard";
-
 
 import SignupForm from "@/components/forms/SignupForm";
 const Signup = () => {

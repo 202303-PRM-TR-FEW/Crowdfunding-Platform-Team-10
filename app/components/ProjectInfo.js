@@ -42,7 +42,7 @@ export const ProjectInfo = ({
 
     profile_size: {
       height: "40px",
-      objectfit: "cover",
+ 
       width: "40px",
       borderRadius: "10px",
     },
@@ -80,7 +80,7 @@ export const ProjectInfo = ({
           width={200}
           height={300}
           alt="Picture of thanking"
-          objectfit="cover"
+         
         />
       </aside>
       <section className={styles.right}>
@@ -91,7 +91,7 @@ export const ProjectInfo = ({
             height={165}
             src={user_img}
             alt="Picture of thanking"
-            objectfit="cover"
+           
             style={styles.profile_size}
           />
           <p className={styles.prof_name}>{userName}</p>

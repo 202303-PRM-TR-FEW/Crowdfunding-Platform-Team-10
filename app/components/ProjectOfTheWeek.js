@@ -1,6 +1,5 @@
 import React from "react";
-import img from "../../public/assets/images/projecttheweek.png";
-import Image from "next/image";
+
 import CustomizedProgressBars from "./helper/ProgressBar";
 
 export default function ProjectOfTheWeek({ projectOfWeek }) {
@@ -15,17 +14,15 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
           <img
             src={projectOfWeek.url}
             alt="Project of the week"
-            objectfit="cover"
           />
         </div>
         <div className="w-10/12">
           <h3 className="header-3 lg:w-1/2">
-            Help us release cookbook for parents and kids
+          {projectOfWeek.name}
           </h3>
 
           <p className="sub-header py-4 lg:py-7">
-            We want to create beautiful and helpful cooking book for parents and
-            kids to have fun in kitchen.
+      {projectOfWeek.about}
           </p>
           <CustomizedProgressBars progressValue={60} />
 

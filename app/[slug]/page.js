@@ -1,51 +1,54 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+
 import { ProjectInfo } from "@/components/ProjectInfo";
+import { db } from "../config/firebase";
+
+import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import LoaderStyle from "@/components/helper/LoaderStyle";
+
 
 function Project({ params }) {
-  const [projectData, setProjectData] = useState(null);
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
 
+  const [data, setData] = useState(null);
+//this code pass data to single project page
   useEffect(() => {
-    const queryParams = new URLSearchParams(searchParams);
-    const name = queryParams.get("name");
-    const userName = queryParams.get("userName");
-    const about = queryParams.get("about");
-    const raised = queryParams.get("raised");
-    const goal = queryParams.get("goal");
-    const endingDate = queryParams.get("endingDate");
-    const url = queryParams.get("url");
+    const fetchData = async () => {
+      try {
+        const docRef = doc(db, "projects", params.slug);
+        const docSnap = await getDoc(docRef);
 
-    const project = {
-      name,
-      userName,
-      about,
-      raised,
-      goal,
-      endingDate,
-      url,
+        if (docSnap.exists()) {
+          setData(docSnap.data());
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching document:", error);
+      }
     };
 
-    setProjectData(project);
-  }, [pathname, searchParams]);
+    fetchData();
+  }, []);
 
-  console.log(projectData);
-  if (!projectData) {
-    return <p>Loading project data...</p>;
+  console.log(data)
+ 
+  if (data===null || !data) {
+    return <LoaderStyle />;
   }
+
   return (
     <ProjectInfo
-      title={projectData.name}
-      userName={projectData.userName}
-      about={projectData.about}
-      taken={projectData.raised}
-      goal={projectData.goal}
-      left={projectData.endingDate}
-      img={projectData.url}
+      title={data.name}
+      userName={data.creator.userName}
+      about={data.about}
+      taken={data.raised}
+      goal={data.goal}
+      left={data.endingDate}
+      img={data.url}
     />
+    
   );
 }
 

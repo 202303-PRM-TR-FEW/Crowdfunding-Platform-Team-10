@@ -7,7 +7,7 @@ export const Thanks = () => {
     image: `w-3/4 mx-auto scale-75`,
     image_size: {
       minHeight: "400px",
-      objectFit: "cover",
+  
     },
     title: `text-6xl font-bold mb-4`,
     text: `text-2xl mb-10`,
@@ -21,7 +21,7 @@ export const Thanks = () => {
         height={165}
         src={handImag}
         alt="Picture of thanking"
-        objectFit="cover"
+      
         className={styles.image}
         style={styles.image_size}
       />
