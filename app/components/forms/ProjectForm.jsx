@@ -24,7 +24,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 
 import { useContext, useEffect, useState } from "react";
@@ -62,14 +62,13 @@ const schema = yup
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [currentUser, setCurrentUser] = useState("");
   const { usersInfo } = useContext(FundContext); //get our data from our main context
-  console.log(usersInfo);
+
   useEffect(() => {
     if (usersInfo) {
       const user = usersInfo.find((user) => user.id === authUser.uid);
       setCurrentUser(user);
     }
   }, []);
-  console.log(currentUser.id);
 
   const {
     register,
@@ -94,22 +93,32 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       console.log(storageRef);
     });
 
+    let newData = {
+      startingDate: data.startingDate,
+      endingDate: data.endingDate,
+      url: imgUrl,
+      category: data.category,
+      name: data.projectName,
+      raised: 0,
+      about: data.about,
+      goal: data.goal,
+      contributors: [],
+      creator: {
+        userName: currentUser.name,
+        userId: currentUser.id,
+      },
+    };
+
     getDownloadURL(ref(storage, data.media[0].name)).then(async (imgUrl) => {
       await addDoc(collection(db, "projects"), {
-        startingDate: data.startingDate,
-        endingDate: data.endingDate,
-        url: imgUrl,
-        category: data.category,
-        name: data.projectName,
-        raised: 0,
-        about: data.about,
-        goal: data.goal,
-        contributors: [],
-        creator: {
-          userName: currentUser.name,
-          userId: currentUser.id,
-        },
+        newData,
       });
+    });
+ 
+ 
+    // Set the "capital" field of the city 'DC'
+    await addDoc(doc(db, "users", "project"), {
+      newData
     });
     console.log(data);
   };

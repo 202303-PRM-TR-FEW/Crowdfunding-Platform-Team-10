@@ -1,6 +1,5 @@
 import React from "react";
-import img from "../../public/assets/images/projecttheweek.png";
-import Image from "next/image";
+
 import CustomizedProgressBars from "./helper/ProgressBar";
 
 export default function ProjectOfTheWeek({ projectOfWeek }) {

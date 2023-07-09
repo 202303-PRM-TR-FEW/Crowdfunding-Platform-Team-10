@@ -18,7 +18,6 @@ const Page = () => {
 
   return (
     <div>
-      {" "}
       <Profile user={user} />
     </div>
   );

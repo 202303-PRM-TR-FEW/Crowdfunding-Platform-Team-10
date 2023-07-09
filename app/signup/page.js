@@ -31,8 +31,8 @@ const Signup = () => {
     name: "",
     bio: "",
     userImg: "",
-    projects:[],
-    donations:[]
+    projects: [],
+    donations: [],
   });
 
   const handleSignup = async (e) => {
@@ -41,17 +41,16 @@ const Signup = () => {
     try {
       const res = await signup(data.email, data.password);
       await setDoc(doc(db, "users", res.user.uid), {
-        ...userData,email: data.email ,
+        ...userData,
+        email: data.email,
         timeStamp: serverTimestamp(),
       });
-      
-      router.push("/profile");
+   
     } catch (e) {
       setErr(e.message);
-      
     }
   };
-
+ 
   return (
     <div>
       <h1>Signup</h1>

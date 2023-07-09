@@ -32,7 +32,7 @@ function Project({ params }) {
     setProjectData(project);
   }, [pathname, searchParams]);
 
-  console.log(projectData);
+ 
   if (!projectData) {
     return <p>Loading project data...</p>;
   }
