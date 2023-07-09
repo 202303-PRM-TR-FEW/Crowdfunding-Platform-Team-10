@@ -45,14 +45,7 @@ export default function Nav() {
           Home
         </Link>
       </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal text-lg"
-      >
-       
-      </Typography>
+
       {user ? (
         <>
           <Link href="/profile">Profile</Link>
