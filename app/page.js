@@ -18,7 +18,6 @@ const Home = () => {
   }, [projects]);
 
   // Find project with maximum contributions
-
   useEffect(() => {
     let max = 0;
     if (data.length > 0) {

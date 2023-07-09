@@ -40,8 +40,11 @@ const Page = () => {
 
   const userProject = usersProjects
     ? usersProjects.map((project) => (
-        <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          <Link key={project.id} href={`/${project.id}`}>
+        <Box
+          key={project.id}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
+        >
+          <Link href={`/${project.id}`}>
             <SummaryCard
               img={project.url}
               title={project.name}
