@@ -2,7 +2,17 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
-import NewsLetterCard from "./components/cards/NewsletterCard";
+import NewsLetterCard from "@/components/cards/NewsletterCard";
+import {
+  setDoc,
+  doc,
+  collection,
+  serverTimestamp,
+  addDoc,
+} from "firebase/firestore";
+import { db } from "../config/firebase";
+import { Input } from "@mui/material";
+
 
 const Signup = () => {
   const inputStyle =
@@ -50,7 +60,7 @@ const Signup = () => {
       <form onSubmit={handleSignup} className={formStyle}>
         <div>
           <label>Email address</label>
-          <input
+          <Input
             className={inputStyle}
             type="email"
             placeholder="Enter email"
