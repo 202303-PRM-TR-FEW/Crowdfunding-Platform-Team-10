@@ -2,13 +2,11 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
-import NewsLetterCard from "@/components/cards/NewsletterCard";
+import NewsLetterCard from "@/components/cards/NewsLetterCard";
 import {
   setDoc,
   doc,
-  collection,
   serverTimestamp,
-  addDoc,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { Input } from "@material-tailwind/react";
