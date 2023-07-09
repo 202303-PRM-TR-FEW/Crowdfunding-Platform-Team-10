@@ -5,9 +5,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  updateProfile,
+
 } from "firebase/auth";
 import { auth } from "../config/firebase";
+
+import { FundContext } from "./FundContext";
 
 const AuthContext = createContext();
 
@@ -34,6 +36,8 @@ export const AuthContextProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
+  
+
 
   const signup = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -49,7 +53,9 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider
+      value={{ user, login, signup, logout }}
+    >
       {loading ? null : children}
     </AuthContext.Provider>
   );
