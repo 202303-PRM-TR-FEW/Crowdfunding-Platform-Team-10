@@ -3,13 +3,7 @@ import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import { Input } from "@material-tailwind/react";
-import {
-  setDoc,
-  doc,
-  collection,
-  serverTimestamp,
-  addDoc,
-} from "firebase/firestore";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 const Signup = () => {
@@ -19,7 +13,7 @@ const Signup = () => {
 
   const router = useRouter();
 
-  const { user, signup } = useAuth();
+  const { signup } = useAuth();
   const [err, setErr] = useState("");
   //auth data
   const [data, setData] = useState({
@@ -45,12 +39,11 @@ const Signup = () => {
         email: data.email,
         timeStamp: serverTimestamp(),
       });
-   
     } catch (e) {
       setErr(e.message);
     }
   };
- 
+
   return (
     <div>
       <h1>Signup</h1>
