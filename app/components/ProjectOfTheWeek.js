@@ -14,7 +14,7 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
           <img
             src={projectOfWeek.url}
             alt="Project of the week"
-            objectFit="cover"
+         
           />
         </div>
         <div className="w-10/12">

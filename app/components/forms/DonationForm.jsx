@@ -103,7 +103,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm }) => {
               />
             </div>
 
-            <Button variant="contained" type="submit" className="mt-32">
+            <Button  type="submit" className="mt-32">
               Pay Now
             </Button>
           </form>
