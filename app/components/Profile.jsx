@@ -2,17 +2,11 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
 import ProjectForm from "./forms/ProjectForm";
+import Profile from "@/profile/page";
 
-const Profile = () => {
-  const [openProjectForm, setOpenProjectForm] = useState(false);
-  const handleNewProject = () => {
-    openProjectForm === false
-      ? setOpenProjectForm(true)
-      : setOpenProjectForm(false);
-  };
-  const { user, logout } = useAuth();
+const Page = () => {
+  const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -21,24 +15,8 @@ const Profile = () => {
     }
   }, [router, user]);
   console.log(user);
-  // Move the text variable inside the return statement
-  return (
-    <>
-      {user
-        ? `You are logged in as >>>> NAME: ${user.displayName}
- -------
-   Email is ${user.email}
-    
-    `
-        : null}
-      <br />
-      <button onClick={handleNewProject}>sdsd</button>
-      <ProjectForm
-        openProjectForm={openProjectForm}
-        setOpenProjectForm={setOpenProjectForm}
-      />
-    </>
-  );
+
+  return <>{user ? <Profile /> : null}</>;
 };
 
-export default Profile;
+export default Page;

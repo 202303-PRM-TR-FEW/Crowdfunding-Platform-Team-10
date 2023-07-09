@@ -5,13 +5,15 @@ import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   Button,
   IconButton,
   Input,
 } from "@material-tailwind/react";
-
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../config/firebase";
+import SearchList from "./search/SearchList";
 export default function Nav() {
   const [openNav, setOpenNav] = useState(false);
 
@@ -49,9 +51,7 @@ export default function Nav() {
         color="blue-gray"
         className="p-1 font-normal text-lg"
       >
-        <Link href="/projects" className="flex items-center text-white">
-          Projects
-        </Link>
+       
       </Typography>
       {user ? (
         <>
@@ -72,7 +72,26 @@ export default function Nav() {
       )}
     </ul>
   );
-
+  //
+  const [searchProjects, setSearchProjects] = useState();
+  const handleSearch = (e) => {
+    const q = query(collection(db, "projects"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let projectsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        projectsArr.push({ ...doc.data(), id: doc.id });
+      });
+      if (e.target.value !== "") {
+        setSearchProjects(
+          projectsArr.filter((project) =>
+            project.name.toLowerCase().includes(e.target.value.toLowerCase())
+          )
+        );
+      } else {
+        setSearchProjects([]);
+      }
+    });
+  };
   return (
     <Navbar className="max-w-full rounded-none top-0 left-0 right-0  bg-black py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between">
@@ -83,6 +102,7 @@ export default function Nav() {
 
           <div className="relative flex w-full md:w-max mr-5 ml-5">
             <Input
+              onChange={handleSearch}
               type="search"
               color="white"
               label="Search for projects"
@@ -98,6 +118,15 @@ export default function Nav() {
             >
               <span className="icon">🔍</span>
             </Button>
+            <div
+              className={`${
+                !searchProjects || searchProjects.length === 0
+                  ? "hidden"
+                  : "flex"
+              } absolute top-12 -left-3`}
+            >
+              <SearchList searchProjects={searchProjects} />
+            </div>
           </div>
         </div>
         <div className="hidden lg:flex lg:items-center gap-20">{navList}</div>
@@ -140,7 +169,7 @@ export default function Nav() {
           )}
         </IconButton>
       </div>
-      <MobileNav open={openNav}>
+      <Collapse open={openNav}>
         <div className="container mx-auto bg-orange py-2">
           {navList}
           {user ? (
@@ -161,7 +190,7 @@ export default function Nav() {
             </>
           )}
         </div>
-      </MobileNav>
+      </Collapse>
     </Navbar>
   );
 }
