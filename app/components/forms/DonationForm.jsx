@@ -12,7 +12,10 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-
+import { doc, updateDoc, increment, arrayUnion } from "firebase/firestore";
+import { useAuth } from "@/context/AuthContext";
+import { db } from "@/config/firebase";
+import { useRouter } from "next/navigation";
 ////// These need to be where the new project form button is //////
 // const [openDonationForm, setOpenDonationForm] = useState(false);
 // const handleDonationForm = () => {
@@ -29,7 +32,9 @@ const schema = yup
   })
   .required();
 
-const DonationForm = ({ openDonationForm, setOpenDonationForm }) => {
+const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
+  const router = useRouter();
+  const { user } = useAuth();
   const {
     register,
     handleSubmit,
@@ -39,21 +44,22 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm }) => {
     defaultValues: {
       donation: "",
       charity: false,
-      userId: "userId",
-      projectId: "projectId",
+      userId: user.uid,
+      projectId: id.slug,
     },
     resolver: yupResolver(schema),
   });
-
-  const onSubmit = (data) => {
-    const donationData = `
-        donation: ${data.donation}
-        charity: ${data.charity}
-        userId: ${data.userId}
-        projectId: ${data.projectId}
-        `;
-    alert(donationData);
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await updateDoc(doc(db, "projects", id.slug), {
+        contributors: arrayUnion(user.uid),
+        raised: increment(data.donation),
+      });
+      console.log("donated");
+      router.push("/thanks");
+    } catch (error) {
+      console.log("notdonated");
+    }
   };
 
   const handleClose = () => {
@@ -103,7 +109,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm }) => {
               />
             </div>
 
-            <Button  type="submit" className="mt-32">
+            <Button type="submit" className="mt-32">
               Pay Now
             </Button>
           </form>

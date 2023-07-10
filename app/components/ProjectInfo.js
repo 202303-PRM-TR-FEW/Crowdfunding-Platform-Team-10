@@ -15,6 +15,7 @@ export const ProjectInfo = ({
   goal,
   left,
   img,
+  id,
 }) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
@@ -42,7 +43,7 @@ export const ProjectInfo = ({
 
     profile_size: {
       height: "40px",
- 
+
       width: "40px",
       borderRadius: "10px",
     },
@@ -69,7 +70,6 @@ export const ProjectInfo = ({
     button_pos: `flex justify-center md:justify-start`,
   };
 
-  
   return (
     <div className={styles.page}>
       <aside className={styles.left}>
@@ -80,7 +80,6 @@ export const ProjectInfo = ({
           width={200}
           height={300}
           alt="Picture of thanking"
-         
         />
       </aside>
       <section className={styles.right}>
@@ -91,7 +90,6 @@ export const ProjectInfo = ({
             height={165}
             src={user_img}
             alt="Picture of thanking"
-           
             style={styles.profile_size}
           />
           <p className={styles.prof_name}>{userName}</p>
@@ -140,6 +138,7 @@ export const ProjectInfo = ({
           </button>
         </a>
         <DonationForm
+          id={id}
           openDonationForm={openDonationForm}
           setOpenDonationForm={setOpenDonationForm}
         />
