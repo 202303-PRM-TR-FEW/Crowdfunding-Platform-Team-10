@@ -6,6 +6,7 @@ import {
   Input,
   Checkbox,
   Typography,
+  Alert,
 } from "@material-tailwind/react";
 import { Controller, useForm } from "react-hook-form";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -16,6 +17,7 @@ import { doc, updateDoc, increment, arrayUnion } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 ////// These need to be where the new project form button is //////
 // const [openDonationForm, setOpenDonationForm] = useState(false);
 // const handleDonationForm = () => {
@@ -34,6 +36,7 @@ const schema = yup
 
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
   const router = useRouter();
+  const [success, setSuccess] = useState(false);
   const { user } = useAuth();
   const {
     register,
@@ -56,6 +59,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
         raised: increment(data.donation),
       });
       console.log("donated");
+      setSuccess(true);
       router.push("/thanks");
     } catch (error) {
       console.log("notdonated");
@@ -108,6 +112,11 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
                 )}
               />
             </div>
+            {success && (
+              <Alert variant="outlined" color="green">
+                Donation Succesfull !{" "}
+              </Alert>
+            )}
 
             <Button type="submit" className="mt-32">
               Pay Now
