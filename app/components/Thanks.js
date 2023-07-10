@@ -1,7 +1,7 @@
 import React from "react";
 import handImag from "../../public/assets/images/hand.png";
 import Image from "next/image";
-
+import Link from "next/link";
 export const Thanks = () => {
   const styles = {
     image: `w-3/4 mx-auto scale-75`,
@@ -27,8 +27,10 @@ export const Thanks = () => {
       <div>
         <h4 className={styles.title}>Thank you</h4>
         <p className={styles.text}>for supporting us!</p>
-        <button className={styles.button_left}>Make another donation</button>
-        <button className={styles.button_right}>Go to home page</button>
+        {/* <button className={styles.button_left}>Make another donation</button> */}
+        <Link href="/">
+          <button className={styles.button_right}>Go to home page</button>
+        </Link>
       </div>
     </div>
   );

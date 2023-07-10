@@ -47,7 +47,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
     defaultValues: {
       donation: "",
       charity: false,
-      userId: user.uid,
+      userId: user ? user.uid : "",
       projectId: id.slug,
     },
     resolver: yupResolver(schema),

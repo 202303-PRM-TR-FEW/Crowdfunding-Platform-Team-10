@@ -3,9 +3,9 @@ import user_img from "../../public/assets/images/user_img.jpg";
 import project_img from "../../public/assets/images/project.jpg";
 import frame_hand from "../../public/assets/images/frame_hand.png";
 import handImag from "../../public/assets/images/hand.png";
-
 import Image from "next/image";
 import DonationForm from "./forms/DonationForm";
+import { useAuth } from "@/context/AuthContext";
 
 export const ProjectInfo = ({
   title,
@@ -19,7 +19,7 @@ export const ProjectInfo = ({
 }) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
-
+  const { user } = useAuth();
   useEffect(() => {
     const endDate = new Date(left);
     const today = new Date();
@@ -132,11 +132,20 @@ export const ProjectInfo = ({
             </span>
           </div>
         </div>
-        <a className={styles.button_pos}>
-          <button className={styles.button} onClick={handleDonationForm}>
-            Fund this project
-          </button>
-        </a>
+        {user ? (
+          <a className={styles.button_pos}>
+            <button className={styles.button} onClick={handleDonationForm}>
+              Fund this project
+            </button>
+          </a>
+        ) : (
+          <a href="/login" className={styles.button_pos}>
+            <button className={styles.button}>
+              Log in to fund this project
+            </button>
+          </a>
+        )}
+
         <DonationForm
           id={id}
           openDonationForm={openDonationForm}
