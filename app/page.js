@@ -1,6 +1,6 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
-import ProjectOfTheWeek from "./components/ProjectOfTheWeek";
+import ProjectOfTheWeek from "./components/cards/ProjectOfTheWeek";
 import { FundContext } from "./context/FundContext";
 import CategoryFiltering from "./components/category/CategoryFiltering";
 import SummaryCard from "./components/cards/SummaryCard";
@@ -37,20 +37,7 @@ const Home = () => {
         return (
           <Link
             key={card.id}
-            href={{
-              pathname: `/${card.id}`,
-              query: {
-                name: `${card.name}`,
-                userName: `${card.creator.userName}`,
-                about: `${card.about}`,
-                raised: `${card.raised}`,
-                goal: `${card.goal}`,
-                endingDate: `${card.endingDate}`,
-                startingDate: `${card.startingDate}`,
-                category: `${card.category}`,
-                url: `${card.url}`,
-              },
-            }}
+            href={`/${card.id}`}
           >
             <SummaryCard
               key={card.id}

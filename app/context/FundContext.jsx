@@ -9,8 +9,6 @@ import { db } from "../config/firebase";
 const FundContext = createContext();
 
 const FundProvider = ({ children }) => {
-
-
   const [usersInfo, setUsersInfo] = useState(null);
   const [projects, setProjects] = useState(true);
 

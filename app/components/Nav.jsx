@@ -19,8 +19,6 @@ export default function Nav() {
 
   const { user, logout } = useAuth();
   const router = useRouter();
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const handleLogout = () => {
     logout();
     router.push("/login");
