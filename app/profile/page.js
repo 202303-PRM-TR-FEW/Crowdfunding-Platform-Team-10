@@ -3,11 +3,32 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
-import Profile from "./Prolfile";
 import { FundContext } from "../context/FundContext";
-import SummaryCard from "@/components/cards/SummaryCard";
 import Link from "next/link";
-import { Box } from "@mui/material";
+import ProjectForm from "@/components/forms/ProjectForm";
+import { Button } from "@mui/material";
+import MyProjectCard from "@/components/cards/MyProjectCard";
+import TransactionHistory from "@/components/cards/TransactionHistory";
+import LoaderStyle from "@/components/helper/LoaderStyle";
+
+const Profile = ({ user }) => {
+  const [openProjectForm, setOpenProjectForm] = useState(false);
+
+  const handleNewProject = () => {
+    setOpenProjectForm(!openProjectForm);
+  };
+
+  return (
+    <>
+      <Button onClick={handleNewProject}>New Project</Button>
+      <ProjectForm
+        authUser={user}
+        openProjectForm={openProjectForm}
+        setOpenProjectForm={setOpenProjectForm}
+      />
+    </>
+  );
+};
 
 const Page = () => {
   const { user } = useAuth();
@@ -22,7 +43,6 @@ const Page = () => {
     }
   }, [router, user]);
 
-  //get this user data
   useEffect(() => {
     const projectArray = Object.values(projects);
     if (user) {
@@ -33,33 +53,31 @@ const Page = () => {
       if (projectWithUser.length > 0) {
         setUsersProjects(...usersProjects, projectWithUser);
       } else {
-        console.log("This user have no projects ");
+        console.log("This user has no projects.");
       }
     }
   }, [projects]);
 
-  const userProject = usersProjects
-    ? usersProjects.map((project) => (
-        <Box
-          key={project.id}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
-        >
-          <Link href={`/${project.id}`}>
-            <SummaryCard
-              img={project.url}
-              title={project.name}
-              raised={project.raised}
-              goal={project.goal}
-            />
-          </Link>
-        </Box>
-      ))
-    : "u have no projects";
+  //take the last project and show it in Project Card
+  const oneProjectInfo = usersProjects[usersProjects.length - 1];
 
   return (
-    <div>
-      {userProject}
-      <Profile user={user} />
+    <div className="px-2 lg:px-20">
+      <div className="lg:grid-cols-3 grid-cols-1 grid lg:gap-36 justify-between items-start">
+        <div className="lg:col-span-2 ">
+          {oneProjectInfo !== undefined  ? (
+            <Link href={`/${oneProjectInfo.id}`} key={oneProjectInfo.id}>
+              <MyProjectCard projectOfWeek={oneProjectInfo} />
+            </Link>
+          ) : (
+            <LoaderStyle />
+          )}
+          <Profile user={user} />
+        </div>
+        <div className="lg:col-span-1 ">
+          <TransactionHistory />
+        </div>
+      </div>
     </div>
   );
 };

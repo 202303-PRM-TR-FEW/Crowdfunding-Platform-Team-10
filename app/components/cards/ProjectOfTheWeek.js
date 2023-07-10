@@ -1,6 +1,6 @@
 import React from "react";
 
-import CustomizedProgressBars from "./helper/ProgressBar";
+import CustomizedProgressBars from "../helper/ProgressBar";
 
 export default function ProjectOfTheWeek({ projectOfWeek }) {
   const styles = {
