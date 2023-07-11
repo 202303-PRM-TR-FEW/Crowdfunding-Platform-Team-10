@@ -23,7 +23,8 @@ import {
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FundContext } from "@/context/FundContext";
 ////// These need to be where the new project form button is //////
 // const [openDonationForm, setOpenDonationForm] = useState(false);
 // const handleDonationForm = () => {
@@ -41,6 +42,8 @@ const schema = yup
   .required();
 
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
+  const { usersInfo } = useContext(FundContext);
+  console.log(usersInfo);
   const router = useRouter();
   const [success, setSuccess] = useState(false);
   const { user } = useAuth();
