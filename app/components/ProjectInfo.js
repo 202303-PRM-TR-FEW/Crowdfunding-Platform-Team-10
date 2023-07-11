@@ -35,6 +35,7 @@ export const ProjectInfo = ({
       ? setOpenDonationForm(true)
       : setOpenDonationForm(false);
   };
+  
   const styles = {
     project_size: {
       minHeight: "600px",

@@ -5,7 +5,6 @@ import welcomeHand from "../../../public/assets/images/welcome-hand.png";
 
 import Link from "next/link";
 import {
-
   CardBody,
   CardFooter,
   Typography,
@@ -44,7 +43,7 @@ const LoginForm = () => {
   });
 
   const router = useRouter();
-  const { user, login } = useAuth();
+  const { login } = useAuth();
 
   const onSubmit = async (data) => {
     console.log(data.email, data.password);
