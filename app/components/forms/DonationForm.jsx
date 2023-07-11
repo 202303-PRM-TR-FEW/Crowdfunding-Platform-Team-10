@@ -6,13 +6,24 @@ import {
   Input,
   Checkbox,
   Typography,
+  Alert,
 } from "@material-tailwind/react";
 import { Controller, useForm } from "react-hook-form";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-
+import {
+  addDoc,
+  collection,
+  doc,
+  increment,
+  updateDoc,
+} from "firebase/firestore";
+import { useAuth } from "@/context/AuthContext";
+import { db } from "@/config/firebase";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 ////// These need to be where the new project form button is //////
 // const [openDonationForm, setOpenDonationForm] = useState(false);
 // const handleDonationForm = () => {
@@ -29,7 +40,10 @@ const schema = yup
   })
   .required();
 
-const DonationForm = ({ openDonationForm, setOpenDonationForm }) => {
+const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
+  const router = useRouter();
+  const [success, setSuccess] = useState(false);
+  const { user } = useAuth();
   const {
     register,
     handleSubmit,
@@ -39,21 +53,27 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm }) => {
     defaultValues: {
       donation: "",
       charity: false,
-      userId: "userId",
-      projectId: "projectId",
+      userId: user ? user.uid : "",
+      projectId: id.slug,
     },
     resolver: yupResolver(schema),
   });
-
-  const onSubmit = (data) => {
-    const donationData = `
-        donation: ${data.donation}
-        charity: ${data.charity}
-        userId: ${data.userId}
-        projectId: ${data.projectId}
-        `;
-    alert(donationData);
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await addDoc(collection(db, "donations"), {
+        donaiton: data.donation,
+        userId: data.userId,
+        projectId: data.projectId,
+      });
+      await updateDoc(doc(db, "projects", id.slug), {
+        raised: increment(data.donation),
+      });
+      console.log("donated");
+      setSuccess(true);
+      router.push("/thanks");
+    } catch (error) {
+      console.log("notdonated", error);
+    }
   };
 
   const handleClose = () => {
@@ -102,8 +122,13 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm }) => {
                 )}
               />
             </div>
+            {success && (
+              <Alert variant="outlined" color="green">
+                Donation Succesfull !{" "}
+              </Alert>
+            )}
 
-            <Button  type="submit" className="mt-32">
+            <Button type="submit" className="mt-32">
               Pay Now
             </Button>
           </form>

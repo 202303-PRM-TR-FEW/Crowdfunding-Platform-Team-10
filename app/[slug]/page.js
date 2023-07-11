@@ -1,6 +1,5 @@
 "use client";
 
-
 import { ProjectInfo } from "@/components/ProjectInfo";
 import { db } from "../config/firebase";
 
@@ -8,11 +7,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 
-
 function Project({ params }) {
-
   const [data, setData] = useState(null);
-//this code pass data to single project page
+  //this code pass data to single project page
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,9 +29,7 @@ function Project({ params }) {
     fetchData();
   }, [params.slug]);
 
-  console.log(data)
- 
-  if (data===null || !data) {
+  if (data === null || !data) {
     return <LoaderStyle />;
   }
 
@@ -47,8 +42,8 @@ function Project({ params }) {
       goal={data.goal}
       left={data.endingDate}
       img={data.url}
+      id={params}
     />
-    
   );
 }
 

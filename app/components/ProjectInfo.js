@@ -3,9 +3,9 @@ import user_img from "../../public/assets/images/user_img.jpg";
 import project_img from "../../public/assets/images/project.jpg";
 import frame_hand from "../../public/assets/images/frame_hand.png";
 import handImag from "../../public/assets/images/hand.png";
-
 import Image from "next/image";
 import DonationForm from "./forms/DonationForm";
+import { useAuth } from "@/context/AuthContext";
 
 export const ProjectInfo = ({
   title,
@@ -15,10 +15,11 @@ export const ProjectInfo = ({
   goal,
   left,
   img,
+  id,
 }) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
-
+  const { user } = useAuth();
   useEffect(() => {
     const endDate = new Date(left);
     const today = new Date();
@@ -68,7 +69,6 @@ export const ProjectInfo = ({
     button_pos: `flex justify-center md:justify-start`,
   };
 
-  
   return (
     <div className={styles.page}>
       <aside className={styles.left}>
@@ -79,7 +79,6 @@ export const ProjectInfo = ({
           width={200}
           height={300}
           alt="Picture of thanking"
-         
         />
       </aside>
       <section className={styles.right}>
@@ -90,7 +89,6 @@ export const ProjectInfo = ({
             height={165}
             src={user_img}
             alt="Picture of thanking"
-           
             style={styles.profile_size}
           />
           <p className={styles.prof_name}>{userName}</p>
@@ -133,12 +131,22 @@ export const ProjectInfo = ({
             </span>
           </div>
         </div>
-        <a className={styles.button_pos}>
-          <button className={styles.button} onClick={handleDonationForm}>
-            Fund this project
-          </button>
-        </a>
+        {user ? (
+          <a className={styles.button_pos}>
+            <button className={styles.button} onClick={handleDonationForm}>
+              Fund this project
+            </button>
+          </a>
+        ) : (
+          <a href="/login" className={styles.button_pos}>
+            <button className={styles.button}>
+              Log in to fund this project
+            </button>
+          </a>
+        )}
+
         <DonationForm
+          id={id}
           openDonationForm={openDonationForm}
           setOpenDonationForm={setOpenDonationForm}
         />

@@ -1,13 +1,12 @@
 import React from "react";
 import handImag from "../../public/assets/images/hand.png";
 import Image from "next/image";
-
+import Link from "next/link";
 export const Thanks = () => {
   const styles = {
     image: `w-3/4 mx-auto scale-75`,
     image_size: {
       minHeight: "400px",
-  
     },
     title: `text-6xl font-bold mb-4`,
     text: `text-2xl mb-10`,
@@ -21,7 +20,6 @@ export const Thanks = () => {
         height={165}
         src={handImag}
         alt="Picture of thanking"
-      
         className={styles.image}
         style={styles.image_size}
       />
@@ -29,8 +27,10 @@ export const Thanks = () => {
       <div>
         <h4 className={styles.title}>Thank you</h4>
         <p className={styles.text}>for supporting us!</p>
-        <button className={styles.button_left}>Make another donation</button>
-        <button className={styles.button_right}>Go to home page</button>
+        {/* <button className={styles.button_left}>Make another donation</button> */}
+        <Link href="/">
+          <button className={styles.button_right}>Go to home page</button>
+        </Link>
       </div>
     </div>
   );

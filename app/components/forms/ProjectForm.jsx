@@ -7,6 +7,7 @@ import {
   Option,
   Typography,
   Select,
+  Alert,
 } from "@material-tailwind/react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -29,7 +30,6 @@ import { db } from "../../config/firebase";
 
 import { useContext, useEffect, useState } from "react";
 import { FundContext } from "@/context/FundContext";
-
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
@@ -61,6 +61,7 @@ const schema = yup
 
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [currentUser, setCurrentUser] = useState("");
+  const [success, setSuccess] = useState(false);
   const { usersInfo } = useContext(FundContext); //get our data from our main context
 
   useEffect(() => {
@@ -69,7 +70,6 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       setCurrentUser(user);
     }
   }, []);
-
 
   const {
     register,
@@ -88,30 +88,34 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   });
 
   const onSubmit = async (data) => {
-    const storage = getStorage();
-    const storageRef = ref(storage, data.media[0].name);
-    uploadBytes(storageRef, data.media[0]).then((snapshot) => {
-      console.log(storageRef);
-    });
-
-    getDownloadURL(ref(storage, data.media[0].name)).then(async (imgUrl) => {
-      await addDoc(collection(db, "projects"), {
-        startingDate: data.startingDate,
-        endingDate: data.endingDate,
-        url: imgUrl,
-        category: data.category,
-        name: data.projectName,
-        raised: 0,
-        about: data.about,
-        goal: data.goal,
-        contributors: [],
-        creator: {
-          userName: currentUser.name,
-          userId: currentUser.id,
-        },
+    try {
+      const storage = getStorage();
+      const storageRef = ref(storage, data.media[0].name);
+      uploadBytes(storageRef, data.media[0]).then((snapshot) => {
+        console.log(storageRef);
       });
-    });
-    console.log(data);
+
+      getDownloadURL(ref(storage, data.media[0].name)).then(async (imgUrl) => {
+        await addDoc(collection(db, "projects"), {
+          startingDate: data.startingDate,
+          endingDate: data.endingDate,
+          url: imgUrl,
+          category: data.category,
+          name: data.projectName,
+          raised: 0,
+          about: data.about,
+          goal: data.goal,
+          contributors: [],
+          creator: {
+            userName: currentUser.name,
+            userId: currentUser.id,
+          },
+        });
+      });
+      setSuccess(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleClose = () => {
@@ -131,6 +135,11 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
           <h1 className="lg:text-[60px] md:text-[40px] text-[20px] text-black font-bold mt-3 mb-6">
             Kick-off <br /> your project
           </h1>
+          {success && (
+            <Alert className="mb-4" variant="outlined" color="green">
+              Created Project Succesfully !{" "}
+            </Alert>
+          )}
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
             <div className="grid lg:grid-cols-2 pb-6 mb-6 border-b border-black">
               <div className="grid lg:border-r lg:border-black lg:pr-6 mb-6 lg:mb-0 ">
@@ -288,6 +297,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                 </div>
               </div>
             </div>
+
             <Button type="submit">Upload Project</Button>
           </form>
         </div>
