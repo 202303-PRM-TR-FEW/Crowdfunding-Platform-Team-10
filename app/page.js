@@ -35,10 +35,7 @@ const Home = () => {
     data.length > 0 ? (
       data.map((card) => {
         return (
-          <Link
-            key={card.id}
-            href={`/${card.id}`}
-          >
+          <Link key={card.id} href={`/${card.id}`}>
             <SummaryCard
               key={card.id}
               img={card.url}
