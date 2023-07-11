@@ -43,13 +43,12 @@ export const ProjectInfo = ({
 
     profile_size: {
       height: "40px",
-
       width: "40px",
       borderRadius: "10px",
     },
     project_class: `h-full w-auto object-cover `,
     page: `grid md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-5 mx-5 my-2`,
-    left: `flex ml-10 mt-12 col-span-2 scale-75 xl:scale-100 rounded-3xl justify-center items-center`,
+    left: `flex ml-10 mt-12 col-span-2  rounded-3xl justify-center items-center`,
     right: `xl:col-span-3 lg:col-span-2 mx-8 mt-12`,
     short_profile: `flex mb-10`,
     prof_title: `text-4xl mb-10 text-left lg:me-24 xl:me-48`,

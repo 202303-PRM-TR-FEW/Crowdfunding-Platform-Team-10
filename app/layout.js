@@ -16,9 +16,8 @@ export default function RootLayout({ children }) {
       <FundProvider>
         <body className={inter.className}>
           <AuthContextProvider>
-            {/* <Navbar /> */}
             <Nav />
-            <div className="p-5 md:p-7 lg:p-10">{children}</div>
+            <div >{children}</div>
           </AuthContextProvider>
         </body>
       </FundProvider>

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.0.18",
@@ -20,12 +21,8 @@
     "@mui/x-date-pickers": "^6.9.1",
     "autoprefixer": "10.4.14",
     "dayjs": "^1.11.9",
-
-    "encoding": "^0.1.13",
-
     "emailjs": "^4.0.2",
     "emailjs-com": "^3.2.0",
-
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "firebase": "^9.23.0",
@@ -36,5 +33,8 @@
     "react-hook-form": "^7.45.1",
     "tailwindcss": "3.3.2",
     "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "encoding": "^0.1.13"
   }
 }

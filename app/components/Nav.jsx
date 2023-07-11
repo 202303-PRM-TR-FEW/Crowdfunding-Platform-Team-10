@@ -7,7 +7,6 @@ import {
   Navbar,
   Collapse,
   Typography,
-  Button,
   IconButton,
   Input,
 } from "@material-tailwind/react";
@@ -19,8 +18,6 @@ export default function Nav() {
 
   const { user, logout } = useAuth();
   const router = useRouter();
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const handleLogout = () => {
     logout();
     router.push("/login");
@@ -88,79 +85,74 @@ export default function Nav() {
   return (
     <Navbar className="max-w-full rounded-none top-0 left-0 right-0  bg-black py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="container mx-auto flex items-center">
+        <div className="flex items-center justify-between w-full">
           <Typography className="cursor-pointer py-1.5 font-medium text-white text-lg">
             <Link href="/">Givingly</Link>
           </Typography>
 
-          <div className="relative flex w-full md:w-max mr-5 ml-5">
+          <div className="relative flex w-full md:w-max mx-5">
             <Input
               onChange={handleSearch}
               type="search"
               color="white"
               label="Search for projects"
-              className="pr-5"
+              className=""
               containerProps={{
-                className: "min-w-[360px] ml-50",
+                className: "min-w-[160px]  lg:w-[350px] ",
               }}
             />
-            <Button
-              type="submit"
-              className="px-3 py-1 focus:outline-none absolute right-0 top-0 bottom-0 flex items-center"
-              style={{ backgroundColor: "orange" }}
-            >
-              <span className="icon">🔍</span>
-            </Button>
+
             <div
               className={`${
                 !searchProjects || searchProjects.length === 0
                   ? "hidden"
                   : "flex"
-              } absolute top-12 -left-3`}
+              } absolute top-12 w-full`}
             >
               <SearchList searchProjects={searchProjects} />
             </div>
           </div>
-        </div>
-        <div className="hidden lg:flex lg:items-center gap-20">{navList}</div>
 
-        <IconButton
-          variant="text"
-          className="ml-auto h-6 w-6 text-orange-500 hover:bg-transparent focus:bg-transparent active:bg-orange-500 lg:hidden"
-          ripple={false}
-          onClick={() => setOpenNav(!openNav)}
-        >
-          {openNav ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              className="h-6 w-6"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          )}
-        </IconButton>
+          <div className="hidden lg:flex lg:items-center gap-20">{navList}</div>
+
+          <IconButton
+            variant="text"
+            className="ml-auto h-6 w-6 text-orange-500 hover:bg-transparent focus:bg-transparent active:bg-orange-500 lg:hidden"
+            ripple={false}
+            onClick={() => setOpenNav(!openNav)}
+          >
+            {openNav ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </IconButton>
+        </div>
       </div>
       <Collapse open={openNav}>
         <div className="container mx-auto bg-orange py-2">
@@ -173,12 +165,11 @@ export default function Nav() {
           ) : (
             <>
               <Link
-                variant="gradient"
                 href="/login"
-                size="sm"
-                className="w-full bg-orange-500 text-white px-4 py-2 rounded"
+                className=" bg-orange-500 text-white px-4 py-1 rounded"
               >
-                <span>Login</span>
+
+                Login
               </Link>
             </>
           )}

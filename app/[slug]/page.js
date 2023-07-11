@@ -27,7 +27,7 @@ function Project({ params }) {
     };
 
     fetchData();
-  }, []);
+  }, [params.slug]);
 
   if (data === null || !data) {
     return <LoaderStyle />;
