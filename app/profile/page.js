@@ -20,10 +20,8 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    try {
-      router.push("/profile");
-    } catch (err) {
-      console.log(err);
+    if (user === null) {
+      router.push("/login");
     }
   }, [router, user]);
 
@@ -47,7 +45,7 @@ const Page = () => {
   //take the last project and show it in Project Card
   const oneProjectInfo = usersProjects[usersProjects.length - 1];
 
-  if (loading) {
+  if (loading && user !== null) {
     return <LoaderStyle />;
   }
 
