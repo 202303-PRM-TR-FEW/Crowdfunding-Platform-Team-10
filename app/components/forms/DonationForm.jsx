@@ -13,7 +13,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-import { doc, updateDoc, increment, arrayUnion } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
 import { useRouter } from "next/navigation";
@@ -54,15 +54,16 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
   });
   const onSubmit = async (data) => {
     try {
-      await updateDoc(doc(db, "projects", id.slug), {
-        contributors: arrayUnion(user.uid),
-        raised: increment(data.donation),
+      await addDoc(collection(db, "donations"), {
+        donaiton: data.donation,
+        userId: data.userId,
+        projectId: data.projectId,
       });
       console.log("donated");
       setSuccess(true);
       router.push("/thanks");
     } catch (error) {
-      console.log("notdonated");
+      console.log("notdonated", error);
     }
   };
 
