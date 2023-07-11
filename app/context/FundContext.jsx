@@ -3,9 +3,6 @@ import { createContext, useEffect, useState } from "react";
 import { collection, onSnapshot, query, doc } from "firebase/firestore";
 import { db } from "../config/firebase";
 
-
-
-
 const FundContext = createContext();
 
 const FundProvider = ({ children }) => {
@@ -35,8 +32,6 @@ const FundProvider = ({ children }) => {
     });
     return () => unsubscribe();
   }, []);
-
-
 
   return (
     <FundContext.Provider value={{ usersInfo, projects }}>

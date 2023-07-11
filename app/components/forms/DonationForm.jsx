@@ -23,7 +23,8 @@ import {
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FundContext } from "@/context/FundContext";
 ////// These need to be where the new project form button is //////
 // const [openDonationForm, setOpenDonationForm] = useState(false);
 // const handleDonationForm = () => {
@@ -41,9 +42,18 @@ const schema = yup
   .required();
 
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
+  const [currentUser, setCurrentUser] = useState("");
+  const { user } = useAuth();
+  const { usersInfo } = useContext(FundContext); //get our data from our main context
+  console.log(currentUser);
+  useEffect(() => {
+    if (usersInfo) {
+      const current = usersInfo.find((usr) => usr.id === user.uid);
+      setCurrentUser(current);
+    }
+  }, []);
   const router = useRouter();
   const [success, setSuccess] = useState(false);
-  const { user } = useAuth();
   const {
     register,
     handleSubmit,
@@ -54,7 +64,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
       donation: "",
       charity: false,
       userId: user ? user.uid : "",
-      projectId: id.slug,
+      projectId: id.id,
     },
     resolver: yupResolver(schema),
   });
@@ -64,8 +74,10 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
         donaiton: data.donation,
         userId: data.userId,
         projectId: data.projectId,
+        userImg: currentUser.userImg,
+        userName: currentUser.name,
       });
-      await updateDoc(doc(db, "projects", id.slug), {
+      await updateDoc(doc(db, "projects", id.id), {
         raised: increment(data.donation),
       });
       console.log("donated");
