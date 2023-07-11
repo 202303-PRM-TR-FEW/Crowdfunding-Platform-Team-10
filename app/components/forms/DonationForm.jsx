@@ -47,7 +47,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
   const { usersInfo } = useContext(FundContext); //get our data from our main context
   console.log(currentUser);
   useEffect(() => {
-    if (usersInfo) {
+    if (usersInfo && user) {
       const current = usersInfo.find((usr) => usr.id === user.uid);
       setCurrentUser(current);
     }
