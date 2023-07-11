@@ -10,7 +10,6 @@ import Link from "next/link";
 
 const Home = () => {
   const { projects } = useContext(FundContext);
-
   const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
   useEffect(() => {
@@ -31,7 +30,7 @@ const Home = () => {
   });
 
   //projects mapping
-  const allProjects =
+  const allProjects = projects ? (
     data.length > 0 ? (
       data.map((card) => {
         return (
@@ -47,13 +46,16 @@ const Home = () => {
         );
       })
     ) : (
-      <Box className="scale-[0.6]">
-        <LoaderStyle />
-      </Box>
-    );
+      <Box className="header-4 px-10">No Projects In This Category</Box>
+    )
+  ) : (
+    <Box className="scale-[0.6]">
+      <LoaderStyle />
+    </Box>
+  );
 
   return (
-    <div className="p-5 md:p-7 lg:p-10">
+    <div className="py-5 md:py-7 lg:py-10">
       <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
         <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
       </Link>
