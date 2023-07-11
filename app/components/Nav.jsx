@@ -168,7 +168,6 @@ export default function Nav() {
                 href="/login"
                 className=" bg-orange-500 text-white px-4 py-1 rounded"
               >
-
                 Login
               </Link>
             </>
