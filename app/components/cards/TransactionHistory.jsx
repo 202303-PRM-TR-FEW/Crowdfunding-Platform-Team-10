@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment,  useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import {
   Typography,
@@ -14,6 +14,7 @@ import {
 } from "@material-tailwind/react";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import LoaderStyle from "../helper/LoaderStyle";
 
 const TABLE_ROWS = [
   {
