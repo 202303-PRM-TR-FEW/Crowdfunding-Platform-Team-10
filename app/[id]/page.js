@@ -13,7 +13,7 @@ function Project({ params }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const docRef = doc(db, "projects", params.slug);
+        const docRef = doc(db, "projects", params.id);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -27,7 +27,7 @@ function Project({ params }) {
     };
 
     fetchData();
-  }, [params.slug]);
+  }, [params.id]);
 
   if (data === null || !data) {
     return <LoaderStyle />;

@@ -54,7 +54,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
       donation: "",
       charity: false,
       userId: user ? user.uid : "",
-      projectId: id.slug,
+      projectId: id.id,
     },
     resolver: yupResolver(schema),
   });
@@ -65,7 +65,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
         userId: data.userId,
         projectId: data.projectId,
       });
-      await updateDoc(doc(db, "projects", id.slug), {
+      await updateDoc(doc(db, "projects", id.id), {
         raised: increment(data.donation),
       });
       console.log("donated");
