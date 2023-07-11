@@ -137,7 +137,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
           </h1>
           {success && (
             <Alert className="mb-4" variant="outlined" color="green">
-              Donation Succesfull !{" "}
+              Created Project Succesfully !{" "}
             </Alert>
           )}
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
