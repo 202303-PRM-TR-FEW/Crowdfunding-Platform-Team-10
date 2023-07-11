@@ -66,7 +66,7 @@ export default function TransactionHistory() {
           <Accordion open={open === 1}>
             <AccordionHeader
               onClick={() => handleOpen(1)}
-              className="flex justify-between items-center border-y-2 border-y border-blue-gray-900 py-4"
+              className="flex justify-between items-center border-y-2  border-blue-gray-900 py-4"
             >
               <Typography variant="h4" className="">
                 Transaction history
@@ -191,7 +191,7 @@ export default function TransactionHistory() {
           <Accordion open={open === 2}>
             <AccordionHeader
               onClick={() => handleOpen(2)}
-              className="flex justify-between items-center border-y-2 border-y border-blue-gray-900 py-4"
+              className="flex justify-between items-center border-y-2  border-blue-gray-900 py-4"
             >
               <Typography variant="h4" className="">
                 Statistics

@@ -1,16 +1,14 @@
 "use client";
 
-import NewsLetterCard from "@/components/cards/NewsLetterCard";
+
 
 import SignupForm from "@/components/forms/SignupForm";
 const Signup = () => {
   return (
-
-    <div className="flex justify-center items-center">
+    <div className="bg-white lg:h-screen  lg:overflow-hidden">
       <SignupForm />
 
-<NewsLetterCard/>
-
+      
     </div>
   );
 };

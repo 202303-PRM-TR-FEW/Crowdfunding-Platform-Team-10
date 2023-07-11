@@ -30,7 +30,7 @@ function Project({ params }) {
     };
 
     fetchData();
-  }, []);
+  }, [params.slug]);
 
   console.log(data)
  

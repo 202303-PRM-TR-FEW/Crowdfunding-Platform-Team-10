@@ -56,16 +56,16 @@ const Page = () => {
         console.log("This user has no projects.");
       }
     }
-  }, [projects]);
+  }, [user, projects, usersProjects]);
 
   //take the last project and show it in Project Card
   const oneProjectInfo = usersProjects[usersProjects.length - 1];
 
   return (
-    <div className="px-2 lg:px-20">
+    <div className="px-2 lg:px-20 p-5 md:p-7 lg:p-10">
       <div className="lg:grid-cols-3 grid-cols-1 grid lg:gap-36 justify-between items-start">
         <div className="lg:col-span-2 ">
-          {oneProjectInfo !== undefined  ? (
+          {oneProjectInfo !== undefined ? (
             <Link href={`/${oneProjectInfo.id}`} key={oneProjectInfo.id}>
               <MyProjectCard projectOfWeek={oneProjectInfo} />
             </Link>

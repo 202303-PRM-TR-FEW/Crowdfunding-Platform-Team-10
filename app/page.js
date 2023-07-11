@@ -56,7 +56,7 @@ const Home = () => {
     );
 
   return (
-    <>
+    <div className="p-5 md:p-7 lg:p-10">
       <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
         <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
       </Link>
@@ -64,7 +64,7 @@ const Home = () => {
       <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {allProjects}
       </Box>
-    </>
+    </div>
   );
 };
 

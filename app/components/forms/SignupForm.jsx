@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  setDoc,
-  doc,
-  collection,
-  serverTimestamp,
-  addDoc,
-} from "firebase/firestore";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
+import welcomeHand from "../../../public/assets/images/welcome-hand.png";
+
 import { db } from "@/config/firebase";
 import {
-  CardHeader,
   CardBody,
-  CardFooter,
   Typography,
   Input,
   Button,
@@ -37,6 +31,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Image from "next/image";
 const SignupForm = () => {
   const {
     register,
@@ -100,110 +95,145 @@ const SignupForm = () => {
   };
 
   return (
-    <div>
-      <Card className="max-w-max mt-24">
-        <CardHeader
-          variant="gradient"
-          color="blue"
-          className="mb-4 grid h-24 place-items-center"
-        >
-          <Typography variant="h3" color="white">
-            Sign Up
-          </Typography>
-        </CardHeader>
-        <CardBody className="flex flex-col gap-4">
-          <form
-            className="flex flex-col gap-2"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <div>
-              <Input
-                label="Email"
-                size="lg"
-                defaultValue="test"
-                {...register("email")}
-              />
-              <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-              >
-                {errors.email && (
-                  <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                )}
-                {errors.email?.message}
-              </Typography>
-            </div>
-            <div>
-              <Input label="Password" size="lg" {...register("password")} />
-              <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-              >
-                {errors.password && (
-                  <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                )}
-                {errors.password?.message}
-              </Typography>
-            </div>
-            <div>
-              <Input label="Full Name" size="lg" {...register("name")} />
-              <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-              >
-                {errors.name && (
-                  <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                )}
-                {errors.name?.message}
-              </Typography>
-            </div>
-            <div>
-              <Input label="Bio" size="lg" {...register("bio")} />
-              <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-              >
-                {errors.bio && (
-                  <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                )}
-                {errors.bio?.message}
-              </Typography>
-            </div>
-            <div>
-              <Input
-                className="cursor-pointer"
-                icon={<FileUpload />}
-                accept="image/*"
-                id="userImg"
-                name="userImg"
-                type="file"
-                label="Project Picture"
-                {...register("userImg", { required: true })}
-              />
-              <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-              >
-                {errors.userImg && (
-                  <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                )}
-                {errors.userImg?.message}
-              </Typography>
-            </div>
-
-            <Button
-              className="mt-8 "
-              type="submit"
-              variant="gradient"
-              fullWidth
+  
+      <div className="lg:grid lg:grid-cols-2 items-center justify-between lg:gap-20 lg:px-40 lg:py-24 py-10 px-5 lg:flex-row flex-col">
+        <div className="lg:grid-1 ">
+          <Card className="w-full bg-transparent  shadow-none">
+            <Typography
+              variant="h3"
+              className="text-center text-gray-900 border-y-4 py-2 border-gray-900"
             >
-              Sign Up
-            </Button>
-          </form>
-          <p>{err}</p>
-        </CardBody>
-      </Card>
-    </div>
+              Create New Account
+            </Typography>
+
+            <CardBody className="flex flex-col gap-4 w-full p-0">
+              <form
+                className="flex flex-col gap-2"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <div className="mt-6">
+                
+                  <Input
+                    label="Email"
+                    fullWidth
+                    type="email"
+                    defaultValue="test"
+                    {...register("email")}
+                    variant="standard"
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.email && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
+                    {errors.email?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <Input
+                    label="Password"
+                    fullWidth
+                    variant="standard"
+                    type="password"
+                    {...register("password")}
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.password && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
+                    {errors.password?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <Input
+                    label="Full Name"
+                    fullWidth
+                    variant="standard"
+                    type="text"
+                    {...register("name")}
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.name && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
+                    {errors.name?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <Input
+                    label="Bio"
+                    fullWidth
+                    variant="standard"
+                    type="text"
+                    {...register("bio")}
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.bio && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
+                    {errors.bio?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <Input
+                    variant="standard"
+                    fullWidth
+                    className="cursor-pointer"
+                    icon={<FileUpload />}
+                    accept="image/*"
+                    id="userImg"
+                    name="userImg"
+                    type="file"
+                    label="Project Picture"
+                    {...register("userImg", { required: true })}
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.userImg && (
+                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    )}
+                    {errors.userImg?.message}
+                  </Typography>
+                </div>
+
+                
+                <button
+                  className="mt-8 bg-gray-900 py-3 px-1 w-full text-white"
+                  type="submit"
+                  variant="filled"
+                  fullWidth
+                >
+                  Sign Up
+                </button>
+              </form>
+              <p>{err}</p>
+            </CardBody>
+          </Card>
+        </div>
+        <div className="lg:grid-1 hidden lg:block">
+          <Image
+            width={295}
+            height={165}
+            src={welcomeHand}
+            alt="Picture of thanking"
+            className="w-full"
+          />
+        </div>
+      </div>
+    
   );
 };
 
