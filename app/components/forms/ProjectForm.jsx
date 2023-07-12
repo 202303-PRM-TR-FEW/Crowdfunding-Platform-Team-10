@@ -28,7 +28,7 @@ import { FileUpload } from "@mui/icons-material";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { FundContext } from "@/context/FundContext";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
@@ -60,17 +60,10 @@ const schema = yup
   .required();
 
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
-  const [currentUser, setCurrentUser] = useState();
   const [success, setSuccess] = useState(false);
   const { usersInfo } = useContext(FundContext); //get our data from our main context
+  
 
-  useEffect(() => {
-    if (usersInfo) {
-      const user = usersInfo.find((user) => user.id === authUser.uid);
-      setCurrentUser(user);
-      console.log(user)
-    }
-  }, []);
 
   const {
     register,
@@ -90,33 +83,52 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
 
   const onSubmit = async (data) => {
     try {
-      const storage = getStorage();
-      const storageRef = ref(storage, data.media[0].name);
-      uploadBytes(storageRef, data.media[0]).then((snapshot) => {
-        console.log(storageRef);
-      });
-
-      getDownloadURL(ref(storage, data.media[0].name)).then(async (imgUrl) => {
-        await addDoc(collection(db, "projects"), {
-          startingDate: data.startingDate,
-          endingDate: data.endingDate,
-          url: imgUrl,
-          category: data.category,
-          name: data.projectName,
-          raised: 0,
-          about: data.about,
-          goal: data.goal,
-          contributors: [],
-          creator: {
-            userName: currentUser.name,
-            userId: currentUser.id,
-          },
-        });
-      });
+      const user = await findUserById(authUser.uid, usersInfo);
+      const imgUrl = await uploadFileAndGetDownloadUrl(data.media[0].name, data.media[0]);
+      await addProjectToFirestore(data, user, imgUrl);
       setSuccess(true);
     } catch (error) {
       console.log(error);
     }
+  };
+  
+  const findUserById = (userId, usersInfo) => {
+    return new Promise((resolve, reject) => {
+      const userCurrent = usersInfo.find((user) => user.id === userId);
+      if (userCurrent) {
+        resolve(userCurrent);
+      } else {
+        reject(new Error(`User with ID ${userId} not found.`));
+      }
+    });
+  };
+  
+  const uploadFileAndGetDownloadUrl = async (fileName, fileData) => {
+    const storage = getStorage();
+    const storageRef = ref(storage, fileName);
+    await uploadBytes(storageRef, fileData);
+    const imgUrl = await getDownloadURL(storageRef);
+    return imgUrl;
+  };
+  
+  const addProjectToFirestore = async (data, userCurrent, imgUrl) => {
+    const projectData = {
+      startingDate: data.startingDate,
+      endingDate: data.endingDate,
+      url: imgUrl,
+      category: data.category,
+      name: data.projectName,
+      raised: 0,
+      about: data.about,
+      goal: data.goal,
+      contributors: [],
+      creator: {
+        userName: userCurrent.name,
+        userId: userCurrent.id,
+      },
+    };
+    await addDoc(collection(db, "projects"), projectData);
+    setOpenProjectForm(false);
   };
 
   const handleClose = () => {
