@@ -8,11 +8,7 @@ export default function MyProjectCard({ projectOfWeek }) {
     page: `grid grid-cols-1 gap-1 lg:gap-5 items-center`,
   };
   return (
-    <div className="p-4">
-
-      <Typography variant="h1" className="mb-4">
-        My Projects
-      </Typography>
+    
 
       <div className={styles.page}>
         <div className="w-full lg:h-[300px]">
@@ -45,6 +41,6 @@ export default function MyProjectCard({ projectOfWeek }) {
           </div>
         </div>
       </div>
-    </div>
+  
   );
 }
