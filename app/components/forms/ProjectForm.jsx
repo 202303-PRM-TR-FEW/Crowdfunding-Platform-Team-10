@@ -60,7 +60,7 @@ const schema = yup
   .required();
 
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState();
   const [success, setSuccess] = useState(false);
   const { usersInfo } = useContext(FundContext); //get our data from our main context
 
@@ -68,6 +68,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     if (usersInfo) {
       const user = usersInfo.find((user) => user.id === authUser.uid);
       setCurrentUser(user);
+      console.log(user)
     }
   }, []);
 
