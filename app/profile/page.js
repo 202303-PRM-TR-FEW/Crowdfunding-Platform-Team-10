@@ -12,6 +12,7 @@ import TransactionHistory from "@/components/cards/TransactionHistory";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { NoProjects } from "@/components/NoProjects";
 import { Typography } from "@material-tailwind/react";
+import { db } from "@/config/firebase";
 
 const Page = () => {
   const { user, loading } = useAuth();
@@ -46,11 +47,11 @@ const Page = () => {
 
   //take the last project and show it in Project Card
   const oneProjectInfo = usersProjects[usersProjects.length - 1];
-
-  handleDeleteProject=async ()=>{
-    await deleteDoc(doc(db, "projects",oneProjectInfo.id ));
-    console.log("item deleted")
-  }
+  //this handle delete a project
+  const handleDeleteProject = async () => {
+    await deleteDoc(doc(db, "projects", oneProjectInfo.id));
+    console.log("item deleted");
+  };
 
   if (loading && user !== null) {
     return <LoaderStyle />;
@@ -61,7 +62,10 @@ const Page = () => {
       {isLoading ? (
         <LoaderStyle />
       ) : oneProjectInfo ? (
-        <div className="lg:grid-cols-3 grid-cols-1 grid lg:gap-36 w-full justify-between items-start" key={oneProjectInfo.id}>
+        <div
+          className="lg:grid-cols-3 grid-cols-1 grid lg:gap-36 w-full justify-between items-start"
+          key={oneProjectInfo.id}
+        >
           <div className="lg:col-span-2">
             <div className="p-4">
               <div className="w-full flex items-center justify-between">
@@ -69,7 +73,7 @@ const Page = () => {
                   My Projects
                 </Typography>
                 <svg
-                onClick={handleDeleteProject}
+                  onClick={handleDeleteProject}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -84,7 +88,7 @@ const Page = () => {
                   />
                 </svg>
               </div>
-              <Link href={`/${oneProjectInfo.id}`} >
+              <Link href={`/${oneProjectInfo.id}`}>
                 <MyProjectCard projectOfWeek={oneProjectInfo} />
               </Link>
             </div>
