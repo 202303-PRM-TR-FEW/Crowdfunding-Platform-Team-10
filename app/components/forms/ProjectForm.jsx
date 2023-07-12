@@ -68,6 +68,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     if (usersInfo) {
       const user = usersInfo.find((user) => user.id === authUser.uid);
       setCurrentUser(user);
+      console.log(user)
     }
   }, []);
 
