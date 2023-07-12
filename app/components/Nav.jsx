@@ -9,10 +9,34 @@ import {
   Typography,
   IconButton,
   Input,
+  Button,
 } from "@material-tailwind/react";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "../config/firebase";
 import SearchList from "./search/SearchList";
+import ProjectForm from "./forms/ProjectForm";
+
+const AddProjectButton = ({ user }) => {
+  const [openProjectForm, setOpenProjectForm] = useState(false);
+
+  const handleNewProject = () => {
+    setOpenProjectForm(!openProjectForm);
+  };
+
+  return (
+    <>
+      <Button onClick={handleNewProject} color="white">
+        New Project
+      </Button>
+      <ProjectForm
+        authUser={user}
+        openProjectForm={openProjectForm}
+        setOpenProjectForm={setOpenProjectForm}
+      />
+    </>
+  );
+};
+
 export default function Nav() {
   const [openNav, setOpenNav] = useState(false);
 
@@ -45,6 +69,7 @@ export default function Nav() {
 
       {user ? (
         <>
+          <AddProjectButton user={user} />
           <Link href="/profile">Profile</Link>
           <button onClick={handleLogout}>Logout</button>
         </>
