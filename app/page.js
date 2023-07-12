@@ -35,13 +35,18 @@ const Home = () => {
       data.map((card) => {
         return (
           <Link key={card.id} href={`/${card.id}`}>
-            <SummaryCard
-              key={card.id}
-              img={card.url}
-              title={card.name}
-              raised={card.raised}
-              goal={card.goal}
-            />
+            <div className="relative">
+              {/* <div className="absolute top-[10px] left-[10px] w-24 h-24 bg-green-100 rounded-full z-[-1]"></div> */}
+
+              <SummaryCard
+                key={card.id}
+                img={card.url}
+                title={card.name}
+                raised={card.raised}
+                goal={card.goal}
+              />
+              <div className="absolute bottom-[20px] right-[30px] w-56 h-56 bg-green-100 rounded-full z-[-1]"></div>
+            </div>
           </Link>
         );
       })
@@ -55,10 +60,18 @@ const Home = () => {
   );
 
   return (
-    <div className="py-5 md:py-7 lg:py-10">
-      <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
-        <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
-      </Link>
+    <div className="py-5 md:py-7 lg:py-10 ">
+      <div className="relative ">
+      <div className="absolute top-[20%] left-[50%] w-24 h-24 bg-green-100 rounded-full z-[-1]"></div>
+
+        <div className="backdrop-blur-lg bg-opacity-20 rounded-[30px] shadow-sm border-5 p-4 bg-white ">
+          <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
+            <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
+          </Link>
+        </div>
+          <div className="absolute bottom-[-70px] right-[-40px] w-96 h-96 bg-green-100 rounded-full z-[-1]"></div>
+      </div>
+
       <CategoryFiltering data={projects} filtrindData={setData} />
       <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {allProjects}

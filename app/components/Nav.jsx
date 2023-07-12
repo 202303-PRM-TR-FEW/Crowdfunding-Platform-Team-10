@@ -83,7 +83,7 @@ export default function Nav() {
     });
   };
   return (
-    <Navbar className="max-w-full rounded-none top-0 left-0 right-0  bg-black py-2 px-4 lg:px-8 lg:py-4">
+    <Navbar className="max-w-full border-none rounded-none top-0 left-0 right-0 shadow-green-100 drop-shadow-lg bg-green-600 py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center justify-between w-full">
           <Typography className="cursor-pointer py-1.5 font-medium text-white text-lg">
