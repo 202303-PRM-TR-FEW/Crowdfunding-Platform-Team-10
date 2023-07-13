@@ -24,6 +24,7 @@ const schema = yup
     password: yup.string().required("Password is Required !"),
     name: yup.string().required("Full Name is Required !"),
     bio: yup.string().required("Bio is Required !"),
+    userImg: yup.mixed().required("User Picture is Required !"),
   })
   .required();
 
@@ -43,7 +44,7 @@ const SignupForm = () => {
       password: "",
       name: "",
       bio: "",
-      userImg: "",
+      userImg: null,
       projects: [],
       donations: [],
     },
@@ -95,145 +96,141 @@ const SignupForm = () => {
   };
 
   return (
-  
-      <div className="lg:grid lg:grid-cols-2 items-center justify-between lg:gap-20 lg:px-40 lg:py-24 py-10 px-5 lg:flex-row flex-col">
-        <div className="lg:grid-1 ">
-          <Card className="w-full bg-transparent  shadow-none">
-            <Typography
-              variant="h3"
-              className="text-center text-gray-900 border-y-4 py-2 border-gray-900"
+    <div className="lg:grid lg:grid-cols-2 items-center justify-between lg:gap-20 lg:px-40 lg:py-24 py-10 px-5 lg:flex-row flex-col">
+      <div className="lg:grid-1 ">
+        <Card className="w-full bg-transparent  shadow-none">
+          <Typography
+            variant="h3"
+            className="text-center text-gray-900 border-y-4 py-2 border-gray-900"
+          >
+            Create New Account
+          </Typography>
+
+          <CardBody className="flex flex-col gap-4 w-full p-0">
+            <form
+              className="flex flex-col gap-2"
+              onSubmit={handleSubmit(onSubmit)}
             >
-              Create New Account
-            </Typography>
-
-            <CardBody className="flex flex-col gap-4 w-full p-0">
-              <form
-                className="flex flex-col gap-2"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <div className="mt-6">
-                
-                  <Input
-                    label="Email"
-                    fullWidth
-                    type="email"
-                    defaultValue="test"
-                    {...register("email")}
-                    variant="standard"
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.email && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
-                    {errors.email?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <Input
-                    label="Password"
-                    fullWidth
-                    variant="standard"
-                    type="password"
-                    {...register("password")}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.password && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
-                    {errors.password?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <Input
-                    label="Full Name"
-                    fullWidth
-                    variant="standard"
-                    type="text"
-                    {...register("name")}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.name && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
-                    {errors.name?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <Input
-                    label="Bio"
-                    fullWidth
-                    variant="standard"
-                    type="text"
-                    {...register("bio")}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.bio && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
-                    {errors.bio?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <Input
-                    variant="standard"
-                    fullWidth
-                    className="cursor-pointer"
-                    icon={<FileUpload />}
-                    accept="image/*"
-                    id="userImg"
-                    name="userImg"
-                    type="file"
-                    label="Project Picture"
-                    {...register("userImg", { required: true })}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.userImg && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
-                    {errors.userImg?.message}
-                  </Typography>
-                </div>
-
-                
-                <button
-                  className="mt-8 bg-gray-900 py-3 px-1 w-full text-white"
-                  type="submit"
-                  variant="filled"
+              <div className="mt-6">
+                <Input
+                  label="Email"
                   fullWidth
+                  type="email"
+                  defaultValue="test"
+                  {...register("email")}
+                  variant="standard"
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                 >
-                  Sign Up
-                </button>
-              </form>
-              <p>{err}</p>
-            </CardBody>
-          </Card>
-        </div>
-        <div className="lg:grid-1 hidden lg:block">
-          <Image
-            width={295}
-            height={165}
-            src={welcomeHand}
-            alt="Picture of thanking"
-            className="w-full"
-          />
-        </div>
+                  {errors.email && (
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  )}
+                  {errors.email?.message}
+                </Typography>
+              </div>
+              <div>
+                <Input
+                  label="Password"
+                  fullWidth
+                  variant="standard"
+                  type="password"
+                  {...register("password")}
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.password && (
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  )}
+                  {errors.password?.message}
+                </Typography>
+              </div>
+              <div>
+                <Input
+                  label="Full Name"
+                  fullWidth
+                  variant="standard"
+                  type="text"
+                  {...register("name")}
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.name && (
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  )}
+                  {errors.name?.message}
+                </Typography>
+              </div>
+              <div>
+                <Input
+                  label="Bio"
+                  fullWidth
+                  variant="standard"
+                  type="text"
+                  {...register("bio")}
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.bio && (
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  )}
+                  {errors.bio?.message}
+                </Typography>
+              </div>
+              <div>
+                <Input
+                  variant="standard"
+                  fullWidth
+                  className="cursor-pointer"
+                  icon={<FileUpload />}
+                  accept="image/*"
+                  id="userImg"
+                  name="userImg"
+                  type="file"
+                  label="User Picture"
+                  {...register("userImg")}
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.userImg && (
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  )}
+                  {errors.userImg?.message}
+                </Typography>
+              </div>
+
+              <button
+                className="mt-8 bg-gray-900 py-3 px-1 w-full text-white"
+                type="submit"
+                variant="filled"
+                fullWidth
+              >
+                Sign Up
+              </button>
+            </form>
+            <p>{err}</p>
+          </CardBody>
+        </Card>
       </div>
-    
+      <div className="lg:grid-1 hidden lg:block">
+        <Image
+          width={295}
+          height={165}
+          src={welcomeHand}
+          alt="Picture of thanking"
+          className="w-full"
+        />
+      </div>
+    </div>
   );
 };
 
