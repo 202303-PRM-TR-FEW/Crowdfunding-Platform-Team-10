@@ -56,14 +56,13 @@ const schema = yup
     endingDate: yup.string().required("Ending Date is Required !"),
     about: yup.string().required("About is Required !"),
     category: yup.string().required("Project Category is Required !"),
+    media: yup.mixed().required("Project Picture is Required !"),
   })
   .required();
 
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const { usersInfo } = useContext(FundContext); //get our data from our main context
-  
-
 
   const {
     register,
@@ -75,7 +74,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     defaultValues: {
       startingDate: "",
       endingDate: "",
-      media: "",
+      media: null,
       category: "",
     },
     resolver: yupResolver(schema),
@@ -84,14 +83,18 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const onSubmit = async (data) => {
     try {
       const user = await findUserById(authUser.uid, usersInfo);
-      const imgUrl = await uploadFileAndGetDownloadUrl(data.media[0].name, data.media[0]);
+      const imgUrl = await uploadFileAndGetDownloadUrl(
+        data.media[0].name,
+        data.media[0]
+      );
       await addProjectToFirestore(data, user, imgUrl);
       setSuccess(true);
     } catch (error) {
       console.log(error);
     }
+    console.log(data);
   };
-  
+
   const findUserById = (userId, usersInfo) => {
     return new Promise((resolve, reject) => {
       const userCurrent = usersInfo.find((user) => user.id === userId);
@@ -102,7 +105,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       }
     });
   };
-  
+
   const uploadFileAndGetDownloadUrl = async (fileName, fileData) => {
     const storage = getStorage();
     const storageRef = ref(storage, fileName);
@@ -110,7 +113,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     const imgUrl = await getDownloadURL(storageRef);
     return imgUrl;
   };
-  
+
   const addProjectToFirestore = async (data, userCurrent, imgUrl) => {
     const projectData = {
       startingDate: data.startingDate,
@@ -273,7 +276,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                     label="Select Category"
                   >
                     <Option value="animals">Animals</Option>
-                    <Option value="educaion">Education</Option>
+                    <Option value="education">Education</Option>
                     <Option value="culture">Culture</Option>
                     <Option value="children">Children</Option>
                   </Select>
