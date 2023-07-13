@@ -81,7 +81,6 @@ export default function Nav() {
         <>
           <AddProjectButton user={user} />
           <Link href="/profile">Profile</Link>
-          <button onClick={handleLogout}>Logout</button>
         </>
       ) : (
         <>
@@ -194,7 +193,6 @@ export default function Nav() {
           {navList}
           {user ? (
             <>
-              <Link href="/profile">Profile</Link>
               <button onClick={handleLogout}>Logout</button>
             </>
           ) : (
