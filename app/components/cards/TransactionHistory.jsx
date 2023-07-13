@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import {
   Typography,
@@ -17,49 +17,24 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
 import { FundContext } from "@/context/FundContext";
 
-const TABLE_ROWS = [
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    name: "John Michael",
-    bio: "pe poo pee pi",
-    job: "40",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-    name: "Alexa Liras",
-    bio: "Move for it",
-    job: "403",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
-    name: "Laurent Perrier",
-    bio: "Life Sucks",
-    job: "500",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
-    name: "Michael Levi",
-    bio: "I support cats",
-    job: "30",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
-    name: "Richard Gran",
-    bio: "I think of coding",
-    job: "50",
-  },
-];
-
-export default function TransactionHistory() {
+export default function TransactionHistory({ oneProjectInfo }) {
   const [open, setOpen] = useState(1);
   const [openMenu, setOpenMenu] = useState(false);
+  const [donate, setDonate] = useState([]);
   const { loading } = useAuth();
   const { donations } = useContext(FundContext);
-  const mydonations = donations.map((donate) => {
-    <div clasName="text-grey-500" key={donate.id}>
-      <p>{donate.donation}</p>
-    </div>;
-  });
+
+  useEffect(() => {
+    const updateSetDonate = () => {
+      const filteredDonations = donations.filter(
+        (donation) => donation.projectId === oneProjectInfo.id
+      );
+      setDonate(filteredDonations);
+    };
+
+    updateSetDonate();
+  }, [donations, oneProjectInfo]);
+  console.log(donate);
   console.log(donations);
   const triggers = {
     onMouseEnter: () => setOpenMenu(true),
@@ -147,34 +122,38 @@ export default function TransactionHistory() {
                 </tr>
               </thead>
               <tbody>
-                {TABLE_ROWS.map(({ img, name, bio, job }, index) => {
-                  const isLast = index === TABLE_ROWS.length - 1;
+                {donate?.map((donate, index) => {
+                  const isLast = index === donate.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-blue-gray-50";
 
                   return (
                     <tr
-                      key={name}
                       className="hover:bg-blue-gray-50 hover:rounded"
+                      key={donate.id}
                     >
                       <td className={classes}>
                         <div className="flex items-center gap-3">
-                          <Avatar src={img} alt={name} size="sm" />
+                          <Avatar
+                            src={donate.userImg}
+                            alt={donate.userName}
+                            size="sm"
+                          />
                           <div className="flex flex-col">
                             <Typography
                               variant="h5"
                               color="blue-gray"
                               className="font-semibold"
                             >
-                              {name}
+                              {donate.userName}
                             </Typography>
                             <Typography
                               variant="small"
                               color="blue-gray"
                               className="font-normal opacity-70"
                             >
-                              {bio}
+                              HERE IS BIO
                             </Typography>
                           </div>
                         </div>
@@ -185,7 +164,7 @@ export default function TransactionHistory() {
                           color="blue-gray"
                           className="font-bold "
                         >
-                          $ {job}
+                          {donate.donaiton}
                         </Typography>
                       </td>
                     </tr>
