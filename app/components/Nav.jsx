@@ -66,6 +66,16 @@ export default function Nav() {
           Home
         </Link>
       </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal text-lg"
+      >
+        <Link href="/projects" className="flex items-center text-white">
+          Projects
+        </Link>
+      </Typography>
 
       {user ? (
         <>
