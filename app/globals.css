@@ -12,10 +12,14 @@ html {
   padding: 0px;
   box-sizing: border-box;
 }
-body {
+/* body {
   background-color: rgb(250 250 250);
+} */
+img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 12px;
 }
-
 input[type="file"]::file-selector-button {
   display: none;
 }
@@ -27,26 +31,24 @@ div[data-floating-ui-portal] > div {
   z-index: 99 !important;
 }
 
+.header-1 {
+  @apply text-4xl md:text-5xl lg:text-6xl text-basicBlack font-bold !leading-[120%];
+}
 .header-2 {
-  @apply text-2xl md:text-4xl lg:text-6xl text-[#0a0a0a] font-bold md:!leading-[60px] lg:!leading-[80px];
+  @apply text-3xl md:text-4xl lg:text-5xl text-basicBlack font-bold;
 }
 .header-3 {
-  @apply text-lg md:text-xl lg:text-[32px] text-[#0a0a0a] font-bold !leading-10;
+  @apply text-xl md:text-2xl lg:text-3xl text-basicBlack font-bold;
 }
 .header-4 {
-  @apply text-sm md:text-base lg:text-lg text-[#0a0a0a] font-bold !leading-6;
+  @apply text-lg md:text-xl lg:text-2xl text-basicBlack font-bold;
 }
 .sub-header {
-  @apply text-sm md:text-base lg:text-lg text-[#0a0a0a] !leading-6;
+  @apply text-base md:text-lg lg:text-xl text-basicgray;
 }
-.radius {
-  border-radius: 8px;
+.btn-primary {
+  @apply bg-lightGreen hover:bg-hoverLightGreen text-white font-bold text-base py-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out;
 }
-img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 8px;
-}
-.btn-black {
-  @apply bg-black border-black hover:border-orange-500 hover:bg-orange-500 text-white font-bold py-3 px-4 rounded-[8px] border  mt-14 text-center  transition-all duration-300 ease-in-out;
+.btn-secondary {
+  @apply text-lightGreen hover:text-hoverLightGreen border-2 border-lightGreen hover:border-hoverLightGreen cursor-pointer font-bold text-base py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
 }

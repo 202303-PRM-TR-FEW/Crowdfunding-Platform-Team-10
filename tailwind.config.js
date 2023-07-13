@@ -9,18 +9,22 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        basicYellow: "#FDE97D",
-        BasicBlack: "#000000",
-        basicBlack: "#414342",
+        lightGreen: "#00c1a2",
+        hoverLightGreen: " #019d91",
+        basicBlack: "#20272c",
+        basicgray: "#63727e",
+        //
         basicOrange: "#ED7B49",
         basicPink: "E9B19D",
         matisBlue: "#B6C1E9",
         sailBlue: "#b0e0fa",
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      // fontFamily: {
+      //   sans: ["Graphik", "sans-serif"],
+      //   serif: ["Merriweather", "serif"],
+      // },
+      borderRadius: {
+        DEFAULT: "12px",
       },
     },
   },
