@@ -1,4 +1,4 @@
-import { Fragment,  useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import {
   Typography,
@@ -15,6 +15,7 @@ import {
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
+import { FundContext } from "@/context/FundContext";
 
 const TABLE_ROWS = [
   {
@@ -52,8 +53,14 @@ const TABLE_ROWS = [
 export default function TransactionHistory() {
   const [open, setOpen] = useState(1);
   const [openMenu, setOpenMenu] = useState(false);
-  const {  loading } = useAuth();
-
+  const { loading } = useAuth();
+  const { donations } = useContext(FundContext);
+  const mydonations = donations.map((donate) => {
+    <div clasName="text-grey-500" key={donate.id}>
+      <p>{donate.donation}</p>
+    </div>;
+  });
+  console.log(donations);
   const triggers = {
     onMouseEnter: () => setOpenMenu(true),
     onMouseLeave: () => setOpenMenu(false),
@@ -61,7 +68,6 @@ export default function TransactionHistory() {
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
-
 
   if (loading) {
     return <LoaderStyle />;
@@ -76,18 +82,16 @@ export default function TransactionHistory() {
             className="border-y-2  border-blue-gray-900 py-4"
           >
             <div className="flex items-center justify-between w-full">
+              <Typography variant="h4" className="">
+                Transaction history
+              </Typography>
 
-                <Typography variant="h4" className="">
-                  Transaction history
-                </Typography>
-           
-                <ChevronRightIcon
-                  strokeWidth={2.5}
-                  className={`h-5 w-5 transition-transform ${
-                    open == 1 ? "rotate-90" : ""
-                  } `}
-                />
-            
+              <ChevronRightIcon
+                strokeWidth={2.5}
+                className={`h-5 w-5 transition-transform ${
+                  open == 1 ? "rotate-90" : ""
+                } `}
+              />
             </div>
           </AccordionHeader>
           <AccordionBody>
@@ -205,19 +209,17 @@ export default function TransactionHistory() {
             className="flex justify-between items-center border-y-2  w-full   border-blue-gray-900 py-4"
           >
             <div className="flex items-center justify-between w-full">
+              <Typography variant="h4" className="">
+                Statistics
+              </Typography>
 
-            <Typography variant="h4" className="">
-              Statistics
-            </Typography>
-
-            <ChevronRightIcon
-              strokeWidth={2.5}
-              className={`h-5 w-5 transition-transform ${
-                open == 2 ? "rotate-90" : ""
-              } `}
-            />
-    </div>
-
+              <ChevronRightIcon
+                strokeWidth={2.5}
+                className={`h-5 w-5 transition-transform ${
+                  open == 2 ? "rotate-90" : ""
+                } `}
+              />
+            </div>
           </AccordionHeader>
           <AccordionBody>
             We&apos;re not always in the position that we want to be at.
