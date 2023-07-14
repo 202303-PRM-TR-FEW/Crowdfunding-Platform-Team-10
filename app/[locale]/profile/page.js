@@ -2,18 +2,16 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../context/AuthContext";
 import { FundContext } from "../context/FundContext";
 import { doc, deleteDoc } from "firebase/firestore";
 import Link from "next/link";
-
 import MyProjectCard from "@/components/cards/MyProjectCard";
 import TransactionHistory from "@/components/cards/TransactionHistory";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { NoProjects } from "@/components/NoProjects";
 import { Typography } from "@material-tailwind/react";
-import { db } from "@/config/firebase";
-
+import { db } from "../config/firebase";
+import { useAuth } from "../context/AuthContext";
 const Page = () => {
   const { user, loading } = useAuth();
   const { projects } = useContext(FundContext);
@@ -95,7 +93,7 @@ const Page = () => {
           </div>
 
           <div className="lg:col-span-1">
-            <TransactionHistory oneProjectInfo = {oneProjectInfo}/>
+            <TransactionHistory oneProjectInfo={oneProjectInfo} />
           </div>
         </div>
       ) : (

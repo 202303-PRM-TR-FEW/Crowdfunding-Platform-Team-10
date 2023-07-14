@@ -26,10 +26,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../config/firebase";
-
 import { useContext, useState } from "react";
-import { FundContext } from "@/context/FundContext";
+import { db } from "@/[locale]/config/firebase";
+import { FundContext } from "@/[locale]/context/FundContext";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);

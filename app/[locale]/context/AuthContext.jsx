@@ -7,7 +7,6 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../config/firebase";
-
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -48,9 +47,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider
-      value={{ user, login, signup, logout, loading }}
-    >
+    <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
       {loading ? null : children}
     </AuthContext.Provider>
   );
