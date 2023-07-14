@@ -138,7 +138,7 @@ export default function Nav() {
 
             <div
               className={`${
-                !searchProjects || searchProjects.length === 0
+                !searchProjects
                   ? "hidden"
                   : "flex"
               } absolute top-12 w-full`}
