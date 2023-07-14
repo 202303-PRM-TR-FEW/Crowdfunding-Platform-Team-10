@@ -112,7 +112,7 @@ export default function Nav() {
           )
         );
       } else {
-        setSearchProjects([]);
+        setSearchProjects();
       }
     });
   };
