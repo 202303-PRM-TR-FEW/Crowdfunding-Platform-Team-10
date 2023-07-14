@@ -13,8 +13,7 @@ const SearchList = ({ searchProjects }) => {
   return (
     <div>
       <Card className="absolute w-full lg:w-[350px] rounded">
-        {` `}
-        {searchProjects &&
+        {searchProjects && searchProjects.length !== 0 ?
           searchProjects.map((project) => {
             return (
               <Link key={project.id} href={`/${project.id}`}>
@@ -34,8 +33,15 @@ const SearchList = ({ searchProjects }) => {
                   </div>
                 </ListItem>
               </Link>
-            );
-          })}
+            ) ;
+          }) :   
+          <ListItem className="z-50 ">
+          <div>
+            <Typography variant="h6" color="blue-gray">
+              No matching result
+            </Typography>
+          </div>
+        </ListItem>}
       </Card>
     </div>
   );
