@@ -19,32 +19,20 @@ const Page = () => {
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
     if (user === null) {
       router.push("/login");
-    }
-  }, [router, user]);
-
-  useEffect(() => {
-    const projectArray = Object.values(projects);
-    if (user) {
+    } else {
+      const projectArray = Object.values(projects);
       const projectWithUser = projectArray.filter(
         (project) => project.creator.userId === user.uid
       );
-
-      if (projectWithUser.length > 0) {
-        setUsersProjects(projectWithUser);
-        setIsLoading(false);
-      } else {
-        setIsLoading(false);
-        console.log("This user has no projects.");
-      }
+      setUsersProjects(projectWithUser);
+      setIsLoading(false);
     }
-  }, [user, projects]);
-
+  }, [projects, router, user]);
   //take the last project and show it in Project Card
   const oneProjectInfo = usersProjects[usersProjects.length - 1];
   //this handle delete a project
