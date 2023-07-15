@@ -15,6 +15,8 @@ import SearchList from "./search/SearchList";
 import ProjectForm from "./forms/ProjectForm";
 import { useAuth } from "@/[locale]/context/AuthContext";
 import { db } from "@/[locale]/config/firebase";
+import { Avatar } from "@mui/material";
+import UserSettingsForm from "./forms/UserSettingsForm";
 
 const AddProjectButton = ({ user }) => {
   const [openProjectForm, setOpenProjectForm] = useState(false);
@@ -32,6 +34,26 @@ const AddProjectButton = ({ user }) => {
         authUser={user}
         openProjectForm={openProjectForm}
         setOpenProjectForm={setOpenProjectForm}
+      />
+    </>
+  );
+};
+const UserSettingsAvatar = ({ user }) => {
+  const [openUserForm, setOpenUserForm] = useState(false);
+
+  const handleUserSettings = () => {
+    setOpenUserForm(!openUserForm);
+  };
+
+  return (
+    <>
+      <Button onClick={handleUserSettings} color="white">
+        New Project
+      </Button>
+      <UserSettingsForm
+        authUser={user}
+        openUserForm={openUserForm}
+        setOpenUserForm={setOpenUserForm}
       />
     </>
   );
@@ -81,6 +103,7 @@ export default function Nav() {
         <>
           <AddProjectButton user={user} />
           <Link href="/profile">Profile</Link>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </>
       ) : (
         <>
@@ -138,9 +161,7 @@ export default function Nav() {
 
             <div
               className={`${
-                !searchProjects
-                  ? "hidden"
-                  : "flex"
+                !searchProjects ? "hidden" : "flex"
               } absolute top-12 w-full`}
             >
               <SearchList searchProjects={searchProjects} />
