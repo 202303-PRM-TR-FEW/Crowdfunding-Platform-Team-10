@@ -30,7 +30,6 @@ const Page = () => {
 
   useEffect(() => {
     const projectArray = Object.values(projects);
-    console.log(projectArray);
     if (user) {
       const projectWithUser = projectArray.filter(
         (project) => project.creator.userId === user.uid
