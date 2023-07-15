@@ -95,7 +95,7 @@ const Page = () => {
           </div>
 
           <div className="lg:col-span-1">
-            <TransactionHistory oneProjectInfo = {oneProjectInfo}/>
+            <TransactionHistory usersProjects ={usersProjects} oneProjectInfo = {oneProjectInfo}/>
           </div>
         </div>
       ) : (
