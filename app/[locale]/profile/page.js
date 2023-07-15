@@ -12,11 +12,13 @@ import { NoProjects } from "@/components/NoProjects";
 import { Typography } from "@material-tailwind/react";
 import { db } from "../config/firebase";
 import { useAuth } from "../context/AuthContext";
+import ConfirmDialog from "@/components/helper/ConfirmDialog";
 const Page = () => {
   const { user, loading } = useAuth();
   const { projects } = useContext(FundContext);
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const router = useRouter();
 
@@ -28,6 +30,7 @@ const Page = () => {
 
   useEffect(() => {
     const projectArray = Object.values(projects);
+    console.log(projectArray);
     if (user) {
       const projectWithUser = projectArray.filter(
         (project) => project.creator.userId === user.uid
@@ -46,17 +49,29 @@ const Page = () => {
   //take the last project and show it in Project Card
   const oneProjectInfo = usersProjects[usersProjects.length - 1];
   //this handle delete a project
-  const handleDeleteProject = async () => {
-    await deleteDoc(doc(db, "projects", oneProjectInfo.id));
-    console.log("item deleted");
+  const handleDeleteProject = () => {
+    setOpen(true);
+  };
+  const handleClose = async (word) => {
+    if (word === "Confirm") {
+      await deleteDoc(doc(db, "projects", oneProjectInfo.id));
+      console.log("item deleted");
+    }
+    setOpen(false);
   };
 
   if (loading && user !== null) {
     return <LoaderStyle />;
   }
-
   return (
     <div className="px-2 lg:px-20 p-5 md:p-7 lg:p-10">
+      <ConfirmDialog
+        open={open}
+        setOpen={setOpen}
+        title={"Are you sure to delete this project?"}
+        message={""}
+        handleClose={handleClose}
+      />
       {isLoading ? (
         <LoaderStyle />
       ) : oneProjectInfo ? (
