@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import {
   Navbar,
@@ -12,9 +11,10 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { collection, onSnapshot, query } from "firebase/firestore";
-import { db } from "../config/firebase";
 import SearchList from "./search/SearchList";
 import ProjectForm from "./forms/ProjectForm";
+import { useAuth } from "@/[locale]/context/AuthContext";
+import { db } from "@/[locale]/config/firebase";
 
 const AddProjectButton = ({ user }) => {
   const [openProjectForm, setOpenProjectForm] = useState(false);

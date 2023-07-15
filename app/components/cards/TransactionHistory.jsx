@@ -1,5 +1,5 @@
 import { Fragment, useContext, useState, useEffect } from "react";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/[locale]/context/AuthContext";
 import {
   Typography,
   Button,
@@ -15,7 +15,7 @@ import {
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
-import { FundContext } from "@/context/FundContext";
+import { FundContext } from "@/[locale]/context/FundContext";
 
 export default function TransactionHistory({ oneProjectInfo }) {
   const [open, setOpen] = useState(1);

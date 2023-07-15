@@ -5,7 +5,7 @@ import frame_hand from "../../public/assets/images/frame_hand.png";
 import handImag from "../../public/assets/images/hand.png";
 import Image from "next/image";
 import DonationForm from "./forms/DonationForm";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/[locale]/context/AuthContext";
 
 export const ProjectInfo = ({
   title,
@@ -35,7 +35,7 @@ export const ProjectInfo = ({
       ? setOpenDonationForm(true)
       : setOpenDonationForm(false);
   };
-  
+
   const styles = {
     project_size: {
       minHeight: "600px",

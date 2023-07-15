@@ -7,8 +7,7 @@ import Link from "next/link";
 import ProjectForm from "@/components/forms/ProjectForm";
 import { Button } from "@mui/material";
 import LoaderStyle from "./helper/LoaderStyle";
-import { useAuth } from "@/context/AuthContext";
-
+import { useAuth } from "@/[locale]/context/AuthContext";
 const AddProjectButton = ({ user }) => {
   const [openProjectForm, setOpenProjectForm] = useState(false);
 
@@ -18,7 +17,9 @@ const AddProjectButton = ({ user }) => {
 
   return (
     <>
-      <Button onClick={handleNewProject} variant="filled" color="blue-gray">New Project</Button>
+      <Button onClick={handleNewProject} variant="filled" color="blue-gray">
+        New Project
+      </Button>
       <ProjectForm
         authUser={user}
         openProjectForm={openProjectForm}

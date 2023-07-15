@@ -16,7 +16,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/[locale]/context/AuthContext";
 import Image from "next/image";
 const schema = yup
   .object({
@@ -56,105 +56,100 @@ const LoginForm = () => {
   };
 
   return (
-  
     <div className="lg:grid lg:grid-cols-2 items-center justify-between lg:gap-20 lg:px-40 lg:py-24 py-10 px-5 lg:flex-row flex-col">
+      <div className="lg:grid-1 ">
+        <Card className="w-full bg-transparent  shadow-none">
+          <Typography
+            variant="h3"
+            className="text-center text-gray-900 border-y-4 py-2 border-gray-900"
+          >
+            Log In
+          </Typography>
 
-<div className="lg:grid-1 ">
-
-          <Card className="w-full bg-transparent  shadow-none">
-            <Typography
-              variant="h3"
-              className="text-center text-gray-900 border-y-4 py-2 border-gray-900"
+          <CardBody className="flex flex-col gap-4 w-full p-0">
+            <form
+              className="flex flex-col gap-2"
+              onSubmit={handleSubmit(onSubmit)}
             >
-              Log In
-            </Typography>
-
-            <CardBody className="flex flex-col gap-4 w-full p-0">
-              <form
-                className="flex flex-col gap-2"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <div className="mt-6">
-                  <Input
-                    label="Email"
-                    fullWidth
-                    variant="standard"
-                    {...register("email")}
-                    color="blue-gray"
-                    type="email"
-                    className=" border-gray-900 "
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.email && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
-                    {errors.email?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <Input
-                    label="Password"
-                    type="password"
-                    variant="standard"
-                    fullWidth
-                    {...register("password")}
-                    color="blue-gray"
-                    className=" border-gray-900 "
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.password && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
-                    {errors.password?.message}
-                  </Typography>
-                </div>
-
-                <button
-                  className="mt-8 bg-gray-900 py-3 px-1 w-full text-white"
-                  type="submit"
-                  variant="filled"
+              <div className="mt-6">
+                <Input
+                  label="Email"
                   fullWidth
-                >
-                  Log In
-                </button>
-              </form>
-            </CardBody>
-            <CardFooter className="pt-0">
-              <Typography variant="small" className="mt-6 flex justify-center">
-                Don&apos;t have an account?
+                  variant="standard"
+                  {...register("email")}
+                  color="blue-gray"
+                  type="email"
+                  className=" border-gray-900 "
+                />
                 <Typography
-                  as="a"
-                  href="#signup"
                   variant="small"
-                  color="blue"
-                  className="ml-1 font-bold"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                 >
-                  <Link href="/signup" className="underline text-gray-800">
-                    Sign up
-                  </Link>
+                  {errors.email && (
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  )}
+                  {errors.email?.message}
                 </Typography>
-              </Typography>
-            </CardFooter>
-          </Card>
-        </div>
-        <div className="lg:grid-1 hidden lg:block">
+              </div>
+              <div>
+                <Input
+                  label="Password"
+                  type="password"
+                  variant="standard"
+                  fullWidth
+                  {...register("password")}
+                  color="blue-gray"
+                  className=" border-gray-900 "
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.password && (
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                  )}
+                  {errors.password?.message}
+                </Typography>
+              </div>
 
-          <Image
-            width={295}
-            height={165}
-            src={welcomeHand}
-            alt="Picture of thanking"
-            className="w-full"
-          />
-        </div>
+              <button
+                className="mt-8 bg-gray-900 py-3 px-1 w-full text-white"
+                type="submit"
+                variant="filled"
+                fullWidth
+              >
+                Log In
+              </button>
+            </form>
+          </CardBody>
+          <CardFooter className="pt-0">
+            <Typography variant="small" className="mt-6 flex justify-center">
+              Don&apos;t have an account?
+              <Typography
+                as="a"
+                href="#signup"
+                variant="small"
+                color="blue"
+                className="ml-1 font-bold"
+              >
+                <Link href="/signup" className="underline text-gray-800">
+                  Sign up
+                </Link>
+              </Typography>
+            </Typography>
+          </CardFooter>
+        </Card>
       </div>
-    
+      <div className="lg:grid-1 hidden lg:block">
+        <Image
+          width={295}
+          height={165}
+          src={welcomeHand}
+          alt="Picture of thanking"
+          className="w-full"
+        />
+      </div>
+    </div>
   );
 };
 
