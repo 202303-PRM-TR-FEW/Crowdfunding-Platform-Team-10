@@ -34,8 +34,6 @@ export default function TransactionHistory({ oneProjectInfo }) {
 
     updateSetDonate();
   }, [donations, oneProjectInfo]);
-  console.log(donate);
-  console.log(donations);
   const triggers = {
     onMouseEnter: () => setOpenMenu(true),
     onMouseLeave: () => setOpenMenu(false),
