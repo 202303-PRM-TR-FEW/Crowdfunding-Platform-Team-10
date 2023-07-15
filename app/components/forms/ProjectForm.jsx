@@ -29,6 +29,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { db } from "@/[locale]/config/firebase";
 import { FundContext } from "@/[locale]/context/FundContext";
+import LoaderStyle from "../helper/LoaderStyle";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
@@ -61,6 +62,7 @@ const schema = yup
 
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
+  const [loadingUpload, setLoadingUpload] = useState(false);
   const { usersInfo } = useContext(FundContext); //get our data from our main context
 
   const {
@@ -80,6 +82,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   });
 
   const onSubmit = async (data) => {
+    setLoadingUpload(true);
     try {
       const user = await findUserById(authUser.uid, usersInfo);
       const imgUrl = await uploadFileAndGetDownloadUrl(
@@ -88,10 +91,11 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       );
       await addProjectToFirestore(data, user, imgUrl);
       setSuccess(true);
+      setLoadingUpload(false);
     } catch (error) {
       console.log(error);
+      setLoadingUpload(false);
     }
-    console.log(data);
   };
 
   const findUserById = (userId, usersInfo) => {
@@ -312,8 +316,21 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                 </div>
               </div>
             </div>
-
-            <Button type="submit">Upload Project</Button>
+            <button
+              className="btn-primary flex flex-row items-center justify-center"
+              type="submit"
+            >
+              Upload Project
+              {loadingUpload && (
+                <div
+                  style={{
+                    zoom: 0.2,
+                  }}
+                >
+                  <LoaderStyle />
+                </div>
+              )}
+            </button>
           </form>
         </div>
       </Dialog>
