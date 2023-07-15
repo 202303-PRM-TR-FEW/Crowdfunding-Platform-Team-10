@@ -33,12 +33,8 @@ const Page = () => {
       setIsLoading(false);
     }
   }, [projects, router, user]);
-  console.log(projects);
-  console.log(usersProjects);
   //take the last project and show it in Project Card
   const oneProjectInfo = usersProjects[usersProjects.length - 1];
-  console.log(oneProjectInfo);
-
   //this handle delete a project
   const handleDeleteProject = () => {
     setOpen(true);
