@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/material";
 import Link from "next/link";
@@ -7,10 +7,12 @@ import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
-import { auth } from "@/config/firebase";
+
+import { useAuth } from "@/context/AuthContext";
 
 const Home = () => {
   const { projects } = useAuth();
+  console.log(projects)
   const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
   useEffect(() => {
