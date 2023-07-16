@@ -24,8 +24,6 @@ export const AuthContextProvider = ({ children }) => {
   const [projects, setProjects] = useState(true);
   const [donations, setDonations] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-  const [usersProjects, setUsersProjects] = useState([]);
-
 
   //Auth CONTEXT
   useEffect(() => {
@@ -112,23 +110,10 @@ export const AuthContextProvider = ({ children }) => {
       }
       setLoading(false);
     };
-
-    fetchData();
-  }, [currentUser, user, usersInfo]);
-
-  // Single User Projects
-  useEffect(() => {
-    if (user && projects && projects.length > 0) {
-      const projectArray = Object.values(projects);
-      const projectWithUser = projectArray.filter(
-        (project) => project.creator.userId === user.uid
-      );
-      setUsersProjects(projectWithUser);
-    }
-  }, [projects, user]);
-
- 
   
+    fetchData();
+  }, [user, usersInfo]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -142,7 +127,6 @@ export const AuthContextProvider = ({ children }) => {
         donations,
         currentUser,
         deleteProject,
-        usersProjects,
       }}
     >
       {loading ? null || undefined : children}

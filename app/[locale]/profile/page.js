@@ -13,9 +13,9 @@ import ConfirmDialog from "@/components/helper/ConfirmDialog";
  
 
 const Page = () => {
-  const { user, loading, projects, deleteProject,usersProjects } = useAuth();
+  const { user, loading, projects, deleteProject } = useAuth();
 
-
+  const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -24,7 +24,11 @@ const Page = () => {
     if (user === null) {
       router.push("/login");
     } else {
-      
+      const projectArray = Object.values(projects);
+      const projectWithUser = projectArray.filter(
+        (project) => project.creator.userId === user.uid
+      );
+      setUsersProjects(projectWithUser);
       setIsLoading(false);
     }
   }, [projects, router, user]);
@@ -90,7 +94,7 @@ const Page = () => {
 
           <div className="lg:col-span-1">
             <TransactionHistory
-             
+              usersProjects={usersProjects}
               oneProjectInfo={oneProjectInfo}
             />
           </div>

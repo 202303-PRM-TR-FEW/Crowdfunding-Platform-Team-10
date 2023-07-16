@@ -102,7 +102,8 @@ export default function TransactionHistory() {
                           </Typography>
                         </MenuHandler>
                         <MenuList {...triggers}>
-                          {usersProjects && usersProjects.length > 0 ? (
+                          {usersProjects &&
+                            usersProjects.length > 0 &&
                             usersProjects.map((project) => (
                               <MenuItem
                                 key={project?.id}
@@ -110,10 +111,7 @@ export default function TransactionHistory() {
                               >
                                 {project?.name}
                               </MenuItem>
-                            ))
-                          ) : (
-                            <LoaderStyle />
-                          )}
+                            ))}
                         </MenuList>
                       </Menu>
                     </div>
