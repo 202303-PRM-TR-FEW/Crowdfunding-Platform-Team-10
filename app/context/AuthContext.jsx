@@ -118,7 +118,7 @@ export const AuthContextProvider = ({ children }) => {
 
   // Single User Projects
   useEffect(() => {
-    if (user && projects) {
+    if (user && projects && projects.length > 0) {
       const projectArray = Object.values(projects);
       const projectWithUser = projectArray.filter(
         (project) => project.creator.userId === user.uid

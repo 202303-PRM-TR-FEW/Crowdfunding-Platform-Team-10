@@ -35,7 +35,6 @@ export default function TransactionHistory() {
     updateSetDonate();
   }, [donations, selectedProject]);
 
-
   const handleProjectSelect = (projectId) => {
     setSelectedProject(projectId);
   };
@@ -51,8 +50,6 @@ export default function TransactionHistory() {
   if (loading) {
     return <LoaderStyle />;
   }
-
-
 
   return (
     <div>
@@ -105,14 +102,18 @@ export default function TransactionHistory() {
                           </Typography>
                         </MenuHandler>
                         <MenuList {...triggers}>
-                          {usersProjects.map((project) => (
-                            <MenuItem
-                              key={project?.id}
-                              onClick={() => handleProjectSelect(project?.id)}
-                            >
-                              {project?.name}
-                            </MenuItem>
-                          ))}
+                          {usersProjects && usersProjects.length > 0 ? (
+                            usersProjects.map((project) => (
+                              <MenuItem
+                                key={project?.id}
+                                onClick={() => handleProjectSelect(project?.id)}
+                              >
+                                {project?.name}
+                              </MenuItem>
+                            ))
+                          ) : (
+                            <LoaderStyle />
+                          )}
                         </MenuList>
                       </Menu>
                     </div>
