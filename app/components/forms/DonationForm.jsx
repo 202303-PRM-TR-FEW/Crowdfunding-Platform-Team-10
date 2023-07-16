@@ -24,8 +24,8 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
-import { FundContext } from "@/[locale]/context/FundContext";
-import { db } from "@/[locale]/config/firebase";
+import { FundContext } from "@/context/FundContext";
+import { db } from "@/config/firebase";
 import Typography from "@mui/material/Typography";
 import Dialog from "@mui/material/Dialog";
 
