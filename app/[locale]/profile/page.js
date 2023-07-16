@@ -2,16 +2,16 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
 import { FundContext } from "@/context/FundContext";
 import { doc, deleteDoc } from "firebase/firestore";
 import Link from "next/link";
-
 import MyProjectCard from "@/components/cards/MyProjectCard";
 import TransactionHistory from "@/components/cards/TransactionHistory";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { NoProjects } from "@/components/NoProjects";
 import { Typography } from "@material-tailwind/react";
+import { useAuth } from "@/context/AuthContext";
+import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import { db } from "@/config/firebase";
 
 const Page = () => {
@@ -19,46 +19,47 @@ const Page = () => {
   const { projects } = useContext(FundContext);
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [open, setOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     if (user === null) {
       router.push("/login");
-    }
-  }, [router, user]);
-
-  useEffect(() => {
-    const projectArray = Object.values(projects);
-    if (user) {
+    } else {
+      const projectArray = Object.values(projects);
       const projectWithUser = projectArray.filter(
         (project) => project.creator.userId === user.uid
       );
-
-      if (projectWithUser.length > 0) {
-        setUsersProjects(projectWithUser);
-        setIsLoading(false);
-      } else {
-        setIsLoading(false);
-        console.log("This user has no projects.");
-      }
+      setUsersProjects(projectWithUser);
+      setIsLoading(false);
     }
-  }, [user, projects]);
-
+  }, [projects, router, user]);
   //take the last project and show it in Project Card
   const oneProjectInfo = usersProjects[usersProjects.length - 1];
   //this handle delete a project
-  const handleDeleteProject = async () => {
-    await deleteDoc(doc(db, "projects", oneProjectInfo.id));
-    console.log("item deleted");
+  const handleDeleteProject = () => {
+    setOpen(true);
+  };
+  const handleClose = async (word) => {
+    if (word === "Confirm") {
+      await deleteDoc(doc(db, "projects", oneProjectInfo.id));
+      console.log("item deleted");
+    }
+    setOpen(false);
   };
 
   if (loading && user !== null) {
     return <LoaderStyle />;
   }
-
   return (
     <div className="px-2 lg:px-20 p-5 md:p-7 lg:p-10">
+      <ConfirmDialog
+        open={open}
+        setOpen={setOpen}
+        title={"Are you sure to delete this project?"}
+        message={""}
+        handleClose={handleClose}
+      />
       {isLoading ? (
         <LoaderStyle />
       ) : oneProjectInfo ? (
