@@ -15,7 +15,7 @@ import SearchList from "./search/SearchList";
 import ProjectForm from "./forms/ProjectForm";
 import { useAuth } from "@/[locale]/context/AuthContext";
 import { db } from "@/[locale]/config/firebase";
-import { Avatar } from "@mui/material";
+
 import UserSettingsForm from "./forms/UserSettingsForm";
 
 const AddProjectButton = ({ user }) => {
@@ -38,36 +38,13 @@ const AddProjectButton = ({ user }) => {
     </>
   );
 };
-const UserSettingsAvatar = ({ user }) => {
-  const [openUserForm, setOpenUserForm] = useState(false);
-
-  const handleUserSettings = () => {
-    setOpenUserForm(!openUserForm);
-  };
-
-  return (
-    <>
-      <Button onClick={handleUserSettings} color="white">
-        New Project
-      </Button>
-      <UserSettingsForm
-        authUser={user}
-        openUserForm={openUserForm}
-        setOpenUserForm={setOpenUserForm}
-      />
-    </>
-  );
-};
 
 export default function Nav() {
   const [openNav, setOpenNav] = useState(false);
 
-  const { user, logout } = useAuth();
-  const router = useRouter();
-  const handleLogout = () => {
-    logout();
-    router.push("/login");
-  };
+  const { user } = useAuth();
+
+ 
 
   useEffect(() => {
     window.addEventListener(
@@ -103,7 +80,7 @@ export default function Nav() {
         <>
           <AddProjectButton user={user} />
           <Link href="/profile">Profile</Link>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <UserSettingsForm />
         </>
       ) : (
         <>
@@ -212,11 +189,7 @@ export default function Nav() {
       <Collapse open={openNav}>
         <div className="container mx-auto bg-orange py-2">
           {navList}
-          {user ? (
-            <>
-              <button onClick={handleLogout}>Logout</button>
-            </>
-          ) : (
+        
             <>
               <Link
                 href="/login"
@@ -225,7 +198,7 @@ export default function Nav() {
                 Login
               </Link>
             </>
-          )}
+      
         </div>
       </Collapse>
     </Navbar>
