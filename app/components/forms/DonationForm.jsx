@@ -1,13 +1,13 @@
 "use client";
-import { IconButton } from "@mui/material";
 import {
-  Button,
-  Dialog,
-  Input,
-  Checkbox,
-  Typography,
   Alert,
-} from "@material-tailwind/react";
+  Checkbox,
+  IconButton,
+  Input,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
+
 import { Controller, useForm } from "react-hook-form";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -25,6 +25,21 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { FundContext } from "@/[locale]/context/FundContext";
 import { db } from "@/[locale]/config/firebase";
+import Typography from "@mui/material/Typography";
+import Dialog from "@mui/material/Dialog";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#00c1a2",
+    },
+    action: {
+      // Customize the autofill background color
+      hover: "#00c1a2", // Replace with your desired color
+      selected: "#00c1a2", // Replace with your desired color
+    },
+  },
+});
 ////// These need to be where the new project form button is //////
 // const [openDonationForm, setOpenDonationForm] = useState(false);
 // const handleDonationForm = () => {
@@ -45,7 +60,6 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
   const [currentUser, setCurrentUser] = useState("");
   const { user } = useAuth();
   const { usersInfo } = useContext(FundContext); //get our data from our main context
-  console.log(currentUser);
   useEffect(() => {
     if (usersInfo && user) {
       const current = usersInfo.find((usr) => usr.id === user.uid);
@@ -94,56 +108,60 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
 
   return (
     <div>
-      <Dialog open={openDonationForm} size={"md"} className="-z-50">
-        <div className="p-6 -z-50">
+      <Dialog open={openDonationForm}>
+        <div className="p-6 h-full relative">
           <IconButton onClick={handleClose} aria-label="back">
             <ArrowBackIosNewIcon />
           </IconButton>
-          <h1 className="lg:text-[40px] md:text-[30px] text-[20px] text-black font-bold mt-3">
-            Enter the donation <br />
-            amount:
-          </h1>
-          <form onSubmit={handleSubmit(onSubmit)} className="grid">
-            <Input
+          <h1 className="header-2 mt-3">Enter the donation amount:</h1>
+          <ThemeProvider theme={theme}>
+            <form
               id="donation"
-              name="donation"
-              placeholder="$1"
-              variant="standard"
-              {...register("donation")}
-            />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+              onSubmit={handleSubmit(onSubmit)}
+              className="grid"
             >
-              {errors.donation && (
-                <InformationCircleIcon className="w-4 h-4 -mt-px" />
-              )}
-              {errors.donation?.message}
-            </Typography>
-            <div className="flex items-center">
-              <label htmlFor="charity">Add 2% for charity ?</label>
-              <Controller
-                name="charity"
-                control={control}
-                render={({ field: props }) => (
-                  <Checkbox
-                    {...props}
-                    checked={props.value}
-                    onChange={(e) => props.onChange(e.target.checked)}
-                  />
-                )}
+              <Input
+                id="donation"
+                name="donation"
+                placeholder="$1"
+                variant="standard"
+                {...register("donation")}
               />
-            </div>
-            {success && (
-              <Alert variant="outlined" color="green">
-                Donation Succesfull !{" "}
-              </Alert>
-            )}
-
-            <Button type="submit" className="mt-32">
-              Pay Now
-            </Button>
-          </form>
+              <Typography
+                variant="small"
+                className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+              >
+                {errors.donation && (
+                  <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                )}
+                {errors.donation?.message}
+              </Typography>
+              <div className="flex items-center">
+                <label htmlFor="charity">Add 2% for charity ?</label>
+                <Controller
+                  name="charity"
+                  control={control}
+                  render={({ field: props }) => (
+                    <Checkbox
+                      {...props}
+                      checked={props.value}
+                      onChange={(e) => props.onChange(e.target.checked)}
+                    />
+                  )}
+                />
+              </div>
+              {success && (
+                <Alert severity="success">Donation Succesfull ! </Alert>
+              )}
+              <button
+                form="donation"
+                type="submit"
+                className="btn-primary mt-24"
+              >
+                Pay Now
+              </button>
+            </form>
+          </ThemeProvider>
         </div>
       </Dialog>
     </div>

@@ -1,14 +1,19 @@
 "use client";
-import { IconButton } from "@mui/material";
 import {
-  Button,
-  Dialog,
-  Input,
-  Option,
-  Typography,
-  Select,
   Alert,
-} from "@material-tailwind/react";
+  Dialog,
+  IconButton,
+  TextField,
+  MenuItem,
+  Select,
+  Typography,
+  InputAdornment,
+  FormControl,
+  InputLabel,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material";
+
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Controller, useForm } from "react-hook-form";
@@ -59,7 +64,18 @@ const schema = yup
     media: yup.mixed().required("Project Picture is Required !"),
   })
   .required();
-
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#00c1a2",
+    },
+    action: {
+      // Customize the autofill background color
+      hover: "#00c1a2", // Replace with your desired color
+      selected: "#00c1a2", // Replace with your desired color
+    },
+  },
+});
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
@@ -146,116 +162,115 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       dateLibInstance={defaultDayjs}
       dateAdapter={AdapterDayjs}
     >
-      <Dialog open={openProjectForm} size={"md"} className="-z-50">
-        <div className="p-6 -z-50">
-          <IconButton onClick={handleClose} aria-label="back">
-            <ArrowBackIosNewIcon />
-          </IconButton>
-          <h1 className="lg:text-[60px] md:text-[40px] text-[20px] text-black font-bold mt-3 mb-6">
-            Kick-off <br /> your project
-          </h1>
-          {success && (
-            <Alert className="mb-4" variant="outlined" color="green">
-              Created Project Succesfully !{" "}
-            </Alert>
-          )}
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-            <div className="grid lg:grid-cols-2 pb-6 mb-6 border-b border-black">
-              <div className="grid lg:border-r lg:border-black lg:pr-6 mb-6 lg:mb-0 ">
-                <Input
-                  id="projectName"
-                  name="projectName"
-                  label="Name of your project"
-                  variant="standard"
-                  {...register("projectName")}
-                />
-                <Typography
-                  variant="small"
-                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                >
-                  {errors.projectName && (
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                  )}
-                  {errors.projectName?.message}
-                </Typography>
+      <ThemeProvider theme={theme}>
+        <Dialog open={openProjectForm} size={"lg"} className="">
+          <div className="p-6">
+            <IconButton onClick={handleClose} aria-label="back">
+              <ArrowBackIosNewIcon />
+            </IconButton>
+            <h1 className="header-1 mt-3 mb-6">
+              Kick-off <br /> your project
+            </h1>
+            {success && (
+              <Alert severity="success">Created Project Succesfully ! </Alert>
+            )}
 
-                <Input
-                  id="goal"
-                  name="goal"
-                  label="Add your goal"
-                  variant="standard"
-                  {...register("goal")}
-                />
-
-                <Typography
-                  variant="small"
-                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                >
-                  {errors.goal && (
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                  )}
-                  {errors.goal?.message}
-                </Typography>
-
-                <div className="grid lg:grid-cols-2 gap-2">
-                  <Controller
-                    control={control}
-                    name="startingDate"
-                    render={({ field: { onChange } }) => (
-                      <DatePicker
-                        disablePast
-                        defaultValue={today}
-                        onChange={(newValue) => {
-                          onChange(newValue?.utc(true) || null);
-                        }}
-                        label="Starting Date"
-                        timezone="system"
-                        format="DD/MM/YYYY"
-                        closeOnSelect={true}
-                      />
-                    )}
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+              <div className="grid lg:grid-cols-2 pb-6 mb-6 border-b border-black">
+                <div className="grid lg:border-r lg:border-black lg:pr-6 mb-6 lg:mb-0 ">
+                  <TextField
+                    id="projectName"
+                    name="projectName"
+                    label="Name of your project"
+                    variant="standard"
+                    {...register("projectName")}
                   />
                   <Typography
                     variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4 lg:order-1"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                   >
-                    {errors.startingDate && (
+                    {errors.projectName && (
                       <InformationCircleIcon className="w-4 h-4 -mt-px" />
                     )}
-                    {errors.startingDate?.message}
+                    {errors.projectName?.message}
                   </Typography>
 
-                  <Controller
-                    control={control}
-                    name="endingDate"
-                    render={({ field: { onChange } }) => (
-                      <DatePicker
-                        disablePast
-                        defaultValue={today}
-                        onChange={(newValue) => {
-                          onChange(newValue?.utc(true) || null);
-                        }}
-                        label="Ending Date"
-                        timezone="system"
-                        format="DD/MM/YYYY"
-                        closeOnSelect={true}
-                      />
-                    )}
+                  <TextField
+                    id="goal"
+                    name="goal"
+                    label="Add your goal"
+                    variant="standard"
+                    {...register("goal")}
                   />
+
                   <Typography
                     variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4 lg:order-2"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                   >
-                    {errors.endingDate && (
+                    {errors.goal && (
                       <InformationCircleIcon className="w-4 h-4 -mt-px" />
                     )}
-                    {errors.endingDate?.message}
+                    {errors.goal?.message}
                   </Typography>
+
+                  <div className="grid lg:grid-cols-2 gap-2 mt-4">
+                    <Controller
+                      control={control}
+                      name="startingDate"
+                      render={({ field: { onChange } }) => (
+                        <DatePicker
+                          disablePast
+                          defaultValue={today}
+                          onChange={(newValue) => {
+                            onChange(newValue?.utc(true) || null);
+                          }}
+                          label="Starting Date"
+                          timezone="system"
+                          format="DD/MM/YYYY"
+                          closeOnSelect={true}
+                        />
+                      )}
+                    />
+                    <Typography
+                      variant="small"
+                      className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4 lg:order-1"
+                    >
+                      {errors.startingDate && (
+                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                      )}
+                      {errors.startingDate?.message}
+                    </Typography>
+
+                    <Controller
+                      control={control}
+                      name="endingDate"
+                      render={({ field: { onChange } }) => (
+                        <DatePicker
+                          disablePast
+                          defaultValue={today}
+                          onChange={(newValue) => {
+                            onChange(newValue?.utc(true) || null);
+                          }}
+                          label="Ending Date"
+                          timezone="system"
+                          format="DD/MM/YYYY"
+                          closeOnSelect={true}
+                        />
+                      )}
+                    />
+                    <Typography
+                      variant="small"
+                      className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4 lg:order-2"
+                    >
+                      {errors.endingDate && (
+                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                      )}
+                      {errors.endingDate?.message}
+                    </Typography>
+                  </div>
                 </div>
-              </div>
-              <div className="grid lg:pl-6 ">
-                <div>
-                  <Input
+                <div className="grid lg:pl-6  gap-2">
+                  <TextField
                     id="about"
                     name="about"
                     label="About your project"
@@ -271,18 +286,30 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                     )}
                     {errors.about?.message}
                   </Typography>
-                </div>
-                <div>
-                  <Select
-                    onChange={(e) => setValue("category", e)}
-                    variant="standard"
-                    label="Select Category"
-                  >
-                    <Option value="animals">Animals</Option>
-                    <Option value="education">Education</Option>
-                    <Option value="culture">Culture</Option>
-                    <Option value="children">Children</Option>
-                  </Select>
+                  <Controller
+                    name="category"
+                    control={control}
+                    render={({ field: { onChange } }) => (
+                      <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">
+                          Category
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="Category"
+                          onChange={onChange}
+                          defaultValue=""
+                        >
+                          <MenuItem value="animals">Animals</MenuItem>
+                          <MenuItem value="education">Education</MenuItem>
+                          <MenuItem value="culture">Culture</MenuItem>
+                          <MenuItem value="children">Children</MenuItem>
+                        </Select>
+                      </FormControl>
+                    )}
+                  />
+
                   <Typography
                     variant="small"
                     className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
@@ -292,48 +319,56 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                     )}
                     {errors.category?.message}
                   </Typography>
-                </div>
-                <div>
-                  <Input
-                    className="cursor-pointer"
-                    icon={<FileUpload />}
-                    accept="image/*"
-                    id="media"
-                    name="media"
-                    type="file"
-                    label="Project Picture"
-                    {...register("media")}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.media && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
-                    {errors.media?.message}
-                  </Typography>
+
+                  <div>
+                    <TextField
+                      className="cursor-pointer"
+                      // icon={<FileUpload />}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="end">
+                            <FileUpload />
+                          </InputAdornment>
+                        ),
+                      }}
+                      accept="image/*"
+                      id="media"
+                      name="media"
+                      type="file"
+                      // label="Project Picture"
+                      {...register("media")}
+                    />
+                    <Typography
+                      variant="small"
+                      className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                    >
+                      {errors.media && (
+                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                      )}
+                      {errors.media?.message}
+                    </Typography>
+                  </div>
                 </div>
               </div>
-            </div>
-            <button
-              className="btn-primary flex flex-row items-center justify-center"
-              type="submit"
-            >
-              Upload Project
-              {loadingUpload && (
-                <div
-                  style={{
-                    zoom: 0.2,
-                  }}
-                >
-                  <LoaderStyle />
-                </div>
-              )}
-            </button>
-          </form>
-        </div>
-      </Dialog>
+              <button
+                className="btn-primary flex flex-row items-center justify-center"
+                type="submit"
+              >
+                Upload Project
+                {loadingUpload && (
+                  <div
+                    style={{
+                      zoom: 0.2,
+                    }}
+                  >
+                    <LoaderStyle />
+                  </div>
+                )}
+              </button>
+            </form>
+          </div>
+        </Dialog>
+      </ThemeProvider>
     </LocalizationProvider>
   );
 };
