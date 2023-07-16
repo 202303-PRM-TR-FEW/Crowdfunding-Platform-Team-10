@@ -1,5 +1,5 @@
 import { Fragment, useContext, useState, useEffect } from "react";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/[locale]/context/AuthContext";
 import {
   Typography,
   Button,
@@ -15,7 +15,7 @@ import {
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
-import { FundContext } from "@/context/FundContext";
+import { FundContext } from "@/[locale]/context/FundContext";
 
 export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
   const [open, setOpen] = useState(1);
@@ -35,6 +35,7 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
     };
 
     updateSetDonate();
+<<<<<<< HEAD
   }, [donations, selectedProject]);
   console.log(donate);
   console.log(donations);
@@ -43,6 +44,9 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
     setSelectedProject(projectId);
   };
 
+=======
+  }, [donations, oneProjectInfo]);
+>>>>>>> 243f3d57e5d4a63deb0a8a02253fe8c50d86b3a7
   const triggers = {
     onMouseEnter: () => setOpenMenu(true),
     onMouseLeave: () => setOpenMenu(false),

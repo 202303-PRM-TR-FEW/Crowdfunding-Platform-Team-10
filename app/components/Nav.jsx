@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import {
   Navbar,
@@ -12,9 +11,10 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { collection, onSnapshot, query } from "firebase/firestore";
-import { db } from "../config/firebase";
 import SearchList from "./search/SearchList";
 import ProjectForm from "./forms/ProjectForm";
+import { useAuth } from "@/[locale]/context/AuthContext";
+import { db } from "@/[locale]/config/firebase";
 
 const AddProjectButton = ({ user }) => {
   const [openProjectForm, setOpenProjectForm] = useState(false);
@@ -81,7 +81,6 @@ export default function Nav() {
         <>
           <AddProjectButton user={user} />
           <Link href="/profile">Profile</Link>
-          <button onClick={handleLogout}>Logout</button>
         </>
       ) : (
         <>
@@ -113,10 +112,17 @@ export default function Nav() {
           )
         );
       } else {
-        setSearchProjects([]);
+        setSearchProjects();
       }
     });
   };
+   
+  const [values, setValues] = useState();
+  const handleClick = () => {
+    setSearchProjects();
+    setValues("")
+  }
+  
   return (
     <Navbar className="max-w-full rounded-none top-0 left-0 right-0  bg-black py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between">
@@ -128,26 +134,25 @@ export default function Nav() {
           <div className="relative flex w-full md:w-max mx-5">
             <Input
               onChange={handleSearch}
+              onClick={()=> setValues()}
               type="search"
               color="white"
               label="Search for projects"
               className=""
+              value={values}
               containerProps={{
                 className: "min-w-[160px]  lg:w-[350px] ",
               }}
             />
 
-            <div
+            <div onClick={handleClick}
               className={`${
-                !searchProjects || searchProjects.length === 0
-                  ? "hidden"
-                  : "flex"
+                !searchProjects ? "hidden" : "flex"
               } absolute top-12 w-full`}
             >
               <SearchList searchProjects={searchProjects} />
             </div>
           </div>
-
           <div className="hidden lg:flex lg:items-center gap-20">{navList}</div>
 
           <IconButton
@@ -194,7 +199,6 @@ export default function Nav() {
           {navList}
           {user ? (
             <>
-              <Link href="/profile">Profile</Link>
               <button onClick={handleLogout}>Logout</button>
             </>
           ) : (

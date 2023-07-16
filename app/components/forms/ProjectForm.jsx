@@ -26,10 +26,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../config/firebase";
-
 import { useContext, useState } from "react";
-import { FundContext } from "@/context/FundContext";
+import { db } from "@/[locale]/config/firebase";
+import { FundContext } from "@/[locale]/context/FundContext";
+import LoaderStyle from "../helper/LoaderStyle";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
@@ -56,14 +56,14 @@ const schema = yup
     endingDate: yup.string().required("Ending Date is Required !"),
     about: yup.string().required("About is Required !"),
     category: yup.string().required("Project Category is Required !"),
+    media: yup.mixed().required("Project Picture is Required !"),
   })
   .required();
 
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
+  const [loadingUpload, setLoadingUpload] = useState(false);
   const { usersInfo } = useContext(FundContext); //get our data from our main context
-  
-
 
   const {
     register,
@@ -75,23 +75,29 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     defaultValues: {
       startingDate: "",
       endingDate: "",
-      media: "",
+      media: null,
       category: "",
     },
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data) => {
+    setLoadingUpload(true);
     try {
       const user = await findUserById(authUser.uid, usersInfo);
-      const imgUrl = await uploadFileAndGetDownloadUrl(data.media[0].name, data.media[0]);
+      const imgUrl = await uploadFileAndGetDownloadUrl(
+        data.media[0].name,
+        data.media[0]
+      );
       await addProjectToFirestore(data, user, imgUrl);
       setSuccess(true);
+      setLoadingUpload(false);
     } catch (error) {
       console.log(error);
+      setLoadingUpload(false);
     }
   };
-  
+
   const findUserById = (userId, usersInfo) => {
     return new Promise((resolve, reject) => {
       const userCurrent = usersInfo.find((user) => user.id === userId);
@@ -102,7 +108,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       }
     });
   };
-  
+
   const uploadFileAndGetDownloadUrl = async (fileName, fileData) => {
     const storage = getStorage();
     const storageRef = ref(storage, fileName);
@@ -110,7 +116,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     const imgUrl = await getDownloadURL(storageRef);
     return imgUrl;
   };
-  
+
   const addProjectToFirestore = async (data, userCurrent, imgUrl) => {
     const projectData = {
       startingDate: data.startingDate,
@@ -273,7 +279,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                     label="Select Category"
                   >
                     <Option value="animals">Animals</Option>
-                    <Option value="educaion">Education</Option>
+                    <Option value="education">Education</Option>
                     <Option value="culture">Culture</Option>
                     <Option value="children">Children</Option>
                   </Select>
@@ -310,8 +316,21 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                 </div>
               </div>
             </div>
-
-            <Button type="submit">Upload Project</Button>
+            <button
+              className="btn-primary flex flex-row items-center justify-center"
+              type="submit"
+            >
+              Upload Project
+              {loadingUpload && (
+                <div
+                  style={{
+                    zoom: 0.2,
+                  }}
+                >
+                  <LoaderStyle />
+                </div>
+              )}
+            </button>
           </form>
         </div>
       </Dialog>
