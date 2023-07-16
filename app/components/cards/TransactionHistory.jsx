@@ -15,16 +15,15 @@ import {
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
-import { FundContext } from "@/context/FundContext";
 
-export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
+export default function TransactionHistory() {
   const [open, setOpen] = useState(1);
   const [openMenu, setOpenMenu] = useState(false);
   const [donate, setDonate] = useState([]);
-  const { loading } = useAuth();
-  const { donations, projects } = useContext(FundContext);
+  const { loading, donations, usersProjects } = useAuth();
+
   const [selectedProject, setSelectedProject] = useState("");
- 
+
   useEffect(() => {
     const updateSetDonate = () => {
       const filteredDonations = donations.filter(
@@ -35,8 +34,7 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
 
     updateSetDonate();
   }, [donations, selectedProject]);
-  console.log(donate);
-  console.log(donations);
+
 
   const handleProjectSelect = (projectId) => {
     setSelectedProject(projectId);
@@ -54,7 +52,7 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
     return <LoaderStyle />;
   }
 
-  console.log(projects);
+
 
   return (
     <div>

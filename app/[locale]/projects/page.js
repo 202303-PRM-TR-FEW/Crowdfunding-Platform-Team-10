@@ -4,12 +4,13 @@ import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
-import { FundContext } from "@/context/FundContext";
+
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
+import { auth } from "@/config/firebase";
 
 const Home = () => {
-  const { projects } = useContext(FundContext);
+  const { projects } = useAuth();
   const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
   useEffect(() => {

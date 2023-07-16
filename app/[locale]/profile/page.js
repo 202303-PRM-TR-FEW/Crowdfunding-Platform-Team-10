@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FundContext } from "@/context/FundContext";
-import { doc, deleteDoc } from "firebase/firestore";
 import Link from "next/link";
 import MyProjectCard from "@/components/cards/MyProjectCard";
 import TransactionHistory from "@/components/cards/TransactionHistory";
@@ -12,12 +10,12 @@ import { NoProjects } from "@/components/NoProjects";
 import { Typography } from "@material-tailwind/react";
 import { useAuth } from "@/context/AuthContext";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
-import { db } from "@/config/firebase";
+ 
 
 const Page = () => {
-  const { user, loading } = useAuth();
-  const { projects } = useContext(FundContext);
-  const [usersProjects, setUsersProjects] = useState([]);
+  const { user, loading, projects, deleteProject,usersProjects } = useAuth();
+
+
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -26,11 +24,7 @@ const Page = () => {
     if (user === null) {
       router.push("/login");
     } else {
-      const projectArray = Object.values(projects);
-      const projectWithUser = projectArray.filter(
-        (project) => project.creator.userId === user.uid
-      );
-      setUsersProjects(projectWithUser);
+      
       setIsLoading(false);
     }
   }, [projects, router, user]);
@@ -42,8 +36,7 @@ const Page = () => {
   };
   const handleClose = async (word) => {
     if (word === "Confirm") {
-      await deleteDoc(doc(db, "projects", oneProjectInfo.id));
-      console.log("item deleted");
+      deleteProject(oneProjectInfo);
     }
     setOpen(false);
   };
@@ -96,7 +89,10 @@ const Page = () => {
           </div>
 
           <div className="lg:col-span-1">
-            <TransactionHistory usersProjects ={usersProjects} oneProjectInfo = {oneProjectInfo}/>
+            <TransactionHistory
+             
+              oneProjectInfo={oneProjectInfo}
+            />
           </div>
         </div>
       ) : (

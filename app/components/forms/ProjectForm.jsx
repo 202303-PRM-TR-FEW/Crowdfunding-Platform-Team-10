@@ -33,8 +33,9 @@ import { FileUpload } from "@mui/icons-material";
 import { addDoc, collection } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { db } from "@/config/firebase";
-import { FundContext } from "@/context/FundContext";
+ 
 import LoaderStyle from "../helper/LoaderStyle";
+import { useAuth } from "@/context/AuthContext";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
@@ -76,10 +77,12 @@ const theme = createTheme({
     },
   },
 });
+
+
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
-  const { usersInfo } = useContext(FundContext); //get our data from our main context
+  const { usersInfo } = useAuth();
 
   const {
     register,
