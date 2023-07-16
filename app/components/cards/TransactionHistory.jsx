@@ -16,14 +16,14 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
 
-export default function TransactionHistory() {
+export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
   const [open, setOpen] = useState(1);
   const [openMenu, setOpenMenu] = useState(false);
   const [donate, setDonate] = useState([]);
-  const { loading, donations, usersProjects } = useAuth();
+  const { loading,donations, projects } = useAuth();
 
   const [selectedProject, setSelectedProject] = useState("");
-
+ 
   useEffect(() => {
     const updateSetDonate = () => {
       const filteredDonations = donations.filter(
@@ -34,6 +34,8 @@ export default function TransactionHistory() {
 
     updateSetDonate();
   }, [donations, selectedProject]);
+  console.log(donate);
+  console.log(donations);
 
   const handleProjectSelect = (projectId) => {
     setSelectedProject(projectId);
@@ -50,6 +52,8 @@ export default function TransactionHistory() {
   if (loading) {
     return <LoaderStyle />;
   }
+
+  console.log(projects);
 
   return (
     <div>
@@ -102,16 +106,14 @@ export default function TransactionHistory() {
                           </Typography>
                         </MenuHandler>
                         <MenuList {...triggers}>
-                          {usersProjects &&
-                            usersProjects.length > 0 &&
-                            usersProjects.map((project) => (
-                              <MenuItem
-                                key={project?.id}
-                                onClick={() => handleProjectSelect(project?.id)}
-                              >
-                                {project?.name}
-                              </MenuItem>
-                            ))}
+                          {usersProjects.map((project) => (
+                            <MenuItem
+                              key={project?.id}
+                              onClick={() => handleProjectSelect(project?.id)}
+                            >
+                              {project?.name}
+                            </MenuItem>
+                          ))}
                         </MenuList>
                       </Menu>
                     </div>
