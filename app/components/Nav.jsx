@@ -16,6 +16,8 @@ import ProjectForm from "./forms/ProjectForm";
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
 
+import UserSettingsForm from "./forms/UserSettingsForm";
+
 const AddProjectButton = ({ user }) => {
   const [openProjectForm, setOpenProjectForm] = useState(false);
 
@@ -40,12 +42,9 @@ const AddProjectButton = ({ user }) => {
 export default function Nav() {
   const [openNav, setOpenNav] = useState(false);
 
-  const { user, logout } = useAuth();
-  const router = useRouter();
-  const handleLogout = () => {
-    logout();
-    router.push("/login");
-  };
+  const { user } = useAuth();
+
+ 
 
   useEffect(() => {
     window.addEventListener(
@@ -81,6 +80,7 @@ export default function Nav() {
         <>
           <AddProjectButton user={user} />
           <Link href="/profile">Profile</Link>
+          <UserSettingsForm />
         </>
       ) : (
         <>
@@ -197,11 +197,7 @@ export default function Nav() {
       <Collapse open={openNav}>
         <div className="container mx-auto bg-orange py-2">
           {navList}
-          {user ? (
-            <>
-              <button onClick={handleLogout}>Logout</button>
-            </>
-          ) : (
+        
             <>
               <Link
                 href="/login"
@@ -210,7 +206,7 @@ export default function Nav() {
                 Login
               </Link>
             </>
-          )}
+      
         </div>
       </Collapse>
     </Navbar>
