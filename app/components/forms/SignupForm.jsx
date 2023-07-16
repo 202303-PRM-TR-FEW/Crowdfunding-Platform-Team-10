@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
-import { useAuth } from "@/[locale]/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 import welcomeHand from "../../../public/assets/images/welcome-hand.png";
 
-import { db } from "@/[locale]/config/firebase";
+import { db } from "@/config/firebase";
 import {
   CardBody,
   Typography,

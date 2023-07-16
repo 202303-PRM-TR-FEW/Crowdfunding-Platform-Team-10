@@ -4,7 +4,7 @@ import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
-import { FundContext } from "@/[locale]/context/FundContext";
+import { FundContext } from "@/context/FundContext";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 

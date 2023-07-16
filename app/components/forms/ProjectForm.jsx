@@ -27,8 +27,8 @@ import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
 import { addDoc, collection } from "firebase/firestore";
 import { useContext, useState } from "react";
-import { db } from "@/[locale]/config/firebase";
-import { FundContext } from "@/[locale]/context/FundContext";
+import { db } from "@/config/firebase";
+import { FundContext } from "@/context/FundContext";
 import LoaderStyle from "../helper/LoaderStyle";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);

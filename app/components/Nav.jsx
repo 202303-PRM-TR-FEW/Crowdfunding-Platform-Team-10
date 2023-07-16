@@ -13,8 +13,8 @@ import {
 import { collection, onSnapshot, query } from "firebase/firestore";
 import SearchList from "./search/SearchList";
 import ProjectForm from "./forms/ProjectForm";
-import { useAuth } from "@/[locale]/context/AuthContext";
-import { db } from "@/[locale]/config/firebase";
+import { useAuth } from "@/context/AuthContext";
+import { db } from "@/config/firebase";
 
 const AddProjectButton = ({ user }) => {
   const [openProjectForm, setOpenProjectForm] = useState(false);

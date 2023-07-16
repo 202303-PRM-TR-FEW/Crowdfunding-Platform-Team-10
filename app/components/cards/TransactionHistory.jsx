@@ -1,5 +1,5 @@
 import { Fragment, useContext, useState, useEffect } from "react";
-import { useAuth } from "@/[locale]/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 import {
   Typography,
   Button,
@@ -15,25 +15,33 @@ import {
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
-import { FundContext } from "@/[locale]/context/FundContext";
+import { FundContext } from "@/context/FundContext";
 
-export default function TransactionHistory({ oneProjectInfo }) {
+export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
   const [open, setOpen] = useState(1);
   const [openMenu, setOpenMenu] = useState(false);
   const [donate, setDonate] = useState([]);
   const { loading } = useAuth();
-  const { donations } = useContext(FundContext);
-
+  const { donations, projects } = useContext(FundContext);
+  const [selectedProject, setSelectedProject] = useState("");
+ 
   useEffect(() => {
     const updateSetDonate = () => {
       const filteredDonations = donations.filter(
-        (donation) => donation.projectId === oneProjectInfo.id
+        (donation) => donation.projectId === selectedProject
       );
       setDonate(filteredDonations);
     };
 
     updateSetDonate();
-  }, [donations, oneProjectInfo]);
+  }, [donations, selectedProject]);
+  console.log(donate);
+  console.log(donations);
+
+  const handleProjectSelect = (projectId) => {
+    setSelectedProject(projectId);
+  };
+
   const triggers = {
     onMouseEnter: () => setOpenMenu(true),
     onMouseLeave: () => setOpenMenu(false),
@@ -45,6 +53,8 @@ export default function TransactionHistory({ oneProjectInfo }) {
   if (loading) {
     return <LoaderStyle />;
   }
+
+  console.log(projects);
 
   return (
     <div>
@@ -78,12 +88,8 @@ export default function TransactionHistory({ oneProjectInfo }) {
                         color="blue-gray"
                         className="font-normal opacity-70"
                       >
-                        All Projects
+                        Projects
                       </Typography>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="flex flex-col">
                       <Menu open={openMenu} handler={setOpenMenu}>
                         <MenuHandler>
                           <Typography
@@ -91,7 +97,7 @@ export default function TransactionHistory({ oneProjectInfo }) {
                             className="flex items-center gap-3 text-small tracking-normal bg-transparent shadow-none border-0"
                             {...triggers}
                           >
-                            Sort{" "}
+                            Select Project{" "}
                             <ChevronDownIcon
                               strokeWidth={2.5}
                               className={`h-3.5 w-3.5 transition-transform ${
@@ -101,22 +107,18 @@ export default function TransactionHistory({ oneProjectInfo }) {
                           </Typography>
                         </MenuHandler>
                         <MenuList {...triggers}>
-                          <MenuItem>Menu Item 1</MenuItem>
-                          <MenuItem>Menu Item 2</MenuItem>
-                          <MenuItem>Menu Item 3</MenuItem>
+                          {usersProjects.map((project) => (
+                            <MenuItem
+                              key={project?.id}
+                              onClick={() => handleProjectSelect(project?.id)}
+                            >
+                              {project?.name}
+                            </MenuItem>
+                          ))}
                         </MenuList>
                       </Menu>
                     </div>
                   </td>
-                </tr>
-                <tr className="my-2">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal opacity-70"
-                  >
-                    Today
-                  </Typography>
                 </tr>
               </thead>
               <tbody>
