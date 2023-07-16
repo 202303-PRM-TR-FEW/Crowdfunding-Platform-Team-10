@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <AuthContextProvider>
             <Nav />
-            <div className="container mx-auto">{children}</div>
+            <div className="">{children}</div>
           </AuthContextProvider>
         </body>
       </FundProvider>
