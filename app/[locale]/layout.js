@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { AuthContextProvider } from "./context/AuthContext";
-import { FundProvider } from "./context/FundContext";
+import { AuthContextProvider } from "@/context/AuthContext";
+import { FundProvider } from "@/context/FundContext";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <AuthContextProvider>
             <Nav />
-            <div className="container mx-auto">{children}</div>
+            <div className="">{children}</div>
           </AuthContextProvider>
         </body>
       </FundProvider>

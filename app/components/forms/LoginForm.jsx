@@ -16,7 +16,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useAuth } from "@/[locale]/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 const schema = yup
   .object({
