@@ -5,7 +5,7 @@ import frame_hand from "../../public/assets/images/frame_hand.png";
 import handImag from "../../public/assets/images/hand.png";
 import Image from "next/image";
 import DonationForm from "./forms/DonationForm";
-import { useAuth } from "@/[locale]/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 
 export const ProjectInfo = ({
   title,

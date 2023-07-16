@@ -20,11 +20,11 @@ import {
   increment,
   updateDoc,
 } from "firebase/firestore";
-import { useAuth } from "@/[locale]/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-import { FundContext } from "@/[locale]/context/FundContext";
-import { db } from "@/[locale]/config/firebase";
+import { FundContext } from "@/context/FundContext";
+import { db } from "@/config/firebase";
 ////// These need to be where the new project form button is //////
 // const [openDonationForm, setOpenDonationForm] = useState(false);
 // const handleDonationForm = () => {

@@ -4,7 +4,7 @@ import { ProjectInfo } from "@/components/ProjectInfo";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import LoaderStyle from "@/components/helper/LoaderStyle";
-import { db } from "../config/firebase";
+import { db } from "@/config/firebase";
 
 function Project({ params }) {
   const [data, setData] = useState(null);
