@@ -25,10 +25,7 @@ input[type="file"]::file-selector-button {
 }
 input[type="file"] {
   width: 100%;
-}
-/* Fixses Date Picker Popper */
-div[data-floating-ui-portal] > div {
-  z-index: 99 !important;
+  margin-left: 10px;
 }
 
 .header-1 {
