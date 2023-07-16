@@ -138,9 +138,7 @@ export default function Nav() {
 
             <div
               className={`${
-                !searchProjects
-                  ? "hidden"
-                  : "flex"
+                !searchProjects ? "hidden" : "flex"
               } absolute top-12 w-full`}
             >
               <SearchList searchProjects={searchProjects} />
