@@ -116,6 +116,13 @@ export default function Nav() {
       }
     });
   };
+   
+  const [values, setValues] = useState();
+  const handleClick = () => {
+    setSearchProjects();
+    setValues("")
+  }
+  
   return (
     <Navbar className="max-w-full rounded-none top-0 left-0 right-0  bg-black py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between">
@@ -127,16 +134,18 @@ export default function Nav() {
           <div className="relative flex w-full md:w-max mx-5">
             <Input
               onChange={handleSearch}
+              onClick={()=> setValues()}
               type="search"
               color="white"
               label="Search for projects"
               className=""
+              value={values}
               containerProps={{
                 className: "min-w-[160px]  lg:w-[350px] ",
               }}
             />
 
-            <div
+            <div onClick={handleClick}
               className={`${
                 !searchProjects
                   ? "hidden"
@@ -146,7 +155,6 @@ export default function Nav() {
               <SearchList searchProjects={searchProjects} />
             </div>
           </div>
-
           <div className="hidden lg:flex lg:items-center gap-20">{navList}</div>
 
           <IconButton
