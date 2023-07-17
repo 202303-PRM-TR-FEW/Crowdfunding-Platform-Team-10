@@ -2,7 +2,7 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FundContext } from "@/context/FundContext";
+
 import { doc, deleteDoc } from "firebase/firestore";
 import Link from "next/link";
 import MyProjectCard from "@/components/cards/MyProjectCard";
@@ -15,8 +15,8 @@ import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import { db } from "@/config/firebase";
 
 const Page = () => {
-  const { user, loading } = useAuth();
-  const { projects } = useContext(FundContext);
+  const { user, loading ,projects} = useAuth();
+
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);

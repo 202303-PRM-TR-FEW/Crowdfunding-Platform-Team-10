@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { AuthContextProvider } from "@/context/AuthContext";
-import { FundProvider } from "@/context/FundContext";
+
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
@@ -29,14 +29,12 @@ export async function LocaleLayout({ children, params: { locale } }) {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <FundProvider>
-        <body className={inter.className}>
-          <AuthContextProvider>
-            <Nav />
-            <div className="">{children}</div>
-          </AuthContextProvider>
-        </body>
-      </FundProvider>
+      <body className={inter.className}>
+        <AuthContextProvider>
+          <Nav />
+          <div className="">{children}</div>
+        </AuthContextProvider>
+      </body>
     </html>
   );
 }

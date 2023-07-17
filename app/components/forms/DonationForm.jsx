@@ -24,7 +24,6 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
-import { FundContext } from "@/context/FundContext";
 import { db } from "@/config/firebase";
 import Typography from "@mui/material/Typography";
 import Dialog from "@mui/material/Dialog";
@@ -60,8 +59,8 @@ const schema = yup
 
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
   const [currentUser, setCurrentUser] = useState("");
-  const { user } = useAuth();
-  const { usersInfo } = useContext(FundContext); //get our data from our main context
+  const { user, usersInfo } = useAuth();
+
   useEffect(() => {
     if (usersInfo && user) {
       const current = usersInfo.find((usr) => usr.id === user.uid);

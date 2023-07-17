@@ -15,14 +15,13 @@ import {
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
-import { FundContext } from "@/context/FundContext";
+
 
 export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
   const [open, setOpen] = useState(1);
   const [openMenu, setOpenMenu] = useState(false);
   const [donate, setDonate] = useState([]);
-  const { loading } = useAuth();
-  const { donations, projects } = useContext(FundContext);
+  const { loading, donations, projects  } = useAuth();
   const [selectedProject, setSelectedProject] = useState("");
  
   useEffect(() => {
