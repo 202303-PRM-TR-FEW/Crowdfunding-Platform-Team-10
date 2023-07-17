@@ -20,7 +20,7 @@ const Home = () => {
   // Find project with maximum contributions
   useEffect(() => {
     let max = 0;
-    console.log(data)
+  
     if (data.length > 0) {
       data.forEach((project) => {
         if (project.raised > max) {

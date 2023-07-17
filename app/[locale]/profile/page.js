@@ -15,8 +15,7 @@ import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import { db } from "@/config/firebase";
 
 const Page = () => {
-  const { user, loading ,projects} = useAuth();
-
+  const { user, loading, projects } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -33,13 +32,18 @@ const Page = () => {
       setUsersProjects(projectWithUser);
       setIsLoading(false);
     }
-  }, [projects, router, user]);
-  //take the last project and show it in Project Card
-  const oneProjectInfo = usersProjects[usersProjects.length - 1];
-  //this handle delete a project
+  }, []);
+
+  let oneProjectInfo = null;
+
+  if (!isLoading && usersProjects.length > 0) {
+    oneProjectInfo = usersProjects[usersProjects.length - 1];
+  }
+
   const handleDeleteProject = () => {
     setOpen(true);
   };
+
   const handleClose = async (word) => {
     if (word === "Confirm") {
       await deleteDoc(doc(db, "projects", oneProjectInfo.id));
@@ -51,6 +55,7 @@ const Page = () => {
   if (loading && user !== null) {
     return <LoaderStyle />;
   }
+
   return (
     <div className="px-2 lg:px-20 p-5 md:p-7 lg:p-10">
       <ConfirmDialog
@@ -89,14 +94,17 @@ const Page = () => {
                   />
                 </svg>
               </div>
-              <Link href={`/${oneProjectInfo.id}`}>
+              <Link href={`/${oneProjectInfo?.id}`}>
                 <MyProjectCard projectOfWeek={oneProjectInfo} />
               </Link>
             </div>
           </div>
 
           <div className="lg:col-span-1">
-            <TransactionHistory usersProjects ={usersProjects} oneProjectInfo = {oneProjectInfo}/>
+            <TransactionHistory
+              usersProjects={usersProjects}
+              oneProjectInfo={oneProjectInfo}
+            />
           </div>
         </div>
       ) : (
