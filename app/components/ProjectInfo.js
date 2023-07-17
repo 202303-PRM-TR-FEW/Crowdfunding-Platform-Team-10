@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import user_img from "../../public/assets/images/user_img.jpg";
-import project_img from "../../public/assets/images/project.jpg";
-import frame_hand from "../../public/assets/images/frame_hand.png";
-import handImag from "../../public/assets/images/hand.png";
+
 import Image from "next/image";
 import DonationForm from "./forms/DonationForm";
 import { useAuth } from "@/context/AuthContext";

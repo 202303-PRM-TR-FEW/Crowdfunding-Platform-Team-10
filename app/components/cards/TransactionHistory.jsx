@@ -1,3 +1,5 @@
+"use client";
+
 import { Fragment, useContext, useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import {
@@ -15,28 +17,22 @@ import {
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
-import { FundContext } from "@/context/FundContext";
 
 export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
   const [open, setOpen] = useState(1);
   const [openMenu, setOpenMenu] = useState(false);
   const [donate, setDonate] = useState([]);
-  const { loading } = useAuth();
-  const { donations, projects } = useContext(FundContext);
+  const { loading, donations, projects } = useAuth();
   const [selectedProject, setSelectedProject] = useState("");
- 
+
   useEffect(() => {
-    const updateSetDonate = () => {
+    if (!loading) {
       const filteredDonations = donations.filter(
         (donation) => donation.projectId === selectedProject
       );
       setDonate(filteredDonations);
-    };
-
-    updateSetDonate();
-  }, [donations, selectedProject]);
-  console.log(donate);
-  console.log(donations);
+    }
+  }, [donations, selectedProject, loading]);
 
   const handleProjectSelect = (projectId) => {
     setSelectedProject(projectId);
@@ -46,15 +42,14 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
     onMouseEnter: () => setOpenMenu(true),
     onMouseLeave: () => setOpenMenu(false),
   };
+
   const handleOpen = (value) => {
-    setOpen(open === value ? 0 : value);
+    setOpen((prevOpen) => (prevOpen === value ? 0 : value));
   };
 
   if (loading) {
     return <LoaderStyle />;
   }
-
-  console.log(projects);
 
   return (
     <div>
@@ -72,7 +67,7 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
               <ChevronRightIcon
                 strokeWidth={2.5}
                 className={`h-5 w-5 transition-transform ${
-                  open == 1 ? "rotate-90" : ""
+                  open === 1 ? "rotate-90" : ""
                 } `}
               />
             </div>
@@ -122,7 +117,7 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
                 </tr>
               </thead>
               <tbody>
-                {donate?.map((donate, index) => {
+                {donate.map((donation, index) => {
                   const isLast = index === donate.length - 1;
                   const classes = isLast
                     ? "p-4"
@@ -131,13 +126,13 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
                   return (
                     <tr
                       className="hover:bg-blue-gray-50 hover:rounded"
-                      key={donate.id}
+                      key={donation.id}
                     >
                       <td className={classes}>
                         <div className="flex items-center gap-3">
                           <Avatar
-                            src={donate.userImg}
-                            alt={donate.userName}
+                            src={donation.userImg}
+                            alt={donation.userName}
                             size="sm"
                           />
                           <div className="flex flex-col">
@@ -146,7 +141,7 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
                               color="blue-gray"
                               className="font-semibold"
                             >
-                              {donate.userName}
+                              {donation.userName}
                             </Typography>
                             <Typography
                               variant="small"
@@ -164,7 +159,7 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
                           color="blue-gray"
                           className="font-bold "
                         >
-                          {donate.donaiton}
+                          {donation.donaiton}
                         </Typography>
                       </td>
                     </tr>
@@ -195,7 +190,7 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
               <ChevronRightIcon
                 strokeWidth={2.5}
                 className={`h-5 w-5 transition-transform ${
-                  open == 2 ? "rotate-90" : ""
+                  open === 2 ? "rotate-90" : ""
                 } `}
               />
             </div>
