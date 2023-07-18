@@ -7,7 +7,7 @@ import React from "react";
 
 
 
-const AboutUs = () => {
+const Page = () => {
     return (
         <section className="grid justify-items-center">
             <div className="grid py-12 container">
@@ -32,5 +32,5 @@ const AboutUs = () => {
     );
 };
 
-export default AboutUs;
+export default Page ;
 
