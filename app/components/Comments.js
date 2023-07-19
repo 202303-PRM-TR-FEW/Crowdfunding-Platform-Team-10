@@ -2,7 +2,7 @@ import React from 'react'
 
 const Comments = () => {
   return (
-    <div>Comments</div>
+    <div>will come soon</div>
   )
 }
 

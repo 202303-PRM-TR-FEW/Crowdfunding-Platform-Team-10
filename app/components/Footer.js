@@ -10,7 +10,7 @@ const Footer = () => {
                         <ul className='text-sm text-basicgray py-10 list-none'>
                             <li className='py-1'>Ayşe FullName</li>
                             <li className='py-1'>Bal FullName</li>
-                            <li className='py-1'>Barış FullName</li>
+                            <li className='py-1'>Baris FullName</li>
                             <li className='py-1'>Mehmet FullName</li>
                             <li className='py-1'>ZainabFullName</li>
                         </ul>

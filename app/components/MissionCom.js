@@ -10,13 +10,13 @@ const MissionCom = () => {
                     <div className="text-center lg:text-left col-span-1">
                         <p className="header-3">Making life standards better for everyone and everything </p>
                         <p className="sub-header py-10">
-                            We help people achieve independence by making starting, running, and growing a business easier. We believe the future of commerce has more voices, not fewer, so we’re reducing the barriers to business ownership to make commerce better for everyone.
+                            We help people achieve independence by making starting, running, and growing a business easier. We believe the future of commerce has more voices, not fewer, so we are reducing the barriers to business ownership to make commerce better for everyone.
                         </p>
                     </div>
                     <div className=" text-center lg:text-right col-span-1">
                         <p className="header-3">Being the voice of those who need a help </p>
                         <p className="sub-header py-10">
-                            We help people achieve independence by making starting, running, and growing a business easier. We believe the future of commerce has more voices, not fewer, so we’re reducing the barriers to business ownership to make commerce better for everyone.
+                            We help people achieve independence by making starting, running, and growing a business easier. We believe the future of commerce has more voices, not fewer, so we are reducing the barriers to business ownership to make commerce better for everyone.
                         </p>
                     </div>
                 </div>
