@@ -12,7 +12,7 @@ import { Controller, useForm } from "react-hook-form";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import InfoIcon from "@mui/icons-material/Info";
 import {
   addDoc,
   collection,
@@ -133,9 +133,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
                 variant="small"
                 className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
               >
-                {errors.donation && (
-                  <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                )}
+                {errors.donation && <InfoIcon fontSize="small" />}
                 {errors.donation?.message}
               </Typography>
               <div className="flex items-center">

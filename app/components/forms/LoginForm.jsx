@@ -11,7 +11,7 @@ import {
   Input,
   Card,
 } from "@material-tailwind/react";
-import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import InfoIcon from "@mui/icons-material/Info";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -85,9 +85,7 @@ const LoginForm = () => {
                   variant="small"
                   className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                 >
-                  {errors.email && (
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                  )}
+                  {errors.email && <InfoIcon fontSize="small" />}
                   {errors.email?.message}
                 </Typography>
               </div>
@@ -105,9 +103,7 @@ const LoginForm = () => {
                   variant="small"
                   className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                 >
-                  {errors.password && (
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                  )}
+                  {errors.password && <InfoIcon fontSize="small" />}
                   {errors.password?.message}
                 </Typography>
               </div>

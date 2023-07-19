@@ -3,17 +3,38 @@ import { useRouter } from "next/navigation";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
 import welcomeHand from "../../../public/assets/images/welcome-hand.png";
-
 import { db } from "@/config/firebase";
-import {
-  CardBody,
-  Typography,
-  Input,
-  Button,
-  Card,
-} from "@material-tailwind/react";
 import { FileUpload } from "@mui/icons-material";
+import InfoIcon from "@mui/icons-material/Info";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import Image from "next/image";
+import {
+  TextField,
+  Typography,
+  InputAdornment,
+  ThemeProvider,
+  createTheme,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import { countries } from "@/data/countries";
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#00c1a2",
+    },
+    action: {
+      // Customize the autofill background color
+      hover: "#00c1a2", // Replace with your desired color
+      selected: "#00c1a2", // Replace with your desired color
+    },
+  },
+});
 
 const schema = yup
   .object({
@@ -24,18 +45,15 @@ const schema = yup
     password: yup.string().required("Password is Required !"),
     name: yup.string().required("Full Name is Required !"),
     bio: yup.string().required("Bio is Required !"),
+    country: yup.string().required("Country is Required !"),
     userImg: yup.mixed().required("User Picture is Required !"),
   })
   .required();
 
-import { InformationCircleIcon } from "@heroicons/react/24/solid";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import Image from "next/image";
 const SignupForm = () => {
   const {
     register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -47,6 +65,7 @@ const SignupForm = () => {
       userImg: null,
       projects: [],
       donations: [],
+      country: "",
     },
     resolver: yupResolver(schema),
   });
@@ -84,6 +103,7 @@ const SignupForm = () => {
               donations: data.donations,
               email: data.email,
               timeStamp: serverTimestamp(),
+              country: data.country,
             });
 
             router.push("/profile");
@@ -97,139 +117,188 @@ const SignupForm = () => {
 
   return (
     <div className="lg:grid lg:grid-cols-2 items-center justify-between lg:gap-20 lg:px-40 lg:py-24 py-10 px-5 lg:flex-row flex-col">
-      <div className="lg:grid-1 ">
-        <Card className="w-full bg-transparent  shadow-none">
-          <Typography
-            variant="h3"
-            className="text-center text-gray-900 border-y-4 py-2 border-gray-900"
-          >
-            Create New Account
-          </Typography>
-
-          <CardBody className="flex flex-col gap-4 w-full p-0">
-            <form
-              className="flex flex-col gap-2"
-              onSubmit={handleSubmit(onSubmit)}
+      <ThemeProvider theme={theme}>
+        <div className="lg:grid-1 ">
+          <div className="w-full bg-transparent  shadow-none">
+            <Typography
+              variant="h3"
+              className="text-center text-gray-900 border-y-4 py-2 border-lightGreen"
             >
-              <div className="mt-6">
-                <Input
-                  label="Email"
-                  fullWidth
-                  type="email"
-                  defaultValue="test"
-                  {...register("email")}
-                  variant="standard"
-                />
-                <Typography
-                  variant="small"
-                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                >
-                  {errors.email && (
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                  )}
-                  {errors.email?.message}
-                </Typography>
-              </div>
-              <div>
-                <Input
-                  label="Password"
-                  fullWidth
-                  variant="standard"
-                  type="password"
-                  {...register("password")}
-                />
-                <Typography
-                  variant="small"
-                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                >
-                  {errors.password && (
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                  )}
-                  {errors.password?.message}
-                </Typography>
-              </div>
-              <div>
-                <Input
-                  label="Full Name"
-                  fullWidth
-                  variant="standard"
-                  type="text"
-                  {...register("name")}
-                />
-                <Typography
-                  variant="small"
-                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                >
-                  {errors.name && (
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                  )}
-                  {errors.name?.message}
-                </Typography>
-              </div>
-              <div>
-                <Input
-                  label="Bio"
-                  fullWidth
-                  variant="standard"
-                  type="text"
-                  {...register("bio")}
-                />
-                <Typography
-                  variant="small"
-                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                >
-                  {errors.bio && (
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                  )}
-                  {errors.bio?.message}
-                </Typography>
-              </div>
-              <div>
-                <Input
-                  variant="standard"
-                  fullWidth
-                  className="cursor-pointer"
-                  icon={<FileUpload />}
-                  accept="image/*"
-                  id="userImg"
-                  name="userImg"
-                  type="file"
-                  label="User Picture"
-                  {...register("userImg")}
-                />
-                <Typography
-                  variant="small"
-                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                >
-                  {errors.userImg && (
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                  )}
-                  {errors.userImg?.message}
-                </Typography>
-              </div>
+              Create New Account
+            </Typography>
 
-              <button
-                className="mt-8 bg-gray-900 py-3 px-1 w-full text-white"
-                type="submit"
-                variant="filled"
-                fullWidth
+            <div className="flex flex-col gap-4 w-full p-0">
+              <form
+                className="flex flex-col gap-2"
+                onSubmit={handleSubmit(onSubmit)}
               >
-                Sign Up
-              </button>
-            </form>
-            <p>{err}</p>
-          </CardBody>
-        </Card>
-      </div>
-      <div className="lg:grid-1 hidden lg:block">
-        <Image
-          width={295}
-          height={165}
-          src={welcomeHand}
-          alt="Picture of thanking"
-          className="w-full"
-        />
-      </div>
+                <div className="mt-6">
+                  <TextField
+                    label="Email"
+                    fullWidth
+                    type="email"
+                    defaultValue="test"
+                    {...register("email")}
+                    variant="standard"
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.email && <InfoIcon fontSize="small" />}
+                    {errors.email?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <TextField
+                    label="Password"
+                    fullWidth
+                    variant="standard"
+                    type="password"
+                    {...register("password")}
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.password && <InfoIcon fontSize="small" />}
+                    {errors.password?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <TextField
+                    label="Full Name"
+                    fullWidth
+                    variant="standard"
+                    type="text"
+                    {...register("name")}
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.name && <InfoIcon fontSize="small" />}
+                    {errors.name?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <TextField
+                    label="Bio"
+                    fullWidth
+                    variant="standard"
+                    type="text"
+                    {...register("bio")}
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.bio && <InfoIcon fontSize="small" />}
+                    {errors.bio?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <Controller
+                    name="country"
+                    control={control}
+                    render={({ field: { onChange } }) => (
+                      <FormControl variant="standard" fullWidth>
+                        <InputLabel id="demo-simple-select-label">
+                          Country
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="country"
+                          onChange={onChange}
+                          defaultValue=""
+                        >
+                          {countries.map((country) => {
+                            return (
+                              <MenuItem
+                                key={country.label}
+                                value={country.label}
+                              >
+                                <div className="flex gap-2 items-center">
+                                  <span>
+                                    <img
+                                      className="rounded-none "
+                                      loading="lazy"
+                                      width="20"
+                                      height="10"
+                                      src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
+                                      srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
+                                    />{" "}
+                                  </span>
+                                  <span>{country.label}</span>
+                                </div>
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                    )}
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.country && <InfoIcon fontSize="small" />}
+                    {errors.country?.message}
+                  </Typography>
+                </div>
+                <div>
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="end">
+                          <FileUpload />
+                        </InputAdornment>
+                      ),
+                    }}
+                    icon={<FileUpload />}
+                    accept="image/*"
+                    id="userImg"
+                    name="userImg"
+                    type="file"
+                    label="User Picture"
+                    {...register("userImg")}
+                    sx={{ input: { cursor: "pointer" } }}
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.userImg && <InfoIcon fontSize="small" />}
+                    {errors.userImg?.message}
+                  </Typography>
+                </div>
+
+                <button
+                  className="mt-8 btn-primary w-full "
+                  type="submit"
+                  variant="filled"
+                  fullWidth
+                >
+                  Sign Up
+                </button>
+              </form>
+              <p>{err}</p>
+            </div>
+          </div>
+        </div>
+        <div className="lg:grid-1 hidden lg:block">
+          <Image
+            width={295}
+            height={165}
+            src={welcomeHand}
+            alt="Picture of thanking"
+            className="w-full"
+          />
+        </div>
+      </ThemeProvider>
     </div>
   );
 };
