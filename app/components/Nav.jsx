@@ -35,17 +35,6 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const TransparentAppBar = styled(AppBar)(({ theme }) => ({
-  background: "transparent",
-  boxShadow: "none",
-  backdropFilter: "blur(6px)",
-  WebkitBackdropFilter: "blur(6px)",
-  transition: "background-color 0.3s ease-in-out",
-  "&:hover": {
-    background: alpha(theme.palette.common.white, 0.1),
-  },
-}));
-
 export default function Nav() {
   const { user, logout, currentUser } = useAuth();
   const Router = useRouter();
@@ -206,9 +195,17 @@ export default function Nav() {
   );
 
   return (
-    <Container>
-      <Box sx={{ flexGrow: 1, mt: 1 }}>
-        <TransparentAppBar position="static">
+    <Container fixed>
+      <Box
+        sx={{
+          flexGrow: 1,
+        }}
+        className="bg-white backdrop-filter backdrop-blur-sm"
+      >
+        <AppBar
+          position="fixed"
+          style={{ background: "transparent", boxShadow: "none" }}
+        >
           <Toolbar>
             <Link href="/" sx={{ display: { xs: "none", sm: "block" } }}>
               <Typography
@@ -269,7 +266,7 @@ export default function Nav() {
               </IconButton>
             </Box>
           </Toolbar>
-        </TransparentAppBar>
+        </AppBar>
         {renderMobileMenu}
         {renderMenu}
       </Box>
@@ -313,7 +310,7 @@ function SearchComponent() {
         label="Search for projects"
         value={values}
         placeholder="Search..."
-        className="min-w-[100px] lg:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100 text-[#00c1a2] focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-md"
+        className="min-w-[100px] lg:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100 text-[#00c1a2] focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-sm"
       />
       <div
         onClick={handleClick}
