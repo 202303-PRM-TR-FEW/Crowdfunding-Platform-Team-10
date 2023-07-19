@@ -57,7 +57,7 @@ const schema = yup
   })
   .required();
 
-const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
+const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
   const [currentUser, setCurrentUser] = useState("");
   const { user, usersInfo } = useAuth();
 
@@ -91,6 +91,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id }) => {
         projectId: data.projectId,
         userImg: currentUser.userImg,
         userName: currentUser.name,
+        projectName: title,
       });
       await updateDoc(doc(db, "projects", id.id), {
         raised: increment(data.donation),
