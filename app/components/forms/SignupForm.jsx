@@ -103,6 +103,7 @@ const SignupForm = () => {
               donations: data.donations,
               email: data.email,
               timeStamp: serverTimestamp(),
+              country: data.country,
             });
 
             router.push("/profile");
