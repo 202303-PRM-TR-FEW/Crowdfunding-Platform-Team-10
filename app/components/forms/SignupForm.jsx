@@ -302,9 +302,9 @@ const SignupForm = () => {
     //     </div>
     //   </ThemeProvider>
     // </div>
-    <div className="grid lg:grid-cols-5 h-full gap-2 shadow-2xl max-w-4xl">
+    <div className="grid lg:grid-cols-5 h-max gap-2 shadow-2xl max-w-4xl">
       <div className="lg:col-span-2 bg-gradient-to-tl from-lightGreen to-teal-700 flex flex-col justify-center items-center p-6 text-center gap-6 ">
-        <p className="text:2xl md:text-4xl font-bold text-white">
+        <p className=" px-10 lg:px-0 md:text-4xl font-bold text-white">
           Already Have an Account ?
         </p>
 
@@ -314,9 +314,9 @@ const SignupForm = () => {
           </button>
         </Link>
       </div>
-      <div className="lg:col-span-3 grid gap-2 text-center">
+      <div className="lg:col-span-3 grid gap-2 text-center h-full bg-white">
         <ThemeProvider theme={theme}>
-          <div className="grid gap-4 w-full  ">
+          <div className="grid gap-4 w-full  py-10">
             <Container maxWidth="xs">
               <div className="grid justify-center items-center h-full">
                 <p className="text-center text-gray-900 pt-10 pb-0 header-2">
@@ -471,7 +471,7 @@ const SignupForm = () => {
                   </div>
 
                   <button
-                    className="mt-8 btn-primary w-full "
+                    className="mt-8 btn-primary w-4/6 self-center "
                     type="submit"
                     variant="filled"
                     fullWidth

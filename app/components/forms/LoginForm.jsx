@@ -2,20 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import {
-  CardBody,
-  CardFooter,
-  Typography,
-  Input,
-  Card,
-} from "@material-tailwind/react";
+import { Typography, Input } from "@material-tailwind/react";
 import InfoIcon from "@mui/icons-material/Info";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "@/context/AuthContext";
-import Image from "next/image";
 import { Container } from "@mui/material";
 const schema = yup
   .object({
@@ -55,9 +48,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="grid lg:grid-cols-5 h-full gap-2 shadow-2xl max-w-4xl">
-      <div className="lg:col-span-3 grid gap-2 text-center">
-        <div className="text-left p-10">LOGO</div>
+    <div className="grid lg:grid-cols-5 h-max gap-2 shadow-2xl max-w-4xl">
+      <div className="lg:col-span-3 flex flex-col justify-center gap-2 text-center bg-white p-16">
         <p className="text-center text-gray-900 p-4 header-2">
           Login to Your Account
         </p>
@@ -117,7 +109,7 @@ const LoginForm = () => {
                 variant="filled"
                 fullWidth
               >
-                Log In
+                Login
               </button>
             </form>
           </Container>
