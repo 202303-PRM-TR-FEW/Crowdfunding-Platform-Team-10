@@ -1,12 +1,9 @@
-"use client"
 import Comments from '@/components/Comments'
 import GetStarted from '@/components/GetStarted'
-import LearnMore from '@/components/LearnMore'
-import MissionCom from '@/components/MissionCom'
-import OurTeam from '@/components/OurTeam'
+import MissionCom from './MissionCom'
+import OurTeam from './OurTeam'
 import React from 'react'
-
-
+import LearnMore from './LearnMore'
 
 const AboutUs = () => {
   return (
