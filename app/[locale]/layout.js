@@ -5,7 +5,11 @@ import { AuthContextProvider } from "@/context/AuthContext";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
+
 import Footer from "@/components/Footer";
+
+
+import AddProject from "@/components/helper/AddProject";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,6 +40,7 @@ export default function RootLayout({ children }) {
           <Nav />
           <div >{children}</div>
           <Footer/>
+          <AddProject />
         </AuthContextProvider>
       </body>
     </html>

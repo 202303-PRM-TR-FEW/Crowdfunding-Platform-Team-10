@@ -12,6 +12,17 @@ html {
   padding: 0px;
   box-sizing: border-box;
 }
+::-webkit-scrollbar {
+  width: 10px;  
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #00c1a2;
+}
+ 
+* {
+  scrollbar-color: #00c1a2; 
+}
 /* body {
   background-color: rgb(250 250 250);
 } */
@@ -49,3 +60,8 @@ input[type="file"] {
 .btn-secondary {
   @apply text-lightGreen hover:text-hoverLightGreen border-2 border-lightGreen hover:border-hoverLightGreen cursor-pointer font-bold text-base py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
 }
+
+
+/* cp{
+  color: #00c1a176;
+} */
