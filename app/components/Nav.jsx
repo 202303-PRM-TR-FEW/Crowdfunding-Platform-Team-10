@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import SearchList from "./search/SearchList";
 import { Avatar, Container } from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import logo from "../../public/logo.svg";
+
 import {
   AppBar,
   Toolbar,
@@ -31,6 +33,7 @@ import {
 } from "@mui/icons-material";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const TransparentAppBar = styled(AppBar)(({ theme }) => ({
   background: "transparent",
@@ -204,17 +207,19 @@ export default function Nav() {
 
   return (
     <Container>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, mt: 1 }}>
         <TransparentAppBar position="static">
           <Toolbar>
             <Link href="/" sx={{ display: { xs: "none", sm: "block" } }}>
               <Typography
                 variant="h6"
+                fontWeight="bold"
                 noWrap
                 component="div"
-                sx={{ color: "#00c1a2" }}
+                sx={{ color: "#00c1a2", display: "flex", alignItems: "center" }}
               >
-                LOGO
+                <Image src={logo} alt="Logo" width={70} />
+                OpenHanded
               </Typography>
             </Link>
 
