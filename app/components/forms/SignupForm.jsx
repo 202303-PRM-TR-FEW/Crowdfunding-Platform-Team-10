@@ -7,23 +7,18 @@ import { db } from "@/config/firebase";
 import { FileUpload } from "@mui/icons-material";
 import InfoIcon from "@mui/icons-material/Info";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Image from "next/image";
 import {
   TextField,
-  Box,
-  Autocomplete,
   Typography,
   InputAdornment,
   ThemeProvider,
   createTheme,
-  FormControl,
-  Chip,
 } from "@mui/material";
-import { countries } from "@/data/countries";
-import { v4 as uuidv4 } from "uuid";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -46,7 +41,6 @@ const schema = yup
     password: yup.string().required("Password is Required !"),
     name: yup.string().required("Full Name is Required !"),
     bio: yup.string().required("Bio is Required !"),
-    country: yup.string().required("Country is Required !"),
     userImg: yup.mixed().required("User Picture is Required !"),
   })
   .required();
@@ -54,7 +48,6 @@ const schema = yup
 const SignupForm = () => {
   const {
     register,
-    control,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -66,7 +59,6 @@ const SignupForm = () => {
       userImg: null,
       projects: [],
       donations: [],
-      country: "",
     },
     resolver: yupResolver(schema),
   });
@@ -87,33 +79,32 @@ const SignupForm = () => {
   const onSubmit = async (data) => {
     const storage = getStorage();
     const storageRef = ref(storage, data.userImg[0].name);
-    console.log(data);
-    // uploadBytes(storageRef, data.userImg[0]).then(async (snapshot) => {
-    //   console.log(storageRef);
-    //   getDownloadURL(ref(storage, data.userImg[0].name)).then(
-    //     async (imgUrl) => {
-    //       setErr("");
+    uploadBytes(storageRef, data.userImg[0]).then(async (snapshot) => {
+      console.log(storageRef);
+      getDownloadURL(ref(storage, data.userImg[0].name)).then(
+        async (imgUrl) => {
+          setErr("");
 
-    //       try {
-    //         const res = await signup(data.email, data.password);
-    //         await setDoc(doc(db, "users", res.user.uid), {
-    //           // ...userData,
-    //           name: data.name,
-    //           bio: data.bio,
-    //           userImg: imgUrl,
-    //           projects: data.projects,
-    //           donations: data.donations,
-    //           email: data.email,
-    //           timeStamp: serverTimestamp(),
-    //         });
+          try {
+            const res = await signup(data.email, data.password);
+            await setDoc(doc(db, "users", res.user.uid), {
+              // ...userData,
+              name: data.name,
+              bio: data.bio,
+              userImg: imgUrl,
+              projects: data.projects,
+              donations: data.donations,
+              email: data.email,
+              timeStamp: serverTimestamp(),
+            });
 
-    //         router.push("/profile");
-    //       } catch (e) {
-    //         setErr(e.message);
-    //       }
-    //     }
-    //   );
-    // });
+            router.push("/profile");
+          } catch (e) {
+            setErr(e.message);
+          }
+        }
+      );
+    });
   };
 
   return (
@@ -199,71 +190,9 @@ const SignupForm = () => {
                   </Typography>
                 </div>
                 <div>
-                  <Controller
-                    control={control}
-                    name="country"
-                    render={({ field: { onChange } }) => (
-                      <Autocomplete
-                        id="country-select-demo"
-                        options={countries}
-                        autoHighlight
-                        onInputChange={(event, newInputValue) => {
-                          onChange(newInputValue);
-                        }}
-                        getOptionLabel={(option) => option.label}
-                        renderOption={(props, option) => (
-                          <Box
-                            component="li"
-                            sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                            {...props}
-                            key={option}
-                          >
-                            <img
-                              loading="lazy"
-                              width="20"
-                              src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                              srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                              alt=""
-                            />
-                            {option.label}
-                          </Box>
-                        )}
-                        renderTags={(tagValue, getTagProps) => {
-                          return tagValue.map((option, index) => (
-                            <Chip
-                              {...getTagProps({ index })}
-                              key={option}
-                              label={option}
-                            />
-                          ));
-                        }}
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            label="Country"
-                            variant="standard"
-                            inputProps={{
-                              ...params.inputProps,
-                              autoComplete: "new-password", // disable autocomplete and autofill
-                            }}
-                          />
-                        )}
-                      />
-                    )}
-                  />
-
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.country && <InfoIcon fontSize="small" />}
-                    {errors.country?.message}
-                  </Typography>
-                </div>
-                <div>
                   <TextField
-                    fullWidth
                     variant="standard"
+                    fullWidth
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="end">
@@ -271,6 +200,7 @@ const SignupForm = () => {
                         </InputAdornment>
                       ),
                     }}
+                    className="cursor-pointer"
                     icon={<FileUpload />}
                     accept="image/*"
                     id="userImg"
@@ -278,7 +208,6 @@ const SignupForm = () => {
                     type="file"
                     label="User Picture"
                     {...register("userImg")}
-                    sx={{ input: { cursor: "pointer" } }}
                   />
                   <Typography
                     variant="small"

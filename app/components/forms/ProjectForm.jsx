@@ -311,7 +311,8 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
 
                   <div>
                     <TextField
-                      variant="standard"
+                      className="cursor-pointer"
+                      // icon={<FileUpload />}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="end">
@@ -323,10 +324,9 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                       id="media"
                       name="media"
                       type="file"
+                      // label="Project Picture"
                       {...register("media")}
-                      sx={{ input: { cursor: "pointer" } }}
                     />
-
                     <Typography
                       variant="small"
                       className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
