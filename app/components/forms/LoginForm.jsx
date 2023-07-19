@@ -1,8 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import welcomeHand from "../../../public/assets/images/welcome-hand.png";
-
 import Link from "next/link";
 import {
   CardBody,
@@ -12,12 +10,13 @@ import {
   Card,
 } from "@material-tailwind/react";
 import InfoIcon from "@mui/icons-material/Info";
-
+import GoogleIcon from "@mui/icons-material/Google";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
+import { Container } from "@mui/material";
 const schema = yup
   .object({
     email: yup
@@ -56,8 +55,87 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="lg:grid lg:grid-cols-2 items-center justify-between lg:gap-20 lg:px-40 lg:py-24 py-10 px-5 lg:flex-row flex-col">
-      <div className="lg:grid-1 ">
+    <div className="grid lg:grid-cols-5 h-full gap-2 shadow-2xl max-w-4xl">
+      <div className="lg:col-span-3 grid gap-2 text-center">
+        <div className="text-left p-10">LOGO</div>
+        <p className="text-center text-gray-900 p-4 header-2">
+          Login to Your Account
+        </p>
+        <div className="flex flex-col gap-2">
+          <p className="">Login using Google</p>
+          <button className="p-1">
+            <GoogleIcon />
+          </button>
+          <p className=" px-2">OR</p>
+        </div>
+        <div className="">
+          <Container maxWidth="xs">
+            <form
+              className="flex flex-col gap-2"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <div className="mt-6">
+                <Input
+                  label="Email"
+                  fullWidth
+                  variant="standard"
+                  {...register("email")}
+                  color="blue-gray"
+                  type="email"
+                  className=" border-gray-900 "
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.email && <InfoIcon fontSize="small" />}
+                  {errors.email?.message}
+                </Typography>
+              </div>
+              <div>
+                <Input
+                  label="Password"
+                  type="password"
+                  variant="standard"
+                  fullWidth
+                  {...register("password")}
+                  color="blue-gray"
+                  className=" border-gray-900 "
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.password && <InfoIcon fontSize="small" />}
+                  {errors.password?.message}
+                </Typography>
+              </div>
+
+              <button
+                className="btn-primary w-3/6 self-center mb-4"
+                type="submit"
+                variant="filled"
+                fullWidth
+              >
+                Log In
+              </button>
+            </form>
+          </Container>
+        </div>
+      </div>
+      <div className="lg:col-span-2 bg-gradient-to-br from-lightGreen to-teal-700 flex flex-col justify-center items-center p-6 text-center gap-6 ">
+        <p className="text:2xl md:text-4xl font-bold text-white">New Here ?</p>
+        <p className="text-white text-sm px-4">
+          Sign up and discover great opportunities for both helping others and
+          funding your own cause!
+        </p>
+        <Link href="/signup">
+          <button className="rounded bg-white color-black py-2 px-12 self-center font-bold">
+            Sign Up
+          </button>
+        </Link>
+      </div>
+      {/* <div className="lg:grid-1 ">
         <Card className="w-full bg-transparent  shadow-none">
           <Typography
             variant="h3"
@@ -144,7 +222,7 @@ const LoginForm = () => {
           alt="Picture of thanking"
           className="w-full"
         />
-      </div>
+      </div> */}
     </div>
   );
 };
