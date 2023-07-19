@@ -13,17 +13,16 @@ import * as yup from "yup";
 import Image from "next/image";
 import {
   TextField,
-  Box,
-  Autocomplete,
   Typography,
   InputAdornment,
   ThemeProvider,
   createTheme,
   FormControl,
-  Chip,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import { countries } from "@/data/countries";
-import { v4 as uuidv4 } from "uuid";
 const theme = createTheme({
   palette: {
     primary: {
@@ -87,33 +86,32 @@ const SignupForm = () => {
   const onSubmit = async (data) => {
     const storage = getStorage();
     const storageRef = ref(storage, data.userImg[0].name);
-    console.log(data);
-    // uploadBytes(storageRef, data.userImg[0]).then(async (snapshot) => {
-    //   console.log(storageRef);
-    //   getDownloadURL(ref(storage, data.userImg[0].name)).then(
-    //     async (imgUrl) => {
-    //       setErr("");
+    uploadBytes(storageRef, data.userImg[0]).then(async (snapshot) => {
+      console.log(storageRef);
+      getDownloadURL(ref(storage, data.userImg[0].name)).then(
+        async (imgUrl) => {
+          setErr("");
 
-    //       try {
-    //         const res = await signup(data.email, data.password);
-    //         await setDoc(doc(db, "users", res.user.uid), {
-    //           // ...userData,
-    //           name: data.name,
-    //           bio: data.bio,
-    //           userImg: imgUrl,
-    //           projects: data.projects,
-    //           donations: data.donations,
-    //           email: data.email,
-    //           timeStamp: serverTimestamp(),
-    //         });
+          try {
+            const res = await signup(data.email, data.password);
+            await setDoc(doc(db, "users", res.user.uid), {
+              // ...userData,
+              name: data.name,
+              bio: data.bio,
+              userImg: imgUrl,
+              projects: data.projects,
+              donations: data.donations,
+              email: data.email,
+              timeStamp: serverTimestamp(),
+            });
 
-    //         router.push("/profile");
-    //       } catch (e) {
-    //         setErr(e.message);
-    //       }
-    //     }
-    //   );
-    // });
+            router.push("/profile");
+          } catch (e) {
+            setErr(e.message);
+          }
+        }
+      );
+    });
   };
 
   return (
@@ -200,58 +198,46 @@ const SignupForm = () => {
                 </div>
                 <div>
                   <Controller
-                    control={control}
                     name="country"
+                    control={control}
                     render={({ field: { onChange } }) => (
-                      <Autocomplete
-                        id="country-select-demo"
-                        options={countries}
-                        autoHighlight
-                        onInputChange={(event, newInputValue) => {
-                          onChange(newInputValue);
-                        }}
-                        getOptionLabel={(option) => option.label}
-                        renderOption={(props, option) => (
-                          <Box
-                            component="li"
-                            sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                            {...props}
-                            key={option}
-                          >
-                            <img
-                              loading="lazy"
-                              width="20"
-                              src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                              srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                              alt=""
-                            />
-                            {option.label}
-                          </Box>
-                        )}
-                        renderTags={(tagValue, getTagProps) => {
-                          return tagValue.map((option, index) => (
-                            <Chip
-                              {...getTagProps({ index })}
-                              key={option}
-                              label={option}
-                            />
-                          ));
-                        }}
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            label="Country"
-                            variant="standard"
-                            inputProps={{
-                              ...params.inputProps,
-                              autoComplete: "new-password", // disable autocomplete and autofill
-                            }}
-                          />
-                        )}
-                      />
+                      <FormControl variant="standard" fullWidth>
+                        <InputLabel id="demo-simple-select-label">
+                          Country
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="country"
+                          onChange={onChange}
+                          defaultValue=""
+                        >
+                          {countries.map((country) => {
+                            return (
+                              <MenuItem
+                                key={country.label}
+                                value={country.label}
+                              >
+                                <div className="flex gap-2 items-center">
+                                  <span>
+                                    <img
+                                      className="rounded-none "
+                                      loading="lazy"
+                                      width="20"
+                                      height="10"
+                                      src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
+                                      srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
+                                    />{" "}
+                                  </span>
+                                  <span>{country.label}</span>
+                                </div>
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
                     )}
                   />
-
                   <Typography
                     variant="small"
                     className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
