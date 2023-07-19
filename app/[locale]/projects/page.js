@@ -20,7 +20,7 @@ const Home = () => {
   // Find project with maximum contributions
   useEffect(() => {
     let max = 0;
-  
+
     if (data.length > 0) {
       data.forEach((project) => {
         if (project.raised > max) {
@@ -57,10 +57,8 @@ const Home = () => {
   );
 
   return (
-    <div className="py-5 md:py-7 lg:py-10">
-      <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
-        <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
-      </Link>
+    <div className="container mx-auto  md:py-7 lg:py-10">
+      <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
       <CategoryFiltering data={projects} filtrindData={setData} />
       <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {allProjects}
