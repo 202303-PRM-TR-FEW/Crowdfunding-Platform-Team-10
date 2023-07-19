@@ -6,7 +6,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import AddProject from "@/components/helper/AddProject";
-import Footer from "@/components/Footer";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -37,7 +36,6 @@ export default function RootLayout({ children }) {
           <Nav />
           <div >{children}</div>
           <AddProject />
-          <Footer/>
         </AuthContextProvider>
       </body>
     </html>
