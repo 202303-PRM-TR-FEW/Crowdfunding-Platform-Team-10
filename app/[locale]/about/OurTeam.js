@@ -43,7 +43,7 @@ const OurTeam = () => {
 
         </div>
       </div>
-      <p className='pt-5 pb-10 italic font-bold text-center text-base md:text-lg lg:text-xl text-basicgray'>"If you would like to contact us, we're here"</p>
+      <p className='pt-5 pb-10 italic font-bold text-center text-base md:text-lg lg:text-xl text-basicgray'>If you would like to contact us, we are here</p>
     </div>
   )
 }
