@@ -235,8 +235,7 @@ const SignupForm = () => {
                                         loading="lazy"
                                         width="20"
                                         height="10"
-                                        src={`https:flagcdn.com/w20/${country.code.toLowerCase()}.png`}
-                                        srcSet={`https:flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
+                                        src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
                                       />{" "}
                                     </span>
                                     <span>{country.label}</span>
