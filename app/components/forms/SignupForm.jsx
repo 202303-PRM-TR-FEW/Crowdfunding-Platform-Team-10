@@ -10,7 +10,6 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Image from "next/image";
 import {
   TextField,
   Typography,
@@ -21,8 +20,10 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Container,
 } from "@mui/material";
 import { countries } from "@/data/countries";
+import Link from "next/link";
 const theme = createTheme({
   palette: {
     primary: {
@@ -116,189 +117,189 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="lg:grid lg:grid-cols-2 items-center justify-between lg:gap-20 lg:px-40 lg:py-24 py-10 px-5 lg:flex-row flex-col">
-      <ThemeProvider theme={theme}>
-        <div className="lg:grid-1 ">
-          <div className="w-full bg-transparent  shadow-none">
-            <Typography
-              variant="h3"
-              className="text-center text-gray-900 border-y-4 py-2 border-lightGreen"
-            >
-              Create New Account
-            </Typography>
+    <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl max-w-4xl">
+      <div className="lg:col-span-2 bg-gradient-to-tl from-lightGreen to-teal-700 flex flex-col justify-center items-center p-6 text-center gap-6 lg:rounded-l rounded-t lg:rounded-tr-none">
+        <p className=" px-10 lg:px-0 text-3xl font-bold text-white">
+          Already Have an Account ?
+        </p>
 
-            <div className="flex flex-col gap-4 w-full p-0">
-              <form
-                className="flex flex-col gap-2"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <div className="mt-6">
-                  <TextField
-                    label="Email"
-                    fullWidth
-                    type="email"
-                    defaultValue="test"
-                    {...register("email")}
-                    variant="standard"
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.email && <InfoIcon fontSize="small" />}
-                    {errors.email?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <TextField
-                    label="Password"
-                    fullWidth
-                    variant="standard"
-                    type="password"
-                    {...register("password")}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.password && <InfoIcon fontSize="small" />}
-                    {errors.password?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <TextField
-                    label="Full Name"
-                    fullWidth
-                    variant="standard"
-                    type="text"
-                    {...register("name")}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.name && <InfoIcon fontSize="small" />}
-                    {errors.name?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <TextField
-                    label="Bio"
-                    fullWidth
-                    variant="standard"
-                    type="text"
-                    {...register("bio")}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.bio && <InfoIcon fontSize="small" />}
-                    {errors.bio?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <Controller
-                    name="country"
-                    control={control}
-                    render={({ field: { onChange } }) => (
-                      <FormControl variant="standard" fullWidth>
-                        <InputLabel id="demo-simple-select-label">
-                          Country
-                        </InputLabel>
-                        <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          label="country"
-                          onChange={onChange}
-                          defaultValue=""
-                        >
-                          {countries.map((country) => {
-                            return (
-                              <MenuItem
-                                key={country.label}
-                                value={country.label}
-                              >
-                                <div className="flex gap-2 items-center">
-                                  <span>
-                                    <img
-                                      className="rounded-none "
-                                      loading="lazy"
-                                      width="20"
-                                      height="10"
-                                      src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
-                                      srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
-                                    />{" "}
-                                  </span>
-                                  <span>{country.label}</span>
-                                </div>
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                      </FormControl>
-                    )}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.country && <InfoIcon fontSize="small" />}
-                    {errors.country?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <TextField
-                    fullWidth
-                    variant="standard"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="end">
-                          <FileUpload />
-                        </InputAdornment>
-                      ),
-                    }}
-                    icon={<FileUpload />}
-                    accept="image/*"
-                    id="userImg"
-                    name="userImg"
-                    type="file"
-                    label="User Picture"
-                    {...register("userImg")}
-                    sx={{ input: { cursor: "pointer" } }}
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.userImg && <InfoIcon fontSize="small" />}
-                    {errors.userImg?.message}
-                  </Typography>
-                </div>
-
-                <button
-                  className="mt-8 btn-primary w-full "
-                  type="submit"
-                  variant="filled"
-                  fullWidth
+        <Link href="/login">
+          <button className="rounded bg-white color-black py-2 px-12 self-center font-bold">
+            Log In
+          </button>
+        </Link>
+      </div>
+      <div className="lg:col-span-3 grid gap-2 text-center h-full bg-white lg:rounded-r rounded-b lg:rounded-bl-none">
+        <ThemeProvider theme={theme}>
+          <div className="grid gap-4 w-full  py-10">
+            <Container maxWidth="xs">
+              <div className="grid justify-center items-center h-full">
+                <p className="text-center text-gray-900 pt-10 pb-0 header-2">
+                  Create Your Account
+                </p>
+                <form
+                  className="flex flex-col gap-4"
+                  onSubmit={handleSubmit(onSubmit)}
                 >
-                  Sign Up
-                </button>
-              </form>
-              <p>{err}</p>
-            </div>
+                  <div className="mt-6">
+                    <TextField
+                      label="Email"
+                      fullWidth
+                      type="email"
+                      defaultValue="test"
+                      {...register("email")}
+                      variant="standard"
+                    />
+                    <Typography
+                      variant="small"
+                      className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                    >
+                      {errors.email && <InfoIcon fontSize="small" />}
+                      {errors.email?.message}
+                    </Typography>
+                  </div>
+                  <div>
+                    <TextField
+                      label="Password"
+                      fullWidth
+                      variant="standard"
+                      type="password"
+                      {...register("password")}
+                    />
+                    <Typography
+                      variant="small"
+                      className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                    >
+                      {errors.password && <InfoIcon fontSize="small" />}
+                      {errors.password?.message}
+                    </Typography>
+                  </div>
+                  <div>
+                    <TextField
+                      label="Full Name"
+                      fullWidth
+                      variant="standard"
+                      type="text"
+                      {...register("name")}
+                    />
+                    <Typography
+                      variant="small"
+                      className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                    >
+                      {errors.name && <InfoIcon fontSize="small" />}
+                      {errors.name?.message}
+                    </Typography>
+                  </div>
+                  <div>
+                    <TextField
+                      label="Bio"
+                      fullWidth
+                      variant="standard"
+                      type="text"
+                      {...register("bio")}
+                    />
+                    <Typography
+                      variant="small"
+                      className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                    >
+                      {errors.bio && <InfoIcon fontSize="small" />}
+                      {errors.bio?.message}
+                    </Typography>
+                  </div>
+                  <div>
+                    <Controller
+                      name="country"
+                      control={control}
+                      render={({ field: { onChange } }) => (
+                        <FormControl variant="standard" fullWidth>
+                          <InputLabel id="demo-simple-select-label">
+                            Country
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="country"
+                            onChange={onChange}
+                            defaultValue=""
+                          >
+                            {countries.map((country) => {
+                              return (
+                                <MenuItem
+                                  key={country.label}
+                                  value={country.label}
+                                >
+                                  <div className="flex gap-2 items-center">
+                                    <span>
+                                      <img
+                                        className="rounded-none "
+                                        loading="lazy"
+                                        width="20"
+                                        height="10"
+                                        src={`https:flagcdn.com/w20/${country.code.toLowerCase()}.png`}
+                                        srcSet={`https:flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
+                                      />{" "}
+                                    </span>
+                                    <span>{country.label}</span>
+                                  </div>
+                                </MenuItem>
+                              );
+                            })}
+                          </Select>
+                        </FormControl>
+                      )}
+                    />
+                    <Typography
+                      variant="small"
+                      className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                    >
+                      {errors.country && <InfoIcon fontSize="small" />}
+                      {errors.country?.message}
+                    </Typography>
+                  </div>
+                  <div>
+                    <TextField
+                      fullWidth
+                      variant="standard"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="end">
+                            <FileUpload />
+                          </InputAdornment>
+                        ),
+                      }}
+                      icon={<FileUpload />}
+                      accept="image/*"
+                      id="userImg"
+                      name="userImg"
+                      type="file"
+                      label="User Picture"
+                      {...register("userImg")}
+                      sx={{ input: { cursor: "pointer" } }}
+                    />
+                    <Typography
+                      variant="small"
+                      className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                    >
+                      {errors.userImg && <InfoIcon fontSize="small" />}
+                      {errors.userImg?.message}
+                    </Typography>
+                  </div>
+
+                  <button
+                    className="mt-8 btn-primary w-4/6 self-center "
+                    type="submit"
+                    variant="filled"
+                    fullWidth
+                  >
+                    Sign Up
+                  </button>
+                </form>
+                <p>{err}</p>
+              </div>
+            </Container>
           </div>
-        </div>
-        <div className="lg:grid-1 hidden lg:block">
-          <Image
-            width={295}
-            height={165}
-            src={welcomeHand}
-            alt="Picture of thanking"
-            className="w-full"
-          />
-        </div>
-      </ThemeProvider>
+        </ThemeProvider>
+      </div>
     </div>
   );
 };
