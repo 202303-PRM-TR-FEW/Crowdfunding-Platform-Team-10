@@ -11,7 +11,7 @@ import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import { ListItemIcon } from "@mui/material";
 import EditUser from "@/components/forms/EditUser";
 
-function page() {
+const Page = () => {
   const { currentUser } = useAuth();
 
   const [openEditUserForm, setOpenEditUserForm] = useState(false);
@@ -115,4 +115,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
