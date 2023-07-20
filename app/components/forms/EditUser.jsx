@@ -257,7 +257,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
               variant="filled"
               fullWidth
             >
-              Sign Up
+              Update
             </button>
           </form>
           <p>{err}</p>
