@@ -1,10 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import dots from "../../public/assets/images/dots.svg";
 const WelcomeBanner = () => {
   return (
-    <section className="flex justify-center items-center">
+    <section className="flex justify-center items-center bg-gradient-to-t from-transparent to-teal-50">
       <div className="grid lg:grid-cols-2 gap-8 py-28 container">
-        <div className="p-10 flex flex-col gap-4 text-center lg:text-left">
+        <div className="p-10 flex flex-col gap-4 text-center lg:text-left bg-no-repeat bg-right-top bg-[url('../../public/assets/images/dots.svg')]" 
+      
+        >
           <p className="header-1">Supporting great causes made easy</p>
           <p className="sub-header">
             We helped over 3.500 projects and causes. Sing in today and get your

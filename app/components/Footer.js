@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <div className='justify-center flex border-t-[1px] border-basicgray w-screen'>
+        <div className='justify-center flex border-t-[1px] border-basicgray w-full'>
             <section className="p-10 text-center py-20 md:px-12 container ">
                 <div className="grid grid-cols-1 md:grid-cols-4 justify-between gap-5">
                     <div className="text-center lg:text-left col-span-1">

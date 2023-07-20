@@ -7,7 +7,7 @@ import { db } from "@/config/firebase";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import SearchList from "./search/SearchList";
-import { Avatar, Container } from "@mui/material";
+import { Avatar } from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import logo from "../../public/logo.svg";
 
@@ -20,6 +20,7 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
+  Container,
 } from "@mui/material";
 import {
   AccountCircle,
@@ -34,17 +35,6 @@ import {
 
 import Link from "next/link";
 import Image from "next/image";
-
-const TransparentAppBar = styled(AppBar)(({ theme }) => ({
-  background: "transparent",
-  boxShadow: "none",
-  backdropFilter: "blur(6px)",
-  WebkitBackdropFilter: "blur(6px)",
-  transition: "background-color 0.3s ease-in-out",
-  "&:hover": {
-    background: alpha(theme.palette.common.white, 0.1),
-  },
-}));
 
 export default function Nav() {
   const { user, logout, currentUser } = useAuth();
@@ -206,73 +196,69 @@ export default function Nav() {
   );
 
   return (
-    <Container>
-      <Box sx={{ flexGrow: 1, mt: 1 }}>
-        <TransparentAppBar position="static">
-          <Toolbar>
-            <Link href="/" sx={{ display: { xs: "none", sm: "block" } }}>
-              <Typography
-                variant="h6"
-                fontWeight="bold"
-                noWrap
-                component="div"
-                sx={{ color: "#00c1a2", display: "flex", alignItems: "center" }}
-              >
-                <Image src={logo} alt="Logo" width={70} />
-                OpenHanded
-              </Typography>
+    <Container maxWidth="sm">
+      <AppBar style={{ background: "transparent", boxShadow: "none" }}>
+        <Toolbar>
+          <Link href="/" sx={{ display: { xs: "none", sm: "block" } }}>
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              noWrap
+              component="div"
+              sx={{ color: "#00c1a2", display: "flex", alignItems: "center" }}
+            >
+              <Image src={logo} alt="Logo" width={70} />
+              <span className="hidden lg:block">OpenHanded</span>
+            </Typography>
+          </Link>
+          <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
+          <Box>
+            <SearchComponent />
+          </Box>
+          <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Link href="/projects">
+              <ListItemIcon>
+                <HomeRoundedIcon fontSize="large" sx={{ color: "#00c1a2" }} />
+              </ListItemIcon>
             </Link>
+          </Box>
 
-            <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
-            <Box>
-              <SearchComponent />
-            </Box>
-
-            <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
-            <Box>
-              <Link href="/projects">
-                <ListItemIcon>
-                  <HomeRoundedIcon fontSize="large" sx={{ color: "#00c1a2" }} />
-                </ListItemIcon>
-              </Link>
-            </Box>
-
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-                sx={{ color: "#00c1a2" }}
-              >
-                {currentUser ? (
-                  <Avatar alt={currentUser.name} src={currentUser.userImg} />
-                ) : (
-                  <AccountCircle fontSize="large" />
-                )}
-              </IconButton>
-            </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-                sx={{ color: "#00c1a2" }}
-              >
-                <MoreIcon />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </TransparentAppBar>
-        {renderMobileMenu}
-        {renderMenu}
-      </Box>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+              sx={{ color: "#00c1a2" }}
+            >
+              {currentUser ? (
+                <Avatar alt={currentUser.name} src={currentUser.userImg} />
+              ) : (
+                <AccountCircle fontSize="large" />
+              )}
+            </IconButton>
+          </Box>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+              sx={{ color: "#00c1a2" }}
+            >
+              <MoreIcon />
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      {renderMobileMenu}
+      {renderMenu}
     </Container>
   );
 }
@@ -313,7 +299,7 @@ function SearchComponent() {
         label="Search for projects"
         value={values}
         placeholder="Search..."
-        className="min-w-[100px] lg:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100 text-[#00c1a2] focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-md"
+        className="min-w-[100px] lg:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100 text-[#00c1a2] focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-sm"
       />
       <div
         onClick={handleClick}
