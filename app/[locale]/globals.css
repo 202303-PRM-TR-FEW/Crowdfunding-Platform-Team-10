@@ -64,6 +64,10 @@ input[type="file"] {
 .color-green {
   @apply text-[#00c1a2];
 }
+
+.color-grey {
+  @apply text-[#8a8a8a] text-sm;
+}
 .bgc-green {
   @apply bg-[#00c1a2];
 }
