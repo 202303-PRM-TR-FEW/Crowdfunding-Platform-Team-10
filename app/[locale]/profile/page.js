@@ -32,7 +32,7 @@ const Page = () => {
       setUsersProjects(projectWithUser);
       setIsLoading(false);
     }
-  }, []);
+  }, [projects]); // added projects as a dependency so that it runs whenever 'projects' changes. 
 
   let oneProjectInfo = null;
 
