@@ -9,7 +9,24 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "@/context/AuthContext";
-import { Container } from "@mui/material";
+import {
+  Container,
+  TextField,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#00c1a2",
+    },
+    action: {
+      // Customize the autofill background color
+      hover: "#00c1a2", // Replace with your desired color
+      selected: "#00c1a2", // Replace with your desired color
+    },
+  },
+});
 const schema = yup
   .object({
     email: yup
@@ -62,12 +79,13 @@ const LoginForm = () => {
         </div>
         <div className="">
           <Container maxWidth="xs">
-            <form
-              className="flex flex-col gap-2"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className="mt-6">
-                <Input
+            <ThemeProvider theme={theme}>
+              <form
+                className="flex flex-col gap-2"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <div className="mt-6">
+                  {/* <Input
                   label="Email"
                   fullWidth
                   variant="standard"
@@ -75,17 +93,25 @@ const LoginForm = () => {
                   color="blue-gray"
                   type="email"
                   className=" border-gray-900 "
-                />
-                <Typography
-                  variant="small"
-                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                >
-                  {errors.email && <InfoIcon fontSize="small" />}
-                  {errors.email?.message}
-                </Typography>
-              </div>
-              <div>
-                <Input
+                /> */}
+                  <TextField
+                    label="Email"
+                    fullWidth
+                    type="email"
+                    defaultValue="test"
+                    {...register("email")}
+                    variant="standard"
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.email && <InfoIcon fontSize="small" />}
+                    {errors.email?.message}
+                  </Typography>
+                </div>
+                <div>
+                  {/* <Input
                   label="Password"
                   type="password"
                   variant="standard"
@@ -93,25 +119,34 @@ const LoginForm = () => {
                   {...register("password")}
                   color="blue-gray"
                   className=" border-gray-900 "
-                />
-                <Typography
-                  variant="small"
-                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                >
-                  {errors.password && <InfoIcon fontSize="small" />}
-                  {errors.password?.message}
-                </Typography>
-              </div>
+                /> */}
+                  <TextField
+                    label="Password"
+                    fullWidth
+                    type="password"
+                    defaultValue="test"
+                    {...register("password")}
+                    variant="standard"
+                  />
+                  <Typography
+                    variant="small"
+                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                  >
+                    {errors.password && <InfoIcon fontSize="small" />}
+                    {errors.password?.message}
+                  </Typography>
+                </div>
 
-              <button
-                className="btn-primary w-3/6 self-center mb-4"
-                type="submit"
-                variant="filled"
-                fullWidth
-              >
-                Login
-              </button>
-            </form>
+                <button
+                  className="btn-primary w-3/6 self-center mb-4"
+                  type="submit"
+                  variant="filled"
+                  fullWidth
+                >
+                  Login
+                </button>
+              </form>
+            </ThemeProvider>
           </Container>
         </div>
       </div>
