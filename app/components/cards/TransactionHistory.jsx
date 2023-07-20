@@ -27,12 +27,17 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
 
   useEffect(() => {
     if (!loading) {
-      const filteredDonations = donations.filter(
-        (donation) => donation.projectId === selectedProject
+      let filteredDonations = donations.filter((donation) =>
+        usersProjects.some((project) => project.id === donation.projectId)
       );
+      if (selectedProject) {
+        filteredDonations = filteredDonations.filter(
+          (donation) => donation.projectId === selectedProject
+        );
+      }
       setDonate(filteredDonations);
     }
-  }, [donations, selectedProject, loading]);
+  }, [donations, selectedProject, loading, usersProjects]);
 
   const handleProjectSelect = (projectId) => {
     setSelectedProject(projectId);
@@ -102,6 +107,9 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
                           </Typography>
                         </MenuHandler>
                         <MenuList {...triggers}>
+                          <MenuItem onClick={() => handleProjectSelect("")}>
+                            All projects
+                          </MenuItem>
                           {usersProjects.map((project) => (
                             <MenuItem
                               key={project?.id}
