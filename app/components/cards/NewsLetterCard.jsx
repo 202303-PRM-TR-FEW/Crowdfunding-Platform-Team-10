@@ -1,19 +1,16 @@
 "use client";
 import emailjs from "emailjs-com";
 import React, { useRef } from "react";
-// import {
-//   Card,
-//   CardHeader,
-//   CardBody,
-//   CardFooter,
-//   Typography,
-//   Button,
-//   Popover,
-//   PopoverHandler,
-//   PopoverContent,
-//   Input,
-// } from "@material-tailwind/react";
-import { Input, ThemeProvider, createTheme } from "@mui/material";
+import {
+  Input,
+  Button,
+  ThemeProvider,
+  createTheme,
+  Grid,
+  TextField,
+  Paper,
+} from "@mui/material";
+
 export default function NewsLetterCard() {
   const theme = createTheme({
     palette: {
@@ -54,100 +51,74 @@ export default function NewsLetterCard() {
     e.target.reset();
   };
 
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background:
+      "radial-gradient(circle farthest-corner at 1.5% 1.4%, #489E92, #E3F4F2)",
+    borderRadius: "30px",
+    overflow: "hidden",
+    boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
+    padding: "20px",
+  };
+
+  const blurredCardStyle = {
+    position: "relative",
+    width: "100%",
+    position: "button",
+    height: "100%",
+    background: "rgba(255, 255, 255, 0.4)",
+    backdropFilter: "blur(14px)",
+    borderRadius: "30px",
+    padding: "20px",
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <section className="flex justify-center items-center bg-white py-8 md:px-12">
+      <section style={containerStyle}>
         <div className="grid lg:grid-cols-2 gap-8 ">
           <div className="p-14 flex flex-col gap-4 justify-center text-center">
-            <p className="header-3">Stayed informed</p>
+            <p className="header-3">
+              Subscribe now and be at the forefront of change!
+            </p>
             <p className="sub-header">
-              Want to be among the first to know about amazing projects on our
-              platform? Join our monthly digest of the best causes. Stay
-              informed, get inspired, and make a difference by joining our
-              community of passionate individuals dedicated to shaping the world
-              for the better!
+              Sign up for our free newsletter to receive our monthly digest of
+              the best causes. Stay informed, get inspired, and make a
+              difference by joining our community of passionate individuals
+              dedicated to shaping the world for the better!
             </p>
           </div>
-          <div className=" p-4 sm:p-10 flex flex-col gap-4 justify-center text-center">
-            <p className="header-4">
-              Subscribe now and be at the forefront of change !
-            </p>
-            <form
-              ref={form}
-              onSubmit={sendEmail}
-              className="md:px-24 flex flex-col"
-            >
-              <Input
-                label="Email Address"
-                type="email"
-                name="to_email"
-                inputProps={{ min: 0, style: { textAlign: "center" } }}
-              />
-
-              <button
-                type="submit"
-                className="btn-primary mt-3 px-10 sm:w-2/6 self-center"
+          <div style={blurredCardStyle}>
+            <div className="p-5 sm:p-10 flex flex-col gap-4 justify-center text-center">
+              <p className="header-4">Subscribe to our newsletter</p>
+              <form
+                ref={form}
+                onSubmit={sendEmail}
+                className="md:px-24 flex flex-col"
               >
-                Subscribe
-              </button>
-            </form>
+                <TextField
+                  id="outlined-email-input"
+                  label="Email Address"
+                  type="email"
+                  name="to_email"
+                />
+
+                <button
+                  type="submit"
+                  className="btn-primary mt-3 px-10 sm:w-2/6 self-center"
+                >
+                  Subscribe
+                </button>
+
+                <p className="spam-message text-basicgray pt-2 text-center">
+                  We won't spam you 🤞🏼
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </section>
     </ThemeProvider>
-    // <Card className="w-96 bg-orange-500">
-    //   <CardHeader
-    //     shadow={false}
-    //     floated={false}
-    //     className="h-96 bg-basicOrange"
-    //   >
-    //     <img
-    //       src="/assets/images/newslettercard.image.png"
-    //       className="w-full h-full object-cover"
-    //     />
-    //   </CardHeader>
-    //   <CardBody>
-    //     <div className="flex items-center justify-between mb-2">
-    //       <Typography variant="h4" color="black" className="text-lg">
-    //         Stayed informed
-    //       </Typography>
-    //     </div>
-    //     <Typography variant="small" color="black" className="font-normal">
-    //       Want to be among the first people to know about amazing projects on
-    //       our platform? Join our monthly digest of the best causes.
-    //     </Typography>
-    //   </CardBody>
-    //   <CardFooter className="pt-0">
-    //     <Popover placement="bottom">
-    //       <PopoverHandler>
-    //         <Button
-    //           ripple={false}
-    //           fullWidth={true}
-    //           className="bg-BasicBlack text-white shadow-none hover:shadow-none focus:shadow-none focus:scale-105 active:scale-100"
-    //         >
-    //           Join newsletter
-    //         </Button>
-    //       </PopoverHandler>
-    //       <PopoverContent className="w-96 bg-orange-500">
-    //         <Typography variant="h6" color="white" className="mb-5">
-    //           Newsletter Subscription
-    //         </Typography>
-    //         <div>
-    //           <form ref={form} onSubmit={sendEmail} className="flex gap-2">
-    //             <Input
-    //               label="Email Address"
-    //               type="email"
-    //               color="white"
-    //               name="to_email"
-    //             />
-    //             <Button type="submit" className="bg-black">
-    //               Subscribe
-    //             </Button>
-    //           </form>
-    //         </div>
-    //       </PopoverContent>
-    //     </Popover>
-    //   </CardFooter>
-    // </Card>
   );
 }
