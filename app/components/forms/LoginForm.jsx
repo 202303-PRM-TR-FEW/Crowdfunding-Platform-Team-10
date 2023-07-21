@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Typography, Input } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import InfoIcon from "@mui/icons-material/Info";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useForm } from "react-hook-form";
@@ -66,7 +66,7 @@ const LoginForm = () => {
 
   return (
     <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl max-w-4xl">
-      <div className="lg:col-span-3 flex flex-col justify-center gap-2 text-center bg-white p-16 lg:rounded-l rounded-t lg:rounded-tr-none">
+      <div className="lg:col-span-3 flex flex-col justify-center gap-2 text-center bg-white p-6 sm:p-12 md:p-16 lg:rounded-l rounded-t lg:rounded-tr-none">
         <p className="text-center text-gray-900 p-4 header-2">
           Login to Your Account
         </p>
@@ -75,7 +75,12 @@ const LoginForm = () => {
           <button className="p-1">
             <GoogleIcon />
           </button>
-          <p className=" px-2">OR</p>
+        </div>
+        <div className="grid grid-cols-11 mt-4 -mb-6">
+          <div className="border-b border-gray-400 h-3/6 col-span-5"></div>
+
+          <p className=" px-2 col-span-1 text-xs">OR</p>
+          <div className="border-b border-gray-400 h-3/6 col-span-5"></div>
         </div>
         <div className="">
           <Container maxWidth="xs">
@@ -85,15 +90,6 @@ const LoginForm = () => {
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <div className="mt-6">
-                  {/* <Input
-                  label="Email"
-                  fullWidth
-                  variant="standard"
-                  {...register("email")}
-                  color="blue-gray"
-                  type="email"
-                  className=" border-gray-900 "
-                /> */}
                   <TextField
                     label="Email"
                     fullWidth
@@ -111,15 +107,6 @@ const LoginForm = () => {
                   </Typography>
                 </div>
                 <div>
-                  {/* <Input
-                  label="Password"
-                  type="password"
-                  variant="standard"
-                  fullWidth
-                  {...register("password")}
-                  color="blue-gray"
-                  className=" border-gray-900 "
-                /> */}
                   <TextField
                     label="Password"
                     fullWidth
@@ -154,7 +141,7 @@ const LoginForm = () => {
         <p className="text:2xl text-3xl font-bold text-white">New Here ?</p>
         <p className="text-white text-sm px-4">
           Sign up and discover great opportunities for both helping others and
-          funding your own cause!
+          creating your own cause!
         </p>
         <Link href="/signup">
           <button className="rounded bg-white color-black py-2 px-12 self-center font-bold">
