@@ -7,7 +7,8 @@ import LearnMore from './LearnMore'
 
 const AboutUs = () => {
   return (
-    <section className="grid justify-items-center">
+    <div>
+    <section className="grid justify-items-center w-full">
       <div className="grid py-12 container">
         <div className="pt-10 flex flex-col text-center lg:text-left">
           <p className="text-xl md:text-2xl lg:text-3xl text-lightGreen font-bold pb-8 ">Who We Are</p>
@@ -21,12 +22,13 @@ const AboutUs = () => {
           alt="Writing smth"
         />
       </div>
+      </section>
       <MissionCom />
       <OurTeam />
       <LearnMore />
       <GetStarted />
       <Comments />
-    </section>
+      </div>
   )
 }
 

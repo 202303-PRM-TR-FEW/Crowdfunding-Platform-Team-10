@@ -15,6 +15,7 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -27,6 +28,9 @@ const theme = createTheme({
     },
   },
 });
+
+
+
 const schema = yup
   .object({
     email: yup
@@ -52,7 +56,17 @@ const LoginForm = () => {
   });
 
   const router = useRouter();
-  const { login } = useAuth();
+  const { login, googleLogIn } = useAuth();
+
+  const handleGoogleLogIn = async () => {
+    try{
+      await googleLogIn();
+      router.push("/profile")
+    }
+    catch (err) {
+      console.log(err);
+  }
+}
 
   const onSubmit = async (data) => {
     console.log(data.email, data.password);
@@ -72,7 +86,7 @@ const LoginForm = () => {
         </p>
         <div className="flex flex-col gap-2">
           <p className="">Login using Google</p>
-          <button className="p-1">
+          <button className="p-1" onClick={handleGoogleLogIn}>
             <GoogleIcon />
           </button>
           <p className=" px-2">OR</p>

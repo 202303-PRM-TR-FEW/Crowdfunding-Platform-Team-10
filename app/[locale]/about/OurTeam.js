@@ -5,7 +5,7 @@ const OurTeam = () => {
 
   return (
   
-    <div className="p-20 flex flex-col text-center lg:text-left container ">
+    <div className="p-20 flex flex-col text-center lg:text-left container mx-auto">
       <p className="text-xl md:text-2xl lg:text-3xl text-lightGreen font-bold pb-10 ">Our Team</p>
       <div className='flex flex-row flex-wrap gap-8 justify-center py-10'>
         <div className='h-60 w-60 lg:h-80 lg:w-80 rounded transition ease-in-out hover:bg-gradient-to-t hover:from-white duration-700'>
