@@ -118,23 +118,23 @@ const SignupForm = () => {
 
   return (
     <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl max-w-4xl">
-      <div className="lg:col-span-2 bg-gradient-to-tl from-lightGreen to-teal-700 flex flex-col justify-center items-center p-6 text-center gap-6 lg:rounded-l rounded-t lg:rounded-tr-none">
-        <p className=" px-10 lg:px-0 text-3xl font-bold text-white">
+      <div className="lg:col-span-2 bg-gradient-to-tl from-lightGreen to-teal-700 flex flex-col justify-center items-center p-6 text-center gap-6 lg:rounded-l rounded-b lg:rounded-br-none lg:rounded-tr-none order-2 lg:order-1">
+        <p className=" px-10 lg:px-0 text-2xl md:text-3xl font-bold text-white">
           Already Have an Account ?
         </p>
 
         <Link href="/login">
           <button className="rounded bg-white color-black py-2 px-12 self-center font-bold">
-            Log In
+            Login
           </button>
         </Link>
       </div>
-      <div className="lg:col-span-3 grid gap-2 text-center h-full bg-white lg:rounded-r rounded-b lg:rounded-bl-none">
+      <div className="lg:col-span-3 grid gap-2 text-center h-full bg-white lg:rounded-r rounded-t lg:rounded-bl-none order-1 lg:order-2">
         <ThemeProvider theme={theme}>
-          <div className="grid gap-4 w-full  py-10">
+          <div className="grid gap-4 w-full  py-10 px-4">
             <Container maxWidth="xs">
               <div className="grid justify-center items-center h-full">
-                <p className="text-center text-gray-900 pt-10 pb-0 header-2">
+                <p className="text-center text-gray-900  header-3 px-10 md:px-20">
                   Create Your Account
                 </p>
                 <form
