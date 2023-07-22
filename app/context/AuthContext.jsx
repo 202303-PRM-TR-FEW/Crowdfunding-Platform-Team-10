@@ -1,6 +1,9 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -47,6 +50,13 @@ export const AuthContextProvider = ({ children }) => {
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+
+  const googleLogIn = () => {
+    const provider = new GoogleAuthProvider;
+    signInWithPopup(auth,provider)
+  };
+
+
 
   const logout = async () => {
     setUser(null);
@@ -117,6 +127,7 @@ export const AuthContextProvider = ({ children }) => {
         projects,
         donations,
         currentUser,
+        googleLogIn
       }}
     >
       {loading ? null : children}
