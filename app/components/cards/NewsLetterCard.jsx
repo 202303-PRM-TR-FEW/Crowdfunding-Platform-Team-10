@@ -57,7 +57,6 @@ export default function NewsLetterCard() {
     alignItems: "center",
     background:
       "radial-gradient(circle farthest-corner at 1.5% 1.4%, #489E92, #E3F4F2)",
-    borderRadius: "30px",
     overflow: "hidden",
     boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
     padding: "20px",
@@ -112,7 +111,7 @@ export default function NewsLetterCard() {
                 </button>
 
                 <p className="spam-message text-basicgray pt-2 text-center">
-                  We won't spam you 🤞🏼
+                  We will not spam you 🤞🏼
                 </p>
               </form>
             </div>
