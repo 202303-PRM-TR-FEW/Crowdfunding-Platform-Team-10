@@ -146,6 +146,7 @@ export const ProjectInfo = ({
 
         <DonationForm
           id={id}
+          title={title}
           openDonationForm={openDonationForm}
           setOpenDonationForm={setOpenDonationForm}
         />

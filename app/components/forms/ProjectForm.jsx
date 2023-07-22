@@ -26,7 +26,7 @@ import localizedFormatPlugin from "dayjs/plugin/localizedFormat";
 import isBetweenPlugin from "dayjs/plugin/isBetween";
 import utc from "dayjs/plugin/utc";
 import dayjs from "dayjs";
-import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import InfoIcon from "@mui/icons-material/Info";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
@@ -80,7 +80,7 @@ const theme = createTheme({
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
-  const { usersInfo } = useAuth()
+  const { usersInfo } = useAuth();
 
   const {
     register,
@@ -190,9 +190,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                     variant="small"
                     className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                   >
-                    {errors.projectName && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
+                    {errors.projectName && <InfoIcon fontSize="small" />}
                     {errors.projectName?.message}
                   </Typography>
 
@@ -208,9 +206,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                     variant="small"
                     className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                   >
-                    {errors.goal && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
+                    {errors.goal && <InfoIcon fontSize="small" />}
                     {errors.goal?.message}
                   </Typography>
 
@@ -236,9 +232,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                       variant="small"
                       className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4 lg:order-1"
                     >
-                      {errors.startingDate && (
-                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                      )}
+                      {errors.startingDate && <InfoIcon fontSize="small" />}
                       {errors.startingDate?.message}
                     </Typography>
 
@@ -263,9 +257,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                       variant="small"
                       className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4 lg:order-2"
                     >
-                      {errors.endingDate && (
-                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                      )}
+                      {errors.endingDate && <InfoIcon fontSize="small" />}
                       {errors.endingDate?.message}
                     </Typography>
                   </div>
@@ -282,9 +274,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                     variant="small"
                     className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                   >
-                    {errors.about && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
+                    {errors.about && <InfoIcon fontSize="small" />}
                     {errors.about?.message}
                   </Typography>
                   <Controller
@@ -315,16 +305,13 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                     variant="small"
                     className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                   >
-                    {errors.category && (
-                      <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    )}
+                    {errors.category && <InfoIcon fontSize="small" />}
                     {errors.category?.message}
                   </Typography>
 
                   <div>
                     <TextField
-                      className="cursor-pointer"
-                      // icon={<FileUpload />}
+                      variant="standard"
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="end">
@@ -336,16 +323,15 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                       id="media"
                       name="media"
                       type="file"
-                      // label="Project Picture"
                       {...register("media")}
+                      sx={{ input: { cursor: "pointer" } }}
                     />
+
                     <Typography
                       variant="small"
                       className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                     >
-                      {errors.media && (
-                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                      )}
+                      {errors.media && <InfoIcon fontSize="small" />}
                       {errors.media?.message}
                     </Typography>
                   </div>

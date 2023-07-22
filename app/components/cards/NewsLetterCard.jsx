@@ -56,7 +56,7 @@ export default function NewsLetterCard() {
 
   return (
     <ThemeProvider theme={theme}>
-      <section className="flex justify-center items-center bg-gray-100 py-8 md:px-12">
+      <section className="flex justify-center items-center bg-white py-8 md:px-12">
         <div className="grid lg:grid-cols-2 gap-8 ">
           <div className="p-14 flex flex-col gap-4 justify-center text-center">
             <p className="header-3">Stayed informed</p>

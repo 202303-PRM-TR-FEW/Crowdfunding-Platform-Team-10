@@ -1,6 +1,9 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -18,6 +21,7 @@ export const AuthContextProvider = ({ children }) => {
   const [usersInfo, setUsersInfo] = useState(null);
   const [projects, setProjects] = useState(true);
   const [donations, setDonations] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -47,8 +51,16 @@ export const AuthContextProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  const googleLogIn = () => {
+    const provider = new GoogleAuthProvider;
+    signInWithPopup(auth,provider)
+  };
+
+
+
   const logout = async () => {
     setUser(null);
+    setCurrentUser(null);
     await signOut(auth);
   };
 
@@ -87,6 +99,22 @@ export const AuthContextProvider = ({ children }) => {
     });
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (usersInfo && user !== null) {
+      const userCurrent = usersInfo.find(
+        (usersinfo) => usersinfo.id === user.uid
+      );
+      if (userCurrent) {
+        setCurrentUser(userCurrent);
+      } else {
+        setCurrentUser(null);
+      }
+    }
+    setLoading(false);
+    console.log(currentUser);
+  }, [user, usersInfo]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -98,6 +126,8 @@ export const AuthContextProvider = ({ children }) => {
         usersInfo,
         projects,
         donations,
+        currentUser,
+        googleLogIn
       }}
     >
       {loading ? null : children}
