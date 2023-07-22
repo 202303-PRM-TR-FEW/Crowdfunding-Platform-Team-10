@@ -3,12 +3,14 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 const styles = {
+  header: "header-2 text-lightGreen py-4",
   categoryContainer: "flex flex-row gap-3",
-  categoryBlock: "flex flex-col justify-center items-center gap-3",
+  categoryBlock: "flex flex-col justify-center items-center gap-2",
   filterItem:
     "cursor-pointer border-[1px] border-BasicBasicBlack rounded-[8px] px-2 py-3",
   categoryName: "font-bold text-[18px]",
 };
+
 const CategoryFiltering = ({ data, filtrindData }) => {
   const CATEGORY = [
     {
@@ -67,7 +69,6 @@ const CategoryFiltering = ({ data, filtrindData }) => {
       },
     },
   ];
-
   const [activeCategory, setActiveCategory] = useState("all");
   const onFilter = (cat) => {
     setActiveCategory(CATEGORY.find((item) => item.id === cat).id);
@@ -77,9 +78,8 @@ const CategoryFiltering = ({ data, filtrindData }) => {
     filtrindData(filters);
   };
   return (
-    <Box className="p-10">
-      <h2 className="header-2">Categories</h2>
-
+    <Box className="py-10">
+      <h2 className={styles.header}>Categories</h2>
       <Box>
         <Box className={styles.categoryContainer}>
           {CATEGORY.map((cat) => {
@@ -90,13 +90,17 @@ const CategoryFiltering = ({ data, filtrindData }) => {
                   className={
                     styles.filterItem +
                     ` ${
-                      activeCategory === cat.id ? "bg-BasicBlack " : "bg-white"
+                      activeCategory === cat.id
+                        ? "bg-[#c3c3c4] drop-shadow-2xl"
+                        : "bg-[#EEEEEE]"
                     }`
                   }
                 >
-                  {cat.icon(activeCategory === cat.id ? "white" : "BasicBlack")}
+                  {cat.icon(
+                    activeCategory === cat.id ? "basicBlack" : "basicBlack"
+                  )}
                 </Box>
-                <p className="sub-header">{cat.name}</p>
+                <p className="sub-header !text-base">{cat.name}</p>
               </Box>
             );
           })}

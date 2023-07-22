@@ -43,6 +43,8 @@ const Home = () => {
               title={card.name}
               raised={card.raised}
               goal={card.goal}
+              category={card.category}
+              creator={card.creator}
             />
           </Link>
         );
