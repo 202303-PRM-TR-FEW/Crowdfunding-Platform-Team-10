@@ -38,18 +38,29 @@ input[type="file"] {
   width: 100%;
   margin-left: 10px;
 }
-
+.bg-cards-container {
+  background-image: url("../../public/assets/images/bg-cards.png");
+  background-position: center top;
+  background-size: contain;
+  background-repeat: repeat-y;
+}
+.ellipsis-text {
+  @apply whitespace-nowrap overflow-hidden text-ellipsis;
+}
+.image-animated {
+  @apply opacity-90 hover:opacity-100 hover:scale-[1.05] hover:rotate-1  transition-all duration-300 ease-in-out;
+}
 .header-1 {
-  @apply text-4xl md:text-5xl lg:text-6xl text-basicBlack font-bold !leading-[120%];
+  @apply text-4xl md:text-5xl lg:text-6xl  font-bold !leading-[120%];
 }
 .header-2 {
-  @apply text-3xl md:text-4xl lg:text-5xl text-basicBlack font-bold;
+  @apply text-3xl md:text-4xl lg:text-5xl  font-bold;
 }
 .header-3 {
-  @apply text-xl md:text-2xl lg:text-3xl text-basicBlack font-bold;
+  @apply text-xl md:text-2xl lg:text-3xl  font-bold;
 }
 .header-4 {
-  @apply text-lg md:text-xl lg:text-2xl text-basicBlack font-bold;
+  @apply text-lg md:text-xl lg:text-2xl  font-bold;
 }
 .sub-header {
   @apply text-base md:text-lg lg:text-xl text-basicgray;

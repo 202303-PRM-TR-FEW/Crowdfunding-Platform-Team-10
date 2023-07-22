@@ -26,6 +26,9 @@ module.exports = withMT({
       borderRadius: {
         DEFAULT: "12px",
       },
+      dropShadow: {
+        "3xl": "0px 0px 30px #0000000f",
+      },
     },
   },
   plugins: [],
