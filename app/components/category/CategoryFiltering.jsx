@@ -5,9 +5,9 @@ import React, { useState } from "react";
 const styles = {
   header: "header-2 text-lightGreen py-4",
   categoryContainer: "flex flex-row gap-3",
-  categoryBlock: "flex flex-col justify-center items-center gap-2",
+  categoryBlock: "flex flex-col justify-center items-center py-2 gap-2",
   filterItem:
-    "cursor-pointer border-[1px] border-BasicBasicBlack rounded-[8px] px-2 py-3",
+    "cursor-pointer border-[1px] bg-[#16a34a1a] border-BasicBasicBlack rounded-[8px] px-2 py-3",
   categoryName: "font-bold text-[18px]",
 };
 
@@ -87,18 +87,9 @@ const CategoryFiltering = ({ data, filtrindData }) => {
               <Box key={cat.id} className={styles.categoryBlock}>
                 <Box
                   onClick={() => onFilter(cat.id)}
-                  className={
-                    styles.filterItem +
-                    ` ${
-                      activeCategory === cat.id
-                        ? "bg-[#c3c3c4] drop-shadow-2xl"
-                        : "bg-[#EEEEEE]"
-                    }`
-                  }
+                  className={styles.filterItem}
                 >
-                  {cat.icon(
-                    activeCategory === cat.id ? "basicBlack" : "basicBlack"
-                  )}
+                  {cat.icon(activeCategory === cat.id ? "#00c1a2" : "black")}
                 </Box>
                 <p className="sub-header !text-base">{cat.name}</p>
               </Box>
