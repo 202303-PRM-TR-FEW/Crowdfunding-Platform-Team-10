@@ -1,5 +1,5 @@
 "use client";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/material";
 import Link from "next/link";
@@ -36,17 +36,16 @@ const Home = () => {
     data.length > 0 ? (
       data.map((card) => {
         return (
-          <Link key={card.id} href={`/${card.id}`}>
-            <SummaryCard
-              key={card.id}
-              img={card.url}
-              title={card.name}
-              raised={card.raised}
-              goal={card.goal}
-              category={card.category}
-              creator={card.creator}
-            />
-          </Link>
+          <SummaryCard
+            key={card.id}
+            img={card.url}
+            cardUrl={card.id}
+            title={card.name}
+            raised={card.raised}
+            goal={card.goal}
+            category={card.category}
+            creator={card.creator}
+          />
         );
       })
     ) : (
@@ -59,10 +58,10 @@ const Home = () => {
   );
 
   return (
-    <div className="container mx-auto  md:py-7 lg:py-10">
+    <div className="container mx-auto  py-20">
       <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
       <CategoryFiltering data={projects} filtrindData={setData} />
-      <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+      <Box className="bg-cards-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {allProjects}
       </Box>
     </div>

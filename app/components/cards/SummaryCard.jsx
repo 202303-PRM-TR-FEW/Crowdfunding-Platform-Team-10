@@ -59,7 +59,9 @@ const SummaryCard = ({
           </div>
           <div className={`${""} justify-between py-2`}>
             <Link href={`/${cardURL}`}>
-              <button className="btn-secondary">View more</button>
+              <button className="btn-primary">
+                View more <span className="hover:-translate-x-2">👉</span>
+              </button>
             </Link>
           </div>
         </div>

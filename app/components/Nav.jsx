@@ -196,7 +196,13 @@ export default function Nav() {
 
   return (
     <Container maxWidth="sm">
-      <AppBar style={{ background: "transparent", boxShadow: "none" }}>
+      <AppBar
+        style={{
+          background: "transparent",
+          boxShadow: "none",
+          backdropFilter: "blur(2px)",
+        }}
+      >
         <Toolbar>
           <Link href="/" sx={{ display: { xs: "none", sm: "block" } }}>
             <Typography
