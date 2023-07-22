@@ -30,6 +30,9 @@ input[type="file"] {
 .ellipsis-text {
   @apply whitespace-nowrap overflow-hidden text-ellipsis;
 }
+.image-animated {
+  @apply opacity-90 hover:opacity-100 hover:scale-[1.05] hover:rotate-1  transition-all duration-300 ease-in-out;
+}
 .header-1 {
   @apply text-4xl md:text-5xl lg:text-6xl  font-bold !leading-[120%];
 }

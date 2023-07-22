@@ -13,8 +13,6 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
     page: `grid grid-cols-1 lg:grid-cols-2 gap-10 py-5 items-center min-h-[470px]`,
     flex: "flex items-center gap-1",
     image: "w-full overflow-hidden rounded",
-    animation:
-      "opacity-90 hover:opacity-100 hover:scale-[1.05] hover:rotate-1  transition-all duration-300 ease-in-out",
     rightSide: "w-10/12 flex flex-col gap-4",
     cost: "grid grid-cols-2 pt-2 gap-2",
     avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
@@ -28,7 +26,7 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
             <img
               src={projectOfWeek.url}
               alt="Project of the week"
-              className={styles.animation}
+              className="image-animated"
             />
           </div>
         </Link>
