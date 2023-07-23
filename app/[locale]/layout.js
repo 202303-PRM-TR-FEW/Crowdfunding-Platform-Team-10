@@ -22,9 +22,7 @@ export const metadata = {
     icon: "/favicon.ico",
   },
 };
-<Head>
-  <link rel="icon" href="/favicon.ico" />
-</Head>;
+
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "tr" }];
 }
