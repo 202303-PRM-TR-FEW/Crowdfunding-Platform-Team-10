@@ -8,9 +8,8 @@ import Nav from "@/components/Nav";
 
 import Footer from "@/components/Footer";
 
-
 import AddProject from "@/components/helper/AddProject";
-
+import Toaster from "@/components/helper/Toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,9 +37,10 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AuthContextProvider>
           <Nav />
-          <div >{children}</div>
-          <Footer/>
+          <div>{children}</div>
+          <Footer />
           <AddProject />
+          <Toaster />
         </AuthContextProvider>
       </body>
     </html>
