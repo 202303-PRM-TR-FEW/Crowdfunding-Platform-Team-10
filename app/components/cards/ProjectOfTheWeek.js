@@ -7,7 +7,6 @@ import CustomizedTooltip from "../helper/Tooltips";
 import Link from "next/link";
 
 export default function ProjectOfTheWeek({ projectOfWeek }) {
-  console.log(projectOfWeek);
   const styles = {
     header: "header-2 text-lightGreen  py-4",
     page: `grid grid-cols-1 lg:grid-cols-2 gap-10 py-5 items-center min-h-[470px]`,
