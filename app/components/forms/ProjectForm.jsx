@@ -36,6 +36,7 @@ import { db } from "@/config/firebase";
 
 import LoaderStyle from "../helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
+import { toast } from "react-toastify";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
@@ -109,6 +110,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       await addProjectToFirestore(data, user, imgUrl);
       setSuccess(true);
       setLoadingUpload(false);
+      toast.success("Created Project Succesfully !");
     } catch (error) {
       console.log(error);
       setLoadingUpload(false);

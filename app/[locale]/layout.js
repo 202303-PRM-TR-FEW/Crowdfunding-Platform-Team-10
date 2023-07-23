@@ -10,6 +10,10 @@ import Footer from "@/components/Footer";
 
 import AddProject from "@/components/helper/AddProject";
 
+
+import Toaster from "@/components/helper/Toaster";
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -39,6 +43,7 @@ export default function RootLayout({ children }) {
           <div>{children}</div>
           <Footer />
           <AddProject />
+          <Toaster />
         </AuthContextProvider>
       </body>
     </html>

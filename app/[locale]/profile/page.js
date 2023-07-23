@@ -13,6 +13,7 @@ import { Typography } from "@material-tailwind/react";
 import { useAuth } from "@/context/AuthContext";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import { db } from "@/config/firebase";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const { user, loading, projects } = useAuth();
@@ -32,7 +33,7 @@ const Page = () => {
       setUsersProjects(projectWithUser);
       setIsLoading(false);
     }
-  }, [projects]); // added projects as a dependency so that it runs whenever 'projects' changes. 
+  }, [projects]); // added projects as a dependency so that it runs whenever 'projects' changes.
 
   let oneProjectInfo = null;
 
@@ -47,7 +48,7 @@ const Page = () => {
   const handleClose = async (word) => {
     if (word === "Confirm") {
       await deleteDoc(doc(db, "projects", oneProjectInfo.id));
-      console.log("item deleted");
+      toast.success(" Project deleted Succesfully !");
     }
     setOpen(false);
   };
@@ -85,7 +86,7 @@ const Page = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-8 h-8"
+                  className="w-8 h-8 cursor-pointer"
                 >
                   <path
                     strokeLinecap="round"
