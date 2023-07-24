@@ -10,7 +10,7 @@ const WelcomeBanner = () => {
         >
           <p className="header-1">Supporting great causes made easy</p>
           <p className="sub-header">
-            We helped over 3.500 projects and causes. Sing in today and get your
+            We helped over 3,500 projects and causes. Sign in today and get your
             idea kicked off or support others kick off their amazing projects.
           </p>
           <Link href="/projects" className="justify-self-end xl:mt-8">
