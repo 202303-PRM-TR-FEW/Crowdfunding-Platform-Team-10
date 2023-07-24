@@ -150,8 +150,10 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       creator: {
         userName: userCurrent.name,
         userId: userCurrent.id,
+        userImg: userCurrent.userImg,
       },
     };
+
     await addDoc(collection(db, "projects"), projectData);
     setOpenProjectForm(false);
   };
