@@ -73,6 +73,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -98,6 +99,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
       });
       console.log("donated");
       setSuccess(true);
+      reset();
       router.push("/thanks");
     } catch (error) {
       console.log("notdonated", error);
