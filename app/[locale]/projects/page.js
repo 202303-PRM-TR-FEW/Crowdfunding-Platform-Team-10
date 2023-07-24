@@ -10,7 +10,7 @@ import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
 
 const Home = () => {
-  const { projects } = useAuth();
+  const { projects, formatNumber } = useAuth();
   const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
   useEffect(() => {
@@ -23,8 +23,8 @@ const Home = () => {
 
     if (data.length > 0) {
       data.forEach((project) => {
-        if (project.raised > max) {
-          max = project.raised;
+        if (project.viewCount > max) {
+          max = project.viewCount;
           setProjectOFWeek(project); // Update the projectOfWeek variable
         }
       });
@@ -35,16 +35,20 @@ const Home = () => {
   const allProjects = projects ? (
     data.length > 0 ? (
       data.map((card) => {
+        const formattedViewCount = formatNumber(card?.viewCount || 0);
+        const formattedGoal = formatNumber(card?.goal || 0);
+        const formattedRise = formatNumber(card?.raised || 0);
         return (
           <SummaryCard
             key={card.id}
             img={card.url}
             cardUrl={card.id}
             title={card.name}
-            raised={card.raised}
-            goal={card.goal}
+            raised={formattedRise}
+            goal={formattedGoal}
             category={card.category}
             creator={card.creator}
+            viewCount={formattedViewCount}
           />
         );
       })

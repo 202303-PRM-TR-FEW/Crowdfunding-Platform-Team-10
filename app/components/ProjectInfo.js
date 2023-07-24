@@ -16,6 +16,7 @@ export const ProjectInfo = ({
   img,
   id,
   viewCount,
+  userImg,
 }) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
@@ -58,10 +59,10 @@ export const ProjectInfo = ({
           </li>
         </div>
         <div id="profile" className={styles.short_profile}>
-          <Image
+          <img
             width={295}
             height={165}
-            src={user_img}
+            src={userImg}
             alt="Picture of thanking"
             style={styles.profile_size}
           />
