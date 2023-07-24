@@ -3,7 +3,7 @@ import React from 'react'
 
 const MissionCom = () => {
     return (
-        <div className='bg-gray-100 w-screen justify-center flex'>
+        <div className='bg-gray-100 justify-center flex'>
             <section className="p-10 text-center py-20 md:px-12 container ">
                 <p className="text-xl md:text-2xl lg:text-3xl text-lightGreen font-bold pb-10 text-center ">Our Mission</p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 justify-between gap-20 ">
