@@ -115,6 +115,22 @@ export const AuthContextProvider = ({ children }) => {
     console.log(currentUser);
   }, [user, usersInfo]);
 
+  function formatNumber(number) {
+    const suffixes = ["", "K", "M", "B", "T"]; 
+    const suffixNum = Math.floor(("" + number).length / 3);
+  
+    if (suffixNum === 0) {
+      return number.toString(); // Show the full number for three digits or less
+    } else {
+      let shortNumber = parseFloat((number / Math.pow(1000, suffixNum)).toPrecision(3));
+      if (shortNumber % 1 !== 0) {
+        shortNumber = shortNumber.toFixed(1);
+      }
+      return shortNumber + suffixes[suffixNum];
+    }
+  }
+  
+
   return (
     <AuthContext.Provider
       value={{
@@ -127,7 +143,8 @@ export const AuthContextProvider = ({ children }) => {
         projects,
         donations,
         currentUser,
-        googleLogIn
+        googleLogIn,
+        formatNumber
       }}
     >
       {loading ? null : children}

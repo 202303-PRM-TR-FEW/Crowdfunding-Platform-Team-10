@@ -147,6 +147,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       about: data.about,
       goal: data.goal,
       contributors: [],
+      viewCount: 0,
       creator: {
         userName: userCurrent.name,
         userId: userCurrent.id,
