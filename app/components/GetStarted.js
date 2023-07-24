@@ -3,8 +3,8 @@ import React from "react";
 
 const GetStarted = () => {
   return (
-    <section className="bg-lightGreen bg-cover justify-center flex">
-      <div className="grid lg:grid-cols-2 gap-5 py-5 container items-center">
+    <div className="bg-lightGreen justify-center flex">
+      <section className="grid lg:grid-cols-2 gap-5 py-5 container items-center">
         <div className="p-10 flex flex-col gap-4 text-center lg:text-left">
           <p className="text-3xl md:text-4xl lg:text-5xl text-white font-bold">Now, you may be thinking on join us</p>
           <p className="text-base md:text-lg lg:text-xl text-white ">
@@ -21,8 +21,8 @@ const GetStarted = () => {
             alt="writing smtht"
           />
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
