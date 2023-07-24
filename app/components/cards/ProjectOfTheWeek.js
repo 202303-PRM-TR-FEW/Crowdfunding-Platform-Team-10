@@ -46,7 +46,7 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
                 {projectOfWeek.category}
               </p>
             </div>
-            <li className="flex gap-3 items-center">
+            <li className="flex gap-3 items-center ">
               <h3 className=" color-green text-sm">{formattedViewCount}</h3>
               <Image src={eyeIcon} alt="eye" width={20} height={20} />
             </li>
