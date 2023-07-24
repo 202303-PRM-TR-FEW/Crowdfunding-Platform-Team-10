@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AuthContextProvider>
           <Nav />
-          <div className="mt-10">{children}</div>
+          <div>{children}</div>
           <Footer />
           <AddProject />
           <Toaster />

@@ -62,7 +62,7 @@ const Home = () => {
   );
 
   return (
-    <div className="container mx-auto  py-20">
+    <div className="container mx-auto  py-20 mt-5">
       <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
       <CategoryFiltering data={projects} filtrindData={setData} />
       <Box className="bg-cards-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
