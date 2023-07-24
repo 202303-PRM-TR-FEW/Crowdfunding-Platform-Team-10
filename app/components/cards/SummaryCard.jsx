@@ -6,7 +6,7 @@ import { Avatar } from "@material-tailwind/react";
 import Link from "next/link";
 
 const SummaryCard = ({
-  cardURL,
+  cardUrl,
   img,
   title,
   raised,
@@ -58,7 +58,7 @@ const SummaryCard = ({
             <p className="text-base text-basicgray ">{creator?.userName}</p>
           </div>
           <div className={`${""} justify-between py-2`}>
-            <Link href={`/${cardURL}`}>
+            <Link href={`/${cardUrl}`}>
               <button className="btn-primary">
                 View more <span className="hover:-translate-x-2">👉</span>
               </button>
