@@ -52,7 +52,7 @@ const SummaryCard = ({
           <div className={`${styles.flex} py-2`}>
             <Avatar
               alt={creator?.userName}
-              src={""}
+              src={creator?.userImg}
               className={styles.avatar}
             />
             <p className="text-base text-basicgray ">{creator?.userName}</p>
