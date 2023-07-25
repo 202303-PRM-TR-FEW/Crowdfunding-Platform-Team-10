@@ -1,15 +1,7 @@
 "use client";
 import emailjs from "emailjs-com";
 import React, { useRef } from "react";
-import {
-  Input,
-  Button,
-  ThemeProvider,
-  createTheme,
-  Grid,
-  TextField,
-} from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
+import { ThemeProvider, createTheme, TextField } from "@mui/material";
 
 export default function NewsLetterCard() {
   const theme = createTheme({
@@ -25,16 +17,43 @@ export default function NewsLetterCard() {
     },
   });
   const containerStyle = {
+    position: "relative",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "#489E92",
+    background: "#489e939d",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
     overflow: "hidden",
     boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
     padding: "20px",
     color: "white",
   };
-
+  const circleBackgroundStyle = {
+    position: "absolute",
+    top: "-50px",
+    right: "50px",
+    width: "300px",
+    height: "300px",
+    borderRadius: "50%",
+    background: "#00c1a1a5",
+    transform: "rotate(45deg)",
+    zIndex: -1,
+    animation: `moveCircle2 10s linear infinite`,
+  };
+  const circleBackgroundStyle2 = {
+    position: "absolute",
+    bottom: "10px",
+    left: "50px",
+    width: "500px",
+    height: "500px",
+    borderRadius: "50%",
+    background: "#00c1a1a5",
+    transform: "rotate(45deg)",
+    zIndex: -1,
+    filter: "blur(20px)",
+    animation: `moveCircle 10s linear infinite`,
+  };
   const blurredCardStyle = {
     position: "relative",
     width: "100%",
@@ -54,18 +73,15 @@ export default function NewsLetterCard() {
   const whiteText = {
     color: "white",
   };
-  const blackText = {
-    color: "black",
-  };
 
   const form = useRef();
 
   const sendEmail = (e) => {
-    e.preventDefault(); // prevents the page from reloading when you hit “Send”
-
+    e.preventDefault();
     const REARCT_APP_SERVICE_ID = "service_mfq6ump";
     const REARCT_APP_TEMPLATE_ID = "template_cwoodxx";
     const REARCT_APP_USER_ID = "0DOptxtQwVjFVWDq4";
+
     emailjs
       .sendForm(
         REARCT_APP_SERVICE_ID,
@@ -87,7 +103,8 @@ export default function NewsLetterCard() {
   return (
     <ThemeProvider theme={theme}>
       <section style={containerStyle}>
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div style={circleBackgroundStyle}  ></div>
+        <div className="grid lg:grid-cols-2 gap-8 container lg:py-24 ">
           <div className="p-14 flex flex-col gap-4 justify-center text-center">
             <p className="header-3">
               Subscribe now and be at the forefront of change!
@@ -123,19 +140,19 @@ export default function NewsLetterCard() {
 
                 <button
                   type="submit"
-                  className="custom-white-button mt-3 px-10 sm:w-2/6 self-center"
-                  style={blackText}
+                  className="rounded-lg my-3 px-10 py-2  self-center bg-[#f0bd07] text-[#000]"
                 >
                   Subscribe
                 </button>
 
-                <p className="spam-message pt-2 text-center" style={whiteText}>
+                <p className="spam-message pt-2 text-center  text-[#767676]">
                   We will not spam you 🤞🏼
                 </p>
               </form>
             </div>
           </div>
         </div>
+        <div style={circleBackgroundStyle2} ></div>
       </section>
     </ThemeProvider>
   );

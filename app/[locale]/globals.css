@@ -28,8 +28,6 @@
   font-family: giga;
 }
 
-
-
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -78,7 +76,7 @@ input[type="file"] {
   @apply text-xl md:text-2xl lg:text-3xl  font-bold;
 }
 .header-3Green {
-  @apply text-xl md:text-2xl lg:text-3xl text-lightGreen font-bold pb-10
+  @apply text-xl md:text-2xl lg:text-3xl text-lightGreen font-bold pb-10;
 }
 .header-4 {
   @apply text-lg md:text-xl lg:text-2xl  font-bold;
@@ -88,7 +86,7 @@ input[type="file"] {
   @apply text-base md:text-lg lg:text-xl text-basicgray;
 }
 .white-subheader {
-  @apply text-base md:text-lg lg:text-xl text-white 
+  @apply text-base md:text-lg lg:text-xl text-white;
 }
 .btn-primary {
   @apply bg-lightGreen hover:bg-hoverLightGreen text-white font-bold text-xl py-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out;
@@ -96,9 +94,10 @@ input[type="file"] {
 .btn-secondary {
   @apply text-lightGreen hover:text-hoverLightGreen border-2 border-lightGreen hover:border-hoverLightGreen cursor-pointer font-bold text-xl py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
 }
-.btn-tertiary{
-  @apply bg-white hover:bg-gray-100 text-black font-bold text-xl py-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out}
-  
+.btn-tertiary {
+  @apply bg-white hover:bg-gray-100 text-black font-bold text-xl py-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out;
+}
+
 .color-green {
   @apply text-[#00c1a2];
 }
@@ -113,3 +112,31 @@ input[type="file"] {
   @apply bg-white text-basicgray border-2 cursor-pointer font-bold text-base py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
 }
 
+.shape01 {
+  /* color: #f0bd07; */
+  background-image: url(../../public/assets/images/shape02.png);
+}
+
+cpr {
+  color: #ffffff79;
+}
+@keyframes moveCircle {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes moveCircle2 {
+  0% {
+    transform: rotate(0deg) translate(150px);
+  }
+  100% {
+    transform: rotate(360deg) translate(150px);
+  }
+
+}

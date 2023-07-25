@@ -218,7 +218,9 @@ export default function Nav() {
       sx={{
         background: scrolling ? "#ffffff8a" : "transparent",
         boxShadow: "none",
-        backdropFilter: "blur(10px)",}}
+        backdropFilter: "blur(10px)",
+        transition: "background 0.3s ease-in-out", 
+      }}
     >
       <Box sx={{ px: { xs: 2, lg: 12 } }}>
         <Toolbar>
