@@ -216,7 +216,7 @@ export default function Nav() {
     <AppBar
  
       sx={{
-        background: scrolling ? "#98bcb68a" : "transparent",
+        background: scrolling ? "#ffffff8a" : "transparent",
         boxShadow: "none",
         backdropFilter: "blur(10px)",}}
     >
