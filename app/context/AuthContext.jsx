@@ -15,6 +15,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { auth } from "../config/firebase";
+import { useRouter } from "next/navigation";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -24,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
   const [projects, setProjects] = useState(true);
   const [donations, setDonations] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-
+  const router = useRouter();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -84,15 +85,16 @@ export const AuthContextProvider = ({ children }) => {
           country: "",
         });
         console.log("user created in db");
+        router.push("/profile");
       } else {
         console.log("user already exist in db");
+        router.push("/profile");
       }
 
       // IdP data available using getAdditionalUserInfo(result)
       // ...
     });
   };
-
 
   const logout = async () => {
     setUser(null);
@@ -184,7 +186,6 @@ export const AuthContextProvider = ({ children }) => {
         currentUser,
         googleLogIn,
         formatNumber,
-
       }}
     >
       {loading ? null : children}
