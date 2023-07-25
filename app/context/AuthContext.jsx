@@ -34,6 +34,8 @@ export const AuthContextProvider = ({ children }) => {
           displayName: user.displayName,
           contributions: [],
           projects: [],
+          bio: user.bio,
+          country: user.country,
         });
       } else {
         setUser(null);

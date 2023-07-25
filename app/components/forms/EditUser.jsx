@@ -40,7 +40,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
     setOpenEditUserForm(false);
   };
 
-  const { currentUser } = useAuth();
+  const { currentUser, user } = useAuth();
   const [err, setErr] = useState("");
   const [userData, setUserData] = useState({
     name: "",
@@ -130,6 +130,12 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
             </IconButton>
             <h3 className="header-3">Personal Detail:</h3>
           </div>
+
+          {currentUser.country === "" || currentUser.bio === "" ? (
+            <p className="text-center text-red-900 py-2">
+              Please complete your personal information
+            </p>
+          ) : null}
 
           <form className="flex flex-col gap-5" onSubmit={onSubmit}>
             <div className="mt-6">

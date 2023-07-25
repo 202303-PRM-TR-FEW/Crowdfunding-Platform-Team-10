@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
 import { Avatar, Fab } from "@mui/material";
@@ -12,7 +12,12 @@ import { ListItemIcon } from "@mui/material";
 import EditUser from "@/components/forms/EditUser";
 
 const Page = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, user } = useAuth();
+  useEffect(() => {
+    if (currentUser.country === "" || currentUser.bio === "") {
+      setOpenEditUserForm(true);
+    }
+  }, []);
 
   const [openEditUserForm, setOpenEditUserForm] = useState(false);
 
@@ -113,6 +118,6 @@ const Page = () => {
       />
     </div>
   );
-}
+};
 
 export default Page;

@@ -16,7 +16,7 @@ import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
 
 const Page = () => {
-  const { user, loading, projects } = useAuth();
+  const { user, loading, projects, currentUser } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -34,6 +34,12 @@ const Page = () => {
       setIsLoading(false);
     }
   }, [projects]); // added projects as a dependency so that it runs whenever 'projects' changes.
+
+  useEffect(() => {
+    if (currentUser.country === "" || currentUser.bio === "") {
+      router.push("/account");
+    }
+  }, []);
 
   let oneProjectInfo = null;
 
