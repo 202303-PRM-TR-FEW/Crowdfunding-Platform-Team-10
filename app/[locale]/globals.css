@@ -112,3 +112,7 @@ input[type="file"] {
 .custom-white-button {
   @apply bg-white text-basicgray border-2 cursor-pointer font-bold text-base py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
 }
+
+/* color{
+  color: #98bcb68a;
+} */
