@@ -2,14 +2,13 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { AuthContextProvider } from "@/context/AuthContext";
 
-import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import AddProject from "@/components/helper/AddProject";
 import Toaster from "@/components/helper/Toaster";
-import Providers from "@/components/helper/ProviderTheme";
-import ThemeButton from "@/components/theme/ThemeButton";
+// import Providers from "@/components/helper/ProviderTheme";
+// import ThemeButton from "@/components/theme/ThemeButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,14 +38,15 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <AuthContextProvider>
-          <Providers>
-            <Nav />
-            <ThemeButton />
-            <div>{children}</div>
-            <Footer />
-            <AddProject />
-            <Toaster />
-          </Providers>
+          {/* <Providers> */}
+          {/* <ThemeButton /> */}
+
+          <Nav />
+          <div>{children}</div>
+          <Footer />
+          <AddProject />
+          <Toaster />
+          {/* </Providers> */}
         </AuthContextProvider>
       </body>
     </html>
