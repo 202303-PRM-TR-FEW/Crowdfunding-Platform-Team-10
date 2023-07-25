@@ -59,7 +59,6 @@ const LoginForm = () => {
   const handleGoogleLogIn = async () => {
     try {
       await googleLogIn();
-      router.push("/profile");
     } catch (err) {
       console.log(err);
     }
@@ -84,8 +83,10 @@ const LoginForm = () => {
         <div className="flex flex-col gap-2">
           <p className="">Login using Google</p>
           <div className="flex justify-center p-1">
-            <button className="p-1" onClick={handleGoogleLogIn}>
-              {/* <GoogleIcon /> */}
+            <button
+              className="p-2 rounded-full hover:bg-gray-100 transition duration-200 shadow-md"
+              onClick={handleGoogleLogIn}
+            >
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
                 alt=""
