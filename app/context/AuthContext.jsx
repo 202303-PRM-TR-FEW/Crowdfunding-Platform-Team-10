@@ -52,11 +52,9 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const googleLogIn = () => {
-    const provider = new GoogleAuthProvider;
-    signInWithPopup(auth,provider)
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
   };
-
-
 
   const logout = async () => {
     setUser(null);
@@ -113,7 +111,26 @@ export const AuthContextProvider = ({ children }) => {
     }
     setLoading(false);
     console.log(currentUser);
-  }, [user, usersInfo]);
+  }, [user, usersInfo, currentUser]);
+
+  function formatNumber(number) {
+    const suffixes = ["", "K", "M", "B", "T"];
+    const numString = number.toString();
+    const numDigits = numString.length;
+    const suffixNum = Math.floor((numDigits - 1) / 3);
+
+    if (suffixNum === 0 || numDigits <= 4) {
+      return number.toString();
+    } else {
+      let shortNumber = parseFloat(
+        (number / Math.pow(1000, suffixNum)).toPrecision(3)
+      );
+      if (shortNumber % 1 !== 0) {
+        shortNumber = shortNumber.toFixed(1);
+      }
+      return shortNumber + suffixes[suffixNum];
+    }
+  }
 
   return (
     <AuthContext.Provider
@@ -127,7 +144,8 @@ export const AuthContextProvider = ({ children }) => {
         projects,
         donations,
         currentUser,
-        googleLogIn
+        googleLogIn,
+        formatNumber,
       }}
     >
       {loading ? null : children}

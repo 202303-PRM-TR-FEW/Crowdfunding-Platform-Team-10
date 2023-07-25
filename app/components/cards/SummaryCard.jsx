@@ -4,6 +4,8 @@ import CustomizedProgressBars from "../helper/ProgressBar";
 import ClassTwoToneIcon from "@mui/icons-material/ClassTwoTone";
 import { Avatar } from "@material-tailwind/react";
 import Link from "next/link";
+import Image from "next/image";
+import eyeIcon from "../../../public/assets/images/eye.png";
 
 const SummaryCard = ({
   cardUrl,
@@ -13,11 +15,11 @@ const SummaryCard = ({
   goal,
   category,
   creator,
+  viewCount,
 }) => {
   const styles = {
     flex: "flex items-center gap-1",
-    card:
-      "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[380px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
+    card: "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[380px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
     image: "w-full h-[222px] image-animated",
     body: "p-3 flex flex-col gap-y-2 ",
     avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
@@ -29,11 +31,17 @@ const SummaryCard = ({
       <div className="overflow-hidden rounded">
         <img className={styles.image} src={img} alt="project img" />
       </div>
-      <div className={`${styles.flex} px-1`}>
-        <div>
-          <ClassTwoToneIcon color="action" />
+      <div className={`${styles.flex} justify-between p-3`}>
+        <div className="">
+          <div>
+            <ClassTwoToneIcon color="action" />
+          </div>
+          <p className="text-base text-basicgray ">{category}</p>
         </div>
-        <p className="text-base text-basicgray ">{category}</p>
+        <li className="flex gap-3 items-center">
+          <h3 className=" color-green text-sm">{viewCount}</h3>
+          <Image src={eyeIcon} alt="eye" width={20} height={20} />
+        </li>
       </div>
       <div className={styles.body}>
         <h4 className="header-4 min-h-[64px] ">{title}</h4>
