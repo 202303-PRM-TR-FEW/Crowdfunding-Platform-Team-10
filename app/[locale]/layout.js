@@ -2,16 +2,13 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { AuthContextProvider } from "@/context/AuthContext";
 
-import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
-
 import Footer from "@/components/Footer";
-
 import AddProject from "@/components/helper/AddProject";
-
 import Toaster from "@/components/helper/Toaster";
-import Head from "next/head";
+// import Providers from "@/components/helper/ProviderTheme";
+// import ThemeButton from "@/components/theme/ThemeButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,14 +35,18 @@ export async function LocaleLayout({ children, params: { locale } }) {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <AuthContextProvider>
+          {/* <Providers> */}
+          {/* <ThemeButton /> */}
+
           <Nav />
           <div>{children}</div>
           <Footer />
           <AddProject />
           <Toaster />
+          {/* </Providers> */}
         </AuthContextProvider>
       </body>
     </html>
