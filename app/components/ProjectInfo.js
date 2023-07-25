@@ -16,6 +16,7 @@ export const ProjectInfo = ({
   img,
   id,
   viewCount,
+  userImg,
 }) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
@@ -58,10 +59,10 @@ export const ProjectInfo = ({
           </li>
         </div>
         <div id="profile" className={styles.short_profile}>
-          <Image
+          <img
             width={295}
             height={165}
-            src={user_img}
+            src={userImg}
             alt="Picture of thanking"
             style={styles.profile_size}
           />
@@ -146,7 +147,7 @@ const styles = {
     borderRadius: "10px",
   },
   project_class: `h-full w-auto object-cover `,
-  page: `grid md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-5 mx-5 my-2`,
+  page: `grid md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-5 mx-5 my-2 mt-5`,
   left: `flex ml-10 mt-12 col-span-2  rounded-3xl justify-center items-center`,
   right: `xl:col-span-3 lg:col-span-2 mx-8 mt-12`,
   short_profile: `flex mb-10`,

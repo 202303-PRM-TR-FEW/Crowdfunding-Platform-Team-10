@@ -1,17 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Krona+One&family=Mulish:wght@500;700&display=swap");
-html {
-  font-family: "Krona One", sans-serif;
-  font-family: "Mulish", sans-serif;
+
+@font-face {
+  font-family: poppins-light;
+  src: url(../../public/fonts/Poppins-Light.ttf);
+}
+
+@font-face {
+  font-family: poppins-med;
+  src: url(../../public/fonts/Poppins-Medium.ttf);
+}
+@font-face {
+  font-family: outfit;
+  src: url(../../public/fonts/Outfit-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: giga;
+  src: url(../../public/fonts/Locomotype\ \ GigaSansMedium.otf);
 }
 
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  font-family: giga;
 }
+
+
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -59,19 +77,28 @@ input[type="file"] {
 .header-3 {
   @apply text-xl md:text-2xl lg:text-3xl  font-bold;
 }
+.header-3Green {
+  @apply text-xl md:text-2xl lg:text-3xl text-lightGreen font-bold pb-10
+}
 .header-4 {
   @apply text-lg md:text-xl lg:text-2xl  font-bold;
 }
+
 .sub-header {
   @apply text-base md:text-lg lg:text-xl text-basicgray;
 }
+.white-subheader {
+  @apply text-base md:text-lg lg:text-xl text-white 
+}
 .btn-primary {
-  @apply bg-lightGreen hover:bg-hoverLightGreen text-white font-bold text-base py-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-lightGreen hover:bg-hoverLightGreen text-white font-bold text-xl py-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out;
 }
 .btn-secondary {
-  @apply text-lightGreen hover:text-hoverLightGreen border-2 border-lightGreen hover:border-hoverLightGreen cursor-pointer font-bold text-base py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
+  @apply text-lightGreen hover:text-hoverLightGreen border-2 border-lightGreen hover:border-hoverLightGreen cursor-pointer font-bold text-xl py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
 }
-
+.btn-tertiary{
+  @apply bg-white hover:bg-gray-100 text-black font-bold text-xl py-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out}
+  
 .color-green {
   @apply text-[#00c1a2];
 }
@@ -81,4 +108,7 @@ input[type="file"] {
 }
 .bgc-green {
   @apply bg-[#00c1a2];
+}
+.custom-white-button {
+  @apply bg-white text-basicgray border-2 cursor-pointer font-bold text-base py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
 }

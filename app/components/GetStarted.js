@@ -6,13 +6,13 @@ const GetStarted = () => {
     <div className="bg-lightGreen justify-center flex">
       <section className="grid lg:grid-cols-2 gap-5 py-5 container items-center">
         <div className="p-10 flex flex-col gap-4 text-center lg:text-left">
-          <p className="text-3xl md:text-4xl lg:text-5xl text-white font-bold">Now, you may be thinking on join us</p>
-          <p className="text-base md:text-lg lg:text-xl text-white ">
+          <p className="header-2 text-white">Now, you may be thinking on join us</p>
+          <p className="white-subheader">
             We helped over 3.500 projects and causes. Sing in today and get your
             idea kicked off or support others kick off their amazing projects.
           </p>
           <Link href="/projects" className="justify-self-end xl:mt-8">
-            <button className=" bg-white hover:bg-gray-100 text-black font-bold text-xl py-2 px-4  rounded text-center cursor-pointer transition-all duration-300 ease-in-out">Get Started</button>
+            <button className="btn-tertiary">Get Started</button>
           </Link>
         </div>
         <div className="flex flex-col justify-items-center">

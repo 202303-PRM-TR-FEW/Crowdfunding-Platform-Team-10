@@ -38,10 +38,9 @@ function Project({ params }) {
     fetchData();
   }, [params.id]);
 
-  function formatViewCount(count) {
-    return formatNumber(count);
-  }
   const formattedViewCount = formatNumber(data?.viewCount || 0);
+  const formattedGoal = formatNumber(data?.goal || 0);
+  const formattedRise = formatNumber(data?.raised || 0);
 
   if (data === null || !data) {
     return <LoaderStyle />;
@@ -51,9 +50,10 @@ function Project({ params }) {
     <ProjectInfo
       title={data.name}
       userName={data.creator.userName}
+      userImg={data.creator.userImg}
       about={data.about}
-      taken={data.raised}
-      goal={data.goal}
+      taken={formattedRise}
+      goal={formattedGoal}
       left={data.endingDate}
       img={data.url}
       id={params}
