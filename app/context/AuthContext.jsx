@@ -150,7 +150,6 @@ export const AuthContextProvider = ({ children }) => {
       }
     }
     setLoading(false);
-    console.log(currentUser);
   }, [user, usersInfo, currentUser]);
 
   function formatNumber(number) {

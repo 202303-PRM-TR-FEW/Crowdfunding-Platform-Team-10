@@ -87,7 +87,6 @@ const LoginForm = () => {
               className="p-2 rounded-full hover:bg-gray-100 transition duration-200 shadow-md"
               onClick={handleGoogleLogIn}
             >
-              {/* <GoogleIcon /> */}
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
                 alt=""
