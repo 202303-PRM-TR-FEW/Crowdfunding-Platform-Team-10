@@ -25,6 +25,8 @@ export const AuthContextProvider = ({ children }) => {
   const [projects, setProjects] = useState(true);
   const [donations, setDonations] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [comments, setComments] = useState([]);
+
   const router = useRouter();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -139,6 +141,18 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    const q = query(collection(db, "comments"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let commentsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        commentsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setDonations(commentsArr);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
     if (usersInfo && user !== null) {
       const userCurrent = usersInfo.find(
         (usersinfo) => usersinfo.id === user.uid
@@ -182,6 +196,7 @@ export const AuthContextProvider = ({ children }) => {
         usersInfo,
         projects,
         donations,
+        comments,
         currentUser,
         googleLogIn,
         formatNumber,
