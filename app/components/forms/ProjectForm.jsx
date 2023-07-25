@@ -88,6 +88,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     handleSubmit,
     control,
     setValue,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -111,6 +112,10 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       setSuccess(true);
       setLoadingUpload(false);
       toast.success("Created Project Succesfully !");
+      reset();
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
     } catch (error) {
       console.log(error);
       setLoadingUpload(false);
@@ -147,6 +152,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       about: data.about,
       goal: data.goal,
       contributors: [],
+      viewCount: 0,
       creator: {
         userName: userCurrent.name,
         userId: userCurrent.id,

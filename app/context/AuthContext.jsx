@@ -57,6 +57,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const googleLogIn = () => {
     const provider = new GoogleAuthProvider();
+
     signInWithPopup(auth, provider).then(async (result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -91,6 +92,7 @@ export const AuthContextProvider = ({ children }) => {
       // ...
     });
   };
+
 
   const logout = async () => {
     setUser(null);
@@ -147,7 +149,26 @@ export const AuthContextProvider = ({ children }) => {
     }
     setLoading(false);
     console.log(currentUser);
-  }, [user, usersInfo]);
+  }, [user, usersInfo, currentUser]);
+
+  function formatNumber(number) {
+    const suffixes = ["", "K", "M", "B", "T"];
+    const numString = number.toString();
+    const numDigits = numString.length;
+    const suffixNum = Math.floor((numDigits - 1) / 3);
+
+    if (suffixNum === 0 || numDigits <= 4) {
+      return number.toString();
+    } else {
+      let shortNumber = parseFloat(
+        (number / Math.pow(1000, suffixNum)).toPrecision(3)
+      );
+      if (shortNumber % 1 !== 0) {
+        shortNumber = shortNumber.toFixed(1);
+      }
+      return shortNumber + suffixes[suffixNum];
+    }
+  }
 
   return (
     <AuthContext.Provider
@@ -162,6 +183,8 @@ export const AuthContextProvider = ({ children }) => {
         donations,
         currentUser,
         googleLogIn,
+        formatNumber,
+
       }}
     >
       {loading ? null : children}
