@@ -11,6 +11,8 @@ import {
 } from "firebase/auth";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { auth } from "../config/firebase";
 const AuthContext = createContext();
@@ -32,6 +34,8 @@ export const AuthContextProvider = ({ children }) => {
           displayName: user.displayName,
           contributions: [],
           projects: [],
+          bio: user.bio,
+          country: user.country,
         });
       } else {
         setUser(null);
@@ -53,8 +57,42 @@ export const AuthContextProvider = ({ children }) => {
 
   const googleLogIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
+
+    signInWithPopup(auth, provider).then(async (result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      console.log(user);
+      function isEmailMatching(email) {
+        return email === user.email;
+      }
+      const isEmailFound = usersInfo.some((userInfo) =>
+        isEmailMatching(userInfo.email)
+      );
+
+      if (!isEmailFound) {
+        await setDoc(doc(db, "users", user.uid), {
+          // ...userData,
+          name: user.displayName,
+          bio: "",
+          userImg: user.photoURL,
+
+          email: user.email,
+          timeStamp: serverTimestamp(),
+          country: "",
+        });
+        console.log("user created in db");
+      } else {
+        console.log("user already exist in db");
+      }
+
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    });
   };
+
 
   const logout = async () => {
     setUser(null);
@@ -146,6 +184,7 @@ export const AuthContextProvider = ({ children }) => {
         currentUser,
         googleLogIn,
         formatNumber,
+
       }}
     >
       {loading ? null : children}
