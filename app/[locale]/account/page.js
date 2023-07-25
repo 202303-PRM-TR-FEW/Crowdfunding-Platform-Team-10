@@ -14,8 +14,10 @@ import EditUser from "@/components/forms/EditUser";
 const Page = () => {
   const { currentUser, user } = useAuth();
   useEffect(() => {
-    if (currentUser.country === "" || currentUser.bio === "") {
-      setOpenEditUserForm(true);
+    if (currentUser) {
+      if (currentUser.country === "" || currentUser.bio === "") {
+        setOpenEditUserForm(true);
+      }
     }
   }, []);
 

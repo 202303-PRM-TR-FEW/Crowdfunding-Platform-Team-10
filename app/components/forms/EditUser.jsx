@@ -131,10 +131,12 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
             <h3 className="header-3">Personal Detail:</h3>
           </div>
 
-          {currentUser.country === "" || currentUser.bio === "" ? (
-            <p className="text-center text-red-900 py-2">
-              Please complete your personal information
-            </p>
+          {currentUser ? (
+            currentUser.country === "" || currentUser.bio === "" ? (
+              <p className="text-center text-red-900 py-2">
+                Please complete your personal information
+              </p>
+            ) : null
           ) : null}
 
           <form className="flex flex-col gap-5" onSubmit={onSubmit}>

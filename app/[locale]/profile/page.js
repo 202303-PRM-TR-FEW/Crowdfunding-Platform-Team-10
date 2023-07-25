@@ -36,8 +36,10 @@ const Page = () => {
   }, [projects]); // added projects as a dependency so that it runs whenever 'projects' changes.
 
   useEffect(() => {
-    if (currentUser.country === "" || currentUser.bio === "") {
-      router.push("/account");
+    if (currentUser) {
+      if (currentUser.country === "" || currentUser.bio === "") {
+        router.push("/account");
+      }
     }
   }, []);
 
