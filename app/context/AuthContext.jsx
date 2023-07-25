@@ -85,7 +85,7 @@ export const AuthContextProvider = ({ children }) => {
           country: "",
         });
         console.log("user created in db");
-        router.push("/profile");
+        router.push("/account");
       } else {
         console.log("user already exist in db");
         router.push("/profile");
