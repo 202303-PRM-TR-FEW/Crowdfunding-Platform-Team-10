@@ -10,13 +10,8 @@ import Image from "next/image";
 import eyeIcon from "../../../public/assets/images/eye.png";
 
 export default function MyProjectCard({ project }) {
-  // const styles = {
-  //   page: `grid grid-cols-1 gap-1 lg:gap-5 items-center`,
-  // };
-
   const styles = {
     header: "header-2 text-lightGreen py-4",
-    // page: `grid grid-cols-1 gap-10  items-center min-h-[470px]`,
     flex: "flex items-center gap-1",
     image: "w-full overflow-hidden rounded",
     rightSide: " flex flex-col gap-4 p-2",

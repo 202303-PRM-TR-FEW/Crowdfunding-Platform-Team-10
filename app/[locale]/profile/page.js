@@ -49,17 +49,18 @@ const Page = () => {
     oneProjectInfo = usersProjects[usersProjects.length - 1];
   }
 
-  const handleDeleteProject = () => {
-    setOpen(true);
-  };
+  ////Needs to stay for future////
+  // const handleDeleteProject = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = async (word) => {
-    if (word === "Confirm") {
-      await deleteDoc(doc(db, "projects", oneProjectInfo.id));
-      toast.success(" Project deleted Succesfully !");
-    }
-    setOpen(false);
-  };
+  // const handleClose = async (word) => {
+  //   if (word === "Confirm") {
+  //     await deleteDoc(doc(db, "projects", oneProjectInfo.id));
+  //     toast.success(" Project deleted Succesfully !");
+  //   }
+  //   setOpen(false);
+  // };
 
   if (loading && user !== null) {
     return <LoaderStyle />;
@@ -67,20 +68,25 @@ const Page = () => {
 
   return (
     <div className="flex justify-center items-center bg-white h-max overflow-y-auto lg:p-24 px-4 md:px-24 py-20 ">
-      <ConfirmDialog
+      {/* ////Needs to stay for future//// */}
+      {/* <ConfirmDialog
         open={open}
         setOpen={setOpen}
         title={"Are you sure to delete this project?"}
         message={""}
         handleClose={handleClose}
-      />
+      /> */}
       {isLoading ? (
         <LoaderStyle />
       ) : usersProjects.length > 0 ? (
-        <div className="lg:grid-cols-5 grid-cols-1 grid gap-14  items-start">
-          <div className="lg:col-span-3">
-            <div className="px-8 flex flex-col gap-10">
-              {/* <div className="w-full flex items-center justify-between">
+        <div>
+          <Typography variant="h1" className="mb-12 mt-4  ">
+            My Projects
+          </Typography>
+          <div className="lg:grid-cols-5 grid-cols-1 grid gap-14  items-start">
+            <div className="lg:col-span-3">
+              <div className="px-8 flex flex-col gap-10">
+                {/* <div className="w-full flex items-center justify-between">
                 <Typography variant="h1" className="mb-4">
                   My Projects
                 </Typography>
@@ -100,24 +106,23 @@ const Page = () => {
                   />
                 </svg>
               </div> */}
-              <Typography variant="h1" className="">
-                My Projects
-              </Typography>
-              {usersProjects.map((project, i) => {
-                return (
-                  <Link key={i} className="grid" href={`/${project?.id}`}>
-                    <MyProjectCard project={project} />
-                  </Link>
-                );
-              })}
-              {/* <Link href={`/${oneProjectInfo?.id}`}>
+
+                {usersProjects.map((project, i) => {
+                  return (
+                    <Link key={i} className="grid" href={`/${project?.id}`}>
+                      <MyProjectCard project={project} />
+                    </Link>
+                  );
+                })}
+                {/* <Link href={`/${oneProjectInfo?.id}`}>
                 <MyProjectCard projectOfWeek={oneProjectInfo} />
               </Link> */}
+              </div>
             </div>
-          </div>
 
-          <div className="lg:col-span-2 flex order-first lg:order-last">
-            <TransactionHistory usersProjects={usersProjects} />
+            <div className="lg:col-span-2 flex order-first lg:order-last">
+              <TransactionHistory usersProjects={usersProjects} />
+            </div>
           </div>
         </div>
       ) : (
