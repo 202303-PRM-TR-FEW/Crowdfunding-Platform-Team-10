@@ -18,16 +18,10 @@ function StartNow() {
         </p>
         <div className="space-y-4"></div>
         <div className="flex mt-4 space-x-4">
-          <Link
-            href="/signup"
-            className="bg-green text-white lg:px-6 lg:py-4 px-2 py-1 rounded-md shadow-lg font-medium"
-          >
+          <Link href="/signup" className=" shadow-lg font-medium btn-primary">
             Create New Account
           </Link>
-          <Link
-            href="/projects"
-            className="  color-green lg:px-6 lg:py-4 px-2 py-1 rounded-md shadow-md font-medium"
-          >
+          <Link href="/projects" className="  color-green btn-transpernt">
             Check Projects
           </Link>
         </div>
