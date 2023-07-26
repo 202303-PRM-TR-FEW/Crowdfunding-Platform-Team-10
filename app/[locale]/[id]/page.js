@@ -15,6 +15,7 @@ import whatsapp from "../../../public/assets/images/whatsapp.png";
 import telegram from "../../../public/assets/images/telegram.png";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
+import SocialButton from "@/components/helper/SocialButton";
 function Project({ params }) {
   const pathname = usePathname();
   const [data, setData] = useState(null);
@@ -102,16 +103,14 @@ function Project({ params }) {
         <div className="share-icon flex flex-col items-center justify-center">
           {SOCIAL.map((item) => {
             return (
-              <div
-                key={item.id}
-                className="cursor-pointer hover:-translate-y-2 scale-[1.1] transition-all duration-300 ease-in-out"
-                onClick={() => handleShare(item.name)}
-              >
-                <Image
+              <div key={item.id}>
+                <SocialButton
                   width={70}
                   height={70}
                   src={item.image}
                   alt={item.name}
+                  provider={item.name}
+                  handleShare={handleShare}
                 />
               </div>
             );
