@@ -51,7 +51,7 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
               <Image src={eyeIcon} alt="eye" width={20} height={20} />
             </li>
           </div>
-          <h3 className="header-3  lg:w-1/2">{projectOfWeek.name}</h3>
+          <h3 className="header-3">{projectOfWeek.name}</h3>
           <p className="sub-header">{projectOfWeek.about}</p>
           <CustomizedProgressBars progressValue={60} />
           <div className={styles.cost}>
