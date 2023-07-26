@@ -152,7 +152,7 @@ export default function TransactionHistory({ usersProjects }) {
                     //   : "p-4 border-b border-blue-gray-50";
 
                     return (
-                      <ListItem disablePadding>
+                      <ListItem key={index} disablePadding>
                         <div
                           className="hover:bg-blue-gray-50 hover:rounded w-full"
                           key={donation.id}
