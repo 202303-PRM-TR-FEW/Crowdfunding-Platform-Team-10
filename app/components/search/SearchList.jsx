@@ -17,9 +17,7 @@ const SearchList = ({ searchProjects }) => {
         {searchProjects && searchProjects.length !== 0 ? (
           searchProjects.map((project, index) => (
             <React.Fragment key={project.id}>
-              {index > 0 && (
-                <Divider sx={{ backgroundColor: "#00c1a176"}} />
-              )}
+              {index > 0 && <Divider sx={{ backgroundColor: "#00c1a176" }} />}
               <Link href={`/${project.id}`}>
                 <ListItem className="z-50 ">
                   <ListItemAvatar>

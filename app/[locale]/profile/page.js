@@ -42,48 +42,51 @@ const Page = () => {
       }
     }
   }, []);
-
+  console.log(usersProjects);
   let oneProjectInfo = null;
 
   if (!isLoading && usersProjects.length > 0) {
     oneProjectInfo = usersProjects[usersProjects.length - 1];
   }
 
-  const handleDeleteProject = () => {
-    setOpen(true);
-  };
+  ////Needs to stay for future////
+  // const handleDeleteProject = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = async (word) => {
-    if (word === "Confirm") {
-      await deleteDoc(doc(db, "projects", oneProjectInfo.id));
-      toast.success(" Project deleted Succesfully !");
-    }
-    setOpen(false);
-  };
+  // const handleClose = async (word) => {
+  //   if (word === "Confirm") {
+  //     await deleteDoc(doc(db, "projects", oneProjectInfo.id));
+  //     toast.success(" Project deleted Succesfully !");
+  //   }
+  //   setOpen(false);
+  // };
 
   if (loading && user !== null) {
     return <LoaderStyle />;
   }
 
   return (
-    <div className="px-2 lg:px-20 p-5 md:p-7 lg:p-10">
-      <ConfirmDialog
+    <div className="flex justify-center items-center bg-white h-max overflow-y-auto lg:p-24 px-4 md:px-24 py-20 ">
+      {/* ////Needs to stay for future//// */}
+      {/* <ConfirmDialog
         open={open}
         setOpen={setOpen}
         title={"Are you sure to delete this project?"}
         message={""}
         handleClose={handleClose}
-      />
+      /> */}
       {isLoading ? (
         <LoaderStyle />
-      ) : oneProjectInfo ? (
-        <div
-          className="lg:grid-cols-3 grid-cols-1 grid lg:gap-36 w-full justify-between items-start"
-          key={oneProjectInfo.id}
-        >
-          <div className="lg:col-span-2">
-            <div className="p-4">
-              <div className="w-full flex items-center justify-between">
+      ) : usersProjects.length > 0 ? (
+        <div>
+          <Typography variant="h1" className="mb-12 mt-4  ">
+            My Projects
+          </Typography>
+          <div className="lg:grid-cols-5 grid-cols-1 grid gap-14  items-start">
+            <div className="lg:col-span-3">
+              <div className="px-8 flex flex-col gap-10">
+                {/* <div className="w-full flex items-center justify-between">
                 <Typography variant="h1" className="mb-4">
                   My Projects
                 </Typography>
@@ -102,18 +105,24 @@ const Page = () => {
                     d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
                   />
                 </svg>
-              </div>
-              <Link href={`/${oneProjectInfo?.id}`}>
-                <MyProjectCard projectOfWeek={oneProjectInfo} />
-              </Link>
-            </div>
-          </div>
+              </div> */}
 
-          <div className="lg:col-span-1">
-            <TransactionHistory
-              usersProjects={usersProjects}
-              oneProjectInfo={oneProjectInfo}
-            />
+                {usersProjects.map((project, i) => {
+                  return (
+                    <Link key={i} className="grid" href={`/${project?.id}`}>
+                      <MyProjectCard project={project} />
+                    </Link>
+                  );
+                })}
+                {/* <Link href={`/${oneProjectInfo?.id}`}>
+                <MyProjectCard projectOfWeek={oneProjectInfo} />
+              </Link> */}
+              </div>
+            </div>
+
+            <div className="lg:col-span-2 flex order-first lg:order-last">
+              <TransactionHistory usersProjects={usersProjects} />
+            </div>
           </div>
         </div>
       ) : (
