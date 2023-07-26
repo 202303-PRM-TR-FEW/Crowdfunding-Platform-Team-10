@@ -44,8 +44,10 @@ const Home = () => {
             img={card.url}
             cardUrl={card.id}
             title={card.name}
-            raised={formattedRise}
-            goal={formattedGoal}
+            formattedRise={formattedRise}
+            formattedGoal={formattedGoal}
+            goal={card.goal}
+            raised={card.raised}
             category={card.category}
             creator={card.creator}
             viewCount={formattedViewCount}

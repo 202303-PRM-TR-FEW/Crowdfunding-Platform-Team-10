@@ -79,13 +79,13 @@ const Page = () => {
       {isLoading ? (
         <LoaderStyle />
       ) : usersProjects.length > 0 ? (
-        <div>
+        <div className="grid w-full max-w-screen-xl">
           <Typography variant="h1" className="mb-12 mt-4  ">
             My Projects
           </Typography>
-          <div className="lg:grid-cols-5 grid-cols-1 grid gap-14  items-start">
+          <div className="lg:grid-cols-5 grid-cols-1 grid  items-start">
             <div className="lg:col-span-3">
-              <div className="px-8 flex flex-col gap-10">
+              <div className="px-8 flex flex-col gap-10 ">
                 {/* <div className="w-full flex items-center justify-between">
                 <Typography variant="h1" className="mb-4">
                   My Projects

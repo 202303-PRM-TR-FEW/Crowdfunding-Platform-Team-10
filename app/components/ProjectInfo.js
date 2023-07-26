@@ -6,6 +6,7 @@ import eyeIcon from "../../public/assets/images/eye.png";
 import Image from "next/image";
 import DonationForm from "./forms/DonationForm";
 import { useAuth } from "@/context/AuthContext";
+import CustomizedProgressBars from "./helper/ProgressBar";
 
 export const ProjectInfo = ({
   title,
@@ -18,6 +19,8 @@ export const ProjectInfo = ({
   id,
   viewCount,
   userImg,
+  formattedRise,
+  formattedGoal,
 }) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
@@ -39,6 +42,7 @@ export const ProjectInfo = ({
       : setOpenDonationForm(false);
   };
 
+  const pregresBar = Math.ceil((taken / goal) * 100);
   return (
     <div className={styles.page}>
       <aside className={styles.left}>
@@ -78,16 +82,14 @@ export const ProjectInfo = ({
             <ul className={styles.ul}>
               <li className={styles.raised_li}>
                 Raised:<br></br>
-                <h4 className={styles.numbers}>${taken}</h4>
+                <h4 className={styles.numbers}>${formattedRise}</h4>
               </li>
               <li className={styles.goal_li}>
                 Goal:<br></br>
-                <h4 className={styles.numbers}>${goal}</h4>
+                <h4 className={styles.numbers}>${formattedGoal}</h4>
               </li>
             </ul>
-            <div id="line" className={styles.percent}>
-              <div id="percentage" className={styles.onpercent}></div>
-            </div>
+            <CustomizedProgressBars progressValue={pregresBar} />
             <span className={styles.left_day}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
