@@ -8,7 +8,7 @@ const GetStarted = () => {
         <div className="p-10 flex flex-col gap-4 text-center lg:text-left">
           <p className="header-2 text-white">Now, you may be thinking on join us</p>
           <p className="white-subheader">
-            We helped over 3.500 projects and causes. Sing in today and get your
+            We helped over 3,500 projects and causes. Sing in today and get your
             idea kicked off or support others kick off their amazing projects.
           </p>
           <Link href="/projects" className="justify-self-end xl:mt-8">

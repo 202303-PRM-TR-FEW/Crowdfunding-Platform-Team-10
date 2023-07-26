@@ -86,19 +86,20 @@ function Project({ params }) {
   }
 
   return (
-    <>
-      <ProjectInfo
-        title={data.name}
-        userName={data.creator.userName}
-        userImg={data.creator.userImg}
-        about={data.about}
-        taken={formattedRise}
-        goal={formattedGoal}
-        left={data.endingDate}
-        img={data.url}
-        id={params}
-        viewCount={formattedViewCount}
-      />
+<ProjectInfo
+      title={data.name}
+      userName={data.creator.userName}
+      userImg={data.creator.userImg}
+      about={data.about}
+      taken={data.raised}
+      goal={data.goal}
+      formattedRise={formattedRise}
+      formattedGoal={formattedGoal}
+      left={data.endingDate}
+      img={data.url}
+      id={params}
+      viewCount={formattedViewCount}
+    />
       <div className="bg-hoverLightGreen bg-opacity-60 p-1 fixed top-[26%] rounded-r left-0">
         <div className="share-icon flex flex-col items-center justify-center">
           {SOCIAL.map((item) => {
