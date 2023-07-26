@@ -89,15 +89,17 @@ input[type="file"] {
   @apply text-base md:text-lg lg:text-xl text-white;
 }
 .btn-primary {
-  @apply bg-lightGreen hover:bg-hoverLightGreen text-white font-bold text-xl pt-4 pb-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-lightGreen hover:bg-[#f0bd07] shadow-lg text-white lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out;
 }
 .btn-secondary {
-  @apply text-lightGreen hover:text-hoverLightGreen border-2 border-lightGreen hover:border-hoverLightGreen cursor-pointer font-bold text-xl pt-4 pb-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
+  @apply text-lightGreen hover:text-hoverLightGreen border-2 shadow-lg lg:px-6 lg:py-3 border-lightGreen hover:border-hoverLightGreen cursor-pointer text-base pt-4 pb-2 px-4 rounded-md text-center transition-all duration-300 ease-in-out;
 }
 .btn-tertiary {
-  @apply bg-white hover:bg-gray-100 text-black font-bold text-xl pt-4 pb-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-white hover:bg-gray-100 text-black shadow-lg  pt-4 pb-2 px-4 lg:px-6 lg:py-3 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out;
 }
-
+.btn-transpernt {
+  @apply color-green hover:bg-[#00c1a1a9] hover:text-white lg:px-6 lg:py-4 px-2 py-1 rounded-md shadow-md font-medium text-base pt-4 pb-2 text-center cursor-pointer transition-all duration-300 ease-in-out;
+}
 .color-green {
   @apply text-[#00c1a2];
 }
@@ -108,14 +110,14 @@ input[type="file"] {
 .color-grey {
   @apply text-[#8a8a8a] text-base;
 }
-.color-yellow{
-  @apply text-[#f0bd07]
+.color-yellow {
+  @apply text-[#f0bd07];
 }
-.bg-yellow{
-  @apply bg-[#f0bd07]
+.bg-yellow {
+  @apply bg-[#f0bd07];
 }
-.bg-yellow-light{
-  @apply bg-[#f5d20e41]
+.bg-yellow-light {
+  @apply bg-[#f5d20e41];
 }
 .bgc-green {
   @apply bg-[#00c1a2];
@@ -142,10 +144,4 @@ input[type="file"] {
   100% {
     transform: rotate(360deg) translate(150px);
   }
-
 }
-
-
- 
- 
- 
