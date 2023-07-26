@@ -147,7 +147,7 @@ export const AuthContextProvider = ({ children }) => {
       QuerySnapshot.forEach((doc) => {
         commentsArr.push({ ...doc.data(), id: doc.id });
       });
-      setDonations(commentsArr);
+      setComments(commentsArr);
     });
     return () => unsubscribe();
   }, []);
