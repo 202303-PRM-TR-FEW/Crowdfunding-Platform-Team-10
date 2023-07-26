@@ -7,10 +7,9 @@ import { comment } from "postcss";
 
 const Comments = () => {
   const { comments } = useAuth();
-  console.log(comments);
 
   const allComments = comments.map((comment) => {
-    <div className="bg-lightGreen rounded-xl shadow-lg p-6 mb-4 w-[24rem] mx-auto">
+    <div className="bg-lightGreen rounded-xl shadow-lg p-6 mb-4 w-[200px] mx-auto">
       <div className="flex items-center space-x-4 mb-3">
         <img
           className="w-12 h-12 rounded-full"
@@ -24,7 +23,7 @@ const Comments = () => {
   });
 
   return (
-    <div className="p-10 text-center py-20 md:px-12 container mx-auto">
+    <div className="p-10 flex-wrap text-center py-20 md:px-12 container mx-auto">
       {allComments}
     </div>
   );
