@@ -52,8 +52,10 @@ function Project({ params }) {
       userName={data.creator.userName}
       userImg={data.creator.userImg}
       about={data.about}
-      taken={formattedRise}
-      goal={formattedGoal}
+      taken={data.raised}
+      goal={data.goal}
+      formattedRise={formattedRise}
+      formattedGoal={formattedGoal}
       left={data.endingDate}
       img={data.url}
       id={params}

@@ -9,20 +9,14 @@ import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import eyeIcon from "../../../public/assets/images/eye.png";
 
-const styles = {
-  header: "header-2 text-lightGreen  py-4",
-  page: `grid grid-cols-1 lg:grid-cols-2 gap-10 py-5 items-center min-h-[470px]`,
-  flex: "flex items-center gap-1",
-  image: "w-full overflow-hidden rounded",
-  rightSide: "w-10/12 flex flex-col gap-4",
-  cost: "grid grid-cols-2 pt-2 gap-2",
-  avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
-};
 export default function ProjectOfTheWeek({ projectOfWeek }) {
   const { formatNumber } = useAuth();
   const formattedViewCount = formatNumber(projectOfWeek?.viewCount || 0);
   const formattedGoal = formatNumber(projectOfWeek?.goal || 0);
   const formattedRise = formatNumber(projectOfWeek?.raised || 0);
+  const pregresBar = Math.ceil(
+    (projectOfWeek.raised / projectOfWeek.goal) * 100
+  );
   return (
     <>
       <h1 className={styles.header}>Project of the week</h1>
@@ -53,7 +47,7 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
           </div>
           <h3 className="header-3  lg:w-1/2">{projectOfWeek.name}</h3>
           <p className="sub-header">{projectOfWeek.about}</p>
-          <CustomizedProgressBars progressValue={60} />
+          <CustomizedProgressBars progressValue={pregresBar} />
           <div className={styles.cost}>
             <div>
               <CustomizedTooltip mode="dark" title={formattedRise}>
@@ -85,6 +79,12 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
   );
 }
 
-//<img src={frame_hand} className='z-10 ' style={styles.frame_size} ></img>
-// if objects get wanted..
-// frame_size: { minHeight: "400px", height: "820px", objectFit: "cover"}
+const styles = {
+  header: "header-2 text-lightGreen  py-4",
+  page: `grid grid-cols-1 lg:grid-cols-2 gap-10 py-5 items-center min-h-[470px]`,
+  flex: "flex items-center gap-1",
+  image: "w-full overflow-hidden rounded",
+  rightSide: "w-10/12 flex flex-col gap-4",
+  cost: "grid grid-cols-2 pt-2 gap-2",
+  avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
+};
