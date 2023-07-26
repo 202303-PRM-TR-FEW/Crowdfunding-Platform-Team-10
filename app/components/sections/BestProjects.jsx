@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Carousel from "react-material-ui-carousel";
+// import Carousel from "react-material-ui-carousel";
 import { useAuth } from "@/context/AuthContext";
 import LoaderStyle from "../helper/LoaderStyle";
 
@@ -86,16 +86,12 @@ function BestProjects() {
   );
   return (
     <section className="container mx-auto lg:py-28 p-2">
-    <h3 className="header-3 text-center mb-20">Our Latest Projects</h3>
-    <Carousel
-      slidesPerPage={window.innerWidth >= 768 ? 3 : 1} // Set the number of slides based on screen width
-      arrows
-      infiniteLoop
-      autoPlay={false} // Set autoPlay to false to allow manual sliding
-    >
-      {allProjectsPhone}
-    </Carousel>
-  </section>
+      <h3 className="header-3 text-center mb-20">Our Latest Projects</h3>
+      {/* <Carousel> */}
+      {/* {allProjectsPhone} */}
+      projects slider
+      {/* </Carousel> */}
+    </section>
   );
 }
 
