@@ -19,7 +19,7 @@ export default function MyProjectCard({ project }) {
     // page: `grid grid-cols-1 gap-10  items-center min-h-[470px]`,
     flex: "flex items-center gap-1",
     image: "w-full overflow-hidden rounded",
-    rightSide: " flex flex-col gap-4",
+    rightSide: " flex flex-col gap-4 p-2",
     cost: "grid grid-cols-2 pt-2 gap-2",
     avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
   };
@@ -30,7 +30,7 @@ export default function MyProjectCard({ project }) {
   const formattedRise = formatNumber(project?.raised || 0);
   return (
     <>
-      <div className="flex flex-col gap-6 max-w-lg self-center">
+      <div className="flex flex-col gap-6 max-w-lg self-center p-4 shadow-lg rounded">
         <Link key={project.id} href={`/${project.id}`}>
           <div>
             <img
@@ -41,25 +41,24 @@ export default function MyProjectCard({ project }) {
           </div>
         </Link>
         <div className={styles.rightSide}>
-          <h3 className="header-3  lg:w-1/2">{project.name}</h3>
+          <h3 className="header-3 ">{project.name}</h3>
           <p className="sub-header">{project.about}</p>
           <CustomizedProgressBars progressValue={60} />
           <div className={styles.cost}>
             <div>
+              <h4 className="sub-header ">Raised:</h4>
               <CustomizedTooltip mode="dark" title={formattedRise}>
                 <h3 className="header-3 ellipsis-text">${formattedRise}</h3>
               </CustomizedTooltip>
-              <h4 className="sub-header ">Raised:</h4>
             </div>
             <div>
+              <h4 className="sub-header">Goal:</h4>
               <CustomizedTooltip mode="dark" title={formattedGoal}>
                 <h3 className="header-3 ellipsis-text">${formattedGoal}</h3>
               </CustomizedTooltip>
-
-              <h4 className="sub-header">Goal:</h4>
             </div>
           </div>
-          <div className={`${styles.flex} justify-between p-3`}>
+          <div className={`${styles.flex} justify-between py-3`}>
             <div className="">
               <div>
                 <ClassTwoToneIcon color="action" />

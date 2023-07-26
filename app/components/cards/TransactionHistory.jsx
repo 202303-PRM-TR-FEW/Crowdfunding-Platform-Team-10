@@ -61,14 +61,14 @@ export default function TransactionHistory({ usersProjects }) {
   };
   console.log(donate);
 
-  const triggers = {
-    onMouseEnter: () => setOpenMenu(true),
-    onMouseLeave: () => setOpenMenu(false),
-  };
+  // const triggers = {
+  //   onMouseEnter: () => setOpenMenu(true),
+  //   onMouseLeave: () => setOpenMenu(false),
+  // };
 
-  const handleOpen = (value) => {
-    setOpen((prevOpen) => (prevOpen === value ? 0 : value));
-  };
+  // const handleOpen = (value) => {
+  //   setOpen((prevOpen) => (prevOpen === value ? 0 : value));
+  // };
 
   if (loading) {
     return <LoaderStyle />;
@@ -84,8 +84,8 @@ export default function TransactionHistory({ usersProjects }) {
   };
 
   return (
-    <div className="">
-      <Accordion>
+    <div className="lg:fixed lg:w-96 w-full">
+      <Accordion defaultExpanded>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
