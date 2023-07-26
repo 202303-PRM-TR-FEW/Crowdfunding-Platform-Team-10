@@ -36,7 +36,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Avatar, Divider } from "@mui/material";
 
-export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
+export default function TransactionHistory({ usersProjects }) {
   // const [open, setOpen] = useState(1);
   const [openMenu, setOpenMenu] = useState(false);
   const [donate, setDonate] = useState([]);
@@ -144,39 +144,45 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
             </div>
             <div>
               <List>
-                {donate.map((donation, index) => {
-                  // const isLast = index === donate.length - 1;
-                  // const classes = isLast
-                  //   ? "p-4"
-                  //   : "p-4 border-b border-blue-gray-50";
+                {donate.length > 0 ? (
+                  donate.map((donation, index) => {
+                    // const isLast = index === donate.length - 1;
+                    // const classes = isLast
+                    //   ? "p-4"
+                    //   : "p-4 border-b border-blue-gray-50";
 
-                  return (
-                    <ListItem disablePadding>
-                      <div
-                        className="hover:bg-blue-gray-50 hover:rounded w-full"
-                        key={donation.id}
-                      >
-                        <div className="flex gap-2 items-center p-2 justify-between">
-                          <div className="flex gap-2  items-center ">
-                            <Avatar
-                              src={donation.userImg}
-                              alt={donation.userName}
-                            />
-                            <div className="flex flex-col">
-                              <Typography variant="h6">
-                                {donation.userName}
-                              </Typography>
-                              <Typography>Bio</Typography>
+                    return (
+                      <ListItem disablePadding>
+                        <div
+                          className="hover:bg-blue-gray-50 hover:rounded w-full"
+                          key={donation.id}
+                        >
+                          <div className="flex gap-2 items-center p-2 justify-between">
+                            <div className="flex gap-2  items-center ">
+                              <Avatar
+                                src={donation.userImg}
+                                alt={donation.userName}
+                              />
+                              <div className="flex flex-col">
+                                <Typography variant="h6">
+                                  {donation.userName}
+                                </Typography>
+                                <Typography>Bio</Typography>
+                              </div>
+                            </div>
+                            <div className="">
+                              <Typography>{donation.donaiton} $</Typography>
                             </div>
                           </div>
-                          <div className="">
-                            <Typography>{donation.donaiton} $</Typography>
-                          </div>
                         </div>
-                      </div>
-                    </ListItem>
-                  );
-                })}
+                      </ListItem>
+                    );
+                  })
+                ) : (
+                  <div className="text-center">
+                    No Donations Found For This Project
+                  </div>
+                )}
 
                 {/* <Avatar
                     variant="rounded"
