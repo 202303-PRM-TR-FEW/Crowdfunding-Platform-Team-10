@@ -100,9 +100,9 @@ const Page = () => {
                   />
                 </svg>
               </div> */}
-              {usersProjects.map((project) => {
+              {usersProjects.map((project, i) => {
                 return (
-                  <Link className="grid" href={`/${project?.id}`}>
+                  <Link key={i} className="grid" href={`/${project?.id}`}>
                     <MyProjectCard project={project} />
                   </Link>
                 );

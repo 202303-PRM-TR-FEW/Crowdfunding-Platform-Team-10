@@ -31,15 +31,14 @@ export default function MyProjectCard({ project }) {
   return (
     <>
       <div className="flex flex-col gap-6 max-w-lg self-center p-4 shadow-lg rounded">
-        <Link key={project.id} href={`/${project.id}`}>
-          <div>
-            <img
-              src={project.url}
-              alt="Project of the week"
-              className="image-animated w-full"
-            />
-          </div>
-        </Link>
+        <div>
+          <img
+            src={project.url}
+            alt="Project of the week"
+            className="image-animated w-full"
+          />
+        </div>
+
         <div className={styles.rightSide}>
           <h3 className="header-3 ">{project.name}</h3>
           <p className="sub-header">{project.about}</p>
