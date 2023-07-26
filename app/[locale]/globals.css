@@ -89,7 +89,7 @@ input[type="file"] {
   @apply text-base md:text-lg lg:text-xl text-white;
 }
 .btn-primary {
-  @apply bg-lightGreen hover:bg-hoverLightGreen text-white font-bold text-xl py-2 px-4 rounded text-center cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-lightGreen  hover:bg-hoverLightGreen text-white font-bold text-base py-3 px-5 rounded text-center cursor-pointer transition-all duration-300 ease-in-out;
 }
 .btn-secondary {
   @apply text-lightGreen hover:text-hoverLightGreen border-2 border-lightGreen hover:border-hoverLightGreen cursor-pointer font-bold text-xl py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
@@ -101,9 +101,21 @@ input[type="file"] {
 .color-green {
   @apply text-[#00c1a2];
 }
+.bg-green {
+  @apply bg-[#00c1a2];
+}
 
 .color-grey {
-  @apply text-[#8a8a8a] text-sm;
+  @apply text-[#8a8a8a] text-base;
+}
+.color-yellow{
+  @apply text-[#f0bd07]
+}
+.bg-yellow{
+  @apply bg-[#f0bd07]
+}
+.bg-yellow-light{
+  @apply bg-[#f5d20e41]
 }
 .bgc-green {
   @apply bg-[#00c1a2];
@@ -112,14 +124,7 @@ input[type="file"] {
   @apply bg-white text-basicgray border-2 cursor-pointer font-bold text-base py-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
 }
 
-.shape01 {
-  /* color: #f0bd07; */
-  background-image: url(../../public/assets/images/shape02.png);
-}
 
-cpr {
-  color: #ffffff79;
-}
 @keyframes moveCircle {
   0% {
     transform: translate(0, 0);
@@ -139,4 +144,9 @@ cpr {
     transform: rotate(360deg) translate(150px);
   }
 
+}
+
+
+d{
+  color: #00c1a128;
 }
