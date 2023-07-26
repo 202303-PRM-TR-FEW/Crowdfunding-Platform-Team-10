@@ -4,7 +4,6 @@ import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
-
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
@@ -13,6 +12,7 @@ const Home = () => {
   const { projects, formatNumber } = useAuth();
   const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
+
   useEffect(() => {
     setData(projects);
   }, [projects]);
@@ -21,11 +21,11 @@ const Home = () => {
   useEffect(() => {
     let max = 0;
 
-    if (data.length > 0) {
-      data.forEach((project) => {
+    if (projects.length > 0) {
+      projects.forEach((project) => {
         if (project.viewCount > max) {
           max = project.viewCount;
-          setProjectOFWeek(project); // Update the projectOfWeek variable
+          setProjectOFWeek(project);
         }
       });
     }
