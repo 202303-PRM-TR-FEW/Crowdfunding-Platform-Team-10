@@ -38,11 +38,18 @@ import { Avatar, Divider } from "@mui/material";
 
 export default function TransactionHistory({ usersProjects }) {
   // const [open, setOpen] = useState(1);
-  const [openMenu, setOpenMenu] = useState(false);
+  // const [openMenu, setOpenMenu] = useState(false);
   const [donate, setDonate] = useState([]);
   const { loading, donations, projects } = useAuth();
   const [selectedProject, setSelectedProject] = useState("");
-
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   useEffect(() => {
     if (!loading) {
       let filteredDonations = donations.filter((donation) =>
@@ -73,15 +80,6 @@ export default function TransactionHistory({ usersProjects }) {
   if (loading) {
     return <LoaderStyle />;
   }
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <div className="lg:fixed lg:w-96 w-full">

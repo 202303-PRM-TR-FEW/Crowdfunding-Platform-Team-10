@@ -77,7 +77,7 @@ const Page = () => {
       {isLoading ? (
         <LoaderStyle />
       ) : usersProjects.length > 0 ? (
-        <div className="lg:grid-cols-5 grid-cols-1 grid gap-10  items-start">
+        <div className="lg:grid-cols-5 grid-cols-1 grid gap-14  items-start">
           <div className="lg:col-span-3">
             <div className="px-8 flex flex-col gap-10">
               {/* <div className="w-full flex items-center justify-between">
@@ -100,6 +100,9 @@ const Page = () => {
                   />
                 </svg>
               </div> */}
+              <Typography variant="h1" className="">
+                My Projects
+              </Typography>
               {usersProjects.map((project, i) => {
                 return (
                   <Link key={i} className="grid" href={`/${project?.id}`}>
