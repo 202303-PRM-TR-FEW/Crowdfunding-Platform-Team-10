@@ -2,24 +2,42 @@
 
 import { Fragment, useContext, useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
-import {
-  Typography,
-  Button,
-  Avatar,
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-} from "@material-tailwind/react";
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+// import {
+//   Typography,
+//   Button,
+//   Avatar,
+//   Accordion,
+//   AccordionHeader,
+//   AccordionBody,
+//   Menu,
+//   MenuHandler,
+//   MenuList,
+//   MenuItem,
+// } from "@material-tailwind/react";
+// import { ChevronRightIcon } from "@heroicons/react/24/outline";
+// import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import LoaderStyle from "../helper/LoaderStyle";
+import * as React from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import { Avatar, Divider } from "@mui/material";
 
 export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
-  const [open, setOpen] = useState(1);
+  // const [open, setOpen] = useState(1);
   const [openMenu, setOpenMenu] = useState(false);
   const [donate, setDonate] = useState([]);
   const { loading, donations, projects } = useAuth();
@@ -38,10 +56,10 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
       setDonate(filteredDonations);
     }
   }, [donations, selectedProject, loading, usersProjects]);
-
   const handleProjectSelect = (projectId) => {
     setSelectedProject(projectId);
   };
+  console.log(donate);
 
   const triggers = {
     onMouseEnter: () => setOpenMenu(true),
@@ -56,9 +74,123 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
     return <LoaderStyle />;
   }
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <div>
-      <Fragment>
+    <div className="">
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>Transaction History</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <div>
+            <div>
+              <div>
+                <Button
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                  endIcon={<KeyboardArrowDownIcon />}
+                >
+                  Select Project
+                </Button>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={() => handleProjectSelect("")}>
+                    All Projects
+                  </MenuItem>
+                  <Divider />
+                  {usersProjects.map((project) => (
+                    <MenuItem
+                      key={project?.id}
+                      onClick={() => handleProjectSelect(project?.id)}
+                    >
+                      {project?.name}
+                    </MenuItem>
+                  ))}
+                </Menu>
+                {/* <MenuItem onClick={() => handleProjectSelect("")}>
+                            All projects
+                          </MenuItem>
+                          {usersProjects.map((project) => (
+                            <MenuItem
+                              key={project?.id}
+                              onClick={() => handleProjectSelect(project?.id)}
+                            >
+                              {project?.name}
+                            </MenuItem>
+                          ))} */}
+              </div>
+            </div>
+            <div>
+              <List>
+                {donate.map((donation, index) => {
+                  // const isLast = index === donate.length - 1;
+                  // const classes = isLast
+                  //   ? "p-4"
+                  //   : "p-4 border-b border-blue-gray-50";
+
+                  return (
+                    <ListItem disablePadding>
+                      <div
+                        className="hover:bg-blue-gray-50 hover:rounded w-full"
+                        key={donation.id}
+                      >
+                        <div className="flex gap-2 items-center p-2 justify-between">
+                          <div className="flex gap-2  items-center ">
+                            <Avatar
+                              src={donation.userImg}
+                              alt={donation.userName}
+                            />
+                            <div className="flex flex-col">
+                              <Typography variant="h6">
+                                {donation.userName}
+                              </Typography>
+                              <Typography>Bio</Typography>
+                            </div>
+                          </div>
+                          <div className="">
+                            <Typography>{donation.donaiton} $</Typography>
+                          </div>
+                        </div>
+                      </div>
+                    </ListItem>
+                  );
+                })}
+
+                {/* <Avatar
+                    variant="rounded"
+                    className="w-12 h-12 object-contain"
+                    src={donate[0].userImg}
+                    alt={donate[0].userName}
+                  />
+                  <div>asdasdasd</div> */}
+              </List>
+            </div>
+          </div>
+        </AccordionDetails>
+      </Accordion>
+      {/* <Fragment>
         <Accordion open={open === 1}>
           <AccordionHeader
             onClick={() => handleOpen(1)}
@@ -210,7 +342,7 @@ export default function TransactionHistory({ oneProjectInfo, usersProjects }) {
             actualize our dreams.
           </AccordionBody>
         </Accordion>
-      </Fragment>
+      </Fragment> */}
     </div>
   );
 }

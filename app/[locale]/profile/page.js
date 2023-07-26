@@ -42,7 +42,7 @@ const Page = () => {
       }
     }
   }, []);
-
+  console.log(usersProjects);
   let oneProjectInfo = null;
 
   if (!isLoading && usersProjects.length > 0) {
@@ -66,7 +66,7 @@ const Page = () => {
   }
 
   return (
-    <div className="px-2 lg:px-20 p-5 md:p-7 lg:p-10">
+    <div className="flex justify-center items-center bg-white h-max overflow-y-auto lg:p-24 px-4 md:px-24 py-20 ">
       <ConfirmDialog
         open={open}
         setOpen={setOpen}
@@ -78,10 +78,10 @@ const Page = () => {
         <LoaderStyle />
       ) : oneProjectInfo ? (
         <div
-          className="lg:grid-cols-3 grid-cols-1 grid lg:gap-36 w-full justify-between items-start"
+          className="lg:grid-cols-5 grid-cols-1 grid lg:gap-10 w-full justify-between items-start"
           key={oneProjectInfo.id}
         >
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <div className="p-4">
               <div className="w-full flex items-center justify-between">
                 <Typography variant="h1" className="mb-4">
@@ -103,13 +103,20 @@ const Page = () => {
                   />
                 </svg>
               </div>
-              <Link href={`/${oneProjectInfo?.id}`}>
+              {usersProjects.map((project) => {
+                return (
+                  <Link href={`/${project?.id}`}>
+                    <MyProjectCard projectOfWeek={project} />
+                  </Link>
+                );
+              })}
+              {/* <Link href={`/${oneProjectInfo?.id}`}>
                 <MyProjectCard projectOfWeek={oneProjectInfo} />
-              </Link>
+              </Link> */}
             </div>
           </div>
 
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <TransactionHistory
               usersProjects={usersProjects}
               oneProjectInfo={oneProjectInfo}
