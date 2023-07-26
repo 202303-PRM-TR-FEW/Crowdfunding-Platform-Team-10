@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import * as React from "react";
+
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { useAuth } from "@/context/AuthContext";
@@ -9,6 +8,8 @@ import SearchList from "./search/SearchList";
 import { Avatar } from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import logo from "../../public/logo.svg";
+import React, { useEffect, useState } from "react";
+ 
 
 import {
   AppBar,
@@ -19,7 +20,7 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
-  Container,
+ 
 } from "@mui/material";
 import {
   AccountCircle,
@@ -62,6 +63,23 @@ export default function Nav() {
     logout();
     Router.push("/login");
   };
+  const [scrolling, setScrolling] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -195,14 +213,16 @@ export default function Nav() {
   );
 
   return (
-    <Container maxWidth="sm">
-      <AppBar
-        style={{
-          background: "transparent",
-          boxShadow: "none",
-          backdropFilter: "blur(2px)",
-        }}
-      >
+    <AppBar
+ 
+      sx={{
+        background: scrolling ? "#ffffff8a" : "transparent",
+        boxShadow: "none",
+        backdropFilter: "blur(10px)",
+        transition: "background 0.3s ease-in-out", 
+      }}
+    >
+      <Box sx={{ px: { xs: 2, lg: 12 } }}>
         <Toolbar>
           <Link href="/" sx={{ display: { xs: "none", sm: "block" } }}>
             <Typography
@@ -261,10 +281,10 @@ export default function Nav() {
             </IconButton>
           </Box>
         </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Container>
+        {renderMobileMenu}
+        {renderMenu}
+      </Box>
+    </AppBar>
   );
 }
 
@@ -337,3 +357,4 @@ function SearchComponent() {
     </div>
   );
 }
+
