@@ -25,7 +25,7 @@ export default function MyProjectCard({ project }) {
   const formattedRise = formatNumber(project?.raised || 0);
   return (
     <>
-      <div className="flex flex-col gap-6 max-w-lg self-center p-4 shadow-lg rounded">
+      <div className="flex flex-col gap-6 max-w-xl self-center p-4 shadow-lg rounded ">
         <div>
           <img
             src={project.url}
