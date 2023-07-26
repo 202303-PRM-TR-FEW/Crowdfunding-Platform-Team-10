@@ -19,7 +19,8 @@ const SummaryCard = ({
 }) => {
   const styles = {
     flex: "flex items-center gap-1",
-    card: "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[380px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
+    card:
+      "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[410px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
     image: "w-full h-[222px] image-animated",
     body: "p-3 flex flex-col gap-y-2 ",
     avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
