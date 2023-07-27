@@ -4,7 +4,6 @@ import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/material";
 import Link from "next/link";
 import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
-
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
@@ -13,6 +12,7 @@ const Home = () => {
   const { projects, formatNumber } = useAuth();
   const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
+
   useEffect(() => {
     setData(projects);
   }, [projects]);
@@ -21,11 +21,11 @@ const Home = () => {
   useEffect(() => {
     let max = 0;
 
-    if (data.length > 0) {
-      data.forEach((project) => {
+    if (projects.length > 0) {
+      projects.forEach((project) => {
         if (project.viewCount > max) {
           max = project.viewCount;
-          setProjectOFWeek(project); // Update the projectOfWeek variable
+          setProjectOFWeek(project);
         }
       });
     }
@@ -44,8 +44,10 @@ const Home = () => {
             img={card.url}
             cardUrl={card.id}
             title={card.name}
-            raised={formattedRise}
-            goal={formattedGoal}
+            formattedRise={formattedRise}
+            formattedGoal={formattedGoal}
+            goal={card.goal}
+            raised={card.raised}
             category={card.category}
             creator={card.creator}
             viewCount={formattedViewCount}
@@ -62,10 +64,10 @@ const Home = () => {
   );
 
   return (
-    <div className="container mx-auto  py-20 mt-5">
+    <div className="container mx-auto py-20 mt-5">
       <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
       <CategoryFiltering data={projects} filtrindData={setData} />
-      <Box className="bg-cards-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+      <Box className="bg-cards-container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {allProjects}
       </Box>
     </div>

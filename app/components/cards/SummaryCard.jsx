@@ -15,11 +15,13 @@ const SummaryCard = ({
   goal,
   category,
   creator,
+  formattedGoal,
+  formattedRise,
   viewCount,
 }) => {
   const styles = {
     flex: "flex items-center gap-1",
-    card: "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[380px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
+    card: "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[410px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
     image: "w-full h-[222px] image-animated",
     body: "p-3 flex flex-col gap-y-2 ",
     avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
@@ -49,11 +51,11 @@ const SummaryCard = ({
         <div className="flex flex-row justify-between">
           <div>
             <h4 className="sub-header">Raised:</h4>
-            <p className="header-4">${raised}</p>
+            <p className="header-4">${formattedRise}</p>
           </div>
           <div>
             <h4 className="sub-header">Goal:</h4>
-            <p className="header-4">${goal}</p>
+            <p className="header-4">${formattedGoal}</p>
           </div>
         </div>
         <div className={`${styles.flex} justify-between py-2`}>

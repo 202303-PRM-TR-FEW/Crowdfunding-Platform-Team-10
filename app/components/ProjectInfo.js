@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import user_img from "../../public/assets/images/user_img.jpg";
 import eyeIcon from "../../public/assets/images/eye.png";
@@ -5,6 +6,7 @@ import eyeIcon from "../../public/assets/images/eye.png";
 import Image from "next/image";
 import DonationForm from "./forms/DonationForm";
 import { useAuth } from "@/context/AuthContext";
+import CustomizedProgressBars from "./helper/ProgressBar";
 
 export const ProjectInfo = ({
   title,
@@ -17,6 +19,8 @@ export const ProjectInfo = ({
   id,
   viewCount,
   userImg,
+  formattedRise,
+  formattedGoal,
 }) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
@@ -38,6 +42,7 @@ export const ProjectInfo = ({
       : setOpenDonationForm(false);
   };
 
+  const pregresBar = Math.ceil((taken / goal) * 100);
   return (
     <div className={styles.page}>
       <aside className={styles.left}>
@@ -77,16 +82,14 @@ export const ProjectInfo = ({
             <ul className={styles.ul}>
               <li className={styles.raised_li}>
                 Raised:<br></br>
-                <h4 className={styles.numbers}>${taken}</h4>
+                <h4 className={styles.numbers}>${formattedRise}</h4>
               </li>
               <li className={styles.goal_li}>
                 Goal:<br></br>
-                <h4 className={styles.numbers}>${goal}</h4>
+                <h4 className={styles.numbers}>${formattedGoal}</h4>
               </li>
             </ul>
-            <div id="line" className={styles.percent}>
-              <div id="percentage" className={styles.onpercent}></div>
-            </div>
+            <CustomizedProgressBars progressValue={pregresBar} />
             <span className={styles.left_day}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -107,11 +110,15 @@ export const ProjectInfo = ({
           </div>
         </div>
         {user ? (
-          <a className={styles.button_pos}>
-            <button className={styles.button} onClick={handleDonationForm}>
+          taken === goal ? (
+            <div disabled={true} className={styles.completed_project}>
+              The project has been completed 🎉
+            </div>
+          ) : (
+            <button className="btn-primary my-3" onClick={handleDonationForm}>
               Fund this project
             </button>
-          </a>
+          )
         ) : (
           <a href="/login" className={styles.button_pos}>
             <button className={styles.button}>
@@ -167,4 +174,6 @@ const styles = {
   left_day: `flex mt-8 justify-center text-sm`,
   button: `bg-black hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-md border border-black mt-14 w-80 text-center ms-0 md:w-100`,
   button_pos: `flex justify-center md:justify-start`,
+  completed_project:
+    "bg-lightGreen  text-white font-bold text-xl pt-4 pb-2 px-4 my-4 rounded text-center transition-all duration-300 ease-in-out",
 };
