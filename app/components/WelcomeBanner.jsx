@@ -31,7 +31,7 @@ const WelcomeBanner = () => {
       if (counter >= totalSuccessfulProjects) {
         clearInterval(timer);
       }
-    }, 10);
+    }, 100);
 
     return () => clearInterval(timer);
   }, [projects]);
