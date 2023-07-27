@@ -34,6 +34,7 @@ function FancyTestimonialsSlider({ testimonials }) {
     const formattedDate = date.toLocaleString();
     return formattedDate;
   }
+
   return (
     <div className="w-full max-w-3xl mx-auto text-center">
       {/* Testimonial image */}
@@ -113,10 +114,39 @@ function FancyTestimonialsSlider({ testimonials }) {
 }
 
 export default function Comments() {
-  const { comments } = useAuth();
+  const { comments, isAuthenticated, setShowCommentForm } = useAuth();
+  const handleAddComment = () => {
+    if (!isAuthenticated) {
+      // If the user is not logged in, redirect to the login page
+      router.push("/locale/login/page.js");
+    } else {
+      // Show the comment form when the user clicks the "Add a comment" button
+      setShowCommentForm(true);
+    }
+  };
   return (
     <section className="lg:h-[600px] py-20 p-3 overflow-hidden">
       <FancyTestimonialsSlider testimonials={comments} />
+      {/* Add a comment button */}
+      <button
+        className="fixed right-4 top-4 bg-green text-white rounded-full px-3 py-2 shadow-md"
+        onClick={handleAddComment}
+      >
+        Add a comment
+      </button>
+
+      {/* If user is not logged in, show a message and a button to go to login */}
+      {!isAuthenticated && (
+        <div className="fixed right-4 top-4 bg-white text-black rounded-md p-3 shadow-md">
+          <p>You have to login to add a comment.</p>
+          <button
+            className="mt-2 bg-green text-white rounded-full px-3 py-2"
+            onClick={() => router.push("/locale/login/page.js")}
+          >
+            Go to login
+          </button>
+        </div>
+      )}
     </section>
   );
 }
