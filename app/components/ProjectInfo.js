@@ -2,15 +2,20 @@
 import React, { useEffect, useState } from "react";
 import user_img from "../../public/assets/images/user_img.jpg";
 import eyeIcon from "../../public/assets/images/eye.png";
-
+import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import Image from "next/image";
 import DonationForm from "./forms/DonationForm";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth, user } from "@/context/AuthContext";
 import CustomizedProgressBars from "./helper/ProgressBar";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "@/config/firebase";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export const ProjectInfo = ({
   title,
   userName,
+  userId,
   about,
   taken,
   goal,
@@ -24,8 +29,10 @@ export const ProjectInfo = ({
 }) => {
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
-  const { user } = useAuth();
+  const [open, setOpen] = useState(false);
 
+  const { user } = useAuth();
+  const router = useRouter();
   useEffect(() => {
     const endDate = new Date(left);
     const today = new Date();
@@ -43,8 +50,29 @@ export const ProjectInfo = ({
   };
 
   const pregresBar = Math.ceil((taken / goal) * 100);
+
+  const handleDeleteProject = () => {
+    setOpen(true);
+  };
+
+  const handleClose = async (word) => {
+    if (word === "Confirm") {
+      await deleteDoc(doc(db, "projects", id.id));
+      toast.success(" Project deleted Succesfully !");
+      router.push("/projects");
+    }
+    setOpen(false);
+  };
+
   return (
     <div className={styles.page}>
+      <ConfirmDialog
+        open={open}
+        setOpen={setOpen}
+        title={"Are you sure to delete this project?"}
+        message={""}
+        handleClose={handleClose}
+      />
       <aside className={styles.left}>
         <img
           src={img}
@@ -126,6 +154,27 @@ export const ProjectInfo = ({
             </button>
           </a>
         )}
+        <div className="">
+          {user.uid === userId && (
+            <div>
+              <svg
+                onClick={handleDeleteProject}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-8 h-8 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                />
+              </svg>
+            </div>
+          )}
+        </div>
 
         <DonationForm
           id={id}
