@@ -1,8 +1,17 @@
 "use client";
 import emailjs from "emailjs-com";
 import React, { useRef } from "react";
-import { ThemeProvider, createTheme, TextField } from "@mui/material";
-
+import {
+  ThemeProvider,
+  createTheme,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import InfoIcon from "@mui/icons-material/Info";
+import { toast } from "react-toastify";
 export default function NewsLetterCard() {
   const theme = createTheme({
     palette: {
@@ -73,8 +82,27 @@ export default function NewsLetterCard() {
 
   const form = useRef();
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const schema = yup
+    .object({
+      to_email: yup
+        .string()
+        .required("Email is Required !")
+        .email("Use a Valid Email"),
+    })
+    .required();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      to_email: "",
+    },
+    resolver: yupResolver(schema),
+  });
+
+  const sendEmail = () => {
     const REARCT_APP_SERVICE_ID = "service_mfq6ump";
     const REARCT_APP_TEMPLATE_ID = "template_cwoodxx";
     const REARCT_APP_USER_ID = "0DOptxtQwVjFVWDq4";
@@ -94,9 +122,12 @@ export default function NewsLetterCard() {
           console.log(error.text);
         }
       );
-    e.target.reset();
   };
-
+  const onSubmit = (data, form) => {
+    sendEmail(form);
+    toast.success("Subscribed to OpenHanded Newsletter!");
+    reset();
+  };
   return (
     <ThemeProvider theme={theme}>
       <section style={containerStyle}>
@@ -125,15 +156,25 @@ export default function NewsLetterCard() {
               </div>
               <form
                 ref={form}
-                onSubmit={sendEmail}
+                onSubmit={handleSubmit(onSubmit)}
                 className="md:px-20 flex flex-col"
               >
                 <TextField
-                  id="outlined-email-input"
+                  id="email"
                   label="Email Address"
                   type="email"
                   name="to_email"
+                  variant="standard"
+                  {...register("to_email")}
                 />
+                <Typography
+                  sx={{ marginY: "10px" }}
+                  variant="small"
+                  className="flex items-center gap-1 font-normal text-red-800 "
+                >
+                  {errors.to_email && <InfoIcon fontSize="small" />}
+                  {errors.to_email?.message}
+                </Typography>
 
                 <button
                   type="submit"
