@@ -37,6 +37,7 @@ function FancyTestimonialsSlider({ testimonials }) {
   return (
     <div className="w-full max-w-3xl mx-auto text-center">
       {/* Testimonial image */}
+      <h2 className="header-3 text-center my-3 mb-10">Testimonials</h2>
       <div className="relative h-32">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[480px] h-[480px] pointer-events-none before:absolute before:inset-0 before:bg-gradient-to-b before:from-teal-500/25 before:via-teal-500/5 before:via-25% before:to-teal-500/0 before:to-75% before:rounded-full before:-z-10">
           <div className="h-32 [mask-image:_linear-gradient(0deg,transparent,theme(colors.white)_20%,theme(colors.white))]">
@@ -115,7 +116,7 @@ function FancyTestimonialsSlider({ testimonials }) {
 export default function Comments() {
   const { comments } = useAuth();
   return (
-    <section className="lg:h-[600px] py-20 p-3 overflow-hidden">
+    <section className="lg:h-[700px] py-20 p-3 overflow-hidden">
       <FancyTestimonialsSlider testimonials={comments} />
     </section>
   );
