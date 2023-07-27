@@ -91,6 +91,7 @@ function Project({ params }) {
         title={data.name}
         userName={data.creator.userName}
         userImg={data.creator.userImg}
+        userId={data.creator.userId}
         about={data.about}
         taken={data.raised}
         goal={data.goal}
