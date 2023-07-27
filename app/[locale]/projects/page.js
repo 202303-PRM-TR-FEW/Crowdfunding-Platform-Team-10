@@ -16,7 +16,6 @@ const Home = () => {
   useEffect(() => {
     setData(projects);
   }, [projects]);
-
   // Find project with maximum contributions
   useEffect(() => {
     let max = 0;
@@ -51,6 +50,7 @@ const Home = () => {
             category={card.category}
             creator={card.creator}
             viewCount={formattedViewCount}
+            endingDate={card.endingDate}
           />
         );
       })

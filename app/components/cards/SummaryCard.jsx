@@ -1,5 +1,6 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CustomizedProgressBars from "../helper/ProgressBar";
 import ClassTwoToneIcon from "@mui/icons-material/ClassTwoTone";
 import { Avatar } from "@material-tailwind/react";
@@ -9,6 +10,7 @@ import eyeIcon from "../../../public/assets/images/eye.png";
 
 const SummaryCard = ({
   cardUrl,
+  endingDate,
   img,
   title,
   raised,
@@ -19,6 +21,27 @@ const SummaryCard = ({
   formattedRise,
   viewCount,
 }) => {
+  const [succesState, setSuccessState] = useState("");
+
+  useEffect(() => {
+    const endDate = new Date(endingDate);
+    const today = new Date();
+    const timeDiff = endDate.getTime() - today.getTime();
+    const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (raised >= goal) {
+      setSuccessState("success");
+    } else if (daysRemaining <= 0) {
+      setSuccessState("failed");
+    } else if (daysRemaining < 5) {
+      setSuccessState("5 days left");
+    }
+  }, []);
+
+  console.log(title, ":", succesState);
+
+  const progressBar = Math.ceil((raised / goal) * 100);
+
   const styles = {
     flex: "flex items-center gap-1",
     card: "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[410px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
@@ -27,7 +50,7 @@ const SummaryCard = ({
     avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
     button: `bg-black hover:bg-orange-800 lg:hover:scale-[1.8] origin-left transform transition duration-500 hover:scale-[1.2] text-white font-bold py-2 px-4 rounded-md border border-black mt-8 w-80 text-center ms-0 md:w-100`,
   };
-  const pregresBar = Math.ceil((raised / goal) * 100);
+
   return (
     <div className={styles.card}>
       <div className="overflow-hidden rounded">
@@ -47,7 +70,7 @@ const SummaryCard = ({
       </div>
       <div className={styles.body}>
         <h4 className="header-4 min-h-[64px] ">{title}</h4>
-        <CustomizedProgressBars progressValue={pregresBar} />
+        <CustomizedProgressBars progressValue={progressBar} />
         <div className="flex flex-row justify-between">
           <div>
             <h4 className="sub-header">Raised:</h4>
