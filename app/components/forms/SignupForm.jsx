@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
-import welcomeHand from "../../../public/assets/images/welcome-hand.png";
 import { db } from "@/config/firebase";
 import { FileUpload } from "@mui/icons-material";
 import InfoIcon from "@mui/icons-material/Info";
@@ -24,6 +23,7 @@ import {
 } from "@mui/material";
 import { countries } from "@/data/countries";
 import Link from "next/link";
+import { toast } from "react-toastify";
 const theme = createTheme({
   palette: {
     primary: {
@@ -73,16 +73,15 @@ const SignupForm = () => {
 
   const router = useRouter();
 
-  const { user, signup } = useAuth();
-  const [err, setErr] = useState("");
+  const { signup } = useAuth();
 
-  const [userData, setUserData] = useState({
-    name: "",
-    bio: "",
-    userImg: "",
-    projects: [],
-    donations: [],
-  });
+  // const [userData, setUserData] = useState({
+  //   name: "",
+  //   bio: "",
+  //   userImg: "",
+  //   projects: [],
+  //   donations: [],
+  // });
 
   const onSubmit = async (data) => {
     const storage = getStorage();
@@ -91,12 +90,9 @@ const SignupForm = () => {
       console.log(storageRef);
       getDownloadURL(ref(storage, data.userImg[0].name)).then(
         async (imgUrl) => {
-          setErr("");
-
           try {
             const res = await signup(data.email, data.password);
             await setDoc(doc(db, "users", res.user.uid), {
-              // ...userData,
               name: data.name,
               bio: data.bio,
               userImg: imgUrl,
@@ -109,7 +105,9 @@ const SignupForm = () => {
 
             router.push("/profile");
           } catch (e) {
-            setErr(e.message);
+            toast.error(e.code, {
+              position: toast.POSITION.TOP_RIGHT,
+            });
           }
         }
       );
@@ -293,7 +291,6 @@ const SignupForm = () => {
                     Sign Up
                   </button>
                 </form>
-                <p>{err}</p>
               </div>
             </Container>
           </div>

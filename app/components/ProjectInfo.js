@@ -155,7 +155,7 @@ export const ProjectInfo = ({
           </a>
         )}
         <div className="">
-          {user.uid === userId && (
+          {user && user.uid === userId ? (
             <div>
               <svg
                 onClick={handleDeleteProject}
@@ -173,7 +173,7 @@ export const ProjectInfo = ({
                 />
               </svg>
             </div>
-          )}
+          ) : null}
         </div>
 
         <DonationForm

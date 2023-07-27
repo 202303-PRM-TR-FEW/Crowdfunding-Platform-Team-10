@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "@/context/AuthContext";
+import { toast } from "react-toastify";
 import {
   Container,
   TextField,
@@ -65,12 +66,26 @@ const LoginForm = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data.email, data.password);
     try {
       await login(data.email, data.password);
       router.push("/profile");
     } catch (err) {
       console.log(err);
+
+      // Check if the error is due to user not found
+      if (err.code === "auth/user-not-found") {
+        toast.error(
+          "Invalid email or password. Please check your login credentials.",
+          {
+            position: toast.POSITION.TOP_RIGHT,
+          }
+        );
+      } else {
+        // For other errors, show a generic error message
+        toast.error(err.code, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     }
   };
 
