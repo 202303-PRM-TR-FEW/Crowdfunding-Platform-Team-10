@@ -11,6 +11,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import SuccessBadge from "./SuccessBadge";
 
 export const ProjectInfo = ({
   title,
@@ -49,7 +50,7 @@ export const ProjectInfo = ({
       : setOpenDonationForm(false);
   };
 
-  const pregresBar = Math.ceil((taken / goal) * 100);
+  const progressBar = Math.ceil((taken / goal) * 100);
 
   const handleDeleteProject = () => {
     setOpen(true);
@@ -91,6 +92,7 @@ export const ProjectInfo = ({
             <Image src={eyeIcon} alt="eye" width={20} height={20} />
           </li>
         </div>
+        <SuccessBadge endingDate={left} raised={taken} goal={goal} />
         <div id="profile" className={styles.short_profile}>
           <img
             width={295}
@@ -117,7 +119,7 @@ export const ProjectInfo = ({
                 <h4 className={styles.numbers}>${formattedGoal}</h4>
               </li>
             </ul>
-            <CustomizedProgressBars progressValue={pregresBar} />
+            <CustomizedProgressBars progressValue={progressBar} />
             <span className={styles.left_day}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
