@@ -73,7 +73,7 @@ const SignupForm = () => {
 
   const router = useRouter();
 
-  const { signup } = useAuth();
+  const { user, signup } = useAuth();
 
   // const [userData, setUserData] = useState({
   //   name: "",
@@ -84,34 +84,52 @@ const SignupForm = () => {
   // });
 
   const onSubmit = async (data) => {
-    const storage = getStorage();
-    const storageRef = ref(storage, data.userImg[0].name);
-    uploadBytes(storageRef, data.userImg[0]).then(async (snapshot) => {
-      console.log(storageRef);
-      getDownloadURL(ref(storage, data.userImg[0].name)).then(
-        async (imgUrl) => {
-          try {
-            const res = await signup(data.email, data.password);
-            await setDoc(doc(db, "users", res.user.uid), {
-              name: data.name,
-              bio: data.bio,
-              userImg: imgUrl,
-              projects: data.projects,
-              donations: data.donations,
-              email: data.email,
-              timeStamp: serverTimestamp(),
-              country: data.country,
-            });
+    try {
+      const res = await signup(data.email, data.password);
+      const user = res.user; // The signed-up user object
+      handleImageUploadAndUserData(data, user.uid);
+    } catch (e) {
+      toast.error(e.code, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+  const handleImageUploadAndUserData = async (data, userId) => {
+    try {
+      const storage = getStorage();
+      const storageRef = ref(storage, data.userImg[0].name);
+      const snapshot = await uploadBytes(storageRef, data.userImg[0]);
 
-            router.push("/profile");
-          } catch (e) {
-            toast.error(e.code, {
-              position: toast.POSITION.TOP_RIGHT,
-            });
-          }
-        }
-      );
-    });
+      const imgUrl = await getDownloadURL(snapshot.ref);
+
+      await setDoc(doc(db, "users", userId), {
+        name: data.name,
+        bio: data.bio,
+        userImg: imgUrl,
+        projects: data.projects,
+        donations: data.donations,
+        email: data.email,
+        timeStamp: serverTimestamp(),
+        country: data.country,
+      });
+
+      router.push("/profile");
+    } catch (e) {
+      if (e.code == "auth/email-already-in-use") {
+        toast.error("This email already exists.", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      } else if (e.code == "auth/weak-password") {
+        toast.error("Passwords must have at least 6 characters.", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      } else {
+        // For other errors, show a generic error message
+        toast.error(e.code, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    }
   };
 
   return (
