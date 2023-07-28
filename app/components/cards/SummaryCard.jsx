@@ -7,7 +7,8 @@ import { Avatar } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
 import eyeIcon from "../../../public/assets/images/eye.png";
-
+import { useAuth } from "@/context/AuthContext";
+import SuccessBadge from "../SuccessBadge";
 const SummaryCard = ({
   cardUrl,
   endingDate,
@@ -21,26 +22,10 @@ const SummaryCard = ({
   formattedRise,
   viewCount,
 }) => {
-  const [succesState, setSuccessState] = useState("");
-
-  useEffect(() => {
-    const endDate = new Date(endingDate);
-    const today = new Date();
-    const timeDiff = endDate.getTime() - today.getTime();
-    const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-    if (raised >= goal) {
-      setSuccessState("success");
-    } else if (daysRemaining <= 0) {
-      setSuccessState("failed");
-    } else if (daysRemaining < 5) {
-      setSuccessState("5 days left");
-    }
-  }, []);
-
-  console.log(title, ":", succesState);
-
+  const { isSuccessful } = useAuth();
   const progressBar = Math.ceil((raised / goal) * 100);
+  const successState = isSuccessful(endingDate, raised, goal);
+  // console.log(title, ":", successState);
 
   const styles = {
     flex: "flex items-center gap-1",
@@ -51,11 +36,38 @@ const SummaryCard = ({
     button: `bg-black hover:bg-orange-800 lg:hover:scale-[1.8] origin-left transform transition duration-500 hover:scale-[1.2] text-white font-bold py-2 px-4 rounded-md border border-black mt-8 w-80 text-center ms-0 md:w-100`,
   };
 
+  ``;
+
   return (
-    <div className={styles.card}>
+    <div
+      className={`flex flex-col   ${
+        successState === "Successful"
+          ? "border-lightGreen border-[2px]"
+          : successState.length > 10
+          ? "border-red-800 border-[2px]"
+          : "border-[#0000002d] border-[1px]"
+      }  self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[410px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out`}
+    >
       <div className="overflow-hidden rounded">
         <img className={styles.image} src={img} alt="project img" />
       </div>
+      <SuccessBadge endingDate={endingDate} raised={raised} goal={goal} />
+
+      {/* <div>
+        <span
+          className={`text-xs ms-1 px-5 py-1 pt-2 rounded ${
+            successState === "Active"
+              ? "text-lightGreen bg-yellow-light"
+              : successState === "Successful"
+              ? "text-white bg-lightGreen"
+              : successState === "Successful"
+              ? "text-white bg-gray-500"
+              : "text-white bg-red-800 "
+          }`}
+        >
+          {successState}
+        </span>
+      </div> */}
       <div className={`${styles.flex} justify-between p-3`}>
         <div className="">
           <div>
