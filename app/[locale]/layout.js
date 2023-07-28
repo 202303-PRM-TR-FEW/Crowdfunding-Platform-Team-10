@@ -1,12 +1,11 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { AuthContextProvider } from "@/context/AuthContext";
-
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import AddProject from "@/components/helper/AddProject";
 import Toaster from "@/components/helper/Toaster";
+import Providers from "@/providers";
 // import Providers from "@/components/helper/ProviderTheme";
 // import ThemeButton from "@/components/theme/ThemeButton";
 
@@ -37,8 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <AuthContextProvider>
-          {/* <Providers> */}
+        <Providers>
           {/* <ThemeButton /> */}
 
           <Nav />
@@ -46,8 +44,7 @@ export default function RootLayout({ children }) {
           <Footer />
           <AddProject />
           <Toaster />
-          {/* </Providers> */}
-        </AuthContextProvider>
+        </Providers>
       </body>
     </html>
   );
