@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
@@ -72,7 +73,7 @@ const Page = () => {
         ) : usersProjects.length > 0 ? (
           <>
             <h1 className="header-2 text-lightGreen">My Projects</h1>
-            <div className="flex py-10 gap-8 ">
+            <div className="flex flex-col lg:flex-row py-10 gap-8 ">
               <div className="w-full lg:w-7/12">
                 <div className="flex flex-col gap-10 ">
                   {usersProjects.map((project, i) => {
@@ -84,7 +85,7 @@ const Page = () => {
                   })}
                 </div>
               </div>
-              <div className="sticky z-50 top-[70px] overflow-y-auto w-full lg:w-5/12 self-start order-first lg:order-last">
+              <div className="sticky z-50 top-[68px] shadow-lg overflow-y-auto w-full lg:w-5/12 self-start order-first lg:order-last">
                 <div className="max-h-screen  overflow-y-auto">
                   <TransactionHistory usersProjects={usersProjects} />
                 </div>
