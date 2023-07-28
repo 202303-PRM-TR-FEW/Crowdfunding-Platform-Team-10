@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 function FancyTestimonialsSlider({ testimonials }) {
   const testimonialsRef = useRef(null);
@@ -34,10 +36,10 @@ function FancyTestimonialsSlider({ testimonials }) {
     const formattedDate = date.toLocaleString();
     return formattedDate;
   }
-
   return (
     <div className="w-full max-w-3xl mx-auto text-center">
       {/* Testimonial image */}
+      <h2 className="header-3 text-center my-3 mb-10">Testimonials</h2>
       <div className="relative h-32">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[480px] h-[480px] pointer-events-none before:absolute before:inset-0 before:bg-gradient-to-b before:from-teal-500/25 before:via-teal-500/5 before:via-25% before:to-teal-500/0 before:to-75% before:rounded-full before:-z-10">
           <div className="h-32 [mask-image:_linear-gradient(0deg,transparent,theme(colors.white)_20%,theme(colors.white))]">
@@ -114,39 +116,84 @@ function FancyTestimonialsSlider({ testimonials }) {
 }
 
 export default function Comments() {
-  const { comments, isAuthenticated, setShowCommentForm } = useAuth();
-  const handleAddComment = () => {
-    if (!isAuthenticated) {
-      // If the user is not logged in, redirect to the login page
-      router.push("/locale/login/page.js");
-    } else {
-      // Show the comment form when the user clicks the "Add a comment" button
+  const { comments, user } = useAuth();
+  const [showLoginNotification, setShowLoginNotification] = useState(false);
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  const [commentText, setCommentText] = useState("");
+
+  const handleAddCommentClick = () => {
+    if (user) {
       setShowCommentForm(true);
+    } else {
+      setShowLoginNotification(true);
     }
   };
-  return (
-    <section className="lg:h-[600px] py-20 p-3 overflow-hidden">
-      <FancyTestimonialsSlider testimonials={comments} />
-      {/* Add a comment button */}
-      <button
-        className="fixed right-4 top-4 bg-green text-white rounded-full px-3 py-2 shadow-md"
-        onClick={handleAddComment}
-      >
-        Add a comment
-      </button>
 
-      {/* If user is not logged in, show a message and a button to go to login */}
-      {!isAuthenticated && (
-        <div className="fixed right-4 top-4 bg-white text-black rounded-md p-3 shadow-md">
-          <p>You have to login to add a comment.</p>
-          <button
-            className="mt-2 bg-green text-white rounded-full px-3 py-2"
-            onClick={() => router.push("/locale/login/page.js")}
-          >
-            Go to login
-          </button>
+  useEffect(() => {
+    let notificationTimeout;
+    if (showLoginNotification) {
+      notificationTimeout = setTimeout(() => {
+        setShowLoginNotification(false);
+      }, 5000);
+    }
+
+    return () => clearTimeout(notificationTimeout);
+  }, [showLoginNotification]);
+
+  const handleGoToLoginClick = () => {
+    router.push("/login");
+    console.log("Go to login");
+  };
+
+  return (
+    <section className="lg:h-[700px] py-20 p-3 overflow-hidden">
+      {showLoginNotification && (
+        <div className="fixed inset-1 flex items-center justify-center text-white">
+          {/* The outer div no longer has the bg-white class */}
+          <div className="p-4 bg-green rounded-lg shadow-lg">
+            <p>You should login first to add a comment 👇 </p>
+            <button
+              className="mt-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
+              onClick={handleGoToLoginClick}
+            >
+              Go to login
+            </button>
+          </div>
         </div>
       )}
+      <div className="relative">
+        <FancyTestimonialsSlider testimonials={comments} />
+        {!user && (
+          <button
+            className="absolute top-3 right-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
+            onClick={handleAddCommentClick}
+          >
+            Add a comment
+          </button>
+        )}
+      </div>
+      {showCommentForm && user ? (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+          <div className="p-4 bg-white rounded-lg shadow-lg">
+            <textarea
+              className="w-full h-32 px-3 py-2 border border-gray-300 rounded-md resize-none"
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              placeholder="Write your comment..."
+            />
+            <button
+              className="mt-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
+              onClick={() => {
+                // Save the comment in the database or perform any other actions here
+                setCommentText("");
+                setShowCommentForm(false);
+              }}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
