@@ -10,25 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
-import {
-  Container,
-  TextField,
-  ThemeProvider,
-  createTheme,
-} from "@mui/material";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#00c1a2",
-    },
-    action: {
-      // Customize the autofill background color
-      hover: "#00c1a2", // Replace with your desired color
-      selected: "#00c1a2", // Replace with your desired color
-    },
-  },
-});
+import { Container, TextField } from "@mui/material";
 
 const schema = yup
   .object({
@@ -118,56 +100,54 @@ const LoginForm = () => {
         </div>
         <div className="">
           <Container maxWidth="xs">
-            <ThemeProvider theme={theme}>
-              <form
-                className="flex flex-col gap-2"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <div className="mt-6">
-                  <TextField
-                    label="Email"
-                    fullWidth
-                    type="email"
-                    defaultValue="test"
-                    {...register("email")}
-                    variant="standard"
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.email && <InfoIcon fontSize="small" />}
-                    {errors.email?.message}
-                  </Typography>
-                </div>
-                <div>
-                  <TextField
-                    label="Password"
-                    fullWidth
-                    type="password"
-                    defaultValue="test"
-                    {...register("password")}
-                    variant="standard"
-                  />
-                  <Typography
-                    variant="small"
-                    className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-                  >
-                    {errors.password && <InfoIcon fontSize="small" />}
-                    {errors.password?.message}
-                  </Typography>
-                </div>
-
-                <button
-                  className="btn-primary w-3/6 self-center mb-4"
-                  type="submit"
-                  variant="filled"
+            <form
+              className="flex flex-col gap-2"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <div className="mt-6">
+                <TextField
+                  label="Email"
                   fullWidth
+                  type="email"
+                  defaultValue="test"
+                  {...register("email")}
+                  variant="standard"
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
                 >
-                  Login
-                </button>
-              </form>
-            </ThemeProvider>
+                  {errors.email && <InfoIcon fontSize="small" />}
+                  {errors.email?.message}
+                </Typography>
+              </div>
+              <div>
+                <TextField
+                  label="Password"
+                  fullWidth
+                  type="password"
+                  defaultValue="test"
+                  {...register("password")}
+                  variant="standard"
+                />
+                <Typography
+                  variant="small"
+                  className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+                >
+                  {errors.password && <InfoIcon fontSize="small" />}
+                  {errors.password?.message}
+                </Typography>
+              </div>
+
+              <button
+                className="btn-primary w-3/6 self-center mb-4"
+                type="submit"
+                variant="filled"
+                fullWidth
+              >
+                Login
+              </button>
+            </form>
           </Container>
         </div>
       </div>

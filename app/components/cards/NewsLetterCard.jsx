@@ -1,30 +1,13 @@
 "use client";
 import emailjs from "emailjs-com";
 import React, { useRef } from "react";
-import {
-  ThemeProvider,
-  createTheme,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import InfoIcon from "@mui/icons-material/Info";
 import { toast } from "react-toastify";
 export default function NewsLetterCard() {
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#FFFFFF",
-      },
-      action: {
-        // Customize the autofill background color
-        hover: "#FFFFFF", // Replace with your desired color
-        selected: "#FFFFFF", // Replace with your desired color
-      },
-    },
-  });
   const containerStyle = {
     position: "relative",
     display: "flex",
@@ -129,69 +112,67 @@ export default function NewsLetterCard() {
     reset();
   };
   return (
-    <ThemeProvider theme={theme}>
-      <section style={containerStyle}>
-        <div style={circleBackgroundStyle}></div>
-        <div className="grid lg:grid-cols-2 gap-8 container lg:py-24 items-center justify-between mx-auto">
-          <div className="lg:p-14 p-2 flex flex-col gap-4 justify-center lg:text-left text-center">
-            <h2 className="header-2 lg:text-left text-center my-3">
-              Subscribe now and be at the forefront of change!
-            </h2>
-            <p className="pb-1 lg:my-3 text-[#e7e7e7] lg:text-left text-center">
-              Sign up for our free newsletter to receive our monthly digest of
-              the best causes. Stay informed, get inspired, and make a
-              difference by joining our community of passionate individuals
-              dedicated to shaping the world for the better!
-            </p>
-          </div>
-          <div style={blurredCardStyle}>
-            <div className="p-1 sm:p-10 flex flex-col gap-4 justify-center text-center">
-              <p className="header-4 pb-2">Subscribe to our newsletter</p>
-              <div style={imageContainer}>
-                <img
-                  src="/assets/images/newsletter_image.png"
-                  alt="Newsletter Image"
-                  style={{ width: "200px", height: "auto" }}
-                />
-              </div>
-              <form
-                ref={form}
-                onSubmit={handleSubmit(onSubmit)}
-                className="md:px-20 flex flex-col"
-              >
-                <TextField
-                  id="email"
-                  label="Email Address"
-                  type="email"
-                  name="to_email"
-                  variant="standard"
-                  {...register("to_email")}
-                />
-                <Typography
-                  sx={{ marginY: "10px" }}
-                  variant="small"
-                  className="flex items-center gap-1 font-normal text-red-800 "
-                >
-                  {errors.to_email && <InfoIcon fontSize="small" />}
-                  {errors.to_email?.message}
-                </Typography>
-
-                <button
-                  type="submit"
-                  className="rounded-lg my-3 px-10 py-2  self-center bg-yellow text-[#000]"
-                >
-                  Subscribe
-                </button>
-
-                <p className="spam-message pt-2 text-center  text-[#767676]">
-                  We will not spam you 🤞🏼
-                </p>
-              </form>
+    <section style={containerStyle}>
+      <div style={circleBackgroundStyle}></div>
+      <div className="grid lg:grid-cols-2 gap-8 container lg:py-24 items-center justify-between mx-auto">
+        <div className="lg:p-14 p-2 flex flex-col gap-4 justify-center lg:text-left text-center">
+          <h2 className="header-2 lg:text-left text-center my-3">
+            Subscribe now and be at the forefront of change!
+          </h2>
+          <p className="pb-1 lg:my-3 text-[#e7e7e7] lg:text-left text-center">
+            Sign up for our free newsletter to receive our monthly digest of the
+            best causes. Stay informed, get inspired, and make a difference by
+            joining our community of passionate individuals dedicated to shaping
+            the world for the better!
+          </p>
+        </div>
+        <div style={blurredCardStyle}>
+          <div className="p-1 sm:p-10 flex flex-col gap-4 justify-center text-center">
+            <p className="header-4 pb-2">Subscribe to our newsletter</p>
+            <div style={imageContainer}>
+              <img
+                src="/assets/images/newsletter_image.png"
+                alt="Newsletter Image"
+                style={{ width: "200px", height: "auto" }}
+              />
             </div>
+            <form
+              ref={form}
+              onSubmit={handleSubmit(onSubmit)}
+              className="md:px-20 flex flex-col"
+            >
+              <TextField
+                id="email"
+                label="Email Address"
+                type="email"
+                name="to_email"
+                variant="standard"
+                {...register("to_email")}
+              />
+              <Typography
+                sx={{ marginY: "10px" }}
+                variant="small"
+                className="flex items-center gap-1 font-normal text-red-800 "
+              >
+                {errors.to_email && <InfoIcon fontSize="small" />}
+                {errors.to_email?.message}
+              </Typography>
+
+              <button
+                type="submit"
+                className="rounded-lg my-3 px-10 py-2  self-center bg-yellow text-[#000]"
+              >
+                Subscribe
+              </button>
+
+              <p className="spam-message pt-2 text-center  text-[#767676]">
+                We will not spam you 🤞🏼
+              </p>
+            </form>
           </div>
         </div>
-        <div style={circleBackgroundStyle2}></div>
-      </section>
-    </ThemeProvider>
+      </div>
+      <div style={circleBackgroundStyle2}></div>
+    </section>
   );
 }

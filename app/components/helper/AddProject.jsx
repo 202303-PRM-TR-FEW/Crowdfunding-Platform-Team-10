@@ -16,7 +16,7 @@ export default function AddProject() {
     <div>
       {user ? (
         <>
-          <Box sx={{ display: { xs: "none", md: "block"  } }}>
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
             <div className="fixed  bottom-10 right-8 z-50 ">
               <Fab
                 color="primary"
@@ -28,15 +28,16 @@ export default function AddProject() {
                   "&:hover": {
                     backgroundColor: "#0d816e",
                   },
+                  color: "white",
                 }}
                 onClick={handleNewProject}
               >
-                <AddIcon sx={{ mr: 1 }} />
+                <AddIcon sx={{ mr: 1, color: "white" }} />
                 Add Project
               </Fab>
             </div>
           </Box>
-          <Box sx={{ display: { xs: "block", md: "none"  } }}>
+          <Box sx={{ display: { xs: "block", md: "none" } }}>
             <div className="fixed  bottom-5 right-5 z-50 ">
               <Fab
                 color="primary"
