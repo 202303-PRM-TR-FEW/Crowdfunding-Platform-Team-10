@@ -3,13 +3,13 @@ import Link from "next-intl/link";
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import { useAuth } from "@/context/AuthContext";
-
+import { useTranslations } from "next-intl";
 const WelcomeBanner = () => {
   const { projects, donations } = useAuth();
   const [successfulProjects, setSuccessfulProjects] = useState(24230);
   const [donationCounter, setDonationCounter] = useState(0);
   const [checked, setChecked] = useState(false);
-
+  const t = useTranslations("WelcomeBanner");
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
@@ -40,13 +40,10 @@ const WelcomeBanner = () => {
     <section className="flex justify-center items-center bg-gradient-to-t from-transparent to-teal-50">
       <div className="grid lg:grid-cols-2 gap-8 py-28 container">
         <div className="p-10 flex flex-col gap-4 text-center lg:text-left bg-no-repeat bg-right-top bg-[url('../../public/assets/images/dots.svg')]">
-          <p className="header-1">Supporting great causes made easy</p>
-          <p className="sub-header">
-            We helped over 3.500 projects and causes. Sign in today and get your
-            idea kicked off or support others kick off their amazing projects.
-          </p>
+          <p className="header-1">{t("header")}</p>
+          <p className="sub-header">{t("subHeader")}</p>
           <Link href="/projects" className="justify-self-end xl:mt-8">
-            <button className="btn-primary">Start Today</button>
+            <button className="btn-primary">{t("button")}</button>
           </Link>
         </div>
         <div className="p-10 sm:p-24 relative" style={{ position: "relative" }}>
@@ -73,7 +70,8 @@ const WelcomeBanner = () => {
               },
             }}
           >
-            Successful projects: {successfulProjects}
+            {t("successful")}
+            {successfulProjects}
           </Box>
           <img
             src="https://firebasestorage.googleapis.com/v0/b/crowdfunding-99b5a.appspot.com/o/hero.png?alt=media&token=f25e81a6-bb2e-4797-b4b0-a03d495988bb"
@@ -109,7 +107,8 @@ const WelcomeBanner = () => {
               },
             }}
           >
-            Donations Made: {successfulProjects}
+            {t("donations")}
+            {successfulProjects}
           </Box>
         </div>
       </div>

@@ -1,5 +1,9 @@
 {
-    "Index": {
-      "title": "Hello world!"
+    "WelcomeBanner": {
+      "header": "Supporting great causes made easy",
+      "subHeader": "We helped over 3.500 projects and causes. Sign in today and get your idea kicked off or support others kick off their amazing projects.",
+      "button": "Start Today",
+      "successful": "Successful projects: ",
+      "donations":"Donations Made: "
     }
   }
