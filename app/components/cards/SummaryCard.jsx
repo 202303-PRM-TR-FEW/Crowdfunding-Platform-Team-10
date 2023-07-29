@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import CustomizedProgressBars from "../helper/ProgressBar";
 import ClassTwoToneIcon from "@mui/icons-material/ClassTwoTone";
 import { Avatar } from "@material-tailwind/react";
-import Link from "next/link";
+import Link from "next-intl/link";
 import Image from "next/image";
 import eyeIcon from "../../../public/assets/images/eye.png";
 import { useAuth } from "@/context/AuthContext";

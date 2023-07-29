@@ -7,7 +7,7 @@ import {
   Avatar,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
+import Link from "next-intl/link";
 
 const SearchList = ({ searchProjects }) => {
   return (
