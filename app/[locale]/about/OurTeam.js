@@ -33,7 +33,7 @@ const OurTeam = () => {
           </div>
           <div className=' group/edit group-hover/item:visible relative invisible hover:visible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
             <p>Web Developer & Designer</p>
-            <h1 className=' text-white md:text-lg lg:text-xl'>Sadik Bariş Yilmaz<span className='pl-3'><Link href="https://github.com/sadikbarisyilmaz" target="_blank" className='cursor-pointer'><GitHub /></Link></span> </h1>
+            <h1 className=' text-white md:text-lg lg:text-xl'>Sadik Baris Yilmaz<span className='pl-3'><Link href="https://github.com/sadikbarisyilmaz" target="_blank" className='cursor-pointer'><GitHub /></Link></span> </h1>
           </div>
         </div>
         <div className='group/item h-60 w-60 lg:h-80 lg:w-80 rounded transition ease-in-out hover:bg-gradient-to-t hover:from-black shadow-lg '>
@@ -42,7 +42,7 @@ const OurTeam = () => {
           </div>
           <div className=' group/edit group-hover/item:visible relative invisible hover:visible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
             <p>Web Developer & Designer</p>
-            <h1 className=' text-white md:text-lg lg:text-xl'>Mehmet Ünlü<span className='pl-3'><Link href="https://github.com/mhmtnl" target="_blank" className='cursor-pointer'><GitHub /></Link></span> </h1>
+            <h1 className=' text-white md:text-lg lg:text-xl'>Mehmet Unlu<span className='pl-3'><Link href="https://github.com/mhmtnl" target="_blank" className='cursor-pointer'><GitHub /></Link></span> </h1>
           </div>
         </div>
         <div className='group/item h-60 w-60 lg:h-80 lg:w-80 rounded transition ease-in-out hover:bg-gradient-to-t hover:from-black shadow-lg '>
