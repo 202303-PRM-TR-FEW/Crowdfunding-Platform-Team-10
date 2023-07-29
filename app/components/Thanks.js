@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import handImag from "../../public/assets/images/hand.png";
 import Image from "next/image";
