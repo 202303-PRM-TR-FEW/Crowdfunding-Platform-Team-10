@@ -24,27 +24,17 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import { Avatar, Divider } from "@mui/material";
 
-export default function TransactionHistory({ usersProjects }) {
+import { Avatar } from "@mui/material";
+
+export default function DonationsHisory({ usersProjects }) {
   const [donate, setDonate] = useState([]);
   const { loading, donations, projects } = useAuth();
   const [selectedProject, setSelectedProject] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -61,61 +51,28 @@ export default function TransactionHistory({ usersProjects }) {
       setDonate(filteredDonations);
     }
   }, [donations, selectedProject, loading, usersProjects]);
-  const handleProjectSelect = (projectId) => {
-    setSelectedProject(projectId);
-  };
 
   if (loading) {
     return <LoaderStyle />;
   }
 
   return (
-    <Accordion defaultExpanded className="shadow-lg">
+    <Accordion
+      defaultExpanded
+      className="border-12  bg-[#00c1a113]   backdrop-blur-lg "
+      sx={{ boxShadow: 2, backgroundColor: "#00c1a113" }}
+      bgcolor="transparent"
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
+        bgcolor="rgba(255, 0, 0, 0.5)"
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography>Transaction History</Typography>
+        <h3 className="header-4 p-2">Donaions History</h3>
       </AccordionSummary>
       <AccordionDetails>
         <div>
-          <div>
-            <div>
-              <Button
-                id="basic-button"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-                endIcon={<KeyboardArrowDownIcon />}
-              >
-                Select Project
-              </Button>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
-              >
-                <MenuItem onClick={() => handleProjectSelect("")}>
-                  All Projects
-                </MenuItem>
-                <Divider />
-                {usersProjects.map((project) => (
-                  <MenuItem
-                    key={project?.id}
-                    onClick={() => handleProjectSelect(project?.id)}
-                  >
-                    {project?.name}
-                  </MenuItem>
-                ))}
-              </Menu>
-            </div>
-          </div>
           <div>
             <List>
               {donate.length > 0 ? (
@@ -123,10 +80,10 @@ export default function TransactionHistory({ usersProjects }) {
                   return (
                     <ListItem key={index} disablePadding>
                       <div
-                        className="hover:bg-blue-gray-50 hover:rounded w-full"
+                        className="hover:bg-white hover:rounded w-full"
                         key={donation.id}
                       >
-                        <div className="flex gap-2 items-center p-2 justify-between">
+                        <div className="flex gap-2 p-2 items-center   justify-between">
                           <div className="flex gap-2  items-center ">
                             <Avatar
                               src={donation.userImg}
@@ -148,7 +105,7 @@ export default function TransactionHistory({ usersProjects }) {
                   );
                 })
               ) : (
-                <div className="text-center">No Donations Found</div>
+                <div className="text-center">No Donations yet</div>
               )}
             </List>
           </div>

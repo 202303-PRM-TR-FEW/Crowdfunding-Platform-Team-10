@@ -31,7 +31,7 @@ export const ProjectInfo = ({
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
   const [open, setOpen] = useState(false);
-
+  console.log(id);
   const { user } = useAuth();
   const router = useRouter();
   useEffect(() => {
