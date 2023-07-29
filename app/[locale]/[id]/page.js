@@ -22,13 +22,14 @@ import CategoryIcon from "@/components/helper/CategoryIcon";
 import SuccessBadge from "@/components/SuccessBadge";
 import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
+import Link from "next/link";
 function Project({ params }) {
   const [data, setData] = useState(null);
   const { user, loading, donations } = useAuth();
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
 
-  //this code pass data to single project page
+  //this code get single project info and store it into data state
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,7 +37,6 @@ function Project({ params }) {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          // Increment the viewCount field when fetching the project
           const projectData = docSnap.data();
           const updatedData = {
             ...projectData,
@@ -44,7 +44,7 @@ function Project({ params }) {
           };
           await updateDoc(docRef, updatedData);
 
-          setData(updatedData); // Set the state with the updated data
+          setData(updatedData);
         } else {
           console.log("No such document!");
         }
@@ -54,18 +54,14 @@ function Project({ params }) {
     };
 
     fetchData();
-  }, [params.id]);
-
-  useEffect(() => {
     const donArray = Object.values(donations);
-    console.log(donArray);
+
     const projectDon = donArray.filter(
-      (donation) => donation.projectId === params
+      (donation) => donation.projectId === params.id
     );
     setProjectsDonations(projectDon);
-    console.log(projectDon);
-  }, [donations, params]);
-  console.log(projectsDonations);
+  }, [params.id, donations]);
+
   const handleDonationForm = () => {
     openDonationForm === false
       ? setOpenDonationForm(true)
@@ -138,12 +134,12 @@ function Project({ params }) {
                   <ViewCount />
                 </div>
 
-                <button className=" lg:block hidden my-2 w-full">
+                <div className=" lg:block hidden my-2 w-full">
                   {user ? (
-                    data.taken === data.goal ? (
-                      <div disabled={true}>
+                    data.taken === data.goal || data.taken > data.goal ? (
+                      <button disabled={true} className="btn-primary w-full">
                         The project has been completed 🎉
-                      </div>
+                      </button>
                     ) : (
                       <button
                         className="btn-primary w-full"
@@ -153,14 +149,14 @@ function Project({ params }) {
                       </button>
                     )
                   ) : (
-                    <a href="/login" className="btn-primary w-full">
+                    <Link href="/login" className="btn-primary w-full">
                       Log in to fund this project
-                    </a>
+                    </Link>
                   )}
-                </button>
+                </div>
               </div>
               <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3  ">
-                {/* <DonationsHisory projectsDonations={projectsDonations} /> */}
+                <DonationsHisory projectsDonations={projectsDonations} />
               </div>
             </div>
           )}
@@ -168,12 +164,12 @@ function Project({ params }) {
         <Social />
         <DonationForm
           id={params}
-          title={data.title}
+          title={data.name}
           openDonationForm={openDonationForm}
           setOpenDonationForm={setOpenDonationForm}
         />
       </section>
-      {/* <div style={circleBackgroundStyle2}></div> */}
+
       <div style={circleBackgroundStyle}></div>
     </div>
   );

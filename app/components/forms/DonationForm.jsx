@@ -11,11 +11,12 @@ import {
   collection,
   doc,
   increment,
+  serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { db } from "@/config/firebase";
 import Typography from "@mui/material/Typography";
@@ -38,15 +39,8 @@ const schema = yup
   .required();
 
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
-  const [currentUser, setCurrentUser] = useState("");
-  const { user, usersInfo } = useAuth();
+  const { user, currentUser } = useAuth();
 
-  useEffect(() => {
-    if (usersInfo && user) {
-      const current = usersInfo.find((usr) => usr.id === user.uid);
-      setCurrentUser(current);
-    }
-  }, []);
   const router = useRouter();
   const [success, setSuccess] = useState(false);
   const {
@@ -65,6 +59,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (data) => {
+    console.log(data);
     try {
       await addDoc(collection(db, "donations"), {
         donaiton: data.donation,
@@ -73,6 +68,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
         userImg: currentUser.userImg,
         userName: currentUser.name,
         projectName: title,
+        timeStamp: serverTimestamp(),
       });
       await updateDoc(doc(db, "projects", id.id), {
         raised: increment(data.donation),
@@ -80,7 +76,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
       console.log("donated");
       setSuccess(true);
       reset();
-      router.push("/thanks");
+      // router.push("/thanks");
     } catch (error) {
       console.log("notdonated", error);
     }

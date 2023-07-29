@@ -1,21 +1,7 @@
 "use client";
 
-import { Fragment, useContext, useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
-// import {
-//   Typography,
-//   Button,
-//   Avatar,
-//   Accordion,
-//   AccordionHeader,
-//   AccordionBody,
-//   Menu,
-//   MenuHandler,
-//   MenuList,
-//   MenuItem,
-// } from "@material-tailwind/react";
-// import { ChevronRightIcon } from "@heroicons/react/24/outline";
-// import { ChevronDownIcon } from "@heroicons/react/24/outline";
+
 import LoaderStyle from "../helper/LoaderStyle";
 import * as React from "react";
 import Accordion from "@mui/material/Accordion";
@@ -29,29 +15,36 @@ import ListItem from "@mui/material/ListItem";
 
 import { Avatar } from "@mui/material";
 
-export default function DonationsHisory({ usersProjects }) {
-  const [donate, setDonate] = useState([]);
-  const { loading, donations, projects } = useAuth();
-  const [selectedProject, setSelectedProject] = useState("");
+export default function DonationsHisory({ projectsDonations }) {
+  const { loading } = useAuth();
 
-  useEffect(() => {
-    if (!loading) {
-      let filteredDonations = donations.filter((donation) =>
-        usersProjects.some((project) => project.id === donation.projectId)
-      );
-      if (selectedProject) {
-        filteredDonations = filteredDonations.filter(
-          (donation) => donation.projectId === selectedProject
-        );
-      }
-      setDonate(filteredDonations);
+  function formatTimestamp(timestamp) {
+    const now = new Date();
+    const date = new Date(timestamp.seconds * 1000);
+    const diffMilliseconds = now - date;
+    const diffSeconds = Math.floor(diffMilliseconds / 1000);
+    const diffMinutes = Math.floor(diffSeconds / 60);
+    const diffHours = Math.floor(diffMinutes / 60);
+    const diffDays = Math.floor(diffHours / 24);
+
+    if (diffSeconds < 60) {
+      return "Now";
+    } else if (diffMinutes < 60) {
+      return `${diffMinutes} ${diffMinutes === 1 ? "minute" : "minutes"} ago`;
+    } else if (diffHours < 24) {
+      return `${diffHours} ${diffHours === 1 ? "hour" : "hours"} ago`;
+    } else if (diffDays < 3) {
+      return `${diffDays} ${diffDays === 1 ? "day" : "days"} ago`;
+    } else {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
     }
-  }, [donations, id]);
-
-  if (loading) {
+  }
+  if (loading || projectsDonations == null) {
     return <LoaderStyle />;
   }
-
   return (
     <Accordion
       defaultExpanded
@@ -60,7 +53,7 @@ export default function DonationsHisory({ usersProjects }) {
         boxShadow: 0,
         backgroundColor: "#ffffffc5",
         "@media (max-width: 600px)": {
-          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Add a box shadow for small screens (max-width: 600px)
+          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
         },
       }}
     >
@@ -76,8 +69,8 @@ export default function DonationsHisory({ usersProjects }) {
         <div>
           <div>
             <List>
-              {donate.length > 0 ? (
-                donate.map((donation, index) => {
+              {projectsDonations.length > 0 ? (
+                projectsDonations.map((donation, index) => {
                   return (
                     <ListItem key={index} disablePadding>
                       <div
@@ -94,7 +87,16 @@ export default function DonationsHisory({ usersProjects }) {
                               <Typography variant="h6">
                                 {donation.userName}
                               </Typography>
-                              <Typography>{donation.projectName}</Typography>
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#888",
+                                }}
+                              >
+                                {donation
+                                  ? formatTimestamp(donation.timeStamp)
+                                  : null}
+                              </Typography>
                             </div>
                           </div>
                           <div className="">
@@ -106,7 +108,15 @@ export default function DonationsHisory({ usersProjects }) {
                   );
                 })
               ) : (
-                <div className="text-center">No Donations yet</div>
+                <Typography
+                  sx={{
+                    color: "#888",
+
+                    textAlign: "center",
+                  }}
+                >
+                  No Donations yet
+                </Typography>
               )}
             </List>
           </div>
