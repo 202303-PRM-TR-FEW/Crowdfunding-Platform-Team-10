@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
-import user_img from "../../public/assets/images/user_img.jpg";
 import eyeIcon from "../../public/assets/images/eye.png";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import Image from "next/image";
