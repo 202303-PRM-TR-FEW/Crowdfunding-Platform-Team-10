@@ -9,7 +9,7 @@ import { Avatar } from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import logo from "../../public/logo.svg";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "next-intl/link";
 import Image from "next/image";
 import LangSwitcher from "./LangSwitcher";
 import MobileLangSwitcher from "./MobileLangSwitcher";
