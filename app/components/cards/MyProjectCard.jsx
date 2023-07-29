@@ -5,7 +5,6 @@ import ClassTwoToneIcon from "@mui/icons-material/ClassTwoTone";
 import CustomizedProgressBars from "../helper/ProgressBar";
 import { Avatar } from "@material-tailwind/react";
 import CustomizedTooltip from "../helper/Tooltips";
-import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import eyeIcon from "../../../public/assets/images/eye.png";

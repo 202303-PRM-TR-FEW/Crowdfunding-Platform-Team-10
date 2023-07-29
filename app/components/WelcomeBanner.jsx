@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import Link from "next-intl/link";
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import { useAuth } from "@/context/AuthContext";

@@ -20,7 +20,7 @@ import {
   Container,
 } from "@mui/material";
 import { countries } from "@/data/countries";
-import Link from "next/link";
+import Link from "next-intl/link";
 import { toast } from "react-toastify";
 
 const schema = yup
