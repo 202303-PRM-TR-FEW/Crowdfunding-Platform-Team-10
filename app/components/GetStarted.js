@@ -1,3 +1,4 @@
+"use client";
 import Link from "next-intl/link";
 import React from "react";
 
