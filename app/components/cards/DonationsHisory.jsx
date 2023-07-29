@@ -60,7 +60,7 @@ export default function DonationsHisory({ usersProjects }) {
     <Accordion
       defaultExpanded
       className="border-12  bg-[#00c1a113]   backdrop-blur-lg "
-      sx={{ boxShadow: 2, backgroundColor: "#00c1a113" }}
+      sx={{ boxShadow: 2, backgroundColor: "#00c1a125" }}
       bgcolor="transparent"
     >
       <AccordionSummary
