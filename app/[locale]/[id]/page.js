@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { ProjectInfo } from "@/components/ProjectInfo";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
@@ -24,10 +23,9 @@ import SuccessBadge from "@/components/SuccessBadge";
 import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 function Project({ params }) {
-  const pathname = usePathname();
   const [data, setData] = useState(null);
-  const { user, loading, projects, formatNumber } = useAuth();
-  const [usersProjects, setUsersProjects] = useState([]);
+  const { user, loading, donations } = useAuth();
+  const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
 
   //this code pass data to single project page
@@ -59,13 +57,15 @@ function Project({ params }) {
   }, [params.id]);
 
   useEffect(() => {
-    const projectArray = Object.values(projects);
-    const projectWithUser = projectArray.filter(
-      (project) => project.creator.userId === user.uid
+    const donArray = Object.values(donations);
+    console.log(donArray);
+    const projectDon = donArray.filter(
+      (donation) => donation.projectId === params
     );
-    setUsersProjects(projectWithUser);
-  }, [projects]);
-  console.log(data);
+    setProjectsDonations(projectDon);
+    console.log(projectDon);
+  }, [donations, params]);
+  console.log(projectsDonations);
   const handleDonationForm = () => {
     openDonationForm === false
       ? setOpenDonationForm(true)
@@ -160,7 +160,7 @@ function Project({ params }) {
                 </button>
               </div>
               <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3  ">
-                <DonationsHisory usersProjects={usersProjects} />
+                {/* <DonationsHisory projectsDonations={projectsDonations} /> */}
               </div>
             </div>
           )}
@@ -173,7 +173,7 @@ function Project({ params }) {
           setOpenDonationForm={setOpenDonationForm}
         />
       </section>
-      <div style={circleBackgroundStyle2}></div>
+      {/* <div style={circleBackgroundStyle2}></div> */}
       <div style={circleBackgroundStyle}></div>
     </div>
   );

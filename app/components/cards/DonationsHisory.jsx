@@ -33,11 +33,7 @@ export default function DonationsHisory({ usersProjects }) {
   const [donate, setDonate] = useState([]);
   const { loading, donations, projects } = useAuth();
   const [selectedProject, setSelectedProject] = useState("");
-  const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   useEffect(() => {
     if (!loading) {
       let filteredDonations = donations.filter((donation) =>
@@ -50,7 +46,7 @@ export default function DonationsHisory({ usersProjects }) {
       }
       setDonate(filteredDonations);
     }
-  }, [donations, selectedProject, loading, usersProjects]);
+  }, [donations, id]);
 
   if (loading) {
     return <LoaderStyle />;
@@ -59,9 +55,14 @@ export default function DonationsHisory({ usersProjects }) {
   return (
     <Accordion
       defaultExpanded
-      className="border-12  bg-[#00c1a113]   backdrop-blur-lg "
-      sx={{ boxShadow: 2, backgroundColor: "#00c1a125" }}
-      bgcolor="transparent"
+      className="border-12  bg-[#ffffffc5]   backdrop-blur-lg  "
+      sx={{
+        boxShadow: 0,
+        backgroundColor: "#ffffffc5",
+        "@media (max-width: 600px)": {
+          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Add a box shadow for small screens (max-width: 600px)
+        },
+      }}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
@@ -69,7 +70,7 @@ export default function DonationsHisory({ usersProjects }) {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <h3 className="header-4 p-2">Donaions History</h3>
+        <h3 className="header-4 p-2">Donations History</h3>
       </AccordionSummary>
       <AccordionDetails>
         <div>
@@ -80,7 +81,7 @@ export default function DonationsHisory({ usersProjects }) {
                   return (
                     <ListItem key={index} disablePadding>
                       <div
-                        className="hover:bg-white hover:rounded w-full"
+                        className="hover:bg-[#f0bd0732] hover:rounded w-full"
                         key={donation.id}
                       >
                         <div className="flex gap-2 p-2 items-center   justify-between">
