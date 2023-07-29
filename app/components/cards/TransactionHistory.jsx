@@ -70,7 +70,7 @@ export default function TransactionHistory({ usersProjects }) {
   }
 
   return (
-    <Accordion defaultExpanded>
+    <Accordion defaultExpanded className="shadow-lg">
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"

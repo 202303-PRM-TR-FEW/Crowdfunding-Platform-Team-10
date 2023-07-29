@@ -237,7 +237,7 @@ const SignupForm = () => {
                                       width="20"
                                       height="10"
                                       src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
-                                    />{" "}
+                                    />
                                   </span>
                                   <span>{country.label}</span>
                                 </div>

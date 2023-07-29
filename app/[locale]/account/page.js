@@ -19,7 +19,7 @@ const Page = () => {
         setOpenEditUserForm(true);
       }
     }
-  }, []);
+  }, [currentUser]);
 
   const [openEditUserForm, setOpenEditUserForm] = useState(false);
 
