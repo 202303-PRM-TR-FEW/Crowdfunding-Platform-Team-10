@@ -72,7 +72,9 @@ const Page = () => {
           <LoaderStyle />
         ) : usersProjects.length > 0 ? (
           <>
-            <h1 className="header-2 text-lightGreen">My Projects</h1>
+            <h1 className="header-2 text-center lg:text-start text-lightGreen">
+              My Projects
+            </h1>
             <div className="flex flex-col lg:flex-row py-10 gap-8 ">
               <div className="w-full lg:w-7/12">
                 <div className="flex flex-col gap-10 ">
@@ -91,7 +93,6 @@ const Page = () => {
                 </div>
               </div>
             </div>
-            <div style={circleBackgroundStyle2}></div>
           </>
         ) : (
           <NoProjects />
@@ -102,20 +103,6 @@ const Page = () => {
 };
 
 export default Page;
-
-const circleBackgroundStyle2 = {
-  position: "absolute",
-  top: "50%",
-  right: "50%",
-  width: "500px",
-  height: "500px",
-  transform: "translate(-50%, -50%)",
-  borderRadius: "50%",
-  background: "#00c1a144",
-  zIndex: -1,
-  filter: "blur(20px)",
-  animation: `move  10s linear infinite`,
-};
 /* <div className="w-full flex items-center justify-between">
      <Typography variant="h1" className="mb-4">
        My Projects
