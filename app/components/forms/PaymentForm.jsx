@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { TextField } from "@mui/material";
 
 const PaymentForm = () => {
   const [cardNumber, setCardNumber] = useState("");
@@ -15,6 +16,11 @@ const PaymentForm = () => {
       setShowAlert(true);
       return;
     }
+    // Clear the input fields after successful submission
+    setCardNumber("");
+    setExpiryDate("");
+    setCvv("");
+    setHolderName("");
   };
   const blurredCardStyle = {
     position: "absolute",
@@ -42,65 +48,56 @@ const PaymentForm = () => {
         <form>
           <div style={blurredCardStyle}>
             <h2 className="text-2xl font-bold mb-4">Donation Details</h2>
-
             <div className="mb-4">
-              <label htmlFor="cardNumber" className="block font-medium mb-1">
-                Card Number
-              </label>
-              <input
+              <TextField
+                label="Card Number"
+                fullWidth
                 type="text"
                 id="cardNumber"
-                className="w-full p-2 border rounded-md bg-gray-100"
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
                 placeholder="1234 5678 9012 3456"
                 required
+                variant="standard"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4 mb-4">
-              <div>
-                <label htmlFor="expiryDate" className="block font-medium mb-1">
-                  Expiry Date
-                </label>
-                <input
-                  type="text"
-                  id="expiryDate"
-                  className="w-full p-2 border rounded-md bg-gray-100"
-                  value={expiryDate}
-                  onChange={(e) => setExpiryDate(e.target.value)}
-                  placeholder="MM/YY"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="cvv" className="block font-medium mb-1">
-                  CVC
-                </label>
-                <input
-                  type="text"
-                  id="cvv"
-                  className="w-full p-2 border rounded-md bg-gray-100"
-                  value={cvv}
-                  onChange={(e) => setCvv(e.target.value)}
-                  placeholder="123"
-                  required
-                />
-              </div>
+              <TextField
+                label="Expiry Date"
+                fullWidth
+                type="text"
+                id="expiryDate"
+                value={expiryDate}
+                onChange={(e) => setExpiryDate(e.target.value)}
+                placeholder="MM/YY"
+                required
+                variant="standard"
+              />
+              <TextField
+                label="CVC"
+                fullWidth
+                type="text"
+                id="cvv"
+                value={cvv}
+                onChange={(e) => setCvv(e.target.value)}
+                placeholder="123"
+                required
+                variant="standard"
+              />
             </div>
 
             <div className="mb-4">
-              <label htmlFor="holderName" className="block font-medium mb-1">
-                Holder Name
-              </label>
-              <input
+              <TextField
+                label="Holder Name"
+                fullWidth
                 type="text"
                 id="holderName"
-                className="w-full p-2 border rounded-md bg-gray-100"
                 value={holderName}
                 onChange={(e) => setHolderName(e.target.value)}
                 placeholder="John Doe"
                 required
+                variant="standard"
               />
             </div>
 
@@ -109,11 +106,12 @@ const PaymentForm = () => {
                 Please fill out all the fields.
               </div>
             )}
-
             <button
+              className="mt-8 btn-primary self-center "
               type="submit"
-              className="bg-hoverLightGreen text-white px-4 py-2 rounded-md hover:bg-lightGreen"
+              variant="filled"
               onClick={handleSubmit}
+              fullWidth
             >
               Confirm your donation
             </button>
