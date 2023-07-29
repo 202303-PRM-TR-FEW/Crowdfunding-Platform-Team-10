@@ -2,6 +2,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useAuth } from "@/context/AuthContext";
+// Function to add a new comment to Firebase Firestore
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/config/firebase";
 
 function FancyTestimonialsSlider({ testimonials }) {
   const testimonialsRef = useRef(null);
@@ -34,6 +37,26 @@ function FancyTestimonialsSlider({ testimonials }) {
     const formattedDate = date.toLocaleString();
     return formattedDate;
   }
+
+  const addCommentToFirestore = async (comment) => {
+    try {
+      // Use the "comments" collection path, and let Firestore generate a unique document ID
+      const newCommentRef = doc(db, "comments");
+
+      // Set the new comment data in the newly created document
+      await setDoc(newCommentRef, {
+        commintTime: serverTimestamp(),
+        text: comment.text,
+        userID: comment.userID,
+        userImg: comment.userImg,
+        userName: comment.userName,
+      });
+
+      console.log("New comment added to Firestore:", comment);
+    } catch (error) {
+      console.error("Error adding comment to Firestore:", error);
+    }
+  };
   return (
     <div className="w-full max-w-3xl mx-auto text-center">
       {/* Testimonial image */}
@@ -114,7 +137,7 @@ function FancyTestimonialsSlider({ testimonials }) {
 }
 
 export default function Comments() {
-  const { comments, user } = useAuth();
+  const { comments, currentUser } = useAuth();
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [commentText, setCommentText] = useState("");
 
@@ -123,15 +146,34 @@ export default function Comments() {
   };
 
   const handleCloseCommentForm = () => {
-    setCommentText(""); // Clear the comment text
-    setShowCommentForm(false); // Close the comment form
+    setCommentText("");
+    setShowCommentForm(false);
   };
 
+  const handleFormSubmit = async () => {
+    if (commentText.trim() === "") return;
+
+    const newComment = {
+      commintTime: new Date(),
+      text: commentText,
+      userID: currentUser.uid, // Use the currentUser's UID
+      userImg: currentUser.photoURL, // Use the currentUser's photoURL
+      userName: currentUser.displayName, // Use the currentUser's displayName
+    };
+
+    // Add the new comment to Firebase Firestore
+    await addCommentToFirestore(newComment);
+
+    // Clear the comment text and close the form
+    setCommentText("");
+    setShowCommentForm(false);
+  };
+  console.log(commentText);
   return (
     <section className="lg:h-[700px] py-20 p-3 overflow-hidden">
       <div className="relative">
         <FancyTestimonialsSlider testimonials={comments} />
-        {user && (
+        {currentUser && (
           <button
             className="absolute top-3 right-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
             onClick={handleAddCommentClick}
@@ -140,15 +182,16 @@ export default function Comments() {
           </button>
         )}
       </div>
-      {showCommentForm && user ? (
+      {showCommentForm && currentUser ? (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
-          <div className="p-4 bg-white rounded-lg shadow-lg">
+          <div className="p-4 bg-white rounded-lg shadow-lg relative">
             <textarea
               className="w-130 h-auto px-3 py-2 border border-gray-300 rounded-md resize-none text-black"
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Write your testimonial..."
             />
+
             <div className="flex justify-end mt-3">
               <button
                 className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md mr-2"
@@ -158,11 +201,7 @@ export default function Comments() {
               </button>
               <button
                 className="px-4 py-2 bg-hoverLightGreen text-white rounded-md"
-                onClick={() => {
-                  // Save the comment in the database or perform any other actions here
-                  setCommentText("");
-                  setShowCommentForm(false);
-                }}
+                onClick={handleFormSubmit}
               >
                 Submit
               </button>
