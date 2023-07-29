@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import handImag from "../../public/assets/images/hand.png";
 import Image from "next/image";
 import Link from "next/link";
 import ProjectForm from "@/components/forms/ProjectForm";
@@ -39,7 +38,7 @@ export const NoProjects = () => {
       <Image
         width={295}
         height={165}
-        src={handImag}
+        // src={handImag}
         alt="Picture of thanking"
         className={styles.image}
         style={styles.image_size}
