@@ -200,14 +200,18 @@ export default function Nav() {
           </MenuItem>
         </div>
       ) : (
-        <Link href="/login">
-          <MenuItem onClick={handleMenuClose}>
-            <ListItemIcon>
-              <Login fontSize="small" />
-            </ListItemIcon>
-            Login
-          </MenuItem>
-        </Link>
+        <>
+          <MobileLangSwitcher handleMenuClose={handleMenuClose} />
+
+          <Link href="/login">
+            <MenuItem onClick={handleMenuClose}>
+              <ListItemIcon>
+                <Login fontSize="small" />
+              </ListItemIcon>
+              Login
+            </MenuItem>
+          </Link>
+        </>
       )}
     </Menu>
   );
