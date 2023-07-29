@@ -48,6 +48,7 @@ export default function AddProject() {
                   "&:hover": {
                     backgroundColor: "#0d816e",
                   },
+                  color: "white",
                 }}
                 onClick={handleNewProject}
               >
