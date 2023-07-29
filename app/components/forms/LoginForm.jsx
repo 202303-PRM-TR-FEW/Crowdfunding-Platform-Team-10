@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 import Link from "next-intl/link";
 import { Typography } from "@material-tailwind/react";
 import InfoIcon from "@mui/icons-material/Info";

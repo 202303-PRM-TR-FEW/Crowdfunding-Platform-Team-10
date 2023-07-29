@@ -15,7 +15,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { auth } from "../config/firebase";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {

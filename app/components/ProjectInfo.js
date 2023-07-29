@@ -10,7 +10,7 @@ import CustomizedProgressBars from "./helper/ProgressBar";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 import SuccessBadge from "./SuccessBadge";
 
 export const ProjectInfo = ({

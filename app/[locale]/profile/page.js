@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 
 import { doc, deleteDoc } from "firebase/firestore";
 import Link from "next-intl/link";

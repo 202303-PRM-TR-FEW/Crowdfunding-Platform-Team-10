@@ -3,7 +3,7 @@
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 import SearchList from "./search/SearchList";
 import { Avatar } from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
