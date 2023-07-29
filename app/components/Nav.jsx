@@ -200,7 +200,7 @@ export default function Nav() {
           </MenuItem>
         </div>
       ) : (
-        <>
+        <div>
           <MobileLangSwitcher handleMenuClose={handleMenuClose} />
 
           <Link href="/login">
@@ -211,7 +211,7 @@ export default function Nav() {
               Login
             </MenuItem>
           </Link>
-        </>
+        </div>
       )}
     </Menu>
   );
