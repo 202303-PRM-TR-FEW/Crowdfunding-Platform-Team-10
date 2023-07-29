@@ -2,8 +2,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useAuth } from "@/context/AuthContext";
-import Link from "next/link";
-import { useRouter } from "next/router";
 
 function FancyTestimonialsSlider({ testimonials }) {
   const testimonialsRef = useRef(null);
@@ -117,58 +115,28 @@ function FancyTestimonialsSlider({ testimonials }) {
 
 export default function Comments() {
   const { comments, user } = useAuth();
-  const [showLoginNotification, setShowLoginNotification] = useState(false);
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [commentText, setCommentText] = useState("");
 
   const handleAddCommentClick = () => {
-    if (user) {
-      setShowCommentForm(true);
-    } else {
-      setShowLoginNotification(true);
-    }
+    setShowCommentForm(true);
   };
 
-  useEffect(() => {
-    let notificationTimeout;
-    if (showLoginNotification) {
-      notificationTimeout = setTimeout(() => {
-        setShowLoginNotification(false);
-      }, 5000);
-    }
-
-    return () => clearTimeout(notificationTimeout);
-  }, [showLoginNotification]);
-
-  const handleGoToLoginClick = () => {
-    router.push("/login");
-    console.log("Go to login");
+  const handleCloseCommentForm = () => {
+    setCommentText(""); // Clear the comment text
+    setShowCommentForm(false); // Close the comment form
   };
 
   return (
     <section className="lg:h-[700px] py-20 p-3 overflow-hidden">
-      {showLoginNotification && (
-        <div className="fixed inset-1 flex items-center justify-center text-white">
-          {/* The outer div no longer has the bg-white class */}
-          <div className="p-4 bg-green rounded-lg shadow-lg">
-            <p>You should login first to add a comment 👇 </p>
-            <button
-              className="mt-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
-              onClick={handleGoToLoginClick}
-            >
-              Go to login
-            </button>
-          </div>
-        </div>
-      )}
       <div className="relative">
         <FancyTestimonialsSlider testimonials={comments} />
-        {!user && (
+        {user && (
           <button
             className="absolute top-3 right-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
             onClick={handleAddCommentClick}
           >
-            Add a comment
+            Add testimonials
           </button>
         )}
       </div>
@@ -176,21 +144,29 @@ export default function Comments() {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
           <div className="p-4 bg-white rounded-lg shadow-lg">
             <textarea
-              className="w-full h-32 px-3 py-2 border border-gray-300 rounded-md resize-none"
+              className="w-130 h-auto px-3 py-2 border border-gray-300 rounded-md resize-none text-black"
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
-              placeholder="Write your comment..."
+              placeholder="Write your testimonial..."
             />
-            <button
-              className="mt-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
-              onClick={() => {
-                // Save the comment in the database or perform any other actions here
-                setCommentText("");
-                setShowCommentForm(false);
-              }}
-            >
-              Submit
-            </button>
+            <div className="flex justify-end mt-3">
+              <button
+                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md mr-2"
+                onClick={handleCloseCommentForm}
+              >
+                Close
+              </button>
+              <button
+                className="px-4 py-2 bg-hoverLightGreen text-white rounded-md"
+                onClick={() => {
+                  // Save the comment in the database or perform any other actions here
+                  setCommentText("");
+                  setShowCommentForm(false);
+                }}
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       ) : null}
