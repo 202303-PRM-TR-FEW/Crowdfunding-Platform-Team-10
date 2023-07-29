@@ -11,7 +11,6 @@ import {
   collection,
   doc,
   increment,
-  serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
@@ -59,7 +58,6 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       await addDoc(collection(db, "donations"), {
         donaiton: data.donation,
@@ -68,7 +66,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
         userImg: currentUser.userImg,
         userName: currentUser.name,
         projectName: title,
-        timeStamp: serverTimestamp(),
+        timeStamp: new Date(),
       });
       await updateDoc(doc(db, "projects", id.id), {
         raised: increment(data.donation),
@@ -76,7 +74,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
       console.log("donated");
       setSuccess(true);
       reset();
-      // router.push("/thanks");
+      router.push("/thanks");
     } catch (error) {
       console.log("notdonated", error);
     }

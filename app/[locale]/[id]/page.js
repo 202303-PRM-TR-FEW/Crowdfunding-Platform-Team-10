@@ -28,7 +28,7 @@ function Project({ params }) {
   const { user, loading, donations } = useAuth();
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
-
+  const pathname = usePathname();
   //this code get single project info and store it into data state
   useEffect(() => {
     const fetchData = async () => {
@@ -67,7 +67,32 @@ function Project({ params }) {
       ? setOpenDonationForm(true)
       : setOpenDonationForm(false);
   };
-
+  const SOCIAL = [
+    { id: 1, name: "facebook", image: faceBook },
+    { id: 5, name: "whatsapp", image: whatsapp },
+    { id: 3, name: "twitter", image: twitter },
+    { id: 6, name: "telegram", image: telegram },
+  ];
+  const handleShare = (provider) => {
+    const BASE_URL = "https://team-10-roan.vercel.app/";
+    let projectUrl = `${BASE_URL}${pathname}`;
+    const message = `&text=${encodeURIComponent("Help us in this project")}`;
+    let url = "";
+    if (provider === "facebook") {
+      url = `https://www.facebook.com/sharer.php?u=${projectUrl}${message}`;
+    } else if (provider === "twitter") {
+      url = `https://twitter.com/intent/tweet?url=${projectUrl}${message}`;
+    } else if (provider === "instagram") {
+      url = `https://www.instagram.com/?url=${projectUrl}${message}`;
+    } else if (provider === "pinterest") {
+      url = `https://www.pinterest.com/pin/create/button/?url=${projectUrl}${message}`;
+    } else if (provider === "whatsapp") {
+      url = `https://wa.me/?text=${message} ${projectUrl}`;
+    } else {
+      url = `https://t.me/share/url?url=${projectUrl}${message}`;
+    }
+    window.open(url, "_blank", "width=1200,height=600");
+  };
   if (loading && user !== null) {
     return <LoaderStyle />;
   }
@@ -161,7 +186,24 @@ function Project({ params }) {
             </div>
           )}
         </div>
-        <Social />
+        <div className="bg-hoverLightGreen bg-opacity-20 p-1 fixed top-[26%] rounded-r left-0">
+          <div className="share-icon flex flex-col items-center justify-center">
+            {SOCIAL.map((item) => {
+              return (
+                <div key={item.id}>
+                  <SocialButton
+                    width={50}
+                    height={50}
+                    src={item.image}
+                    alt={item.name}
+                    provider={item.name}
+                    handleShare={handleShare}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
         <DonationForm
           id={params}
           title={data.name}
@@ -176,55 +218,6 @@ function Project({ params }) {
 }
 
 export default Project;
-
-function Social() {
-  const SOCIAL = [
-    { id: 1, name: "facebook", image: faceBook },
-    { id: 5, name: "whatsapp", image: whatsapp },
-    { id: 3, name: "twitter", image: twitter },
-    { id: 6, name: "telegram", image: telegram },
-  ];
-  const handleShare = (provider) => {
-    const BASE_URL = "https://team-10-roan.vercel.app/";
-    let projectUrl = `${BASE_URL}${pathname}`;
-    const message = `&text=${encodeURIComponent("Help us in this project")}`;
-    let url = "";
-    if (provider === "facebook") {
-      url = `https://www.facebook.com/sharer.php?u=${projectUrl}${message}`;
-    } else if (provider === "twitter") {
-      url = `https://twitter.com/intent/tweet?url=${projectUrl}${message}`;
-    } else if (provider === "instagram") {
-      url = `https://www.instagram.com/?url=${projectUrl}${message}`;
-    } else if (provider === "pinterest") {
-      url = `https://www.pinterest.com/pin/create/button/?url=${projectUrl}${message}`;
-    } else if (provider === "whatsapp") {
-      url = `https://wa.me/?text=${message} ${projectUrl}`;
-    } else {
-      url = `https://t.me/share/url?url=${projectUrl}${message}`;
-    }
-    window.open(url, "_blank", "width=1200,height=600");
-  };
-  return (
-    <div className="bg-hoverLightGreen bg-opacity-20 p-1 fixed top-[26%] rounded-r left-0">
-      <div className="share-icon flex flex-col items-center justify-center">
-        {SOCIAL.map((item) => {
-          return (
-            <div key={item.id}>
-              <SocialButton
-                width={50}
-                height={50}
-                src={item.image}
-                alt={item.name}
-                provider={item.name}
-                handleShare={handleShare}
-              />
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 
 const circleBackgroundStyle = {
   position: "absolute",

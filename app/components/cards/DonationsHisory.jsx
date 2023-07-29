@@ -14,6 +14,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 
 import { Avatar } from "@mui/material";
+import { useEffect } from "react";
 
 export default function DonationsHisory({ projectsDonations }) {
   const { loading } = useAuth();
@@ -93,7 +94,7 @@ export default function DonationsHisory({ projectsDonations }) {
                                   color: "#888",
                                 }}
                               >
-                                {donation
+                                {donation.timeStamp.seconds !== null
                                   ? formatTimestamp(donation.timeStamp)
                                   : null}
                               </Typography>
