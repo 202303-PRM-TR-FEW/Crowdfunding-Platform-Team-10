@@ -1,7 +1,6 @@
-import React from "react";
-import handImag from "../../public/assets/images/hand.png";
+"use client";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next-intl/link";
 export const Thanks = () => {
   const styles = {
     image: `w-3/4 mx-auto scale-75`,
@@ -18,7 +17,7 @@ export const Thanks = () => {
       <Image
         width={295}
         height={165}
-        src={handImag}
+        // src={handImag}
         alt="Picture of thanking"
         className={styles.image}
         style={styles.image_size}

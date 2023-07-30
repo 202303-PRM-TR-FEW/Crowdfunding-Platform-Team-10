@@ -1,12 +1,11 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { AuthContextProvider } from "@/context/AuthContext";
-
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import AddProject from "@/components/helper/AddProject";
 import Toaster from "@/components/helper/Toaster";
+import Providers from "@/providers";
 // import Providers from "@/components/helper/ProviderTheme";
 // import ThemeButton from "@/components/theme/ThemeButton";
 
@@ -20,25 +19,35 @@ export const metadata = {
   },
 };
 
-export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "tr" }];
-}
+// export function generateStaticParams() {
+//   return [{ locale: "en" }, { locale: "tr" }];
+// }
 
-export async function LocaleLayout({ children, params: { locale } }) {
+// export async function LocaleLayout({ children, params: { locale } }) {
+//   let messages;
+//   try {
+//     messages = (await import(`../../messages/${locale}.json`)).default;
+//   } catch (error) {
+//     notFound();
+//   }
+// }
+
+async function RootLayout({ children, params: { locale } }) {
   let messages;
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
   } catch (error) {
     notFound();
   }
-}
 
-export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <AuthContextProvider>
-          {/* <Providers> */}
+    <html lang={locale} suppressHydrationWarning>
+      <body>
+        <Providers
+          className={inter.className}
+          locale={locale}
+          messages={messages}
+        >
           {/* <ThemeButton /> */}
 
           <Nav />
@@ -46,9 +55,10 @@ export default function RootLayout({ children }) {
           <Footer />
           <AddProject />
           <Toaster />
-          {/* </Providers> */}
-        </AuthContextProvider>
+        </Providers>
       </body>
     </html>
   );
 }
+
+export default RootLayout;

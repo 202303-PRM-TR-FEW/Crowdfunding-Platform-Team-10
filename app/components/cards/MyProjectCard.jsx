@@ -1,10 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
 import ClassTwoToneIcon from "@mui/icons-material/ClassTwoTone";
 import CustomizedProgressBars from "../helper/ProgressBar";
 import { Avatar } from "@material-tailwind/react";
 import CustomizedTooltip from "../helper/Tooltips";
-import Link from "next/link";
+import Link from "next-intl/link";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import eyeIcon from "../../../public/assets/images/eye.png";
@@ -25,7 +26,7 @@ export default function MyProjectCard({ project }) {
   const formattedRise = formatNumber(project?.raised || 0);
   return (
     <>
-      <div className="flex flex-col gap-6 max-w-xl self-center p-4 shadow-lg rounded ">
+      <div className="flex flex-col gap-6 py-4 ">
         <div>
           <img
             src={project.url}

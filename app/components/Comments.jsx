@@ -209,3 +209,4 @@ function FancyTestimonialsSlider({ testimonials }) {
     </div>
   );
 }
+

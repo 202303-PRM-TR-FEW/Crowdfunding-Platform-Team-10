@@ -15,7 +15,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { auth } from "../config/firebase";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -186,6 +186,23 @@ export const AuthContextProvider = ({ children }) => {
     }
   }
 
+  function isSuccessful(endingDate, raised, goal) {
+    const endDate = new Date(endingDate);
+    const today = new Date();
+    const timeDiff = endDate.getTime() - today.getTime();
+    const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (raised >= goal) {
+      return "Successful";
+    } else if (daysRemaining <= 0) {
+      return "Failed";
+    } else if (daysRemaining < 5) {
+      return `${daysRemaining} Days Left`;
+    } else {
+      return "Active";
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -203,6 +220,7 @@ export const AuthContextProvider = ({ children }) => {
         currentUser,
         googleLogIn,
         formatNumber,
+        isSuccessful,
       }}
     >
       {loading ? null : children}

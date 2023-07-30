@@ -4,11 +4,11 @@ import ClassTwoToneIcon from "@mui/icons-material/ClassTwoTone";
 import CustomizedProgressBars from "../helper/ProgressBar";
 import { Avatar } from "@material-tailwind/react";
 import CustomizedTooltip from "../helper/Tooltips";
-import Link from "next/link";
+import Link from "next-intl/link";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import eyeIcon from "../../../public/assets/images/eye.png";
-
+import SuccessBadge from "../SuccessBadge";
 export default function ProjectOfTheWeek({ projectOfWeek }) {
   const { formatNumber } = useAuth();
   const formattedViewCount = formatNumber(projectOfWeek?.viewCount || 0);
@@ -17,6 +17,7 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
   const pregresBar = Math.ceil(
     (projectOfWeek.raised / projectOfWeek.goal) * 100
   );
+
   return (
     <>
       <h1 className={styles.header}>Project of the week</h1>
@@ -31,6 +32,11 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
           </div>
         </Link>
         <div className={styles.rightSide}>
+          <SuccessBadge
+            endingDate={projectOfWeek.endingDate}
+            raised={projectOfWeek.raised}
+            goal={projectOfWeek.goal}
+          />
           <div className={`${styles.flex} justify-between p-3`}>
             <div className="">
               <div>

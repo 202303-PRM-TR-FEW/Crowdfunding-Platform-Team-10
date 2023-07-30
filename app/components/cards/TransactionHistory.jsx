@@ -70,92 +70,90 @@ export default function TransactionHistory({ usersProjects }) {
   }
 
   return (
-    <div className="lg:fixed lg:w-96 w-full">
-      <Accordion defaultExpanded>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>Transaction History</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
+    <Accordion defaultExpanded className="shadow-lg">
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
+        <Typography>Transaction History</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <div>
           <div>
             <div>
-              <div>
-                <Button
-                  id="basic-button"
-                  aria-controls={open ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                  endIcon={<KeyboardArrowDownIcon />}
-                >
-                  Select Project
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                >
-                  <MenuItem onClick={() => handleProjectSelect("")}>
-                    All Projects
+              <Button
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+                endIcon={<KeyboardArrowDownIcon />}
+              >
+                Select Project
+              </Button>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  "aria-labelledby": "basic-button",
+                }}
+              >
+                <MenuItem onClick={() => handleProjectSelect("")}>
+                  All Projects
+                </MenuItem>
+                <Divider />
+                {usersProjects.map((project) => (
+                  <MenuItem
+                    key={project?.id}
+                    onClick={() => handleProjectSelect(project?.id)}
+                  >
+                    {project?.name}
                   </MenuItem>
-                  <Divider />
-                  {usersProjects.map((project) => (
-                    <MenuItem
-                      key={project?.id}
-                      onClick={() => handleProjectSelect(project?.id)}
-                    >
-                      {project?.name}
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </div>
-            </div>
-            <div>
-              <List>
-                {donate.length > 0 ? (
-                  donate.map((donation, index) => {
-                    return (
-                      <ListItem key={index} disablePadding>
-                        <div
-                          className="hover:bg-blue-gray-50 hover:rounded w-full"
-                          key={donation.id}
-                        >
-                          <div className="flex gap-2 items-center p-2 justify-between">
-                            <div className="flex gap-2  items-center ">
-                              <Avatar
-                                src={donation.userImg}
-                                alt={donation.userName}
-                              />
-                              <div className="flex flex-col">
-                                <Typography variant="h6">
-                                  {donation.userName}
-                                </Typography>
-                                <Typography>{donation.projectName}</Typography>
-                              </div>
-                            </div>
-                            <div className="">
-                              <Typography>{donation.donaiton} $</Typography>
-                            </div>
-                          </div>
-                        </div>
-                      </ListItem>
-                    );
-                  })
-                ) : (
-                  <div className="text-center">No Donations Found</div>
-                )}
-              </List>
+                ))}
+              </Menu>
             </div>
           </div>
-        </AccordionDetails>
-      </Accordion>
-    </div>
+          <div>
+            <List>
+              {donate.length > 0 ? (
+                donate.map((donation, index) => {
+                  return (
+                    <ListItem key={index} disablePadding>
+                      <div
+                        className="hover:bg-blue-gray-50 hover:rounded w-full"
+                        key={donation.id}
+                      >
+                        <div className="flex gap-2 items-center p-2 justify-between">
+                          <div className="flex gap-2  items-center ">
+                            <Avatar
+                              src={donation.userImg}
+                              alt={donation.userName}
+                            />
+                            <div className="flex flex-col">
+                              <Typography variant="h6">
+                                {donation.userName}
+                              </Typography>
+                              <Typography>{donation.projectName}</Typography>
+                            </div>
+                          </div>
+                          <div className="">
+                            <Typography>{donation.donaiton} $</Typography>
+                          </div>
+                        </div>
+                      </div>
+                    </ListItem>
+                  );
+                })
+              ) : (
+                <div className="text-center">No Donations Found</div>
+              )}
+            </List>
+          </div>
+        </div>
+      </AccordionDetails>
+    </Accordion>
   );
 }

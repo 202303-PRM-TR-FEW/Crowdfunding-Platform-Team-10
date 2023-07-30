@@ -3,13 +3,16 @@
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 import SearchList from "./search/SearchList";
 import { Avatar } from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import logo from "../../public/logo.svg";
 import React, { useEffect, useState } from "react";
- 
+import Link from "next-intl/link";
+import Image from "next/image";
+import LangSwitcher from "./LangSwitcher";
+import MobileLangSwitcher from "./MobileLangSwitcher";
 
 import {
   AppBar,
@@ -20,7 +23,6 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
- 
 } from "@mui/material";
 import {
   AccountCircle,
@@ -32,9 +34,6 @@ import {
   Settings,
   MoreVert as MoreIcon,
 } from "@mui/icons-material";
-
-import Link from "next/link";
-import Image from "next/image";
 
 export default function Nav() {
   const { user, logout, currentUser } = useAuth();
@@ -79,7 +78,6 @@ export default function Nav() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -192,6 +190,8 @@ export default function Nav() {
               Settings
             </MenuItem>
           </Link>
+          <MobileLangSwitcher handleMenuClose={handleMenuClose} />
+
           <MenuItem onClick={handleMenuClose}>
             <ListItemIcon>
               <Logout fontSize="small" />
@@ -200,26 +200,29 @@ export default function Nav() {
           </MenuItem>
         </div>
       ) : (
-        <Link href="/login">
-          <MenuItem onClick={handleMenuClose}>
-            <ListItemIcon>
-              <Login fontSize="small" />
-            </ListItemIcon>
-            Login
-          </MenuItem>
-        </Link>
+        <div>
+          <MobileLangSwitcher handleMenuClose={handleMenuClose} />
+
+          <Link href="/login">
+            <MenuItem onClick={handleMenuClose}>
+              <ListItemIcon>
+                <Login fontSize="small" />
+              </ListItemIcon>
+              Login
+            </MenuItem>
+          </Link>
+        </div>
       )}
     </Menu>
   );
 
   return (
     <AppBar
- 
       sx={{
         background: scrolling ? "#ffffff8a" : "transparent",
         boxShadow: "none",
         backdropFilter: "blur(10px)",
-        transition: "background 0.3s ease-in-out", 
+        transition: "background 0.3s ease-in-out",
       }}
     >
       <Box sx={{ px: { xs: 2, lg: 12 } }}>
@@ -242,10 +245,15 @@ export default function Nav() {
           </Box>
           <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "block" } }}>
-            <Link href="/projects">
-              <ListItemIcon>
+            <div className="flex justify-center items-center" href="/projects">
+              <LangSwitcher />
+            </div>
+          </Box>
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Link className="flex justify-center items-center" href="/projects">
+              <IconButton>
                 <HomeRoundedIcon fontSize="large" sx={{ color: "#00c1a2" }} />
-              </ListItemIcon>
+              </IconButton>
             </Link>
           </Box>
 
@@ -357,4 +365,3 @@ function SearchComponent() {
     </div>
   );
 }
-

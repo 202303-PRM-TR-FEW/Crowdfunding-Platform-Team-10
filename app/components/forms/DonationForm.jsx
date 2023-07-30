@@ -1,12 +1,5 @@
 "use client";
-import {
-  Alert,
-  Checkbox,
-  IconButton,
-  Input,
-  ThemeProvider,
-  createTheme,
-} from "@mui/material";
+import { Alert, Checkbox, IconButton, Input } from "@mui/material";
 
 import { Controller, useForm } from "react-hook-form";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -21,25 +14,12 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 import { useContext, useEffect, useState } from "react";
 
 import { db } from "@/config/firebase";
 import Typography from "@mui/material/Typography";
 import Dialog from "@mui/material/Dialog";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#00c1a2",
-    },
-    action: {
-      // Customize the autofill background color
-      hover: "#00c1a2", // Replace with your desired color
-      selected: "#00c1a2", // Replace with your desired color
-    },
-  },
-});
 
 ////// These need to be where the new project form button is //////
 // const [openDonationForm, setOpenDonationForm] = useState(false);
@@ -58,15 +38,8 @@ const schema = yup
   .required();
 
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
-  const [currentUser, setCurrentUser] = useState("");
-  const { user, usersInfo } = useAuth();
+  const { user, currentUser } = useAuth();
 
-  useEffect(() => {
-    if (usersInfo && user) {
-      const current = usersInfo.find((usr) => usr.id === user.uid);
-      setCurrentUser(current);
-    }
-  }, []);
   const router = useRouter();
   const [success, setSuccess] = useState(false);
   const {
@@ -93,6 +66,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
         userImg: currentUser.userImg,
         userName: currentUser.name,
         projectName: title,
+        timeStamp: new Date(),
       });
       await updateDoc(doc(db, "projects", id.id), {
         raised: increment(data.donation),
@@ -118,52 +92,46 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
             <ArrowBackIosNewIcon />
           </IconButton>
           <h1 className="header-2 mt-3">Enter the donation amount:</h1>
-          <ThemeProvider theme={theme}>
-            <form
+          <form
+            id="donation"
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid"
+          >
+            <Input
               id="donation"
-              onSubmit={handleSubmit(onSubmit)}
-              className="grid"
+              name="donation"
+              placeholder="$1"
+              variant="standard"
+              {...register("donation")}
+            />
+            <Typography
+              variant="small"
+              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
             >
-              <Input
-                id="donation"
-                name="donation"
-                placeholder="$1"
-                variant="standard"
-                {...register("donation")}
+              {errors.donation && <InfoIcon fontSize="small" />}
+              {errors.donation?.message}
+            </Typography>
+            <div className="flex items-center">
+              <label htmlFor="charity">Add 2% for charity ?</label>
+              <Controller
+                name="charity"
+                control={control}
+                render={({ field: props }) => (
+                  <Checkbox
+                    {...props}
+                    checked={props.value}
+                    onChange={(e) => props.onChange(e.target.checked)}
+                  />
+                )}
               />
-              <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-              >
-                {errors.donation && <InfoIcon fontSize="small" />}
-                {errors.donation?.message}
-              </Typography>
-              <div className="flex items-center">
-                <label htmlFor="charity">Add 2% for charity ?</label>
-                <Controller
-                  name="charity"
-                  control={control}
-                  render={({ field: props }) => (
-                    <Checkbox
-                      {...props}
-                      checked={props.value}
-                      onChange={(e) => props.onChange(e.target.checked)}
-                    />
-                  )}
-                />
-              </div>
-              {success && (
-                <Alert severity="success">Donation Succesfull ! </Alert>
-              )}
-              <button
-                form="donation"
-                type="submit"
-                className="btn-primary mt-24"
-              >
-                Pay Now
-              </button>
-            </form>
-          </ThemeProvider>
+            </div>
+            {success && (
+              <Alert severity="success">Donation Succesfull ! </Alert>
+            )}
+            <button form="donation" type="submit" className="btn-primary mt-24">
+              Pay Now
+            </button>
+          </form>
         </div>
       </Dialog>
     </div>
