@@ -26,6 +26,7 @@ export const AuthContextProvider = ({ children }) => {
   const [donations, setDonations] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [comments, setComments] = useState([]);
+  const [showCommentForm, setShowCommentForm] = useState(false);
 
   const router = useRouter();
   useEffect(() => {
@@ -214,6 +215,8 @@ export const AuthContextProvider = ({ children }) => {
         projects,
         donations,
         comments,
+        showCommentForm,
+        setShowCommentForm,
         currentUser,
         googleLogIn,
         formatNumber,
