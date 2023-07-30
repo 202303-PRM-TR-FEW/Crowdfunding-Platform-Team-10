@@ -1,6 +1,6 @@
-import React from "react";
+"use client";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next-intl/link";
 export const Thanks = () => {
   const styles = {
     image: `w-3/4 mx-auto scale-75`,

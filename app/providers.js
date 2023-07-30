@@ -1,9 +1,13 @@
 "use client";
-
 import { ThemeProvider, createTheme } from "@mui/material";
 import { AuthContextProvider } from "@/context/AuthContext";
+import { NextIntlClientProvider } from "next-intl";
 
-function Providers({ children }) {
+export function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "tr" }];
+}
+
+function Providers({ children, locale, messages }) {
   const theme = createTheme({
     palette: {
       primary: {
@@ -19,7 +23,9 @@ function Providers({ children }) {
   return (
     <AuthContextProvider>
       <ThemeProvider theme={theme}>
-        <div>{children}</div>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </ThemeProvider>
     </AuthContextProvider>
   );

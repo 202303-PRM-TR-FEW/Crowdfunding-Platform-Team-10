@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next-intl/link";
 import ProjectForm from "@/components/forms/ProjectForm";
 import { Button } from "@mui/material";
 import LoaderStyle from "./helper/LoaderStyle";

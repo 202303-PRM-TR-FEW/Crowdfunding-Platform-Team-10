@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useRouter } from "next-intl/client";
+import Link from "next-intl/link";
 import { Typography } from "@material-tailwind/react";
 import InfoIcon from "@mui/icons-material/Info";
 import GoogleIcon from "@mui/icons-material/Google";

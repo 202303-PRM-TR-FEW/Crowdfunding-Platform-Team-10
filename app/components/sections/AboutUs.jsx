@@ -1,4 +1,5 @@
-import Link from "next/link";
+"use client";
+import Link from "next-intl/link";
 
 const AboutSection = () => {
   return (

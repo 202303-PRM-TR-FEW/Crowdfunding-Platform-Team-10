@@ -1,5 +1,9 @@
 {
-    "Index": {
-      "title": "Hello world!"
-    }
+  "WelcomeBanner": {
+    "header": "Büyük amaçları desteklemek artık çok kolay",
+    "subHeader": "3.500'den fazla proje ve amaçları destekledik. Bugün kaydolun ve fikrinizi hayata geçirin veya diğer harika projelere destek olun.",
+    "button": "Şimdi Başlayın",
+    "successful": "Başarılı Projeler: ",
+    "donations":"Yapılan Yardımlar: "
   }
+}

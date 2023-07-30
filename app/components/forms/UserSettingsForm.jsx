@@ -11,8 +11,8 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useRouter } from "next-intl/client";
+import Link from "next-intl/link";
 import { AccountCircle } from "@mui/icons-material";
 
 export default function UserSettingsForm() {

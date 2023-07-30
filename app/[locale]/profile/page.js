@@ -2,10 +2,10 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 
 import { doc, deleteDoc } from "firebase/firestore";
-import Link from "next/link";
+import Link from "next-intl/link";
 import MyProjectCard from "@/components/cards/MyProjectCard";
 import TransactionHistory from "@/components/cards/TransactionHistory";
 import LoaderStyle from "@/components/helper/LoaderStyle";

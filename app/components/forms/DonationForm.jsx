@@ -14,8 +14,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter } from "next-intl/client";
+import { useContext, useEffect, useState } from "react";
 
 import { db } from "@/config/firebase";
 import Typography from "@mui/material/Typography";

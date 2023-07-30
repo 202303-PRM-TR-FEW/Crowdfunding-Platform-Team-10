@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-intl/client";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
@@ -20,7 +20,7 @@ import {
   Container,
 } from "@mui/material";
 import { countries } from "@/data/countries";
-import Link from "next/link";
+import Link from "next-intl/link";
 import { toast } from "react-toastify";
 
 const schema = yup
