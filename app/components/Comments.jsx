@@ -3,8 +3,101 @@ import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useAuth } from "@/context/AuthContext";
 // Function to add a new comment to Firebase Firestore
-import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
+import { toast } from "react-toastify";
+
+export default function Comments() {
+  const { comments, currentUser, user } = useAuth();
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  const [commentText, setCommentText] = useState("");
+
+  const handleAddCommentClick = () => {
+    setShowCommentForm(true);
+  };
+
+  const handleCloseCommentForm = () => {
+    setCommentText("");
+    setShowCommentForm(false);
+  };
+
+  const handleFormSubmit = async () => {
+    if (commentText.trim() === "") return;
+
+    try {
+      // Assuming "db" is your Firestore database reference.
+      const commentsCollectionRef = collection(db, "comments");
+      await addDoc(commentsCollectionRef, {
+        commintTime: new Date(),
+        text: commentText,
+        userID: user.uid,
+        userImg: currentUser.userImg,
+        userName: currentUser.name,
+      });
+
+      setCommentText("");
+      toast.success("Succesfuly left your testimonial to OpenHanded!");
+      setShowCommentForm(false);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+  const testimonialBoxStyle = {
+    width: "80%",
+    height: "200px",
+  };
+  const writingBoxStyle = {
+    width: "100%",
+    height: "100px",
+  };
+
+  return (
+    <section className="lg:h-[700px] py-20 p-3 overflow-hidden">
+      <div className="relative">
+        <FancyTestimonialsSlider testimonials={comments} />
+        {currentUser && (
+          <button
+            className="absolute top-3 right-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
+            onClick={handleAddCommentClick}
+          >
+            Add testimonials
+          </button>
+        )}
+      </div>
+      {showCommentForm && currentUser ? (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+          <div
+            className="p-4 bg-white rounded-lg shadow-lg relative"
+            style={testimonialBoxStyle}
+          >
+            <textarea
+              className="px-3 py-2 border border-gray-300 rounded-md resize-none text-black"
+              style={writingBoxStyle}
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              placeholder="Write your testimonial..."
+            />
+
+            <div className="flex justify-end mt-3">
+              <button
+                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md mr-2"
+                onClick={handleCloseCommentForm}
+              >
+                Close
+              </button>
+              <button
+                className="px-4 py-2 bg-hoverLightGreen text-white rounded-md"
+                onClick={handleFormSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </section>
+  );
+}
 
 function FancyTestimonialsSlider({ testimonials }) {
   const testimonialsRef = useRef(null);
@@ -38,25 +131,6 @@ function FancyTestimonialsSlider({ testimonials }) {
     return formattedDate;
   }
 
-  const addCommentToFirestore = async (comment) => {
-    try {
-      // Use the "comments" collection path, and let Firestore generate a unique document ID
-      const newCommentRef = doc(db, "comments");
-
-      // Set the new comment data in the newly created document
-      await setDoc(newCommentRef, {
-        commintTime: serverTimestamp(),
-        text: comment.text,
-        userID: comment.userID,
-        userImg: comment.userImg,
-        userName: comment.userName,
-      });
-
-      console.log("New comment added to Firestore:", comment);
-    } catch (error) {
-      console.error("Error adding comment to Firestore:", error);
-    }
-  };
   return (
     <div className="w-full max-w-3xl mx-auto text-center">
       {/* Testimonial image */}
@@ -133,82 +207,5 @@ function FancyTestimonialsSlider({ testimonials }) {
         ))}
       </div>
     </div>
-  );
-}
-
-export default function Comments() {
-  const { comments, currentUser } = useAuth();
-  const [showCommentForm, setShowCommentForm] = useState(false);
-  const [commentText, setCommentText] = useState("");
-
-  const handleAddCommentClick = () => {
-    setShowCommentForm(true);
-  };
-
-  const handleCloseCommentForm = () => {
-    setCommentText("");
-    setShowCommentForm(false);
-  };
-
-  const handleFormSubmit = async () => {
-    if (commentText.trim() === "") return;
-
-    const newComment = {
-      commintTime: new Date(),
-      text: commentText,
-      userID: currentUser.uid, // Use the currentUser's UID
-      userImg: currentUser.photoURL, // Use the currentUser's photoURL
-      userName: currentUser.displayName, // Use the currentUser's displayName
-    };
-
-    // Add the new comment to Firebase Firestore
-    await addCommentToFirestore(newComment);
-
-    // Clear the comment text and close the form
-    setCommentText("");
-    setShowCommentForm(false);
-  };
-  console.log(commentText);
-  return (
-    <section className="lg:h-[700px] py-20 p-3 overflow-hidden">
-      <div className="relative">
-        <FancyTestimonialsSlider testimonials={comments} />
-        {currentUser && (
-          <button
-            className="absolute top-3 right-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
-            onClick={handleAddCommentClick}
-          >
-            Add testimonials
-          </button>
-        )}
-      </div>
-      {showCommentForm && currentUser ? (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
-          <div className="p-4 bg-white rounded-lg shadow-lg relative">
-            <textarea
-              className="w-130 h-auto px-3 py-2 border border-gray-300 rounded-md resize-none text-black"
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
-              placeholder="Write your testimonial..."
-            />
-
-            <div className="flex justify-end mt-3">
-              <button
-                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md mr-2"
-                onClick={handleCloseCommentForm}
-              >
-                Close
-              </button>
-              <button
-                className="px-4 py-2 bg-hoverLightGreen text-white rounded-md"
-                onClick={handleFormSubmit}
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : null}
-    </section>
   );
 }
