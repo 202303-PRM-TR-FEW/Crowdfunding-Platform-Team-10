@@ -87,7 +87,7 @@ const Page = () => {
                   })}
                 </div>
               </div>
-              <div className="sticky z-50 top-[68px] shadow-lg overflow-y-auto w-full lg:w-5/12 self-start order-first lg:order-last">
+              <div className="sticky z-50 top-[68px]  overflow-y-auto w-full lg:w-5/12 self-start order-first lg:order-last">
                 <div className="max-h-screen  overflow-y-auto">
                   <TransactionHistory usersProjects={usersProjects} />
                 </div>

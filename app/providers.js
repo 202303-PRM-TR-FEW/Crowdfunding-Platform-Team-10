@@ -14,9 +14,8 @@ function Providers({ children, locale, messages }) {
         main: "#00c1a2",
       },
       action: {
-        // Customize the autofill background color
-        hover: "#00c1a2", // Replace with your desired color
-        selected: "#00c1a2", // Replace with your desired color
+        hover: "#00c1a2",
+        selected: "#00c1a2",
       },
     },
   });

@@ -38,15 +38,8 @@ const schema = yup
   .required();
 
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
-  const [currentUser, setCurrentUser] = useState("");
-  const { user, usersInfo } = useAuth();
+  const { user, currentUser } = useAuth();
 
-  useEffect(() => {
-    if (usersInfo && user) {
-      const current = usersInfo.find((usr) => usr.id === user.uid);
-      setCurrentUser(current);
-    }
-  }, []);
   const router = useRouter();
   const [success, setSuccess] = useState(false);
   const {
@@ -73,6 +66,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
         userImg: currentUser.userImg,
         userName: currentUser.name,
         projectName: title,
+        timeStamp: new Date(),
       });
       await updateDoc(doc(db, "projects", id.id), {
         raised: increment(data.donation),
