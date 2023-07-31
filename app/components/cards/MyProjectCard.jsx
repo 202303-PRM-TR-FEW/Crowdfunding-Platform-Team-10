@@ -24,6 +24,7 @@ export default function MyProjectCard({ project }) {
   const formattedViewCount = formatNumber(project?.viewCount || 0);
   const formattedGoal = formatNumber(project?.goal || 0);
   const formattedRise = formatNumber(project?.raised || 0);
+
   return (
     <>
       <div className="flex flex-col gap-6 py-4 ">
@@ -38,7 +39,7 @@ export default function MyProjectCard({ project }) {
         <div className={styles.rightSide}>
           <h3 className="header-3 ">{project.name}</h3>
           <p className="sub-header">{project.about}</p>
-          <CustomizedProgressBars progressValue={60} />
+          <CustomizedProgressBars goal={project.goal} raised={project.raised} />
           <div className={styles.cost}>
             <div>
               <h4 className="sub-header ">Raised:</h4>
