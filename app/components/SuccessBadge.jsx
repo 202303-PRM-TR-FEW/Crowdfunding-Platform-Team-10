@@ -14,6 +14,8 @@ const SuccessBadge = ({ endingDate, raised, goal }) => {
             ? "text-white bg-lightGreen"
             : successState === "Successful"
             ? "text-white bg-gray-500"
+            : successState === "Closed"
+            ? "text-white bg-gray-700"
             : "text-white bg-red-800 "
         }`}
       >

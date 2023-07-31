@@ -195,7 +195,7 @@ export const AuthContextProvider = ({ children }) => {
     if (raised >= goal) {
       return "Successful";
     } else if (daysRemaining <= 0) {
-      return "Failed";
+      return "Closed";
     } else if (daysRemaining < 5) {
       return `${daysRemaining} Days Left`;
     } else {

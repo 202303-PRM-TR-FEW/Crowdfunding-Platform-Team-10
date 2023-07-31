@@ -81,6 +81,9 @@ input[type="file"] {
 .header-4 {
   @apply text-lg md:text-xl lg:text-2xl  font-bold;
 }
+.header-5 {
+  @apply text-base md:text-lg lg:text-xl   font-bold;
+}
 .sub-header {
   @apply text-base md:text-lg lg:text-xl text-basicgray;
 }
@@ -88,7 +91,9 @@ input[type="file"] {
   @apply text-base md:text-lg lg:text-xl text-white;
 }
 .btn-primary {
-  @apply bg-lightGreen hover:bg-[#f0bd07] shadow-lg text-white lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-lightGreen hover:bg-[#f0bd07] shadow-lg text-white
+   lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-md 
+   text-center cursor-pointer transition-all duration-300 ease-in-out;
 }
 .btn-secondary {
   @apply text-lightGreen hover:text-hoverLightGreen border-2 shadow-lg lg:px-6 lg:py-3 border-lightGreen hover:border-hoverLightGreen cursor-pointer text-base pt-4 pb-2 px-4 rounded-md text-center transition-all duration-300 ease-in-out;

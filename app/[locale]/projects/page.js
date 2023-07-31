@@ -2,14 +2,13 @@
 import { useEffect, useState } from "react";
 import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/material";
-import Link from "next-intl/link";
 import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
 
 const Home = () => {
-  const { projects, formatNumber } = useAuth();
+  const { projects } = useAuth();
   const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
 
@@ -34,22 +33,17 @@ const Home = () => {
   const allProjects = projects ? (
     data.length > 0 ? (
       data.map((card) => {
-        const formattedViewCount = formatNumber(card?.viewCount || 0);
-        const formattedGoal = formatNumber(card?.goal || 0);
-        const formattedRise = formatNumber(card?.raised || 0);
         return (
           <SummaryCard
             key={card.id}
             img={card.url}
             cardUrl={card.id}
             title={card.name}
-            formattedRise={formattedRise}
-            formattedGoal={formattedGoal}
             goal={card.goal}
             raised={card.raised}
             category={card.category}
             creator={card.creator}
-            viewCount={formattedViewCount}
+            viewCount={card.viewCount}
             endingDate={card.endingDate}
           />
         );
@@ -67,7 +61,7 @@ const Home = () => {
     <div className="container mx-auto py-20 mt-5">
       <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
       <CategoryFiltering data={projects} filtrindData={setData} />
-      <Box className="bg-cards-container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
+      <Box className="  items-center justify-center mx-auto grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {allProjects}
       </Box>
     </div>
