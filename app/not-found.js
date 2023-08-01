@@ -1,12 +1,8 @@
 import NotFoundComponent from "./components/helper/NotFoundComponent";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 function NotFound() {
-  const redirect = true;
-  if (redirect === true) {
-    notFound();
-  }
-
+  redirect("/missing-page");
   return (
     <>
       <NotFoundComponent />
