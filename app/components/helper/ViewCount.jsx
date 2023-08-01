@@ -8,9 +8,9 @@ function ViewCount({ viewCount = "322" }) {
 
   const formattedViewCount = formatNumber(viewCount || 0);
   return (
-    <div className="flex gap-3 items-center   justify-center">
-      <h3 className=" color-green text-sm">{formattedViewCount}</h3>
-      <Image src={eyeIcon} alt="eye" width={20} height={20} />
+    <div className="flex  items-end   justify-center">
+      <h3 className=" color-green text-sm p-0 m-0">{formattedViewCount}</h3>
+      <Image src={eyeIcon} alt="eye" width={20} height={20} className="ml-1" />
     </div>
   );
 }

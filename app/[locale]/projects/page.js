@@ -58,13 +58,16 @@ const Home = () => {
   );
 
   return (
-    <div className="container mx-auto py-20 mt-5">
-      <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
-      <CategoryFiltering data={projects} filtrindData={setData} />
-      <Box className="  items-center justify-center mx-auto grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
-        {allProjects}
-      </Box>
-    </div>
+    <section className="bg-[#fcfcfe] flex-col items-start justify-center">
+      <div className="container mx-auto py-20 mt-5 ">
+        <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
+        
+        <CategoryFiltering data={projects} filtrindData={setData} />
+        <div className=" items-start justify-between mx-auto flex flex-wrap gap-3 ">
+          {allProjects}
+        </div>
+      </div>
+    </section>
   );
 };
 

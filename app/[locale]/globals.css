@@ -166,3 +166,20 @@ input[type="file"] {
 .border-12 {
   border-radius: 12px !important;
 }
+
+.custom-clip-path {
+  position: absolute;
+  left: 0;
+  top: -35px;
+  padding: 10px 0px 20px 10px;
+
+  overflow: hidden;
+  border-radius: 2rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  transition: 0.2s ease-out;
+}
+
+.hover-parent:hover .custom-clip-path {
+  opacity: 1;
+}
