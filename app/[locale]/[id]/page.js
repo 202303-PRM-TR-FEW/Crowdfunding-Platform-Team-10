@@ -25,6 +25,7 @@ import DonationsHisory from "@/components/cards/DonationsHisory";
 import Link from "next/link";
 function Project({ params }) {
   const [data, setData] = useState(null);
+
   const { user, loading, donations } = useAuth();
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
@@ -93,11 +94,7 @@ function Project({ params }) {
     }
     window.open(url, "_blank", "width=1200,height=600");
   };
-  if (loading && user !== null) {
-    return <LoaderStyle />;
-  }
-
-  if (data === null || !data) {
+  if ((loading && user !== null) || !data) {
     return <LoaderStyle />;
   }
 
@@ -123,14 +120,14 @@ function Project({ params }) {
 
                   <SuccessBadge
                     endingDate={data.left}
-                    raised={data.taken}
+                    raised={data.raised}
                     goal={data.goal}
                   />
                 </div>
-                <Target raised={data.taken} goal={data.goal} />
+                <Target raised={data.raised} goal={data.goal} />
                 <div className=" lg:hidden block w-full">
                   {user ? (
-                    data.taken === data.goal ? (
+                    data.raised === data.goal ? (
                       <div disabled={true}>
                         The project has been completed 🎉
                       </div>
@@ -174,10 +171,9 @@ function Project({ params }) {
                       </button>
                     )
                   ) : (
-                    <Link href="/login" >
+                    <Link href="/login">
                       <div className="btn-primary w-full">
-
-                      Log in to fund this project
+                        Log in to fund this project
                       </div>
                     </Link>
                   )}

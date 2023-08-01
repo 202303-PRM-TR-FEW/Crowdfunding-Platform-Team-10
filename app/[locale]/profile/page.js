@@ -45,7 +45,7 @@ const Page = () => {
         console.log(user);
       }
     }, 600);
-  }, [projects]); // added projects as a dependency so that it runs whenever 'projects' changes.
+  }, [projects]);
 
   useEffect(() => {
     if (currentUser) {

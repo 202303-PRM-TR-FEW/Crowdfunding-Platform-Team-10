@@ -34,11 +34,11 @@ export default function MyProjectCard({ project }) {
 
             <SuccessBadge
               endingDate={project.left}
-              raised={project.taken}
+              raised={project.raised}
               goal={project.goal}
             />
           </div>
-          <Target raised={project.taken} goal={project.goal} />
+          <Target raised={project.raised} goal={project.goal} />
           <p className="color-grey">{project.about}</p>
           <hr className="border-t-2 border-white my-2"></hr>
 
