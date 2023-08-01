@@ -7,6 +7,11 @@ import ProjectForm from "@/components/forms/ProjectForm";
 import { Button } from "@mui/material";
 import LoaderStyle from "./helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
+import P1 from "../../public/assets/images/P_P1.png"
+import P2 from "../../public/assets/images/P_P2.png"
+import P3 from "../../public/assets/images/P_P3.png"
+import P4 from "../../public/assets/images/P_P4.png"
+
 const AddProjectButton = ({ user }) => {
   const [openProjectForm, setOpenProjectForm] = useState(false);
 
@@ -16,10 +21,8 @@ const AddProjectButton = ({ user }) => {
 
   return (
     <>
-      <Button onClick={handleNewProject} variant="filled" color="blue-gray">
-        New Project
-      </Button>
-      <ProjectForm
+      <button onClick={handleNewProject} className="btn-primary">New Project</button>
+      <ProjectForm 
         authUser={user}
         openProjectForm={openProjectForm}
         setOpenProjectForm={setOpenProjectForm}
@@ -34,40 +37,48 @@ export const NoProjects = () => {
     return <LoaderStyle />;
   }
   return (
-    <div className="flex flex-col items-center justify-center text-center w-full">
-      <Image
-        width={295}
-        height={165}
-        // src={handImag}
-        alt="Picture of thanking"
-        className={styles.image}
-        style={styles.image_size}
-      />
+    <div>
+      <section className="grid justify-items-center">
+        <div className="group justify-items-center grid grid-cols-1 pt-10 container px-5 md:px-0">
+          <div className="grid grid-cols-4 justify-center flex-wrap scale-[0.8] mx-auto max-h-72 " >
+            <Image className="relative w-auto h-auto xl:group-hover:translate-x-[7rem] group-hover:translate-x-[5rem] transition duration-700"
+              src={P1}
+              alt="piece1"
+              id="piece1"
+            />
+            <Image className="relative w-auto h-auto xl:group-hover:translate-x-[2rem] group-hover:translate-x-[1.5rem] md:group-hover:translate-x-[1rem] transition duration-700"
+              src={P2}
+              alt="piece2"
+              id="piece2"
+            />
+            <Image className="relative w-auto h-auto xl:group-hover:-translate-x-[2rem] group-hover:-translate-x-[2rem] transition duration-700 z-10"
+              src={P3}
+              alt="piece3"
+              id="piece3"
+            />
+            <Image className="relative w-auto h-auto xl:group-hover:-translate-x-[6rem] group-hover:-translate-x-[5rem] transition duration-700"
+              src={P4}
+              alt="piece4"
+              id="piece4"
+            />
+          </div>
+          <div className="pt-10 flex flex-col text-center justify-items-center col-span-1 w-4/5 group/edit ">
+            <p className="header-1 text-center">You do not have <span className="color-yellow">a project yet</span> </p>
+            <p className="sub-header pt-10 mx-auto justify-center text-justify">
+              If there is already a project in your mind, let's realize it as well since it would give someone a lift and may put a smile on your face as a gift!            </p>
+            <div className="flex lg:flex-row flex-col w-full items-center justify-center gap-5 mt-10 ">
+              <AddProjectButton user={user} />
 
-      <div>
-        <h4 className={styles.title}>You Have No Projects Yet</h4>
-
-        <div className="flex lg:flex-row flex-col w-full items-center justify-center gap-5 mt-5 ">
-          <AddProjectButton user={user} />
-          <Link
-            href="/"
-            className=" bg-orange-500 text-white px-4 py-2 rounded"
-          >
-            Make A Donation
-          </Link>
+              <Link
+                href="/projects"
+                className="btn-transpernt "
+              >
+                Make A Donation
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  );
-};
+      </section>
+    </div>);
+}
 
-const styles = {
-  image: `w-3/4 mx-auto scale-75`,
-  image_size: {
-    minHeight: "300px",
-  },
-  title: `lg:text-6xl text-3xl font-bold mb-4`,
-
-  button_left: `bg-black hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-md border border-black mx-5 mb-5 w-80 text-lg`,
-  button_right: `bg-white hover:bg-orange-500 text-black font-bold py-2 px-4 rounded-md border border-black mx-5 w-80 text-lg`,
-};
