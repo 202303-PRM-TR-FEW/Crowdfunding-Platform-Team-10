@@ -74,7 +74,7 @@ const WelcomeBanner = () => {
             {successfulProjects}
           </Box>
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/crowdfunding-99b5a.appspot.com/o/hero.png?alt=media&token=f25e81a6-bb2e-4797-b4b0-a03d495988bb"
+            src="/assets/images/team_work.png"
             alt=""
             style={{
               maxWidth: "100%",

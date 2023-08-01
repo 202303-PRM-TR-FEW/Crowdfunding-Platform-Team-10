@@ -1,25 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next-intl/client";
 
-import { doc, deleteDoc } from "firebase/firestore";
 import Link from "next-intl/link";
 import MyProjectCard from "@/components/cards/MyProjectCard";
 import TransactionHistory from "@/components/cards/TransactionHistory";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { NoProjects } from "@/components/NoProjects";
 import { useAuth } from "@/context/AuthContext";
-import ConfirmDialog from "@/components/helper/ConfirmDialog";
-import { db } from "@/config/firebase";
-import { toast } from "react-toastify";
 
 const Page = () => {
   const { user, loading, projects, currentUser } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [open, setOpen] = useState(false);
+
   const router = useRouter();
   const circleBackgroundStyle = {
     position: "absolute",
@@ -35,17 +31,21 @@ const Page = () => {
     overFlow: "hidden",
   };
   useEffect(() => {
-    if (user === null) {
-      router.push("/login");
-    } else {
-      const projectArray = Object.values(projects);
-      const projectWithUser = projectArray.filter(
-        (project) => project.creator.userId === user.uid
-      );
-      setUsersProjects(projectWithUser);
-      setIsLoading(false);
-    }
-  }, [projects]); // added projects as a dependency so that it runs whenever 'projects' changes.
+    setTimeout(() => {
+      if (user === null) {
+        // router.push("/login");
+        console.log(user);
+      } else {
+        const projectArray = Object.values(projects);
+        const projectWithUser = projectArray.filter(
+          (project) => project.creator.userId === user.uid
+        );
+        setUsersProjects(projectWithUser);
+        setIsLoading(false);
+        console.log(user);
+      }
+    }, 600);
+  }, [projects]);
 
   useEffect(() => {
     if (currentUser) {
@@ -75,7 +75,7 @@ const Page = () => {
             <h1 className="header-2 text-center lg:text-start text-lightGreen">
               My Projects
             </h1>
-            <div className="flex flex-col lg:flex-row py-10 gap-8 ">
+            <div className="flex flex-col lg:flex-row p-6 md:p-10 gap-8 ">
               <div className="w-full lg:w-7/12">
                 <div className="flex flex-col gap-10 ">
                   {usersProjects.map((project, i) => {
