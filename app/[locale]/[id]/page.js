@@ -158,7 +158,7 @@ function Project({ params }) {
 
                 <div className=" lg:block hidden my-2 w-full">
                   {user ? (
-                    data.taken === data.goal || data.taken > data.goal ? (
+                    data.raised === data.goal || data.raised > data.goal ? (
                       <button disabled={true} className="btn-primary w-full">
                         The project has been completed 🎉
                       </button>
