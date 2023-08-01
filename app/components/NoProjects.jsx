@@ -70,7 +70,7 @@ export const NoProjects = () => {
 
               <Link
                 href="/projects"
-                className="btn-transpernt "
+                className="btn-yellow"
               >
                 Make A Donation
               </Link>

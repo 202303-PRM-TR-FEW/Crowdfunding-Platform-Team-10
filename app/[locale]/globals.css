@@ -99,6 +99,9 @@ input[type="file"] {
 .btn-transpernt {
   @apply color-green hover:bg-[#00c1a1a9] hover:text-white lg:px-6 lg:py-4 px-2 py-1 rounded-md shadow-md font-medium text-base pt-4 pb-2 text-center cursor-pointer transition-all duration-300 ease-in-out;
 }
+.btn-yellow {
+  @apply bg-[#f0bd07] hover:bg-[#a57801] shadow-lg text-white lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out;
+}
 .color-green {
   @apply text-[#00c1a2];
 }
