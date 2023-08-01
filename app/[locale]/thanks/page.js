@@ -11,8 +11,8 @@ const Thank = () => {
     <div>
       <section className="grid justify-items-center w-full pb-20 bg-gradient-to-t from-transparent to-teal-50 overflow-y-hidden">
         <div className="group justify-items-center grid grid-cols-1 py-28 container px-5 md:px-0 bg-[length:200px_200px] bg-[right_top_2rem] bg-no-repeat bg-[url('https://firebasestorage.googleapis.com/v0/b/crowdfunding-99b5a.appspot.com/o/dots.svg?alt=media&token=7a903a0a-56f7-4321-8497-13b2325a2477')]">
-          <div className="md:group-hover:translate-y-20 scale-[0.5] h-62 md:h-96  md:scale-[1] pt-5 md:pt-20 justify-items-center box-border col-span-1 relative transition ease-in-out group-hover:scale-[0.6] md:group-hover:scale-[1.2] group-hover:rotate-[180deg] duration-700 max-w-md" id="rotated">
-            <Image className="relative w-auto h-auto scale-[0.5] top-20 group-hover:animate-[hearth_1s_ease-in-out_infinite] "
+          <div className="md:group-hover:translate-y-20 scale-[0.5] min-h-62 md:scale-[1] pt-5 md:pt-20 justify-items-center box-border col-span-1 relative transition ease-in-out group-hover:scale-[0.6] md:group-hover:scale-[1.2] group-hover:rotate-[180deg] duration-700 max-h-72" id="rotated">
+            <Image className="relative w-auto h-auto scale-[0.5] top-16 group-hover:animate-[hearth_1s_ease-in-out_infinite] "
               src={Heart}
               alt="Hearth"
               id="hearth"
