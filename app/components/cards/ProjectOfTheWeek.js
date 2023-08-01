@@ -14,9 +14,6 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
   const formattedViewCount = formatNumber(projectOfWeek?.viewCount || 0);
   const formattedGoal = formatNumber(projectOfWeek?.goal || 0);
   const formattedRise = formatNumber(projectOfWeek?.raised || 0);
-  const pregresBar = Math.ceil(
-    (projectOfWeek.raised / projectOfWeek.goal) * 100
-  );
 
   return (
     <>
@@ -53,7 +50,10 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
           </div>
           <h3 className="header-3">{projectOfWeek.name}</h3>
           <p className="sub-header">{projectOfWeek.about}</p>
-          <CustomizedProgressBars progressValue={pregresBar} />
+          <CustomizedProgressBars
+            goal={projectOfWeek.goal}
+            raised={projectOfWeek.raised}
+          />
           <div className={styles.cost}>
             <div>
               <CustomizedTooltip mode="dark" title={formattedRise}>

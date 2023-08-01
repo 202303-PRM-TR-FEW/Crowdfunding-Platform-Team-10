@@ -23,9 +23,8 @@ const SummaryCard = ({
   viewCount,
 }) => {
   const { isSuccessful } = useAuth();
-  const progressBar = Math.ceil((raised / goal) * 100);
+
   const successState = isSuccessful(endingDate, raised, goal);
-  // console.log(title, ":", successState);
 
   const styles = {
     flex: "flex items-center gap-1",
@@ -66,7 +65,7 @@ const SummaryCard = ({
       </div>
       <div className={styles.body}>
         <h4 className="header-4 min-h-[64px] ">{title}</h4>
-        <CustomizedProgressBars progressValue={progressBar} />
+        <CustomizedProgressBars goal={goal} raised={raised} />
         <div className="flex flex-row justify-between">
           <div>
             <h4 className="sub-header">Raised:</h4>
@@ -88,9 +87,7 @@ const SummaryCard = ({
           </div>
           <div className={`${""} justify-between py-2`}>
             <Link href={`/${cardUrl}`}>
-              <button className="btn-primary">
-                View more <span className="hover:-translate-x-2">👉</span>
-              </button>
+              <button className="btn-primary">View more</button>
             </Link>
           </div>
         </div>
