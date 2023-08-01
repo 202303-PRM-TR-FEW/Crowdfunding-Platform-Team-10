@@ -4,12 +4,7 @@ function UserNameImg({ userImg, userName }) {
   return (
     <div className="flex items-center justify-start gap-3 ">
       <div className="w-[45px]">
-        <img
-          src={userImg}
-          alt="user img"
-          width={45}
-          className="rounded-full w-full"
-        />
+        <img src={userImg} alt="user img" className=" w-11 h-11 rounded-full" />
       </div>
       <div>
         <p className="text-md color-yellow">{userName} </p>
