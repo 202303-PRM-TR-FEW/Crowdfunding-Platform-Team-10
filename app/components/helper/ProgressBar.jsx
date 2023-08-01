@@ -21,10 +21,17 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedProgressBars({ progressValue = 0 }) {
+export default function CustomizedProgressBars({ raised = 0, goal = 0 }) {
+  let progressBar;
+  if (raised >= goal) {
+    progressBar = 100;
+  } else {
+    progressBar = Math.ceil((raised / goal) * 100);
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <BorderLinearProgress variant="determinate" value={progressValue} />
+      <BorderLinearProgress variant="determinate" value={progressBar} />
     </Box>
   );
 }
