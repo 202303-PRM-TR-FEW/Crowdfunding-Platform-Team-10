@@ -6,10 +6,7 @@ const AboutSection = () => {
     <div className="container mx-auto flex  items-center justify-center ">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:gap-5  items-center justify-center  lg:py-28 lg:pb-28 py-20 px-2">
         <div className="">
-          <img
-            src="https://images-ext-2.discordapp.net/external/mnIYLSAJclE8tlmVWs8tl0F9DN9Sbh-f5nkIos2upCQ/https/img.freepik.com/free-vector/teamwork-puzzle-concept-illustration_114360-13355.jpg"
-            className="w-full"
-          />
+          <img src="/assets/images/team_work.png" className="w-full" />
         </div>
 
         <div className="">
