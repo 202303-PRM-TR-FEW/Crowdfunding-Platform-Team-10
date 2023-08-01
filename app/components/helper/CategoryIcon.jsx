@@ -1,11 +1,11 @@
 import React from "react";
 import { CATEGORY } from "@/data/countries";
 
-function CategoryIcon({ category }) {
+function CategoryIcon({ category ,color="#00c1a2"}) {
   const selectedCategory = CATEGORY.find((x) => x.id === category);
 
   return (
-    <div>{selectedCategory ? selectedCategory.icon("#00c1a2") : null}</div>
+    <div>{selectedCategory ? selectedCategory.icon(color) : null}</div>
   );
 }
 

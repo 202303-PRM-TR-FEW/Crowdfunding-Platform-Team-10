@@ -2,14 +2,14 @@
 import { useEffect, useState } from "react";
 import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/material";
-import Link from "next-intl/link";
 import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
 
 const Home = () => {
-  const { projects, formatNumber } = useAuth();
+  const { projects } = useAuth();
   const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
 
@@ -34,24 +34,20 @@ const Home = () => {
   const allProjects = projects ? (
     data.length > 0 ? (
       data.map((card) => {
-        const formattedViewCount = formatNumber(card?.viewCount || 0);
-        const formattedGoal = formatNumber(card?.goal || 0);
-        const formattedRise = formatNumber(card?.raised || 0);
         return (
-          <SummaryCard
-            key={card.id}
-            img={card.url}
-            cardUrl={card.id}
-            title={card.name}
-            formattedRise={formattedRise}
-            formattedGoal={formattedGoal}
-            goal={card.goal}
-            raised={card.raised}
-            category={card.category}
-            creator={card.creator}
-            viewCount={formattedViewCount}
-            endingDate={card.endingDate}
-          />
+          <Link href={`/${card.id} `} key={card.id}>
+            <SummaryCard
+              key={card.id}
+              img={card.url}
+              title={card.name}
+              goal={card.goal}
+              raised={card.raised}
+              category={card.category}
+              creator={card.creator}
+              viewCount={card.viewCount}
+              endingDate={card.endingDate}
+            />
+          </Link>
         );
       })
     ) : (
@@ -64,13 +60,16 @@ const Home = () => {
   );
 
   return (
-    <div className="container mx-auto py-20 mt-5">
-      <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
-      <CategoryFiltering data={projects} filtrindData={setData} />
-      <Box className="bg-cards-container grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
-        {allProjects}
-      </Box>
-    </div>
+    <section className="bg-[#fcfcfe] flex-col items-start justify-center">
+      <div className="container mx-auto py-20 p-3 mt-5 ">
+        <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
+
+        <CategoryFiltering data={projects} filtrindData={setData} />
+        <div className=" items-start justify-between mx-auto flex flex-wrap gap-3 mt-2 ">
+          {allProjects}
+        </div>
+      </div>
+    </section>
   );
 };
 

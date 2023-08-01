@@ -1,10 +1,18 @@
 import React from "react";
-
+import { Avatar } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
 function UserNameImg({ userImg, userName }) {
   return (
     <div className="flex items-center justify-start gap-3 ">
       <div className="w-[45px]">
-        <img src={userImg} alt="user img" className=" w-11 h-11 rounded-full" />
+
+
+        {userImg ? (
+          <Avatar alt={userName} src={userImg} />
+        ) : (
+          <AccountCircle fontSize="large" />
+        )}
+
       </div>
       <div>
         <p className="text-md color-yellow">{userName} </p>
