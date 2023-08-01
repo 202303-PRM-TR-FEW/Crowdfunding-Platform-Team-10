@@ -20,11 +20,7 @@ export default function MyProjectCard({ project }) {
     <>
       <div className="flex flex-col gap-6 overflow-hidden ">
         <div>
-          <img
-            src={project.url}
-            alt="Project of the week"
-            className="image-animated w-full"
-          />
+          <img src={project.url} alt="Project of the week" className="w-full" />
         </div>
 
         <div className={styles.rightSide}>
@@ -38,11 +34,11 @@ export default function MyProjectCard({ project }) {
 
             <SuccessBadge
               endingDate={project.left}
-              raised={project.taken}
+              raised={project.raised}
               goal={project.goal}
             />
           </div>
-          <Target raised={project.taken} goal={project.goal} />
+          <Target raised={project.raised} goal={project.goal} />
           <p className="color-grey">{project.about}</p>
           <hr className="border-t-2 border-white my-2"></hr>
 
