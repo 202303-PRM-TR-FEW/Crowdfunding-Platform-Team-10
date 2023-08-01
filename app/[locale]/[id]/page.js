@@ -25,7 +25,8 @@ import Link from "next/link";
 function Project({ params }) {
   const [data, setData] = useState(null);
 
-  const { user, loading, donations } = useAuth();
+  const { user, donations } = useAuth();
+  const { loading, setLoading } = useState(true);
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const pathname = usePathname();
@@ -45,6 +46,7 @@ function Project({ params }) {
           await updateDoc(docRef, updatedData);
 
           setData(updatedData);
+          setLoading(false);
         } else {
           console.log("No such document!");
         }
@@ -96,8 +98,9 @@ function Project({ params }) {
   if (loading && user !== null) {
     return <LoaderStyle />;
   }
-
-  if (data === null || !data) {
+  console.log(loading);
+  if (!loading && data === null) {
+    // return <LoaderStyle />;
     notFound();
   }
 
