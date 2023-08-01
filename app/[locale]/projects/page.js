@@ -6,6 +6,7 @@ import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
 
 const Home = () => {
   const { projects } = useAuth();
@@ -34,18 +35,19 @@ const Home = () => {
     data.length > 0 ? (
       data.map((card) => {
         return (
-          <SummaryCard
-            key={card.id}
-            img={card.url}
-            cardUrl={card.id}
-            title={card.name}
-            goal={card.goal}
-            raised={card.raised}
-            category={card.category}
-            creator={card.creator}
-            viewCount={card.viewCount}
-            endingDate={card.endingDate}
-          />
+          <Link href={`/${card.id}`}>
+            <SummaryCard
+              key={card.id}
+              img={card.url}
+              title={card.name}
+              goal={card.goal}
+              raised={card.raised}
+              category={card.category}
+              creator={card.creator}
+              viewCount={card.viewCount}
+              endingDate={card.endingDate}
+            />
+          </Link>
         );
       })
     ) : (
@@ -61,9 +63,9 @@ const Home = () => {
     <section className="bg-[#fcfcfe] flex-col items-start justify-center">
       <div className="container mx-auto py-20 p-3 mt-5 ">
         <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
-        
+
         <CategoryFiltering data={projects} filtrindData={setData} />
-        <div className=" items-start justify-between mx-auto flex flex-wrap gap-3 ">
+        <div className=" items-start justify-between mx-auto flex flex-wrap gap-3 mt-2 ">
           {allProjects}
         </div>
       </div>

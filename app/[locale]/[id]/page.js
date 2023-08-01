@@ -174,8 +174,11 @@ function Project({ params }) {
                       </button>
                     )
                   ) : (
-                    <Link href="/login" className="btn-primary w-full">
+                    <Link href="/login" >
+                      <div className="btn-primary w-full">
+
                       Log in to fund this project
+                      </div>
                     </Link>
                   )}
                 </div>

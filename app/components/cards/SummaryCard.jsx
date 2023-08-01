@@ -66,7 +66,7 @@ const SummaryCard = ({
       >
         <ViewCount viewCount={viewCount} />
       </div>
-      <Link href={`/${cardUrl}`}>
+     
         <div className="overflow-hidden object-contain rounded-lg  cursor-pointer">
           <img
             className="w-full h-[222px] image-animated"
@@ -74,7 +74,7 @@ const SummaryCard = ({
             alt="project img"
           />
         </div>
-      </Link>
+    
       <div className={styles.body}>
         <div className="flex items-center justify-between">
           <div className="grid grid-cols-2  items-start mt-2 w-full justify-between">
