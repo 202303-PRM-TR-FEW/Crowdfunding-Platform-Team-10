@@ -174,8 +174,11 @@ function Project({ params }) {
                       </button>
                     )
                   ) : (
-                    <Link href="/login" className="btn-primary w-full">
+                    <Link href="/login" >
+                      <div className="btn-primary w-full">
+
                       Log in to fund this project
+                      </div>
                     </Link>
                   )}
                 </div>
@@ -231,16 +234,4 @@ const circleBackgroundStyle = {
   zIndex: -1,
   animation: `moveCircle2 10s linear infinite`,
   overFlow: "hidden",
-};
-const circleBackgroundStyle2 = {
-  position: "absolute",
-  bottom: "0",
-  left: "0",
-  width: "500px",
-  height: "500px",
-  borderRadius: "50%",
-  background: "#00c1a144",
-  zIndex: -1,
-  filter: "blur(20px)",
-  animation: `move  10s linear infinite`,
 };
