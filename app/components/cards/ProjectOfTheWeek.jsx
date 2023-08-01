@@ -1,83 +1,64 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import ClassTwoToneIcon from "@mui/icons-material/ClassTwoTone";
-import CustomizedProgressBars from "../helper/ProgressBar";
-import { Avatar } from "@material-tailwind/react";
-import CustomizedTooltip from "../helper/Tooltips";
-import Link from "next-intl/link";
-import { useAuth } from "@/context/AuthContext";
-import Image from "next/image";
-import eyeIcon from "../../../public/assets/images/eye.png";
-import SuccessBadge from "../SuccessBadge";
-export default function ProjectOfTheWeek({ projectOfWeek }) {
-  const { formatNumber } = useAuth();
-  const formattedViewCount = formatNumber(projectOfWeek?.viewCount || 0);
-  const formattedGoal = formatNumber(projectOfWeek?.goal || 0);
-  const formattedRise = formatNumber(projectOfWeek?.raised || 0);
-  const pregresBar = Math.ceil(
-    (projectOfWeek.raised / projectOfWeek.goal) * 100
-  );
 
+import { Avatar } from "@material-tailwind/react";
+
+import Link from "next-intl/link";
+
+import SuccessBadge from "../SuccessBadge";
+import Target from "../helper/Target";
+import ViewCount from "../helper/ViewCount";
+import CategoryIcon from "../helper/CategoryIcon";
+export default function ProjectOfTheWeek({ projectOfWeek }) {
   return (
     <>
       <h1 className={styles.header}>Project of the week</h1>
       <div className={styles.page}>
-        <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
-          <div className={styles.image}>
+        <div className={styles.leftSize}>
+          <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
             <img
               src={projectOfWeek.url}
               alt="Project of the week"
-              className="image-animated"
+              className="image-animated w-full"
+            />
+          </Link>
+        </div>
+        <div className={styles.rightSide}>
+          <div className=" justify-self-start">
+            <SuccessBadge
+              endingDate={projectOfWeek.endingDate}
+              raised={projectOfWeek.raised}
+              goal={projectOfWeek.goal}
             />
           </div>
-        </Link>
-        <div className={styles.rightSide}>
-          <SuccessBadge
-            endingDate={projectOfWeek.endingDate}
-            raised={projectOfWeek.raised}
-            goal={projectOfWeek.goal}
-          />
-          <div className={`${styles.flex} justify-between p-3`}>
-            <div className="">
-              <div>
-                <ClassTwoToneIcon color="action" />
-              </div>
+
+          <div className="  flex justify-between">
+            <h3 className="header-3 text-start">{projectOfWeek.name}</h3>
+            <div className="flex justify-end">
+              <CategoryIcon
+                category={projectOfWeek.category}
+                color={"#f0bd07"}
+              />
+            </div>
+          </div>
+
+          <p className="text-base text-basicgray line-clamp-3 ">
+            {projectOfWeek.about}
+          </p>
+          <Target raised={projectOfWeek.raised} goal={projectOfWeek.goal} />
+
+          <div className={`${styles.flex} justify-between  `}>
+            <div className={styles.flex}>
+              <Avatar
+                alt={projectOfWeek.creator?.userName}
+                src={projectOfWeek.creator?.userImg}
+                className="w-10 h-10 me-1 overflow-hidden"
+              />
               <p className="text-base text-basicgray ">
-                {projectOfWeek.category}
+                {projectOfWeek.creator?.userName}
               </p>
             </div>
-            <li className="flex gap-3 items-center ">
-              <h3 className=" color-green text-sm">{formattedViewCount}</h3>
-              <Image src={eyeIcon} alt="eye" width={20} height={20} />
-            </li>
-          </div>
-          <h3 className="header-3">{projectOfWeek.name}</h3>
-          <p className="sub-header">{projectOfWeek.about}</p>
-          <CustomizedProgressBars progressValue={pregresBar} />
-          <div className={styles.cost}>
-            <div>
-              <CustomizedTooltip mode="dark" title={formattedRise}>
-                <h3 className="header-3 ellipsis-text">${formattedRise}</h3>
-              </CustomizedTooltip>
-              <h4 className="sub-header ">Raised:</h4>
-            </div>
-            <div>
-              <CustomizedTooltip mode="dark" title={formattedGoal}>
-                <h3 className="header-3 ellipsis-text">${formattedGoal}</h3>
-              </CustomizedTooltip>
-
-              <h4 className="sub-header">Goal:</h4>
-            </div>
-          </div>
-          <div className={styles.flex}>
-            <Avatar
-              alt={projectOfWeek?.creator?.userName}
-              src={projectOfWeek?.creator?.userImg}
-              className={styles.avatar}
-            />
-            <p className="text-base text-basicgray ">
-              {projectOfWeek?.creator?.userName}
-            </p>
+            <ViewCount viewCount={projectOfWeek.viewCount} />
           </div>
         </div>
       </div>
@@ -86,11 +67,11 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
 }
 
 const styles = {
-  header: "header-2 text-lightGreen  py-4",
-  page: `grid grid-cols-1 lg:grid-cols-2 gap-10 py-5 items-center min-h-[470px]`,
+  header: "header-2 text-lightGreen px-2 py-4",
+  page: `flex lg:flex-row flex-col gap-10 px-2 py-5 items-start  justify-start`,
   flex: "flex items-center gap-1",
-  image: "w-full overflow-hidden rounded",
-  rightSide: "w-10/12 flex flex-col gap-4",
+  leftSize: " lg:w-[40%] w-full overflow-hidden rounded-lg flex justify-end",
+  rightSide: "lg:w-[50%] w-full flex flex-col gap-4",
   cost: "grid grid-cols-2 pt-2 gap-2",
   avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
 };

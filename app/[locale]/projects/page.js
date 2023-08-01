@@ -59,7 +59,7 @@ const Home = () => {
 
   return (
     <section className="bg-[#fcfcfe] flex-col items-start justify-center">
-      <div className="container mx-auto py-20 mt-5 ">
+      <div className="container mx-auto py-20 p-3 mt-5 ">
         <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
         
         <CategoryFiltering data={projects} filtrindData={setData} />

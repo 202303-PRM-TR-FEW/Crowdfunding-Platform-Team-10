@@ -46,8 +46,9 @@ const SummaryCard = ({
           : successState === "Closed"
           ? "bg-[#4b4b4b1d]"
           : "bg-[#ffffffb7]"
-      } flex flex-col  self-stretch  p-3 shadow-md  bg-opacity-20 backdrop-blur-md rounded-lg hover:rounded-tl-[0px]   hover:-translate-y-3 gap-2 w-[350px]
-        mb-10
+      } flex flex-col  self-stretch   p-3 shadow-md  bg-opacity-20 backdrop-blur-md rounded-lg
+       hover:rounded-tl-[0px]   hover:-translate-y-3 gap-2 w-[350px]
+        mb-20
           hover:drop-shadow-3xl relative  transition-all duration-300 ease-in-out
           hover-parent
           `}
@@ -61,7 +62,7 @@ const SummaryCard = ({
             : successState === "Closed"
             ? "bg-[#4b4b4b1d]"
             : "bg-[#ffffffb7]"
-        }  custom-clip-path  justify-center items-center flex opacity-0 hover:opacity-100 `}
+        }  custom-clip-path items-start opacity-0 hover:opacity-100 `}
       >
         <ViewCount viewCount={viewCount} />
       </div>
@@ -91,33 +92,7 @@ const SummaryCard = ({
         <Target raised={raised} goal={goal} />
 
         <hr className=" border-t-2  border-white"></hr>
-        {/* <div className={`${styles.flex} justify-between `}>
-          <div className={`${styles.flex} `}>
-            <Avatar
-              alt={creator?.userName}
-              src={creator?.userImg}
-              className="w-10 h-10 me-1"
-            />
-            <p className="text-base text-basicgray ">{creator?.userName}</p>
-          </div>
-
-          <Link href={`/${cardUrl}`}>
-            <div className=" rounded-full  text-center cursor-pointer hover:text-[#f0bd07] transition-all duration-300 ease-in-out">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="40"
-                height="40"
-              >
-                <path d="M0 0h24v24H0z" fill="none" />
-                <path
-                  d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
-                  fill="#00c1a2"
-                />
-              </svg>
-            </div>
-          </Link>
-        </div> */}
+     
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start justify-self-start">
             <div className={`${styles.flex} `}>
