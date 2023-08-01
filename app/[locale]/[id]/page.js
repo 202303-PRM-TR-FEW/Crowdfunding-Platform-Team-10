@@ -11,8 +11,7 @@ import faceBook from "../../../public/assets/images/facebookIcon.png";
 import twitter from "../../../public/assets/images/twitterIcon.png";
 import whatsapp from "../../../public/assets/images/whatsapp.png";
 import telegram from "../../../public/assets/images/telegram.png";
-import Image from "next/image";
-import { usePathname, useSearchParams } from "next/navigation";
+import { notFound, usePathname, useSearchParams } from "next/navigation";
 import SocialButton from "@/components/helper/SocialButton";
 
 import Target from "@/components/helper/Target";
@@ -98,7 +97,8 @@ function Project({ params }) {
   }
 
   if (data === null || !data) {
-    return <LoaderStyle />;
+    // return <LoaderStyle />;
+    notFound();
   }
 
   return (
@@ -174,10 +174,9 @@ function Project({ params }) {
                       </button>
                     )
                   ) : (
-                    <Link href="/login" >
+                    <Link href="/login">
                       <div className="btn-primary w-full">
-
-                      Log in to fund this project
+                        Log in to fund this project
                       </div>
                     </Link>
                   )}
