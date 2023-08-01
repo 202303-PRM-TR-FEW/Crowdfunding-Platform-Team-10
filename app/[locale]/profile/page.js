@@ -21,7 +21,19 @@ const Page = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const router = useRouter();
-
+  const circleBackgroundStyle = {
+    position: "absolute",
+    top: "-50px",
+    right: "50px",
+    width: "300px",
+    height: "300px",
+    borderRadius: "50%",
+    background: "#00c1a1a5",
+    transform: "rotate(45deg)",
+    zIndex: -1,
+    animation: `moveCircle2 10s linear infinite`,
+    overFlow: "hidden",
+  };
   useEffect(() => {
     if (user === null) {
       router.push("/login");
@@ -54,19 +66,7 @@ const Page = () => {
   }
 
   return (
-    ////Needs to stay for future////
-    // const handleDeleteProject = () => {
-    //   setOpen(true);
-    // };
-
-    // const handleClose = async (word) => {
-    //   if (word === "Confirm") {
-    //     await deleteDoc(doc(db, "projects", oneProjectInfo.id));
-    //     toast.success(" Project deleted Succesfully !");
-    //   }
-    //   setOpen(false);
-    // };
-    <div className=" bg-gradient-to-t from-transparent to-teal-50">
+    <div className=" bg-gradient-to-t from-transparent to-teal-50 relative overflow-hidden ">
       <div className="container mx-auto py-28">
         {isLoading ? (
           <LoaderStyle />
@@ -98,6 +98,7 @@ const Page = () => {
           <NoProjects />
         )}
       </div>
+      <div style={circleBackgroundStyle}></div>
     </div>
   );
 };

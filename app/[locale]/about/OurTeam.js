@@ -13,7 +13,7 @@ const OurTeam = () => {
           <div>
             <img src="https://avatars.githubusercontent.com/u/127213973?v=4" className='w-full -z-10 relative' alt="Avatar" />
           </div>
-          <div className=' group/edit group-hover/item:visible relative invisible hover:visible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
+          <div className=' group/edit group-hover/item:visible relative invisible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
             <p>Web Developer & Designer</p>
             <h1 className=' text-white md:text-lg lg:text-xl'>Ayşe Merve Kosova<span className='pl-3'><Link href="https://github.com/aysemerveksv" target="_blank" className='cursor-pointer'><GitHub /></Link></span> </h1>
           </div>
@@ -22,7 +22,7 @@ const OurTeam = () => {
           <div>
             <img src="https://avatars.githubusercontent.com/u/86659887?v=4" className='w-full -z-10 relative' alt="Avatar" />
           </div>
-          <div className=' group/edit group-hover/item:visible relative invisible hover:visible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
+          <div className=' group/edit group-hover/item:visible relative invisible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
             <p>Web Developer & Designer</p>
             <h1 className=' text-white md:text-lg lg:text-xl'>Bal Elsada Hasun<span className='pl-3'><Link href="https://github.com/BalHasun" target="_blank" className='cursor-pointer'><GitHub /></Link></span> </h1>
           </div>
@@ -31,7 +31,7 @@ const OurTeam = () => {
           <div>
             <img src="https://avatars.githubusercontent.com/u/89347761?v=4" className='w-full -z-10 relative' alt="Avatar" />
           </div>
-          <div className=' group/edit group-hover/item:visible relative invisible hover:visible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
+          <div className=' group/edit group-hover/item:visible relative invisible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
             <p>Web Developer & Designer</p>
             <h1 className=' text-white md:text-lg lg:text-xl'>Sadik Baris Yilmaz<span className='pl-3'><Link href="https://github.com/sadikbarisyilmaz" target="_blank" className='cursor-pointer'><GitHub /></Link></span> </h1>
           </div>
@@ -40,7 +40,7 @@ const OurTeam = () => {
           <div>
             <img src="https://avatars.githubusercontent.com/u/111579346?v=4" className='w-full -z-10 relative' alt="Avatar" />
           </div>
-          <div className=' group/edit group-hover/item:visible relative invisible hover:visible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
+          <div className=' group/edit group-hover/item:visible relative invisible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
             <p>Web Developer & Designer</p>
             <h1 className=' text-white md:text-lg lg:text-xl'>Mehmet Unlu<span className='pl-3'><Link href="https://github.com/mhmtnl" target="_blank" className='cursor-pointer'><GitHub /></Link></span> </h1>
           </div>
@@ -49,7 +49,7 @@ const OurTeam = () => {
           <div>
             <img src="https://avatars.githubusercontent.com/u/76114995?v=4" className='w-full -z-10 relative' alt="Avatar" />
           </div>
-          <div className=' group/edit group-hover/item:visible relative invisible hover:visible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
+          <div className=' group/edit group-hover/item:visible relative invisible -top-16 lg:-top-20 text-center font-bold color-yellow text-base' id='hovered'>
             <p>Web Developer & Designer</p>
             <h1 className=' text-white md:text-lg lg:text-xl'>Zainab Salah<span className='pl-3'><Link href="https://github.com/kainy01" target="_blank" className='cursor-pointer'><GitHub /></Link></span> </h1>
           </div>

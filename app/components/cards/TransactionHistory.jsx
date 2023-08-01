@@ -76,7 +76,7 @@ export default function TransactionHistory({ usersProjects }) {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography>Transaction History</Typography>
+        <h3 className="header-4 p-2">Transaction History</h3>
       </AccordionSummary>
       <AccordionDetails>
         <div>
@@ -123,7 +123,7 @@ export default function TransactionHistory({ usersProjects }) {
                   return (
                     <ListItem key={index} disablePadding>
                       <div
-                        className="hover:bg-blue-gray-50 hover:rounded w-full"
+                        className="hover:bg-[#f0bd0732] hover:rounded w-full"
                         key={donation.id}
                       >
                         <div className="flex gap-2 items-center p-2 justify-between">
