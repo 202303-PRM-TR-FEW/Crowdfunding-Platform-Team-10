@@ -20,11 +20,7 @@ export default function MyProjectCard({ project }) {
     <>
       <div className="flex flex-col gap-6 overflow-hidden ">
         <div>
-          <img
-            src={project.url}
-            alt="Project of the week"
-            className="image-animated w-full"
-          />
+          <img src={project.url} alt="Project of the week" className="w-full" />
         </div>
 
         <div className={styles.rightSide}>
