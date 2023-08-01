@@ -1,13 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { notFound } from "next/navigation";
 import NotFoundComponent from "./components/helper/NotFoundComponent";
-import { useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 
 function NotFound() {
-  const router = useRouter();
-  router.push("/not-found");
+  const redirect = true;
+  if (redirect === true) {
+    notFound();
+  }
+
   return (
     <>
       <NotFoundComponent />
