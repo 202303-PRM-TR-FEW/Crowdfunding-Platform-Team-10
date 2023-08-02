@@ -119,7 +119,7 @@ export default function NewsLetterCard() {
           <h2 className="header-2 lg:text-left text-center my-3">
             Subscribe now and be at the forefront of change!
           </h2>
-          <p className="pb-1 lg:my-3 text-[#e7e7e7] lg:text-left text-center">
+          <p className="pb-1 lg:my-3 text-white lg:text-left text-center text-base md:text-lg lg:text-xl">
             Sign up for our free newsletter to receive our monthly digest of the
             best causes. Stay informed, get inspired, and make a difference by
             joining our community of passionate individuals dedicated to shaping
@@ -160,12 +160,12 @@ export default function NewsLetterCard() {
 
               <button
                 type="submit"
-                className="rounded-lg my-3 px-10 py-2  self-center bg-yellow text-[#000]"
+                className="btn-yelGreen "
               >
                 Subscribe
               </button>
 
-              <p className="spam-message pt-2 text-center  text-[#767676]">
+              <p className="spam-message pt-2 text-center text-[#00c1a2] font-extrabold " >
                 We will not spam you 🤞🏼
               </p>
             </form>

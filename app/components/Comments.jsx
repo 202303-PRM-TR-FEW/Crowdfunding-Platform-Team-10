@@ -177,7 +177,7 @@ function FancyTestimonialsSlider({ testimonials }) {
               leaveTo="opacity-0 translate-x-4"
               beforeEnter={heightFix}
             >
-              <div className="text-md mb-10 lg:h-[120px] font-bold text-[#666666] before:content-['\201C'] after:content-['\201D']">
+              <div className="text-md mb-10 lg:h-[120px] font-bold text-[#63727e] before:content-['\201C'] after:content-['\201D']">
                 {testimonial.text}
               </div>
               <span className="color-yellow text-xs">

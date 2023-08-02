@@ -23,7 +23,7 @@ const Thank = () => {
             />
           </div>
           <div className="pt-10 md:pt-20 flex flex-col text-center justify-items-center col-span-1 w-4/5 group/edit ">
-            <p className="header-1 text-center">Thank you <span className="text-[#1f9e92]">Open<span className="color-green">Handed</span></span></p>
+            <p className="header-1 text-center">Thank you <span className="color-green">Open<span className="text-[#1f9e92]">Handed</span></span></p>
             <p className="sub-header pt-10 mx-auto justify-center text-justify">
               You have successfully made an amazing donation. Thanks for joining OpenHanded community. While you wait for new attempts from other people, check out the <Link href="/projects" className="color-yellow font-extrabold cursor-pointer"> latest projects!</Link>
             </p>

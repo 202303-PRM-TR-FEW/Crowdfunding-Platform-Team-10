@@ -26,7 +26,7 @@ function SuccessfulProjects() {
             Latest
             <span className="color-green mx-3  ">Successful Projects</span>
           </h2>
-          <p className="text-sm color-grey  py-2 text-center">
+          <p className="text-sm color-grey py-2 text-center">
             Check out our most recent successful cases
           </p>
         </div>

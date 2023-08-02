@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Outfit } from 'next/font/google'
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -9,7 +9,7 @@ import Providers from "@/providers";
 // import Providers from "@/components/helper/ProviderTheme";
 // import ThemeButton from "@/components/theme/ThemeButton";
 
-const inter = Inter({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
   title: "OpenHanded",
@@ -44,7 +44,7 @@ async function RootLayout({ children, params: { locale } }) {
     <html lang={locale} suppressHydrationWarning>
       <body>
         <Providers
-          className={inter.className}
+          className={outfit.className}
           locale={locale}
           messages={messages}
         >

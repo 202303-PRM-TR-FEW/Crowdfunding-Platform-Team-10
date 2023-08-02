@@ -1,13 +1,16 @@
 "use client";
 import Link from "next-intl/link";
+import AboutUs from "../../../public/assets/images/About_us.png";
+import Image from "next/image";
 
 const AboutSection = () => {
   return (
     <div className="container mx-auto flex  items-center justify-center ">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:gap-5  items-center justify-center  lg:py-28 lg:pb-28 py-20 px-2">
-        <div className="">
-          <img
-            src="https://images-ext-2.discordapp.net/external/mnIYLSAJclE8tlmVWs8tl0F9DN9Sbh-f5nkIos2upCQ/https/img.freepik.com/free-vector/teamwork-puzzle-concept-illustration_114360-13355.jpg"
+        <div className="scale-[0.9]">
+          <Image
+            src={AboutUs}
+            alt="AboutUs"
             className="w-full"
           />
         </div>
@@ -17,12 +20,12 @@ const AboutSection = () => {
             ABOUT US
           </span>
 
-          <h2 className="header-2 my-10">
+          <h2 className="header-2 mt-10 mb-5">
             Our Highest Ambition <br /> is to
             <span className="color-yellow mx-2">Help People</span>
           </h2>
 
-          <p className="mb-0 color-grey">
+          <p className="mb-0 sub-header">
             Get instant helpful resources about anything on the go, easily
             implement secure money transfer solutions, boost your daily
             efficiency, connect to other app users and create your own Fronter
@@ -30,7 +33,7 @@ const AboutSection = () => {
             aute irure.
           </p>
 
-          <div className="mt-5">
+          <div className="mt-14">
             <Link href="/about" className="btn-primary">
               Read More
             </Link>

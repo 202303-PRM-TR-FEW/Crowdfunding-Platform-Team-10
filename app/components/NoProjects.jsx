@@ -64,10 +64,9 @@ export const NoProjects = () => {
           <div className="pt-10 flex flex-col text-center justify-items-center col-span-1 w-4/5 group/edit ">
             <p className="header-1 text-center">You do not have <span className="color-yellow">a project yet</span> </p>
             <p className="sub-header pt-10 mx-auto justify-center text-justify">
-              If there is already a project in your mind, let us realize it as well since it would give someone a lift and may put a smile on your face as a gift!            </p>
+              If there is already a project in your mind, let us realize it as well since it would give someone a lift and may put a smile on your face as a gift!</p>
             <div className="flex lg:flex-row flex-col w-full items-center justify-center gap-5 mt-10 ">
               <AddProjectButton user={user} />
-
               <Link
                 href="/projects"
                 className="btn-yellow"
