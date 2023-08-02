@@ -185,5 +185,5 @@ input[type="file"] {
 }
 
 .container {
-  @apply px-2 md:px-8 lg:px-20 xl:px-20 mx-auto;
+  @apply px-2 md:px-8 max-w-[85rem] lg:px-20 xl:px-20 mx-auto;
 }
