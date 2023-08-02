@@ -192,7 +192,7 @@ function Project({ params }) {
             activeSidebar ? "" : "-translate-x-[120%]"
           } bg-hoverLightGreen bg-opacity-20 p-1 fixed top-[26%] rounded-r left-0 transition-all duration-300 ease-in-out`}
         >
-          {activeSidebar ? (
+          {!activeSidebar ? (
             <div
               onClick={() => {
                 setTimeout(() => {
@@ -202,13 +202,13 @@ function Project({ params }) {
               }}
               className="absolute h-full w-10/12 z-10 py-2 cursor-pointer"
             >
-              <div className="relative bg-white py-2 rounded-r top-1/2 -translate-y-1/2 left-[108%]">
+              <div className="relative bg-white pt-3 pb-1 rounded-r top-1/2 -translate-y-1/2 left-[108%]">
                 <svg
                   fill="#00c2ab"
                   xmlns="http://www.w3.org/2000/svg"
                   height="1em"
                   viewBox="0 0 512 512"
-                  className="ml-[50%] hover:scale-[1.2] -translate-y-1 transition-all duration-300 ease-in-out"
+                  className="ml-[50%] pr-2 hover:scale-[1.2] -translate-y-1 transition-all duration-300 ease-in-out"
                 >
                   <path d="M307 34.8c-11.5 5.1-19 16.6-19 29.2v64H176C78.8 128 0 206.8 0 304C0 417.3 81.5 467.9 100.2 478.1c2.5 1.4 5.3 1.9 8.1 1.9c10.9 0 19.7-8.9 19.7-19.7c0-7.5-4.3-14.4-9.8-19.5C108.8 431.9 96 414.4 96 384c0-53 43-96 96-96h96v64c0 12.6 7.4 24.1 19 29.2s25 3 34.4-5.4l160-144c6.7-6.1 10.6-14.7 10.6-23.8s-3.8-17.7-10.6-23.8l-160-144c-9.4-8.5-22.9-10.6-34.4-5.4z" />
                 </svg>
