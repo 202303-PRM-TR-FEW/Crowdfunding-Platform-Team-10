@@ -225,7 +225,7 @@ export default function Nav() {
         transition: "background 0.3s ease-in-out",
       }}
     >
-      <Box sx={{ px: { xs: 2, lg: 12 } }}>
+      <Box sx={{ px: { xs: 2 } }} className="container mx-auto">
         <Toolbar>
           <Link href="/" sx={{ display: { xs: "none", sm: "block" } }}>
             <Typography
@@ -235,8 +235,8 @@ export default function Nav() {
               component="div"
               sx={{ color: "#00c1a2", display: "flex", alignItems: "center" }}
             >
-              <Image src={logo} alt="Logo" width={70} />
-              <span className="hidden lg:block">OpenHanded</span>
+              <Image src={logo} alt="Logo" width={50} />
+              <span className="hidden lg:block">Open<span className="text-[#1f9e92]">Handed</span></span>
             </Typography>
           </Link>
           <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />

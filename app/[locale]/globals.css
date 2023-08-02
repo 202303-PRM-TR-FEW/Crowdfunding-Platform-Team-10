@@ -25,7 +25,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: giga;
+  font-family: outfit;
 }
 
 ::-webkit-scrollbar {
@@ -76,7 +76,7 @@ input[type="file"] {
   @apply text-xl md:text-2xl lg:text-3xl  font-bold;
 }
 .header-3Green {
-  @apply text-xl md:text-2xl lg:text-3xl text-lightGreen font-bold pb-10;
+  @apply text-xl md:text-2xl lg:text-3xl text-lightGreen font-bold;
 }
 .header-4 {
   @apply text-lg md:text-xl lg:text-2xl  font-bold;
@@ -101,11 +101,14 @@ input[type="file"] {
 .btn-tertiary {
   @apply bg-white  hover:bg-[#f0bd07]  text-black shadow-lg  pt-4 pb-2 px-4 lg:px-6 lg:py-3 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out;
 }
-.btn-transpernt {
-  @apply color-green hover:bg-[#00c1a1a9] hover:text-white lg:px-6 lg:py-4 px-2 py-1 rounded-md shadow-md font-medium text-base pt-4 pb-2 text-center cursor-pointer transition-all duration-300 ease-in-out;
+.btn-transparent {
+  @apply color-green hover:bg-[#00c1a1a9] hover:text-white  lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out shadow-lg;
 }
 .btn-yellow {
   @apply bg-[#f0bd07] hover:bg-[#a57801] shadow-lg text-white lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out;
+}
+.btn-yelGreen {
+  @apply bg-[#f0bd07] hover:bg-[#00c1a2] shadow-lg text-white lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-lg text-center cursor-pointer transition-all duration-300 ease-in-out;
 }
 .color-green {
   @apply text-[#00c1a2];
@@ -115,7 +118,7 @@ input[type="file"] {
 }
 
 .color-grey {
-  @apply text-[#8a8a8a] text-base;
+  @apply text-[#63727e] text-base;
 }
 .color-yellow {
   @apply text-[#f0bd07];

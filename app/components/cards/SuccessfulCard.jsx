@@ -17,10 +17,10 @@ function SuccessfulCard({ project }) {
 
       <div className="pt-2 px-2 pb-0">
         <h4 className="color-green text-md my-3">{project.name}</h4>
-        <Target goal={project.goal} raised={project.raised} />
+        <Target goal={project.goal} raised={project.raised}  />
         <div className="hidden group-hover:block  ">
           <p
-            className="text-[#8a8a8a] my-2 text-sm max-h-20 overflow-hidden 
+            className="text-[#63727e] my-2 text-sm max-h-20 overflow-hidden 
             transition-all duration-700  ease-out
           "
           >

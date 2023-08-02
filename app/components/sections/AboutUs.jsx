@@ -17,12 +17,12 @@ const AboutSection = () => {
             ABOUT US
           </span>
 
-          <h2 className="header-2 my-10">
+          <h2 className="header-2 mt-10 mb-5">
             Our Highest Ambition <br /> is to
             <span className="color-yellow mx-2">Help People</span>
           </h2>
 
-          <p className="mb-0 color-grey">
+          <p className="mb-0 sub-header">
             Get instant helpful resources about anything on the go, easily
             implement secure money transfer solutions, boost your daily
             efficiency, connect to other app users and create your own Fronter
