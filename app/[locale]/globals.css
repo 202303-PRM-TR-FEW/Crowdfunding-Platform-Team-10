@@ -3,22 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: poppins-light;
-  src: url(../../public/fonts/Poppins-Light.ttf);
-}
-
-@font-face {
-  font-family: poppins-med;
-  src: url(../../public/fonts/Poppins-Medium.ttf);
-}
-@font-face {
   font-family: outfit;
   src: url(../../public/fonts/Outfit-VariableFont_wght.ttf);
-}
-
-@font-face {
-  font-family: giga;
-  src: url(../../public/fonts/Locomotype\ \ GigaSansMedium.otf);
 }
 
 * {
