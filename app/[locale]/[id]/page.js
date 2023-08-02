@@ -23,20 +23,22 @@ import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 import Link from "next/link";
 function Project({ params }) {
-  const [data, setData] = useState(null);
-
+  const [data, setData] = useState([]);
   const { user, donations } = useAuth();
-  const { loading, setLoading } = useState(true);
+  const { exist, setExist } = useState(false);
+  const { loading, setLoading } = useState(false);
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const pathname = usePathname();
+  console.log(exist);
+  console.log(loading);
+  console.log(data);
   //this code get single project info and store it into data state
   useEffect(() => {
     const fetchData = async () => {
       try {
         const docRef = doc(db, "projects", params.id);
         const docSnap = await getDoc(docRef);
-
         if (docSnap.exists()) {
           const projectData = docSnap.data();
           const updatedData = {
@@ -44,11 +46,12 @@ function Project({ params }) {
             viewCount: projectData.viewCount + 1,
           };
           await updateDoc(docRef, updatedData);
-
+          console.log(updatedData);
           setData(updatedData);
-          setLoading(false);
+          setLoading(true);
         } else {
           console.log("No such document!");
+          setExist(true);
         }
       } catch (error) {
         console.error("Error fetching document:", error);
@@ -95,20 +98,20 @@ function Project({ params }) {
     }
     window.open(url, "_blank", "width=1200,height=600");
   };
-  if (loading && user !== null) {
-    return <LoaderStyle />;
-  }
-  console.log(loading);
-  if (!loading && data === null) {
-    // return <LoaderStyle />;
+
+  if (exist) {
+    console.log(exist);
+    console.log("exist");
     notFound();
   }
+  console.log(exist);
+  console.log(loading);
 
   return (
     <div className=" relative overflow-hidden">
       <section className=" static py-28 p-3 bg-gradient-to-t from-transparent to-teal-50 ">
         <div className="container mx-auto">
-          {loading ? (
+          {!loading ? (
             <LoaderStyle />
           ) : (
             <div className="flex flex-col lg:flex-row items-start justify-between gap-8">

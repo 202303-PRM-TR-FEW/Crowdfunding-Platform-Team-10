@@ -6,14 +6,14 @@ import Link from "next/link";
 const NotFoundComponent = () => {
   return (
     <div className=" bg-gradient-to-t from-transparent to-teal-50 relative overflow-hidden">
-      <div className="p-16 ">
+      <div className="py-16 ">
         <div className="text-center">
-          <h2 className="header-3 py-8"> Sorry Page Not Found</h2>
+          <h2 className="header-3 py-8 "> Sorry Page Not Found</h2>
           <Link href="/">
-            <button className="btn-primary -mb-8"> Home Page</button>
+            <button className="btn-primary lg:-mb-8"> Home Page</button>
           </Link>
         </div>
-        <div className="mx-auto w-2/3">
+        <div className="mx-auto w-full lg:w-2/3">
           <Image className="w-full h-full" src={NotFoundImage} alt="404" />
         </div>
       </div>
