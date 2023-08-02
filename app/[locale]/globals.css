@@ -183,3 +183,7 @@ input[type="file"] {
 .hover-parent:hover .custom-clip-path {
   opacity: 1;
 }
+
+.container {
+  @apply px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12 py-1 mx-auto;
+}
