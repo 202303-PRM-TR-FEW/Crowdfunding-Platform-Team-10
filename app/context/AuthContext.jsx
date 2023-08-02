@@ -24,8 +24,6 @@ export const AuthContextProvider = ({ children }) => {
   const [donations, setDonations] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
-  const [showCommentForm, setShowCommentForm] = useState(false);
-
   const router = useRouter();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -161,9 +159,6 @@ export const AuthContextProvider = ({ children }) => {
         usersInfo,
         projects,
         donations,
-
-        showCommentForm,
-        setShowCommentForm,
         currentUser,
         googleLogIn,
       }}
