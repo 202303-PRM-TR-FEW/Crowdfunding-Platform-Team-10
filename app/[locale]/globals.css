@@ -2,16 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: outfit;
-  src: url(../../public/fonts/Outfit-VariableFont_wght.ttf);
-}
-
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: outfit;
 }
 
 ::-webkit-scrollbar {

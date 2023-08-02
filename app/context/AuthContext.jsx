@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -12,7 +11,6 @@ import {
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { auth } from "../config/firebase";
 import { useRouter } from "next-intl/client";
@@ -25,7 +23,7 @@ export const AuthContextProvider = ({ children }) => {
   const [projects, setProjects] = useState(true);
   const [donations, setDonations] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-  const [comments, setComments] = useState([]);
+
   const [showCommentForm, setShowCommentForm] = useState(false);
 
   const router = useRouter();
@@ -93,9 +91,6 @@ export const AuthContextProvider = ({ children }) => {
         console.log("user already exist in db");
         router.push("/profile");
       }
-
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
     });
   };
 
@@ -137,18 +132,6 @@ export const AuthContextProvider = ({ children }) => {
         donationsArr.push({ ...doc.data(), id: doc.id });
       });
       setDonations(donationsArr);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    const q = query(collection(db, "comments"));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let commentsArr = [];
-      QuerySnapshot.forEach((doc) => {
-        commentsArr.push({ ...doc.data(), id: doc.id });
-      });
-      setComments(commentsArr);
     });
     return () => unsubscribe();
   }, []);
@@ -214,7 +197,7 @@ export const AuthContextProvider = ({ children }) => {
         usersInfo,
         projects,
         donations,
-        comments,
+
         showCommentForm,
         setShowCommentForm,
         currentUser,

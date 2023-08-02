@@ -2,9 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 
-import { Avatar } from "@material-tailwind/react";
-import Link from "next-intl/link";
-import Image from "next/image";
+import { Avatar } from "@mui/material";
 import { useAuth } from "@/context/AuthContext";
 import SuccessBadge from "../SuccessBadge";
 import ViewCount from "../helper/ViewCount";
@@ -66,15 +64,15 @@ const SummaryCard = ({
       >
         <ViewCount viewCount={viewCount} />
       </div>
-     
-        <div className="overflow-hidden object-contain rounded-lg  cursor-pointer">
-          <img
-            className="w-full h-[222px] image-animated"
-            src={img}
-            alt="project img"
-          />
-        </div>
-    
+
+      <div className="overflow-hidden object-contain rounded-lg  cursor-pointer">
+        <img
+          className="w-full h-[222px] image-animated"
+          src={img}
+          alt="project img"
+        />
+      </div>
+
       <div className={styles.body}>
         <div className="flex items-center justify-between">
           <div className="grid grid-cols-2  items-start mt-2 w-full justify-between">
@@ -92,7 +90,7 @@ const SummaryCard = ({
         <Target raised={raised} goal={goal} />
 
         <hr className=" border-t-2  border-white"></hr>
-     
+
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start justify-self-start">
             <div className={`${styles.flex} `}>
