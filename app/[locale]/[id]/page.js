@@ -32,7 +32,7 @@ function Project({ params }) {
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const pathname = usePathname();
-
+  const [activeSidebar, setActiveSidebar] = useState(false);
   //this code get single project info and store it into data state
   useEffect(() => {
     const fetchData = async () => {
@@ -99,9 +99,10 @@ function Project({ params }) {
     window.open(url, "_blank", "width=1200,height=600");
   };
   if (notExists) notFound();
+  console.log(activeSidebar);
   return (
     <div className=" relative overflow-hidden">
-      <section className=" static py-28 p-3 bg-gradient-to-t from-transparent to-teal-50 ">
+      <section className=" static py-28 p-3 bg-gradient-to-t from-transparent to-teal-50">
         <div className="container mx-auto">
           {loading || user === null || data.length <= 0 ? (
             <LoaderStyle />
@@ -186,7 +187,37 @@ function Project({ params }) {
             </div>
           )}
         </div>
-        <div className="bg-hoverLightGreen bg-opacity-20 p-1 fixed top-[26%] rounded-r left-0">
+        <div
+          className={`${
+            activeSidebar ? "" : "-translate-x-[120%]"
+          } bg-hoverLightGreen bg-opacity-20 p-1 fixed top-[26%] rounded-r left-0 transition-all duration-300 ease-in-out`}
+        >
+          {activeSidebar ? (
+            <div
+              onClick={() => {
+                setTimeout(() => {
+                  setActiveSidebar((prev) => !prev);
+                }, 3000);
+                setActiveSidebar((prev) => !prev);
+              }}
+              className="absolute h-full w-10/12 z-10 py-2 cursor-pointer"
+            >
+              <div className="relative bg-white py-2 rounded-r top-1/2 -translate-y-1/2 left-[108%]">
+                <svg
+                  fill="#00c2ab"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1em"
+                  viewBox="0 0 512 512"
+                  className="ml-[50%] hover:scale-[1.2] -translate-y-1 transition-all duration-300 ease-in-out"
+                >
+                  <path d="M307 34.8c-11.5 5.1-19 16.6-19 29.2v64H176C78.8 128 0 206.8 0 304C0 417.3 81.5 467.9 100.2 478.1c2.5 1.4 5.3 1.9 8.1 1.9c10.9 0 19.7-8.9 19.7-19.7c0-7.5-4.3-14.4-9.8-19.5C108.8 431.9 96 414.4 96 384c0-53 43-96 96-96h96v64c0 12.6 7.4 24.1 19 29.2s25 3 34.4-5.4l160-144c6.7-6.1 10.6-14.7 10.6-23.8s-3.8-17.7-10.6-23.8l-160-144c-9.4-8.5-22.9-10.6-34.4-5.4z" />
+                </svg>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+
           <div className="share-icon flex flex-col items-center justify-center">
             {SOCIAL.map((item) => {
               return (
@@ -204,6 +235,7 @@ function Project({ params }) {
             })}
           </div>
         </div>
+
         <DonationForm
           id={params}
           title={data.name}
