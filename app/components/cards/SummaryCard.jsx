@@ -3,7 +3,6 @@
 import React from "react";
 
 import { Avatar } from "@mui/material";
-import { useAuth } from "@/context/AuthContext";
 import SuccessBadge from "../SuccessBadge";
 import ViewCount from "../helper/ViewCount";
 import Target from "../helper/Target";
@@ -20,8 +19,22 @@ const SummaryCard = ({
   creator,
   viewCount,
 }) => {
-  const { isSuccessful } = useAuth();
+  function isSuccessful(endingDate, raised, goal) {
+    const endDate = new Date(endingDate);
+    const today = new Date();
+    const timeDiff = endDate.getTime() - today.getTime();
+    const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
+    if (raised >= goal) {
+      return "Successful";
+    } else if (daysRemaining <= 0) {
+      return "Closed";
+    } else if (daysRemaining < 5) {
+      return `${daysRemaining} Days Left`;
+    } else {
+      return "Active";
+    }
+  }
   const successState = isSuccessful(endingDate, raised, goal);
 
   const styles = {

@@ -150,42 +150,6 @@ export const AuthContextProvider = ({ children }) => {
     setLoading(false);
   }, [user, usersInfo, currentUser]);
 
-  function formatNumber(number) {
-    const suffixes = ["", "K", "M", "B", "T"];
-    const numString = number.toString();
-    const numDigits = numString.length;
-    const suffixNum = Math.floor((numDigits - 1) / 3);
-
-    if (suffixNum === 0 || numDigits <= 4) {
-      return number.toString();
-    } else {
-      let shortNumber = parseFloat(
-        (number / Math.pow(1000, suffixNum)).toPrecision(3)
-      );
-      if (shortNumber % 1 !== 0) {
-        shortNumber = shortNumber.toFixed(1);
-      }
-      return shortNumber + suffixes[suffixNum];
-    }
-  }
-
-  function isSuccessful(endingDate, raised, goal) {
-    const endDate = new Date(endingDate);
-    const today = new Date();
-    const timeDiff = endDate.getTime() - today.getTime();
-    const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-    if (raised >= goal) {
-      return "Successful";
-    } else if (daysRemaining <= 0) {
-      return "Closed";
-    } else if (daysRemaining < 5) {
-      return `${daysRemaining} Days Left`;
-    } else {
-      return "Active";
-    }
-  }
-
   return (
     <AuthContext.Provider
       value={{
@@ -202,8 +166,6 @@ export const AuthContextProvider = ({ children }) => {
         setShowCommentForm,
         currentUser,
         googleLogIn,
-        formatNumber,
-        isSuccessful,
       }}
     >
       {loading ? null : children}
