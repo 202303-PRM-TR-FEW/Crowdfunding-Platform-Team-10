@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import InfoIcon from "@mui/icons-material/Info";
 import { toast } from "react-toastify";
+
 export default function NewsLetterCard() {
   const containerStyle = {
     position: "relative",
@@ -158,14 +159,11 @@ export default function NewsLetterCard() {
                 {errors.to_email?.message}
               </Typography>
 
-              <button
-                type="submit"
-                className="btn-yelGreen "
-              >
+              <button type="submit" className="btn-yelGreen ">
                 Subscribe
               </button>
 
-              <p className="spam-message pt-2 text-center text-[#00c1a2] font-extrabold " >
+              <p className="spam-message pt-2 text-center text-[#00c1a2] font-extrabold ">
                 We will not spam you 🤞🏼
               </p>
             </form>
