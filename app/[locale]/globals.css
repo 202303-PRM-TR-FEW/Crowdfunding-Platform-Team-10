@@ -171,7 +171,7 @@ input[type="file"] {
   }
 
   50% {
-    transform:scale(0.65);
+    transform: scale(0.65);
   }
 
   100% {
@@ -181,7 +181,6 @@ input[type="file"] {
 .border-12 {
   border-radius: 12px !important;
 }
-
 
 .custom-clip-path {
   position: absolute;
@@ -196,10 +195,8 @@ input[type="file"] {
   transition: 0.2s ease-out;
   display: flex;
   justify-content: center;
- 
 }
 
 .hover-parent:hover .custom-clip-path {
   opacity: 1;
 }
-

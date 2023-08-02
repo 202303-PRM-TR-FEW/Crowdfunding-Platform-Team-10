@@ -12,7 +12,7 @@ import twitter from "../../../public/assets/images/twitterIcon.png";
 import whatsapp from "../../../public/assets/images/whatsapp.png";
 import telegram from "../../../public/assets/images/telegram.png";
 import Image from "next/image";
-import { usePathname, useSearchParams } from "next/navigation";
+import { notFound, usePathname, useSearchParams } from "next/navigation";
 import SocialButton from "@/components/helper/SocialButton";
 
 import Target from "@/components/helper/Target";
@@ -24,12 +24,15 @@ import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 import Link from "next/link";
 function Project({ params }) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
+  const [notExists, setNotExists] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const { user, loading, donations } = useAuth();
+  const { user, donations } = useAuth();
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const pathname = usePathname();
+
   //this code get single project info and store it into data state
   useEffect(() => {
     const fetchData = async () => {
@@ -44,10 +47,11 @@ function Project({ params }) {
             viewCount: projectData.viewCount + 1,
           };
           await updateDoc(docRef, updatedData);
-
           setData(updatedData);
+          setLoading(false);
         } else {
           console.log("No such document!");
+          setNotExists(true);
         }
       } catch (error) {
         console.error("Error fetching document:", error);
@@ -94,15 +98,12 @@ function Project({ params }) {
     }
     window.open(url, "_blank", "width=1200,height=600");
   };
-  if ((loading && user !== null) || !data) {
-    return <LoaderStyle />;
-  }
-
+  if (notExists) notFound();
   return (
     <div className=" relative overflow-hidden">
       <section className=" static py-28 p-3 bg-gradient-to-t from-transparent to-teal-50 ">
         <div className="container mx-auto">
-          {loading ? (
+          {loading || user === null || data.length <= 0 ? (
             <LoaderStyle />
           ) : (
             <div className="flex flex-col lg:flex-row items-start justify-between gap-8">
