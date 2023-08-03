@@ -11,13 +11,14 @@ const styles = {
 };
 
 const CategoryFiltering = ({ data, filtrindData }) => {
-  const [gruopCat, setGruopCat] = useState(data ?? []);
+  const [gruopCat, setGruopCat] = useState(data);
   const [activeCategory, setActiveCategory] = useState("all");
   const onFilter = (cat) => {
     setActiveCategory(CATEGORY.find((item) => item.id === cat).id);
     const filters = gruopCat.filter((item) =>
-      cat === "all" ? true : item.category === cat
+      cat === "all" ? gruopCat : item.category === cat
     );
+    console.log(filters);
     filtrindData(filters);
   };
   console.log(data);
