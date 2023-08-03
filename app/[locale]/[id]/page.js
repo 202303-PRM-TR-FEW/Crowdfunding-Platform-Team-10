@@ -35,7 +35,6 @@ function Project({ params }) {
 
   const [activeSidebar, setActiveSidebar] = useState(false);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -101,7 +100,12 @@ function Project({ params }) {
     window.open(url, "_blank", "width=1200,height=600");
   };
   if (notExists) notFound();
-  console.log(activeSidebar);
+
+  ////To hide donate button if project marked as closed//////////
+  const today = new Date();
+  const endDate = new Date(data.endingDate);
+  ////To hide donate button if project marked as closed//////////
+
   return (
     <div className=" relative overflow-hidden">
       <section className=" static py-28 p-3 bg-gradient-to-t from-transparent to-teal-50">
@@ -121,9 +125,9 @@ function Project({ params }) {
                     </h1>
                     <CategoryIcon category={data.category} />
                   </div>
-
+                  {/* {console.log(today, data.endingDate)} */}
                   <SuccessBadge
-                    endingDate={data.left}
+                    endingDate={data.endingDate}
                     raised={data.raised}
                     goal={data.goal}
                   />
@@ -131,22 +135,30 @@ function Project({ params }) {
                 <Target raised={data.raised} goal={data.goal} />
                 <div className=" lg:hidden block w-full">
                   {user ? (
-                    data.raised === data.goal ? (
-                      <div disabled={true}>
-                        The project has been completed 🎉
-                      </div>
+                    today < endDate ? (
+                      data.raised === data.goal || data.raised > data.goal ? (
+                        <button disabled={true} className="btn-primary w-full">
+                          The project has been completed 🎉
+                        </button>
+                      ) : (
+                        <button
+                          className="btn-primary w-full"
+                          onClick={handleDonationForm}
+                        >
+                          Donate Now
+                        </button>
+                      )
                     ) : (
-                      <button
-                        className="btn-primary w-full"
-                        onClick={handleDonationForm}
-                      >
-                        Donate Now
-                      </button>
+                      <div></div>
                     )
+                  ) : today < endDate ? (
+                    <Link href="/login">
+                      <div className="btn-primary w-full">
+                        Log in to fund this project
+                      </div>
+                    </Link>
                   ) : (
-                    <a href="/login" className="btn-primary w-full">
-                      Log in to fund this project
-                    </a>
+                    <div></div>
                   )}
                 </div>
                 <p className="color-grey">{data.about}</p>
@@ -162,24 +174,30 @@ function Project({ params }) {
 
                 <div className=" lg:block hidden my-2 w-full">
                   {user ? (
-                    data.raised === data.goal || data.raised > data.goal ? (
-                      <button disabled={true} className="btn-primary w-full">
-                        The project has been completed 🎉
-                      </button>
+                    today < endDate ? (
+                      data.raised === data.goal || data.raised > data.goal ? (
+                        <button disabled={true} className="btn-primary w-full">
+                          The project has been completed 🎉
+                        </button>
+                      ) : (
+                        <button
+                          className="btn-primary w-full"
+                          onClick={handleDonationForm}
+                        >
+                          Donate Now
+                        </button>
+                      )
                     ) : (
-                      <button
-                        className="btn-primary w-full"
-                        onClick={handleDonationForm}
-                      >
-                        Donate Now
-                      </button>
+                      <div></div>
                     )
-                  ) : (
+                  ) : today < endDate ? (
                     <Link href="/login">
                       <div className="btn-primary w-full">
                         Log in to fund this project
                       </div>
                     </Link>
+                  ) : (
+                    <div></div>
                   )}
                 </div>
               </div>
