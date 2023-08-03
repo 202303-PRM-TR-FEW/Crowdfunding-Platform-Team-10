@@ -1,5 +1,4 @@
-import { Box } from "@mui/material";
-
+import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { useState } from "react";
 
 const styles = {
@@ -12,26 +11,54 @@ const styles = {
 };
 
 const CategoryFiltering = ({ data, filtrindData }) => {
+  const [gruopCat, setGruopCat] = useState(data ?? []);
   const [activeCategory, setActiveCategory] = useState("all");
-  const [successProjects, setSuccessProjects] = useState("all");
   const onFilter = (cat) => {
     setActiveCategory(CATEGORY.find((item) => item.id === cat).id);
-    const filters = data.filter((item) =>
+    const filters = gruopCat.filter((item) =>
       cat === "all" ? true : item.category === cat
     );
     filtrindData(filters);
   };
+  console.log(data);
+  console.log(gruopCat);
 
-  const showSuccess=(data)=>{
+  const showSuccess = (data) => {
     const filteredProjects = data.filter(
       (project) => project.raised >= project.goal
     );
-    setSuccessProjects(filteredProjects)
-  }
+    setSuccessProjects(filteredProjects);
+  };
+  const [gruopCatValue, setGruopCatValue] = useState("");
+  console.log(gruopCatValue);
+
+  const handleChange = (event) => {
+    let gruopCategories = [];
+    if (gruopCatValue === "Successful") {
+      gruopCategories = data.filter(
+        (project) => project.raised >= project.goal
+      );
+    } else if (gruopCatValue === "Closed") {
+      gruopCategories = data.filter((project) => {
+        const projectTime = timeStatuse(project.endingDate);
+        return projectTime <= 0;
+      });
+    } else if (gruopCatValue === "Active") {
+      gruopCategories = data.filter((project) => {
+        const projectTime = timeStatuse(project.endingDate);
+        return projectTime >= 0;
+      });
+    } else {
+      return data;
+    }
+    console.log(gruopCategories);
+    setGruopCatValue(event.target.value);
+  };
+
   return (
     <Box className="py-10">
       <h2 className={styles.header}>Categories</h2>
-      <Box>
+      <div className="flex justify-between items-center flex-wrap ">
         <Box className={styles.categoryContainer}>
           {CATEGORY.map((cat) => {
             return (
@@ -46,7 +73,7 @@ const CategoryFiltering = ({ data, filtrindData }) => {
               </Box>
             );
           })}
-          <Box className={styles.categoryBlock}>
+          {/* <Box className={styles.categoryBlock}>
             <Box onClick={() => showSuccess()} className={styles.filterItem}>
               <svg
                 fill={"black"}
@@ -58,9 +85,29 @@ const CategoryFiltering = ({ data, filtrindData }) => {
               </svg>
             </Box>
             <p className="sub-header !text-base">Success</p>
-          </Box>
+          </Box> */}
         </Box>
-      </Box>
+        <div className="relative ">
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-standard-label">
+              Card Gruop
+            </InputLabel>
+            <Select
+              value={gruopCatValue}
+              onChange={handleChange}
+              label="gruopCat"
+            >
+              {GROUP_CATEGORY.map((item) => {
+                return (
+                  <MenuItem key={item.id} value={item.value}>
+                    {item.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </div>
+      </div>
     </Box>
   );
 };
@@ -124,3 +171,16 @@ const CATEGORY = [
     },
   },
 ];
+const GROUP_CATEGORY = [
+  { id: 1, name: "All", value: "All" },
+  { id: 2, name: "Successful", value: "Successful" },
+  { id: 3, name: "Active", value: "Active" },
+  { id: 4, name: "Closed", value: "Closed" },
+];
+function isSuccessful(endingDate) {
+  const endDate = new Date(endingDate);
+  const today = new Date();
+  const timeDiff = endDate.getTime() - today.getTime();
+  const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  return daysRemaining;
+}
