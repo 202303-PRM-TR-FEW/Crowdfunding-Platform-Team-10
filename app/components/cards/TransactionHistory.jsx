@@ -1,21 +1,8 @@
 "use client";
 
-import { Fragment, useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
-// import {
-//   Typography,
-//   Button,
-//   Avatar,
-//   Accordion,
-//   AccordionHeader,
-//   AccordionBody,
-//   Menu,
-//   MenuHandler,
-//   MenuList,
-//   MenuItem,
-// } from "@material-tailwind/react";
-// import { ChevronRightIcon } from "@heroicons/react/24/outline";
-// import { ChevronDownIcon } from "@heroicons/react/24/outline";
+
 import LoaderStyle from "../helper/LoaderStyle";
 import * as React from "react";
 import Accordion from "@mui/material/Accordion";
@@ -31,9 +18,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+
 import { Avatar, Divider } from "@mui/material";
 
 export default function TransactionHistory({ usersProjects }) {

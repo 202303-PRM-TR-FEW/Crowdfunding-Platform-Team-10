@@ -2,10 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 
-import { Avatar } from "@material-tailwind/react";
-import Link from "next-intl/link";
-import Image from "next/image";
-import { useAuth } from "@/context/AuthContext";
+import { Avatar } from "@mui/material";
 import SuccessBadge from "../SuccessBadge";
 import ViewCount from "../helper/ViewCount";
 import Target from "../helper/Target";
@@ -22,8 +19,22 @@ const SummaryCard = ({
   creator,
   viewCount,
 }) => {
-  const { isSuccessful } = useAuth();
+  function isSuccessful(endingDate, raised, goal) {
+    const endDate = new Date(endingDate);
+    const today = new Date();
+    const timeDiff = endDate.getTime() - today.getTime();
+    const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
+    if (raised >= goal) {
+      return "Successful";
+    } else if (daysRemaining <= 0) {
+      return "Closed";
+    } else if (daysRemaining < 5) {
+      return `${daysRemaining} Days Left`;
+    } else {
+      return "Active";
+    }
+  }
   const successState = isSuccessful(endingDate, raised, goal);
 
   const styles = {
@@ -66,15 +77,15 @@ const SummaryCard = ({
       >
         <ViewCount viewCount={viewCount} />
       </div>
-     
-        <div className="overflow-hidden object-contain rounded-lg  cursor-pointer">
-          <img
-            className="w-full h-[222px] image-animated"
-            src={img}
-            alt="project img"
-          />
-        </div>
-    
+
+      <div className="overflow-hidden object-contain rounded-lg  cursor-pointer">
+        <img
+          className="w-full h-[222px] image-animated"
+          src={img}
+          alt="project img"
+        />
+      </div>
+
       <div className={styles.body}>
         <div className="flex items-center justify-between">
           <div className="grid grid-cols-2  items-start mt-2 w-full justify-between">
@@ -92,7 +103,7 @@ const SummaryCard = ({
         <Target raised={raised} goal={goal} />
 
         <hr className=" border-t-2  border-white"></hr>
-     
+
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start justify-self-start">
             <div className={`${styles.flex} `}>

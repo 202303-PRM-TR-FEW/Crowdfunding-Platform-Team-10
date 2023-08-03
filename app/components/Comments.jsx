@@ -3,15 +3,33 @@ import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useAuth } from "@/context/AuthContext";
 // Function to add a new comment to Firebase Firestore
-import { doc, setDoc, collection, addDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  collection,
+  addDoc,
+  onSnapshot,
+  query,
+} from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
 
 export default function Comments() {
-  const { comments, currentUser, user } = useAuth();
+  const [comments, setComments] = useState([]);
+  const { currentUser } = useAuth();
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [commentText, setCommentText] = useState("");
-
+  useEffect(() => {
+    const q = query(collection(db, "comments"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let commentsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        commentsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setComments(commentsArr);
+    });
+    return () => unsubscribe();
+  }, []);
   const handleAddCommentClick = () => {
     setShowCommentForm(true);
   };
@@ -30,7 +48,7 @@ export default function Comments() {
       await addDoc(commentsCollectionRef, {
         commintTime: new Date(),
         text: commentText,
-        userID: user.uid,
+        userID: currentUser.id,
         userImg: currentUser.userImg,
         userName: currentUser.name,
       });
@@ -113,7 +131,7 @@ function FancyTestimonialsSlider({ testimonials }) {
       );
     }, autorotateTiming);
     return () => clearInterval(interval);
-  }, [active, autorotate]);
+  }, [active, autorotate, testimonials.length]);
 
   const heightFix = () => {
     if (testimonialsRef.current && testimonialsRef.current.parentElement) {
@@ -209,4 +227,3 @@ function FancyTestimonialsSlider({ testimonials }) {
     </div>
   );
 }
-

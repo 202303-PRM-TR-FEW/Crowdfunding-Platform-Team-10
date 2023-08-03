@@ -87,11 +87,14 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
   return (
     <div>
       <Dialog open={openDonationForm}>
-        <div className="p-6 h-full relative">
-          <IconButton onClick={handleClose} aria-label="back">
-            <ArrowBackIosNewIcon />
-          </IconButton>
-          <h1 className="header-2 mt-3">Enter the donation amount:</h1>
+        <div className="  p-5  lg:px-10   relative">
+          <div className="flex items-center mt-3 mb-10 justify-center gap-2">
+            <IconButton onClick={handleClose} aria-label="back">
+              <ArrowBackIosNewIcon />
+            </IconButton>
+            <h1 className="header-3 ">Enter amount:</h1>
+          </div>
+
           <form
             id="donation"
             onSubmit={handleSubmit(onSubmit)}
@@ -111,8 +114,10 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
               {errors.donation && <InfoIcon fontSize="small" />}
               {errors.donation?.message}
             </Typography>
-            <div className="flex items-center">
-              <label htmlFor="charity">Add 2% for charity ?</label>
+            <div className="flex items-center mt-5">
+              <label htmlFor="charity" className="">
+                Add 2% for charity ?
+              </label>
               <Controller
                 name="charity"
                 control={control}

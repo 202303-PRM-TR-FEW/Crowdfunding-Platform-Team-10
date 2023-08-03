@@ -2,7 +2,7 @@
 
 import { useRouter } from "next-intl/client";
 import Link from "next-intl/link";
-import { Typography } from "@material-tailwind/react";
+
 import InfoIcon from "@mui/icons-material/Info";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useForm } from "react-hook-form";
@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
-import { Container, TextField } from "@mui/material";
+import { Container, TextField, Typography } from "@mui/material";
 
 const schema = yup
   .object({
