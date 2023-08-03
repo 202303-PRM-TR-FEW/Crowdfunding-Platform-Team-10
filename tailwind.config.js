@@ -20,10 +20,10 @@ module.exports = withMT({
         matisBlue: "#B6C1E9",
         sailBlue: "#b0e0fa",
       },
-      // fontFamily: {
-      //   sans: ["Graphik", "sans-serif"],
-      //   serif: ["Merriweather", "serif"],
-      // },
+      fontFamily: {
+        sans: ['var(--font-outfit)'],
+        mono: ['var(--font-outfit-mono)'],
+      },
       borderRadius: {
         DEFAULT: "12px",
       },

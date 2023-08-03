@@ -9,7 +9,9 @@ import Providers from "@/providers";
 // import Providers from "@/components/helper/ProviderTheme";
 // import ThemeButton from "@/components/theme/ThemeButton";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ["latin"], variable: '--font-outfit',});
+
+
 
 export const metadata = {
   title: "OpenHanded",
@@ -44,7 +46,7 @@ async function RootLayout({ children, params: { locale } }) {
     <html lang={locale} suppressHydrationWarning>
       <body>
         <Providers
-          className={outfit.className}
+          className={`${outfit.variable} font-sans`}
           locale={locale}
           messages={messages}
         >
