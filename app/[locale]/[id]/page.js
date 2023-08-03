@@ -151,12 +151,14 @@ function Project({ params }) {
                     ) : (
                       <div></div>
                     )
-                  ) : (
+                  ) : today < endDate ? (
                     <Link href="/login">
                       <div className="btn-primary w-full">
                         Log in to fund this project
                       </div>
                     </Link>
+                  ) : (
+                    <div></div>
                   )}
                 </div>
                 <p className="color-grey">{data.about}</p>
@@ -188,12 +190,14 @@ function Project({ params }) {
                     ) : (
                       <div></div>
                     )
-                  ) : (
+                  ) : today < endDate ? (
                     <Link href="/login">
                       <div className="btn-primary w-full">
                         Log in to fund this project
                       </div>
                     </Link>
+                  ) : (
+                    <div></div>
                   )}
                 </div>
               </div>
