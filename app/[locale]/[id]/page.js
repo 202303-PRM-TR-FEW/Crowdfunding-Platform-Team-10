@@ -190,7 +190,7 @@ function Project({ params }) {
         <div
           className={`${
             activeSidebar ? "" : "-translate-x-[120%]"
-          } bg-white bg-opacity-20 p-1 fixed top-[26%] rounded-r left-0 transition-all duration-300 ease-in-out`}
+          } bg-hoverLightGreen bg-opacity-20 p-1 fixed top-[26%] rounded-r left-0 transition-all duration-300 ease-in-out`}
         >
           {!activeSidebar ? (
             <div
@@ -204,7 +204,7 @@ function Project({ params }) {
             >
               <div className="relative bg-hoverLightGreen pt-3 pb-1 rounded-r top-1/2 -translate-y-1/2 left-[108%]">
                 <svg
-                  fill="#00c2ab"
+                  fill="#ffffff"
                   xmlns="http://www.w3.org/2000/svg"
                   height="1em"
                   viewBox="0 0 512 512"
