@@ -190,7 +190,7 @@ function Project({ params }) {
         <div
           className={`${
             activeSidebar ? "" : "-translate-x-[120%]"
-          } bg-hoverLightGreen bg-opacity-20 p-1 fixed top-[26%] rounded-r left-0 transition-all duration-300 ease-in-out`}
+          } bg-white bg-opacity-20 p-1 fixed top-[26%] rounded-r left-0 transition-all duration-300 ease-in-out`}
         >
           {!activeSidebar ? (
             <div
@@ -202,7 +202,7 @@ function Project({ params }) {
               }}
               className="absolute h-full w-10/12 z-10 py-2 cursor-pointer"
             >
-              <div className="relative bg-white pt-3 pb-1 rounded-r top-1/2 -translate-y-1/2 left-[108%]">
+              <div className="relative bg-hoverLightGreen pt-3 pb-1 rounded-r top-1/2 -translate-y-1/2 left-[108%]">
                 <svg
                   fill="#00c2ab"
                   xmlns="http://www.w3.org/2000/svg"
