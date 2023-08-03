@@ -11,7 +11,7 @@ const styles = {
 };
 
 const CategoryFiltering = ({ data, filtrindData }) => {
-  const [gruopCat, setGruopCat] = useState(data);
+  const [gruopCat, setGruopCat] = useState(data ?? []);
   const [activeCategory, setActiveCategory] = useState("all");
   const onFilter = (cat) => {
     setActiveCategory(CATEGORY.find((item) => item.id === cat).id);
@@ -24,36 +24,30 @@ const CategoryFiltering = ({ data, filtrindData }) => {
   console.log(data);
   console.log(gruopCat);
 
-  const showSuccess = (data) => {
-    const filteredProjects = data.filter(
-      (project) => project.raised >= project.goal
-    );
-    setSuccessProjects(filteredProjects);
-  };
   const [gruopCatValue, setGruopCatValue] = useState("");
-  console.log(gruopCatValue);
 
   const handleChange = (event) => {
+    console.log(event);
     let gruopCategories = [];
-    if (gruopCatValue === "Successful") {
+    if (event === "All") {
+      gruopCategories = data;
+    } else if (event == "Successful") {
       gruopCategories = data.filter(
         (project) => project.raised >= project.goal
       );
-    } else if (gruopCatValue === "Closed") {
+    } else if (event === "Closed") {
       gruopCategories = data.filter((project) => {
-        const projectTime = timeStatuse(project.endingDate);
+        const projectTime = timeStatus(project.endingDate);
         return projectTime <= 0;
       });
-    } else if (gruopCatValue === "Active") {
+    } else if (event === "Active") {
       gruopCategories = data.filter((project) => {
-        const projectTime = timeStatuse(project.endingDate);
+        const projectTime = timeStatus(project.endingDate);
         return projectTime >= 0;
       });
-    } else {
-      return data;
     }
+    setGruopCat(gruopCategories);
     console.log(gruopCategories);
-    setGruopCatValue(event.target.value);
   };
 
   return (
@@ -95,7 +89,10 @@ const CategoryFiltering = ({ data, filtrindData }) => {
             </InputLabel>
             <Select
               value={gruopCatValue}
-              onChange={handleChange}
+              onChange={(event) => {
+                setGruopCatValue(event.target.value);
+                handleChange(event.target.value);
+              }}
               label="gruopCat"
             >
               {GROUP_CATEGORY.map((item) => {
@@ -178,7 +175,7 @@ const GROUP_CATEGORY = [
   { id: 3, name: "Active", value: "Active" },
   { id: 4, name: "Closed", value: "Closed" },
 ];
-function isSuccessful(endingDate) {
+function timeStatus(endingDate) {
   const endDate = new Date(endingDate);
   const today = new Date();
   const timeDiff = endDate.getTime() - today.getTime();
