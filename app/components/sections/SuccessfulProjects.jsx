@@ -30,7 +30,7 @@ function SuccessfulProjects() {
             Check out our most recent successful cases
           </p>
         </div>
-        <div className="container flex flex-wrap  gap-10 items-start justify-center  lg:h-[850px] h-full">
+        <div className="container flex flex-wrap  gap-10 items-start justify-center  lg:h-[650px] h-full">
           {latestThreeProjects.length > 0 ? (
             latestThreeProjects.map((pro) => (
               <SuccessfulCard key={pro.id} project={pro} />
