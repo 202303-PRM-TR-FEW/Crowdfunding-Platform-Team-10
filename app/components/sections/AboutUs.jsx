@@ -29,7 +29,7 @@ const AboutSection = () => {
             aute irure.
           </p>
 
-          <div className="mt-14">
+          <div className="mt-5">
             <Link href="/about" className="btn-primary">
               Read More
             </Link>

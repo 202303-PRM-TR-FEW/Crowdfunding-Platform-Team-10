@@ -43,22 +43,18 @@ export const NoProjects = () => {
             <Image className="relative w-auto h-auto xl:group-hover:translate-x-[7rem] group-hover:translate-x-[5rem] transition duration-700"
               src={P1}
               alt="piece1"
-              id="piece1"
             />
             <Image className="relative w-auto h-auto xl:group-hover:translate-x-[2rem] group-hover:translate-x-[1.5rem] md:group-hover:translate-x-[1rem] transition duration-700"
               src={P2}
               alt="piece2"
-              id="piece2"
             />
             <Image className="relative w-auto h-auto xl:group-hover:-translate-x-[2rem] group-hover:-translate-x-[2rem] transition duration-700 z-10"
               src={P3}
               alt="piece3"
-              id="piece3"
             />
             <Image className="relative w-auto h-auto xl:group-hover:-translate-x-[6rem] group-hover:-translate-x-[5rem] transition duration-700"
               src={P4}
               alt="piece4"
-              id="piece4"
             />
           </div>
           <div className="pt-10 flex flex-col text-center justify-items-center col-span-1 w-4/5 group/edit ">
