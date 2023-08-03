@@ -23,6 +23,7 @@ import SuccessBadge from "@/components/SuccessBadge";
 import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 import Link from "next/link";
+import Chart from "@/components/cards/Chart";
 function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
@@ -67,7 +68,7 @@ function Project({ params }) {
     );
     setProjectsDonations(projectDon);
   }, [params.id, donations]);
-
+  console.log(projectsDonations);
   const handleDonationForm = () => {
     openDonationForm === false
       ? setOpenDonationForm(true)
@@ -201,8 +202,9 @@ function Project({ params }) {
                   )}
                 </div>
               </div>
-              <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3  ">
+              <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3 flex flex-col gap-3 ">
                 <DonationsHisory projectsDonations={projectsDonations} />
+                <Chart projectsDonations={projectsDonations} />
               </div>
             </div>
           )}
