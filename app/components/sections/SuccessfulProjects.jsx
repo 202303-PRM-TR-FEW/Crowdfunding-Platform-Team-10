@@ -19,9 +19,9 @@ function SuccessfulProjects() {
   const latestThreeProjects = filteredProjects.slice(0, 3);
 
   return (
-    <section className=" felx items-center justify-center ">
+    <section className=" flex items-center justify-center ">
       <div className=" container lg:py-14 lg:px-20 p-3 mx-auto ">
-        <div className="mb-10 felx-col gap-3">
+        <div className="mb-10 flex-col flex gap-3">
           <h2 className="header-3 text-center  ">
             Latest
             <span className="color-green mx-3  ">Successful Projects</span>
@@ -30,7 +30,7 @@ function SuccessfulProjects() {
             Check out our most recent successful cases
           </p>
         </div>
-        <div className="container  grid lg:gap-2 gap-10 lg:grid-cols-3 items-start justify-center lg:h-[600px]">
+        <div className="container flex flex-wrap  gap-10 items-start justify-center  lg:h-[650px] h-full">
           {latestThreeProjects.length > 0 ? (
             latestThreeProjects.map((pro) => (
               <SuccessfulCard key={pro.id} project={pro} />

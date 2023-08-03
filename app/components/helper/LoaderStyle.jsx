@@ -2,7 +2,7 @@ import React from "react";
 
 export default function LoaderStyle() {
   return (
-    <>
+    <div className="container mx-auto lg:py-28 py-14 px-3 z-10">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{
@@ -257,6 +257,6 @@ export default function LoaderStyle() {
           </rect>
         </g>
       </svg>
-    </>
+    </div>
   );
 }

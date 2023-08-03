@@ -32,8 +32,10 @@ function Project({ params }) {
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const pathname = usePathname();
+
   const [activeSidebar, setActiveSidebar] = useState(false);
-  //this code get single project info and store it into data state
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -104,7 +106,7 @@ function Project({ params }) {
     <div className=" relative overflow-hidden">
       <section className=" static py-28 p-3 bg-gradient-to-t from-transparent to-teal-50">
         <div className="container mx-auto">
-          {loading || user === null || data.length <= 0 ? (
+          {loading || data.length <= 0 ? (
             <LoaderStyle />
           ) : (
             <div className="flex flex-col lg:flex-row items-start justify-between gap-8">

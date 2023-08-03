@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 
-import { Avatar } from "@material-tailwind/react";
+import { Avatar } from "@mui/material";
 
 import Link from "next-intl/link";
 
@@ -9,7 +9,8 @@ import SuccessBadge from "../SuccessBadge";
 import Target from "../helper/Target";
 import ViewCount from "../helper/ViewCount";
 import CategoryIcon from "../helper/CategoryIcon";
-export default function ProjectOfTheWeek({ projectOfWeek }) {
+
+function ProjectOfTheWeek({ projectOfWeek }) {
   return (
     <>
       <h1 className={styles.header}>Project of the week</h1>
@@ -65,6 +66,8 @@ export default function ProjectOfTheWeek({ projectOfWeek }) {
     </>
   );
 }
+
+export default ProjectOfTheWeek;
 
 const styles = {
   header: "header-2 text-lightGreen px-2 py-4",

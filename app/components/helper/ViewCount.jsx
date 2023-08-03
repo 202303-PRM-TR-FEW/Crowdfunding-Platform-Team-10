@@ -1,10 +1,26 @@
 import Image from "next/image";
 import React from "react";
 import eyeIcon from "../../../public/assets/images/chart.png";
-import { useAuth } from "@/context/AuthContext";
 
 function ViewCount({ viewCount = "322" }) {
-  const { formatNumber } = useAuth();
+  function formatNumber(number) {
+    const suffixes = ["", "K", "M", "B", "T"];
+    const numString = number.toString();
+    const numDigits = numString.length;
+    const suffixNum = Math.floor((numDigits - 1) / 3);
+
+    if (suffixNum === 0 || numDigits <= 4) {
+      return number.toString();
+    } else {
+      let shortNumber = parseFloat(
+        (number / Math.pow(1000, suffixNum)).toPrecision(3)
+      );
+      if (shortNumber % 1 !== 0) {
+        shortNumber = shortNumber.toFixed(1);
+      }
+      return shortNumber + suffixes[suffixNum];
+    }
+  }
 
   const formattedViewCount = formatNumber(viewCount || 0);
   return (

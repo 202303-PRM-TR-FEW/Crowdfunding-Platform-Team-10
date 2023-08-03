@@ -1,13 +1,10 @@
-import { useAuth } from "@/context/AuthContext";
-
 const SuccessBadge = ({ endingDate, raised, goal }) => {
-  const { isSuccessful } = useAuth();
   const successState = isSuccessful(endingDate, raised, goal);
 
   return (
     <div>
       <span
-        className={`text-xs  px-5 py-1 pt-2 rounded ${
+        className={`text-xs  px-5 py-1  rounded ${
           successState === "Active"
             ? "text-lightGreen bg-yellow-light"
             : successState === "Successful"
@@ -26,3 +23,20 @@ const SuccessBadge = ({ endingDate, raised, goal }) => {
 };
 
 export default SuccessBadge;
+
+function isSuccessful(endingDate, raised, goal) {
+  const endDate = new Date(endingDate);
+  const today = new Date();
+  const timeDiff = endDate.getTime() - today.getTime();
+  const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+  if (raised >= goal) {
+    return "Successful";
+  } else if (daysRemaining <= 0) {
+    return "Closed";
+  } else if (daysRemaining < 5) {
+    return `${daysRemaining} Days Left`;
+  } else {
+    return "Active";
+  }
+}
