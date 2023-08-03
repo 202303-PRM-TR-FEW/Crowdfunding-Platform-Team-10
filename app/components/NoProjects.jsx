@@ -45,7 +45,7 @@ export const NoProjects = () => {
               alt="piece1"
             />
             <Image className="relative w-auto h-auto xl:group-hover:translate-x-[2rem] group-hover:translate-x-[1.5rem] md:group-hover:translate-x-[1rem] transition duration-700"
-              src={P2}np
+              src={P2}
               alt="piece2"
             />
             <Image className="relative w-auto h-auto xl:group-hover:-translate-x-[2rem] group-hover:-translate-x-[2rem] transition duration-700 z-10"
