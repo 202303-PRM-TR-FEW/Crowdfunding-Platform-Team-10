@@ -161,13 +161,14 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       dateAdapter={AdapterDayjs}
     >
       <Dialog open={openProjectForm} size={"lg"} className="">
-        <div className="p-6">
-          <IconButton onClick={handleClose} aria-label="back">
-            <ArrowBackIosNewIcon />
-          </IconButton>
-          <h1 className="header-1 mt-3 mb-6">
-            Kick-off <br /> your project
-          </h1>
+        <div className="p-6 lg:py-10">
+          <div className="flex items-center justify-start gap-2">
+            <IconButton onClick={handleClose} aria-label="back">
+              <ArrowBackIosNewIcon />
+            </IconButton>
+            <h1 className="header-2 mt-3 mb-10">Kick-off your project</h1>
+          </div>
+
           {success && (
             <Alert severity="success">Created Project Succesfully ! </Alert>
           )}

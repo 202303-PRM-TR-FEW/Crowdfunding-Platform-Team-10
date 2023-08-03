@@ -75,7 +75,7 @@ const Page = () => {
             <h1 className="header-2 text-center lg:text-start text-lightGreen">
               My Projects
             </h1>
-            <div className="flex flex-col lg:flex-row p-6 md:p-10 gap-8 ">
+            <div className="flex flex-col lg:flex-row py-6 md:py-10 gap-8 ">
               <div className="w-full lg:w-7/12">
                 <div className="flex flex-col gap-10 ">
                   {usersProjects.map((project, i) => {

@@ -70,26 +70,37 @@ input[type="file"] {
 .white-subheader {
   @apply text-base md:text-lg lg:text-xl text-white;
 }
+
 .btn-primary {
-  @apply bg-lightGreen hover:bg-[#f0bd07] shadow-lg text-white
-   lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-md 
-   text-center cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-lightGreen hover:bg-[#f0bd07] text-white
+  text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
 .btn-secondary {
-  @apply text-lightGreen hover:text-hoverLightGreen border-2 shadow-lg lg:px-6 lg:py-3 border-lightGreen hover:border-hoverLightGreen cursor-pointer text-base pt-4 pb-2 px-4 rounded-md text-center transition-all duration-300 ease-in-out;
+  @apply text-lightGreen hover:text-hoverLightGreen   border-lightGreen hover:border-hoverLightGreen
+  text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
 .btn-tertiary {
-  @apply bg-white  hover:bg-[#f0bd07]  text-black shadow-lg  pt-4 pb-2 px-4 lg:px-6 lg:py-3 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-white  hover:bg-[#f0bd07]  text-black
+  text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
 .btn-transparent {
-  @apply color-green hover:bg-[#00c1a1a9] hover:text-white  lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out shadow-lg;
+  @apply color-green hover:bg-[#00c1a1a9] hover:text-white
+  text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
 .btn-yellow {
-  @apply bg-[#f0bd07] hover:bg-[#a57801] shadow-lg text-white lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-md text-center cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-[#f0bd07] hover:bg-[#a57801]  text-white 
+  text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
 .btn-yelGreen {
-  @apply bg-[#f0bd07] hover:bg-[#00c1a2] shadow-lg text-white lg:px-6 lg:py-3  text-base pt-4 pb-2 px-4 rounded-lg text-center cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-[#f0bd07] hover:bg-[#00c1a2]  text-white
+  text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
+
+.custom-white-button {
+  @apply bg-white text-basicgray border-2 cursor-pointer font-bold text-base  rounded text-center transition-all duration-300 ease-in-out
+  py-2 px-3;
+}
+
 .color-green {
   @apply text-[#00c1a2];
 }
@@ -111,9 +122,6 @@ input[type="file"] {
 }
 .bgc-green {
   @apply bg-[#00c1a2];
-}
-.custom-white-button {
-  @apply bg-white text-basicgray border-2 cursor-pointer font-bold text-base pt-4 pb-2 px-4 rounded text-center transition-all duration-300 ease-in-out;
 }
 
 @keyframes moveCircle {

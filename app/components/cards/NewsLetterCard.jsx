@@ -49,7 +49,6 @@ export default function NewsLetterCard() {
   };
   const blurredCardStyle = {
     position: "relative",
-    width: "90%",
     position: "button",
     height: "100%",
     background: "rgba(255, 255, 255, 0.4)",
