@@ -11,43 +11,37 @@ const styles = {
 };
 
 const CategoryFiltering = ({ data, filtrindData }) => {
-  const [gruopCat, setGruopCat] = useState(data ?? []);
-  const [activeCategory, setActiveCategory] = useState("all");
-  const onFilter = (cat) => {
-    setActiveCategory(CATEGORY.find((item) => item.id === cat).id);
-    const filters = gruopCat.filter((item) =>
-      cat === "all" ? gruopCat : item.category === cat
-    );
-    console.log(filters);
-    filtrindData(filters);
-  };
-  console.log(data);
-  console.log(gruopCat);
+  const [gruopCatValue, setGruopCatValue] = useState("All");
+  const [iconValue, setIconValue] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
 
-  const [gruopCatValue, setGruopCatValue] = useState("");
-
-  const handleChange = (event) => {
-    console.log(event);
-    let gruopCategories = [];
-    if (event === "All") {
-      gruopCategories = data;
-    } else if (event == "Successful") {
-      gruopCategories = data.filter(
-        (project) => project.raised >= project.goal
-      );
-    } else if (event === "Closed") {
-      gruopCategories = data.filter((project) => {
+  const onFilter = (cat, dropValue) => {
+    setGruopCatValue(dropValue ? dropValue : gruopCatValue);
+    const dropcategory = dropValue ? dropValue : gruopCatValue;
+    const category = cat ? cat : iconValue;
+    let gruopCat = [];
+    if (dropcategory === "All") {
+      gruopCat = data;
+    } else if (dropcategory == "Successful") {
+      gruopCat = data.filter((project) => project.raised >= project.goal);
+    } else if (dropcategory === "Closed") {
+      gruopCat = data.filter((project) => {
         const projectTime = timeStatus(project.endingDate);
-        return projectTime <= 0;
+        return projectTime <= 0 && project.raised < project.goal;
       });
-    } else if (event === "Active") {
-      gruopCategories = data.filter((project) => {
+    } else if (dropcategory === "Active") {
+      gruopCat = data.filter((project) => {
         const projectTime = timeStatus(project.endingDate);
-        return projectTime >= 0;
+        return projectTime >= 0 && project.raised < project.goal;
       });
     }
-    setGruopCat(gruopCategories);
-    console.log(gruopCategories);
+    setActiveCategory(CATEGORY.find((item) => item.id === category).id);
+
+    // Filter based on active category
+    const filters = gruopCat.filter((item) =>
+      category === "All" ? filteredGroupCat : item.category === category
+    );
+    filtrindData(filters);
   };
 
   return (
@@ -59,7 +53,10 @@ const CategoryFiltering = ({ data, filtrindData }) => {
             return (
               <Box key={cat.id} className={styles.categoryBlock}>
                 <Box
-                  onClick={() => onFilter(cat.id)}
+                  onClick={() => {
+                    setIconValue(cat.id);
+                    onFilter(cat.id);
+                  }}
                   className={styles.filterItem}
                 >
                   {cat.icon(activeCategory === cat.id ? "#00c1a2" : "black")}
@@ -68,19 +65,6 @@ const CategoryFiltering = ({ data, filtrindData }) => {
               </Box>
             );
           })}
-          {/* <Box className={styles.categoryBlock}>
-            <Box onClick={() => showSuccess()} className={styles.filterItem}>
-              <svg
-                fill={"black"}
-                width="28px"
-                height="20px"
-                viewBox="0 0 496 512"
-              >
-                <path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path>{" "}
-              </svg>
-            </Box>
-            <p className="sub-header !text-base">Success</p>
-          </Box> */}
         </Box>
         <div className="relative ">
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
@@ -90,8 +74,7 @@ const CategoryFiltering = ({ data, filtrindData }) => {
             <Select
               value={gruopCatValue}
               onChange={(event) => {
-                setGruopCatValue(event.target.value);
-                handleChange(event.target.value);
+                onFilter(null, event.target.value);
               }}
               label="gruopCat"
             >
@@ -114,7 +97,7 @@ export default CategoryFiltering;
 
 const CATEGORY = [
   {
-    id: "all",
+    id: "All",
     name: "All",
     icon: (color = "rgb(250, 250, 250)") => {
       return (
