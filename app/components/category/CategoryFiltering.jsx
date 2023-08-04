@@ -2,6 +2,7 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { useState } from "react";
 
 const styles = {
+  main: "flex justify-between items-center flex-wrap ",
   header: "header-2 text-lightGreen py-4",
   categoryContainer: "flex flex-row gap-3",
   categoryBlock: "flex flex-col justify-center items-center py-2 gap-2",
@@ -11,20 +12,22 @@ const styles = {
 };
 
 const CategoryFiltering = ({ data, filtrindData }) => {
-  const [gruopCatValue, setGruopCatValue] = useState("All");
+  const [gruopCatValue, setGruopCatValue] = useState("");
   const [iconValue, setIconValue] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
 
   const onFilter = (cat, dropValue) => {
     setGruopCatValue(dropValue ? dropValue : gruopCatValue);
+
     const dropcategory = dropValue ? dropValue : gruopCatValue;
     const category = cat ? cat : iconValue;
+
     let gruopCat = [];
-    if (dropcategory === "All") {
-      gruopCat = data;
-    } else if (dropcategory == "Successful") {
+
+    if (dropcategory === "All" || dropcategory === "") gruopCat = data;
+    else if (dropcategory == "Successful")
       gruopCat = data.filter((project) => project.raised >= project.goal);
-    } else if (dropcategory === "Closed") {
+    else if (dropcategory === "Closed") {
       gruopCat = data.filter((project) => {
         const projectTime = timeStatus(project.endingDate);
         return projectTime <= 0 && project.raised < project.goal;
@@ -37,9 +40,8 @@ const CategoryFiltering = ({ data, filtrindData }) => {
     }
     setActiveCategory(CATEGORY.find((item) => item.id === category).id);
 
-    // Filter based on active category
     const filters = gruopCat.filter((item) =>
-      category === "All" ? filteredGroupCat : item.category === category
+      category === "All" ? gruopCat : item.category === category
     );
     filtrindData(filters);
   };
@@ -47,7 +49,7 @@ const CategoryFiltering = ({ data, filtrindData }) => {
   return (
     <Box className="py-10">
       <h2 className={styles.header}>Categories</h2>
-      <div className="flex justify-between items-center flex-wrap ">
+      <div className={styles.main}>
         <Box className={styles.categoryContainer}>
           {CATEGORY.map((cat) => {
             return (
@@ -68,9 +70,7 @@ const CategoryFiltering = ({ data, filtrindData }) => {
         </Box>
         <div className="relative ">
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-standard-label">
-              Card Gruop
-            </InputLabel>
+            <InputLabel>Card Gruop</InputLabel>
             <Select
               value={gruopCatValue}
               onChange={(event) => {
