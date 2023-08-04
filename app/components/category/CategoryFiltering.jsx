@@ -70,7 +70,7 @@ const CategoryFiltering = ({ data, filtrindData }) => {
         </Box>
         <div className="relative ">
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel>Card Gruop</InputLabel>
+            <InputLabel>Filter by</InputLabel>
             <Select
               value={gruopCatValue}
               onChange={(event) => {
