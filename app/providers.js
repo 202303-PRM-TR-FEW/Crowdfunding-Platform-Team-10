@@ -2,13 +2,16 @@
 import { ThemeProvider, createTheme } from "@mui/material";
 import { AuthContextProvider } from "@/context/AuthContext";
 import { NextIntlClientProvider } from "next-intl";
-
+import { Outfit } from "next/font/google";
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "tr" }];
 }
 
 function Providers({ children, locale, messages }) {
   const theme = createTheme({
+    typography: {
+      fontFamily: "Outfit, sans-serif",
+    },
     palette: {
       primary: {
         main: "#00c1a2",
