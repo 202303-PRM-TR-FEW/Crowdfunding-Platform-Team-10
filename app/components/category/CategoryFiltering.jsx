@@ -13,7 +13,7 @@ const styles = {
 
 const CategoryFiltering = ({ data, filtrindData }) => {
   const [gruopCatValue, setGruopCatValue] = useState("");
-  const [iconValue, setIconValue] = useState("");
+  const [iconValue, setIconValue] = useState("All");
   const [activeCategory, setActiveCategory] = useState("All");
 
   const onFilter = (cat, dropValue) => {
