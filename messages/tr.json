@@ -5,5 +5,17 @@
     "button": "Şimdi Başlayın",
     "successful": "Başarılı Projeler: ",
     "donations":"Yapılan Yardımlar: "
+  },
+  "SignupForm": {
+    "header": "Üye Olun",
+    "email": "Email",
+    "password": "Şifre",
+    "fullName": "Tam Adınız",
+    "bio": "Bio",
+    "country": "Ülke",
+    "signupButton": "Üye Olun",
+    "userPicture": "Kullanıcı Resmi",
+    "sideHeader": "Zaten Bir Hesabınız Var Mı ?",
+    "loginButton": "Giriş Yapın"
   }
 }
