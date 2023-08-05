@@ -6,15 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prebuild": "node prebuild.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.15",
     "@hookform/resolvers": "^3.1.1",
     "@material-tailwind/react": "^2.0.4",
     "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.134",
     "@mui/material": "^5.13.6",
+    "@mui/system": "^5.14.3",
     "@mui/x-charts": "^6.0.0-alpha.5",
     "@mui/x-date-pickers": "^6.9.1",
     "autoprefixer": "10.4.14",

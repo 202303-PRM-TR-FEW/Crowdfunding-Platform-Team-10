@@ -74,7 +74,6 @@ export const AuthContextProvider = ({ children }) => {
 
       if (!isEmailFound) {
         await setDoc(doc(db, "users", user.uid), {
-          // ...userData,
           name: user.displayName,
           bio: "",
           userImg: user.photoURL,
@@ -105,6 +104,7 @@ export const AuthContextProvider = ({ children }) => {
       QuerySnapshot.forEach((doc) => {
         usersArr.push({ ...doc.data(), id: doc.id });
       });
+      console.log("im users UseEffect");
       setUsersInfo(usersArr);
     });
     return () => unsubscribe();
@@ -118,6 +118,7 @@ export const AuthContextProvider = ({ children }) => {
         projectsArr.push({ ...doc.data(), id: doc.id });
       });
       setProjects(projectsArr);
+      console.log("im projects UseEffect");
     });
     return () => unsubscribe();
   }, []);
@@ -130,6 +131,7 @@ export const AuthContextProvider = ({ children }) => {
         donationsArr.push({ ...doc.data(), id: doc.id });
       });
       setDonations(donationsArr);
+      console.log("im donations UseEffect");
     });
     return () => unsubscribe();
   }, []);
@@ -145,6 +147,8 @@ export const AuthContextProvider = ({ children }) => {
         setCurrentUser(null);
       }
     }
+    console.log("im current user UseEffect");
+
     setLoading(false);
   }, [user, usersInfo, currentUser]);
 

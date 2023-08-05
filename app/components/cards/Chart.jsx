@@ -1,29 +1,15 @@
 import * as React from "react";
-import { LineChart } from "@mui/x-charts/LineChart";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { countries } from "@/data/countries";
-import LoaderStyle from "../helper/LoaderStyle";
 
-export default function Chart({ projectsDonations }) {
-  let Prices, isoCountryCodes;
-  if (projectsDonations) {
-    Prices = projectsDonations.map((price) => price?.donaiton);
-    const Country = projectsDonations.map((country) => country?.userCountry);
-    console.log(Country);
-    isoCountryCodes = Country.map((countryName) => {
-      const country = countries.find((c) => c.label === countryName);
-      return country ? country.code : null;
-    });
-  } else {
-    Prices = [0];
-    isoCountryCodes = [0];
-  }
+import LoaderStyle from "../helper/LoaderStyle";
+import { BarChart } from "@mui/x-charts/BarChart";
+
+function Chart({ projectsDonations }) {
+  const countryDonations = collectDonationsByCountry(projectsDonations);
+  const xAxisData = Object.keys(countryDonations);
+  const seriesData = Object.values(countryDonations);
+
   if (projectsDonations == null) {
     return <LoaderStyle />;
   }
@@ -45,37 +31,45 @@ export default function Chart({ projectsDonations }) {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <h3 className="header-4 p-2">Statistcs</h3>
+        <h3 className="header-4 p-2">Statistics</h3>
       </AccordionSummary>
       <AccordionDetails>
         {projectsDonations.length > 0 ? (
-          <LineChart
-            xAxis={[{ data: isoCountryCodes }]}
-            //   xAxis={projectsDonations.map((country) => country?.userCountry)}
+          <BarChart
+            xAxis={[
+              {
+                id: "countries",
+                data: xAxisData,
+                scaleType: "band",
+              },
+            ]}
             series={[
               {
-                data: Prices,
-                //   data: projectsDonations.map((price) => price?.donationAmount),
-                area: true,
+                data: seriesData,
+                color: "#00c1a2",
               },
             ]}
             width={500}
             height={300}
           />
-        ) : (
-          <LineChart
-            xAxis={[{ data: ["0"] }]}
-            series={[
-              {
-                data: ["0"],
-                area: true,
-              },
-            ]}
-            width={500}
-            height={300}
-          />
-        )}
+        ) : null}
       </AccordionDetails>
     </Accordion>
   );
+}
+
+export default Chart;
+
+function collectDonationsByCountry(projectsDonations) {
+  const countryDonations = {};
+
+  projectsDonations.forEach((don) => {
+    const { userCountry, donaiton } = don;
+    if (countryDonations[userCountry]) {
+      countryDonations[userCountry] += donaiton;
+    } else {
+      countryDonations[userCountry] = donaiton;
+    }
+  });
+  return countryDonations;
 }

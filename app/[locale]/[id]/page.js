@@ -68,7 +68,6 @@ function Project({ params }) {
     );
     setProjectsDonations(projectDon);
   }, [params.id, donations]);
-  console.log(projectsDonations);
   const handleDonationForm = () => {
     openDonationForm === false
       ? setOpenDonationForm(true)
@@ -126,7 +125,7 @@ function Project({ params }) {
                     </h1>
                     <CategoryIcon category={data.category} />
                   </div>
-                  {/* {console.log(today, data.endingDate)} */}
+
                   <SuccessBadge
                     endingDate={data.endingDate}
                     raised={data.raised}
