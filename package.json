@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
@@ -34,6 +35,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "cypress": "^12.17.3",
     "encoding": "^0.1.13"
   }
 }
