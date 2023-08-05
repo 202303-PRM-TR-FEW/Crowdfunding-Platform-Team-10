@@ -5,5 +5,28 @@
       "button": "Start Today",
       "successful": "Successful projects: ",
       "donations":"Donations Made: "
+    },
+    "LoginForm":{
+      "header": "Login to Your Account",
+      "subHeader": "Login using Google",
+      "or":"OR",
+      "loginButton": "Login",
+      "emailInput": "Email",
+      "passwordInput": "Password",
+      "sideHeader": "New Here ?",
+      "sideParagraph": "Sign up and discover great opportunities for both helping others and creating your own cause!",
+      "signupButton":"Sign Up"
+    },
+    "SignupForm": {
+      "header": "Sign Up",
+      "email": "Email",
+      "password": "Password",
+      "fullName": "Full Name",
+      "bio": "Bio",
+      "country": "Country",
+      "signupButton": "Sign Up",
+      "userPicture": "User Picture",
+      "sideHeader": "Already Have an Account ?",
+      "loginButton": "Login"
     }
   }

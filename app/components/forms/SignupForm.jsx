@@ -22,6 +22,7 @@ import {
 import { countries } from "@/data/countries";
 import Link from "next-intl/link";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 const schema = yup
   .object({
@@ -117,17 +118,18 @@ const SignupForm = () => {
       }
     }
   };
+  const t = useTranslations("SignupForm");
 
   return (
     <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl max-w-4xl">
       <div className="lg:col-span-2 bg-gradient-to-tl from-lightGreen to-teal-700 flex flex-col justify-center items-center p-6 text-center gap-6 lg:rounded-l rounded-b lg:rounded-br-none lg:rounded-tr-none order-2 lg:order-1">
         <p className=" px-10 lg:px-0 text-2xl md:text-3xl font-bold text-white">
-          Already Have an Account ?
+          {t("sideHeader")}
         </p>
 
         <Link href="/login">
           <button className="rounded bg-white color-black py-2 px-12 self-center font-bold">
-            Login
+            {t("loginButton")}
           </button>
         </Link>
       </div>
@@ -136,7 +138,7 @@ const SignupForm = () => {
           <Container maxWidth="xs">
             <div className="grid justify-center items-center h-full">
               <p className="text-center text-gray-900  header-3 px-10 md:px-20">
-                Create Your Account
+                {t("header")}
               </p>
               <form
                 className="flex flex-col gap-4"
@@ -144,7 +146,7 @@ const SignupForm = () => {
               >
                 <div className="mt-6">
                   <TextField
-                    label="Email"
+                    label={t("email")}
                     fullWidth
                     type="email"
                     defaultValue="test"
@@ -161,7 +163,7 @@ const SignupForm = () => {
                 </div>
                 <div>
                   <TextField
-                    label="Password"
+                    label={t("password")}
                     fullWidth
                     variant="standard"
                     type="password"
@@ -177,7 +179,7 @@ const SignupForm = () => {
                 </div>
                 <div>
                   <TextField
-                    label="Full Name"
+                    label={t("fullName")}
                     fullWidth
                     variant="standard"
                     type="text"
@@ -193,7 +195,7 @@ const SignupForm = () => {
                 </div>
                 <div>
                   <TextField
-                    label="Bio"
+                    label={t("bio")}
                     fullWidth
                     variant="standard"
                     type="text"
@@ -214,7 +216,7 @@ const SignupForm = () => {
                     render={({ field: { onChange } }) => (
                       <FormControl variant="standard" fullWidth>
                         <InputLabel id="demo-simple-select-label">
-                          Country
+                          {t("country")}
                         </InputLabel>
                         <Select
                           labelId="demo-simple-select-label"
@@ -272,7 +274,7 @@ const SignupForm = () => {
                     id="userImg"
                     name="userImg"
                     type="file"
-                    label="User Picture"
+                    label={t("userPicture")}
                     {...register("userImg")}
                     sx={{ input: { cursor: "pointer" } }}
                   />
@@ -291,7 +293,7 @@ const SignupForm = () => {
                   variant="filled"
                   fullWidth
                 >
-                  Sign Up
+                  {t("signupButton")}
                 </button>
               </form>
             </div>
