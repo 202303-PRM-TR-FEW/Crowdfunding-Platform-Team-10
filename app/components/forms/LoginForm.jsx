@@ -11,6 +11,7 @@ import * as yup from "yup";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
 import { Container, TextField, Typography } from "@mui/material";
+import { useTranslations } from "next-intl";
 
 const schema = yup
   .object({
@@ -70,15 +71,13 @@ const LoginForm = () => {
       }
     }
   };
-
+  const t = useTranslations("LoginForm");
   return (
     <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl max-w-4xl">
       <div className="lg:col-span-3 flex flex-col justify-center gap-2 text-center bg-white p-6 sm:p-12 md:p-16 lg:rounded-l rounded-t lg:rounded-tr-none">
-        <p className="text-center text-gray-900 p-4 header-2">
-          Login to Your Account
-        </p>
+        <p className="text-center text-gray-900 p-4 header-2">{t("header")}</p>
         <div className="flex flex-col gap-2">
-          <p className="">Login using Google</p>
+          <p className="">{t("subHeader")}</p>
           <div className="flex justify-center p-1">
             <button
               className="p-2 rounded-full hover:bg-gray-100 transition duration-200 shadow-md"
@@ -95,7 +94,7 @@ const LoginForm = () => {
         <div className="grid grid-cols-11 mt-4 -mb-6">
           <div className="border-b border-gray-400 h-3/6 col-span-5"></div>
 
-          <p className=" px-2 col-span-1 text-xs">OR</p>
+          <p className=" px-2 col-span-1 text-xs">{t("or")}</p>
           <div className="border-b border-gray-400 h-3/6 col-span-5"></div>
         </div>
         <div className="">
@@ -106,7 +105,7 @@ const LoginForm = () => {
             >
               <div className="mt-6">
                 <TextField
-                  label="Email"
+                  label={t("emailInput")}
                   fullWidth
                   type="email"
                   defaultValue="test"
@@ -123,7 +122,7 @@ const LoginForm = () => {
               </div>
               <div>
                 <TextField
-                  label="Password"
+                  label={t("passwordInput")}
                   fullWidth
                   type="password"
                   defaultValue="test"
@@ -145,21 +144,20 @@ const LoginForm = () => {
                 variant="filled"
                 fullWidth
               >
-                Login
+                {t("loginButton")}
               </button>
             </form>
           </Container>
         </div>
       </div>
       <div className="lg:col-span-2 bg-gradient-to-br from-lightGreen to-teal-700 flex flex-col justify-center items-center lg:rounded-r rounded-b lg:rounded-bl-none p-6 text-center gap-6 ">
-        <p className="text:2xl text-3xl font-bold text-white">New Here ?</p>
-        <p className="text-white text-sm px-4">
-          Sign up and discover great opportunities for both helping others and
-          creating your own cause!
+        <p className="text:2xl text-3xl font-bold text-white">
+          {t("sideHeader")}
         </p>
+        <p className="text-white text-sm px-4">{t("sideParagraph")}</p>
         <Link href="/signup">
           <button className="rounded bg-white color-black py-2 px-12 self-center font-bold">
-            Sign Up
+            {t("signupButton")}
           </button>
         </Link>
       </div>

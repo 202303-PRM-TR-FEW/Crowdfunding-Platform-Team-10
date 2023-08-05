@@ -5,5 +5,16 @@
     "button": "Şimdi Başlayın",
     "successful": "Başarılı Projeler: ",
     "donations":"Yapılan Yardımlar: "
+  },
+  "LoginForm":{
+    "header": "Hesabınıza Giriş Yapın",
+    "subHeader": "Google ile giriş yapın",
+    "or":"Veya",
+    "loginButton": "Giriş Yap",
+    "emailInput": "Email",
+    "passwordInput": "Şifre",
+    "sideHeader": "Burada Yeni Misiniz ?",
+    "sideParagraph": "Üye olun ve başkalarına yardım etmek veya kendi amaçlarınıza yönelik projeler oluşturun!",
+    "signupButton":"Üye Ol"
   }
 }
