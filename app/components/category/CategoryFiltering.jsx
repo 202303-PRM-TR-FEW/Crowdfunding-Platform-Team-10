@@ -1,8 +1,8 @@
-import { Box } from "@mui/material";
-
+import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { useState } from "react";
 
 const styles = {
+  main: "flex justify-between items-center flex-wrap ",
   header: "header-2 text-lightGreen py-4",
   categoryContainer: "flex flex-row gap-3",
   categoryBlock: "flex flex-col justify-center items-center py-2 gap-2",
@@ -12,32 +12,53 @@ const styles = {
 };
 
 const CategoryFiltering = ({ data, filtrindData }) => {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [successProjects, setSuccessProjects] = useState("all");
-  const onFilter = (cat) => {
-    setActiveCategory(CATEGORY.find((item) => item.id === cat).id);
-    const filters = data.filter((item) =>
-      cat === "all" ? true : item.category === cat
+  const [gruopCatValue, setGruopCatValue] = useState("");
+  const [iconValue, setIconValue] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const onFilter = (cat, dropValue) => {
+    setGruopCatValue(dropValue ? dropValue : gruopCatValue);
+
+    const dropcategory = dropValue ? dropValue : gruopCatValue;
+    const category = cat ? cat : iconValue;
+
+    let gruopCat = [];
+
+    if (dropcategory === "All" || dropcategory === "") gruopCat = data;
+    else if (dropcategory == "Successful")
+      gruopCat = data.filter((project) => project.raised >= project.goal);
+    else if (dropcategory === "Closed") {
+      gruopCat = data.filter((project) => {
+        const projectTime = timeStatus(project.endingDate);
+        return projectTime <= 0 && project.raised < project.goal;
+      });
+    } else if (dropcategory === "Active") {
+      gruopCat = data.filter((project) => {
+        const projectTime = timeStatus(project.endingDate);
+        return projectTime >= 0 && project.raised < project.goal;
+      });
+    }
+    setActiveCategory(CATEGORY.find((item) => item.id === category).id);
+
+    const filters = gruopCat.filter((item) =>
+      category === "All" ? gruopCat : item.category === category
     );
     filtrindData(filters);
   };
 
-  const showSuccess=(data)=>{
-    const filteredProjects = data.filter(
-      (project) => project.raised >= project.goal
-    );
-    setSuccessProjects(filteredProjects)
-  }
   return (
     <Box className="py-10">
       <h2 className={styles.header}>Categories</h2>
-      <Box>
+      <div className={styles.main}>
         <Box className={styles.categoryContainer}>
           {CATEGORY.map((cat) => {
             return (
               <Box key={cat.id} className={styles.categoryBlock}>
                 <Box
-                  onClick={() => onFilter(cat.id)}
+                  onClick={() => {
+                    setIconValue(cat.id);
+                    onFilter(cat.id);
+                  }}
                   className={styles.filterItem}
                 >
                   {cat.icon(activeCategory === cat.id ? "#00c1a2" : "black")}
@@ -46,21 +67,28 @@ const CategoryFiltering = ({ data, filtrindData }) => {
               </Box>
             );
           })}
-          <Box className={styles.categoryBlock}>
-            <Box onClick={() => showSuccess()} className={styles.filterItem}>
-              <svg
-                fill={"black"}
-                width="28px"
-                height="20px"
-                viewBox="0 0 496 512"
-              >
-                <path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path>{" "}
-              </svg>
-            </Box>
-            <p className="sub-header !text-base">Success</p>
-          </Box>
         </Box>
-      </Box>
+        <div className="relative ">
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel>Filter by</InputLabel>
+            <Select
+              value={gruopCatValue}
+              onChange={(event) => {
+                onFilter(null, event.target.value);
+              }}
+              label="gruopCat"
+            >
+              {GROUP_CATEGORY.map((item) => {
+                return (
+                  <MenuItem key={item.id} value={item.value}>
+                    {item.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </div>
+      </div>
     </Box>
   );
 };
@@ -69,7 +97,7 @@ export default CategoryFiltering;
 
 const CATEGORY = [
   {
-    id: "all",
+    id: "All",
     name: "All",
     icon: (color = "rgb(250, 250, 250)") => {
       return (
@@ -124,3 +152,16 @@ const CATEGORY = [
     },
   },
 ];
+const GROUP_CATEGORY = [
+  { id: 1, name: "All", value: "All" },
+  { id: 2, name: "Successful", value: "Successful" },
+  { id: 3, name: "Active", value: "Active" },
+  { id: 4, name: "Closed", value: "Closed" },
+];
+function timeStatus(endingDate) {
+  const endDate = new Date(endingDate);
+  const today = new Date();
+  const timeDiff = endDate.getTime() - today.getTime();
+  const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  return daysRemaining;
+}
