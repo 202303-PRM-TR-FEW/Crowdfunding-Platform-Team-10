@@ -6,6 +6,7 @@
     "successful": "Başarılı Projeler: ",
     "donations":"Yapılan Yardımlar: "
   },
+ 
   "SignupForm": {
     "header": "Üye Olun",
     "email": "Email",
@@ -17,5 +18,17 @@
     "userPicture": "Kullanıcı Resmi",
     "sideHeader": "Zaten Bir Hesabınız Var Mı ?",
     "loginButton": "Giriş Yapın"
+ 
+  "LoginForm":{
+    "header": "Hesabınıza Giriş Yapın",
+    "subHeader": "Google ile giriş yapın",
+    "or":"Veya",
+    "loginButton": "Giriş Yap",
+    "emailInput": "Email",
+    "passwordInput": "Şifre",
+    "sideHeader": "Burada Yeni Misiniz ?",
+    "sideParagraph": "Üye olun ve başkalarına yardım edin veya kendi amaçlarınıza yönelik projeler oluşturun!",
+    "signupButton":"Üye Ol"
+ 
   }
 }

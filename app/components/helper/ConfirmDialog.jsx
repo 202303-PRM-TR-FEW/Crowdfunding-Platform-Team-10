@@ -1,4 +1,10 @@
-import { Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from "@mui/material";
 
 export default function ConfirmDialog({
   open,
@@ -9,33 +15,24 @@ export default function ConfirmDialog({
 }) {
   return (
     <>
-      <Dialog
-        open={open}
-        animate={{
-          mount: { scale: 1, y: 0 },
-          unmount: { scale: 0.9, y: -100 },
-        }}
-      >
+      <Dialog open={open}>
         <h3 className="header-3 p-5">{title}</h3>
         {message && (
-          <DialogBody className="px-5 py-3" divider>
-            {message}
-          </DialogBody>
+          <DialogContent>
+            <DialogContentText
+              className="px-5 py-3"
+              id="alert-dialog-description"
+            >
+              {message}
+            </DialogContentText>
+          </DialogContent>
         )}
-        <DialogFooter>
-          <button
-            onClick={() => handleClose("Cancel")}
-            className="btn-secondary mx-2"
-          >
-            <span>Cancel</span>
-          </button>
-          <button
-            className="btn-primary"
-            onClick={() => handleClose("Confirm")}
-          >
-            <span>Confirm</span>
-          </button>
-        </DialogFooter>
+        <DialogActions>
+          <Button onClick={() => handleClose("Cancel")}>Cancel</Button>
+          <Button onClick={() => handleClose("Confirm")} autoFocus>
+            Confirm
+          </Button>
+        </DialogActions>
       </Dialog>
     </>
   );

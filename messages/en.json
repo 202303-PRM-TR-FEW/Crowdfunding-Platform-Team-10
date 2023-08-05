@@ -6,6 +6,7 @@
       "successful": "Successful projects: ",
       "donations":"Donations Made: "
     },
+ 
     "SignupForm": {
       "header": "Sign Up",
       "email": "Email",
@@ -17,5 +18,17 @@
       "userPicture": "User Picture",
       "sideHeader": "Already Have an Account ?",
       "loginButton": "Login"
+ 
+    "LoginForm":{
+      "header": "Login to Your Account",
+      "subHeader": "Login using Google",
+      "or":"OR",
+      "loginButton": "Login",
+      "emailInput": "Email",
+      "passwordInput": "Password",
+      "sideHeader": "New Here ?",
+      "sideParagraph": "Sign up and discover great opportunities for both helping others and creating your own cause!",
+      "signupButton":"Sign Up"
+ 
     }
   }
