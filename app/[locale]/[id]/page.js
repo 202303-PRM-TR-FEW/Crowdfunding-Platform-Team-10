@@ -220,7 +220,7 @@ function Project({ params }) {
                     <div></div>
                   )}
                 </div>
-                {user.uid == data.creator.userId ? (
+                {user?.uid == data.creator.userId ? (
                   <button
                     className="btn-red  w-full my-2"
                     onClick={handleDeleteProject}
@@ -228,9 +228,9 @@ function Project({ params }) {
                     Delete Project
                   </button>
                 ) : null}
-                <div className=" hidden lg:block  py-3  ">
+                <div className=" hidden lg:block  py-3">
                   <CommentRows id={params.id} />
-                  <CommentForm params={params} />
+                  {user ? <CommentForm params={params} /> : null}
                 </div>
               </div>
               <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3  ">
@@ -296,7 +296,7 @@ function Project({ params }) {
         />
         <div className=" block lg:hidden  py-3  ">
           <CommentRows id={params.id} />
-          <CommentForm params={params} />
+          {user ? <CommentForm params={params} /> : null}
         </div>
       </section>
 

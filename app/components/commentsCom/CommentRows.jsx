@@ -26,6 +26,7 @@ export default function CommentRows({ id }) {
 
   return (
     <div className="flex flex-col gap-2 w-full my-2 ">
+      <h3 className="my-2 text-bold">Comments</h3>
       {comments.map((comment, index) => (
         <div
           key={comment.id}
