@@ -26,6 +26,7 @@ import DonationsHisory from "@/components/cards/DonationsHisory";
 import Link from "next/link";
 import CommentForm from "@/components/commentsCom/CommentForm";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
+import CommentRows from "@/components/commentsCom/CommentRows";
 function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
@@ -219,7 +220,7 @@ function Project({ params }) {
                     <div></div>
                   )}
                 </div>
-                {user.uid == data.creator.userId ? (
+                {user?.uid == data.creator.userId ? (
                   <button
                     className="btn-red  w-full my-2"
                     onClick={handleDeleteProject}
@@ -227,7 +228,10 @@ function Project({ params }) {
                     Delete Project
                   </button>
                 ) : null}
-                <CommentForm />
+                <div className=" hidden lg:block  py-3">
+                  <CommentRows id={params.id} />
+                  {user ? <CommentForm params={params} /> : null}
+                </div>
               </div>
               <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3  ">
                 <DonationsHisory projectsDonations={projectsDonations} />
@@ -290,6 +294,10 @@ function Project({ params }) {
           openDonationForm={openDonationForm}
           setOpenDonationForm={setOpenDonationForm}
         />
+        <div className=" block lg:hidden  py-3  ">
+          <CommentRows id={params.id} />
+          {user ? <CommentForm params={params} /> : null}
+        </div>
       </section>
 
       <div style={circleBackgroundStyle}></div>
