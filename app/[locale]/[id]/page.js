@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -15,7 +15,7 @@ import telegram from "../../../public/assets/images/telegram.png";
 import Image from "next/image";
 import { notFound, usePathname, useSearchParams } from "next/navigation";
 import SocialButton from "@/components/helper/SocialButton";
-
+import { toast } from "react-toastify";
 import Target from "@/components/helper/Target";
 import ViewCount from "@/components/helper/ViewCount";
 import UserNameImg from "@/components/helper/UserNameImg";
@@ -25,18 +25,28 @@ import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 import Link from "next/link";
 import CommentForm from "@/components/commentsCom/CommentForm";
+import ConfirmDialog from "@/components/helper/ConfirmDialog";
 function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
   const [loading, setLoading] = useState(true);
   const t = useTranslations("Projects");
-
+  const [open, setOpen] = useState(false);
   const { user, donations } = useAuth();
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const pathname = usePathname();
 
   const [activeSidebar, setActiveSidebar] = useState(false);
+
+  const handleClose = async (word) => {
+    if (word === "Confirm") {
+      await deleteDoc(doc(db, "projects", params.id));
+      toast.success(" Project deleted Succesfully !");
+      router.push("/profile");
+    }
+    setOpen(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -108,9 +118,19 @@ function Project({ params }) {
   const today = new Date();
   const endDate = new Date(data.endingDate);
   ////To hide donate button if project marked as closed//////////
-
+  console.log(data);
+  const handleDeleteProject = () => {
+    setOpen(true);
+  };
   return (
     <div className=" relative overflow-hidden">
+      <ConfirmDialog
+        open={open}
+        setOpen={setOpen}
+        title={"Are you sure to delete this project?"}
+        message={""}
+        handleClose={handleClose}
+      />
       <section className=" static py-28 p-3 bg-gradient-to-t from-transparent to-teal-50">
         <div className="container mx-auto">
           {loading || data.length <= 0 ? (
@@ -141,14 +161,14 @@ function Project({ params }) {
                     today < endDate ? (
                       data.raised === data.goal || data.raised > data.goal ? (
                         <button disabled={true} className="btn-primary w-full">
-                         {t("projects-completed")}
+                          {t("projects-completed")}
                         </button>
                       ) : (
                         <button
                           className="btn-primary w-full"
                           onClick={handleDonationForm}
                         >
-                         {t("donate-btn")}
+                          {t("donate-btn")}
                         </button>
                       )
                     ) : (
@@ -156,9 +176,7 @@ function Project({ params }) {
                     )
                   ) : today < endDate ? (
                     <Link href="/login">
-                      <div className="btn-primary w-full">
-                         {t("login-btn")}
-                      </div>
+                      <div className="btn-primary w-full">{t("login-btn")}</div>
                     </Link>
                   ) : (
                     <div></div>
@@ -180,14 +198,14 @@ function Project({ params }) {
                     today < endDate ? (
                       data.raised === data.goal || data.raised > data.goal ? (
                         <button disabled={true} className="btn-primary w-full">
-                           {t("projects-completed")}
+                          {t("projects-completed")}
                         </button>
                       ) : (
                         <button
                           className="btn-primary w-full"
                           onClick={handleDonationForm}
                         >
-                         {t("donate-btn")}
+                          {t("donate-btn")}
                         </button>
                       )
                     ) : (
@@ -195,14 +213,20 @@ function Project({ params }) {
                     )
                   ) : today < endDate ? (
                     <Link href="/login">
-                      <div className="btn-primary w-full">
-                        {t("login-btn")}
-                      </div>
+                      <div className="btn-primary w-full">{t("login-btn")}</div>
                     </Link>
                   ) : (
                     <div></div>
                   )}
                 </div>
+                {user.uid == data.creator.userId ? (
+                  <button
+                    className="btn-red  w-full my-2"
+                    onClick={handleDeleteProject}
+                  >
+                    Delete Project
+                  </button>
+                ) : null}
                 <CommentForm />
               </div>
               <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3  ">
