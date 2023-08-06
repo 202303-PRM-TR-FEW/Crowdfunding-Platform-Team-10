@@ -34,6 +34,60 @@
       "charityText": "Add 2% for charity ?",
       "payNowBtn":"Pay Now",
       "successMessage":"Donation Succesfull !"
+    },
+    "AboutUs": {
+      "header":"ABOUT US",
+      "white-part-header":"Our Highest Ambition",
+      "white-part-two-header":"is to",
+      "yellow-part-header":"Help People",
+      "paragraph":"Get instant helpful resources about anything on the go, easily implement secure money transfer solutions, boost your daily efficiency, connect to other app users and create your own Fronter network, and much more with just a few taps.", 
+      "more-link":"Read More"
+    },
+    "HowWorks":{
+      "header1":"How",
+      "header2":"Open",
+      "header3":"Handed",
+      "header4":"Works",
+      "sub-header":"With just a few minute you can fundraise",
+      "sub-header-one":"Begin with the basic things",
+      "paragraph-one":"Introduce yourself, your plan and where the place is",
+      "sub-header-two":"Tell about your idea and event",
+      "paragraph-two":"Along the way, we will provide advice to help you",
+      "sub-header-three":"Share with friends and family",
+      "paragraph-three":"  There are many people who want to help you as well"
+    },  
+    "StartNow":{
+      "header":"Start Now",
+      "paragraph":"Start Now and Bring Your Ideas to Life! Create a project and raise funds for your dream venture, or make a difference by donating to projects that align with your passions. Join our community of changemakers today!",
+      "btn-one": "Create New Account",
+      "btn-two":"Check Projects"
+    },
+    "NewsLetterCard":{
+      "header1":"Subscribe now and be at the forefront of change!",
+      "paragraph":"Sign up for our free newsletter to receive our monthly digest of the best causes. Stay informed, get inspired, and make a difference by joining our community of passionate individuals dedicated to shaping the world for the better!",
+      "header2":"Subscribe to our newsletter",
+      "email-input-area":"Email Address",
+      "btn":"Subscribe",
+      "note-to-user":" We will not spam you 🤞🏼"
+    },
+    "SuccessfulProjects":{
+      "header-part-one":"Latest",
+      "header-part-two":" Successful Projects ",
+      "sub-header":"Check out our most recent successful cases",
+      "no-projects-text":"No successful projects found Yet."
+    },
+    "Comments":{
+      "btn":"Add testimonials",
+      "testimonial-input-area":"Write your testimonial...",
+      "btn-2":"Close",
+      "btn-3":"Submit",
+      "header":"Testimonials"
+    },
+    "Projects":{
+      "projects-completed":"The project has been completed 🎉",
+      "donate-btn":"Donate Now",
+      "login-btn":"Login to fund this project"
     }
+
   }
   

@@ -7,8 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import InfoIcon from "@mui/icons-material/Info";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 export default function NewsLetterCard() {
+  const t = useTranslations("NewsLetterCard");
   const containerStyle = {
     position: "relative",
     display: "flex",
@@ -117,18 +119,15 @@ export default function NewsLetterCard() {
       <div className="grid lg:grid-cols-2 gap-8 container lg:py-24 items-center justify-between mx-auto">
         <div className="lg:p-14 p-2 flex flex-col gap-4 justify-center lg:text-left text-center">
           <h2 className="header-2 lg:text-left text-center my-3">
-            Subscribe now and be at the forefront of change!
+            {t("header1")}
           </h2>
           <p className="pb-1 lg:my-3 text-white lg:text-left text-center text-base md:text-lg lg:text-xl">
-            Sign up for our free newsletter to receive our monthly digest of the
-            best causes. Stay informed, get inspired, and make a difference by
-            joining our community of passionate individuals dedicated to shaping
-            the world for the better!
+            {t("paragraph")}
           </p>
         </div>
         <div style={blurredCardStyle}>
           <div className="p-1 sm:p-10 flex flex-col gap-4 justify-center text-center">
-            <p className="header-4 pb-2">Subscribe to our newsletter</p>
+            <p className="header-4 pb-2">{t("header2")}</p>
             <div style={imageContainer}>
               <img
                 src="/assets/images/newsletter_image.png"
@@ -143,7 +142,7 @@ export default function NewsLetterCard() {
             >
               <TextField
                 id="email"
-                label="Email Address"
+                label={t("email-input-area")}
                 type="email"
                 name="to_email"
                 variant="standard"
@@ -159,11 +158,11 @@ export default function NewsLetterCard() {
               </Typography>
 
               <button type="submit" className="btn-yelGreen ">
-                Subscribe
+                {t("btn")}
               </button>
 
               <p className="spam-message pt-2 text-center text-[#00c1a2] font-extrabold ">
-                We will not spam you 🤞🏼
+                {t("note-to-user")}
               </p>
             </form>
           </div>
