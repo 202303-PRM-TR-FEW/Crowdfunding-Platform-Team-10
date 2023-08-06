@@ -75,6 +75,10 @@ input[type="file"] {
   @apply bg-lightGreen hover:bg-[#f0bd07] text-white
   text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
+.btn-red {
+  @apply bg-red-500 hover:bg-[#f0bd07] text-white
+  text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
+}
 .btn-secondary {
   @apply text-lightGreen hover:text-hoverLightGreen   border-lightGreen hover:border-hoverLightGreen
   text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;

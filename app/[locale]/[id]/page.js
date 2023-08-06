@@ -25,6 +25,7 @@ import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 import Link from "next/link";
 import CommentForm from "@/components/commentsCom/CommentForm";
+import CommentRows from "@/components/commentsCom/CommentRows";
 function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
@@ -141,14 +142,14 @@ function Project({ params }) {
                     today < endDate ? (
                       data.raised === data.goal || data.raised > data.goal ? (
                         <button disabled={true} className="btn-primary w-full">
-                         {t("projects-completed")}
+                          {t("projects-completed")}
                         </button>
                       ) : (
                         <button
                           className="btn-primary w-full"
                           onClick={handleDonationForm}
                         >
-                         {t("donate-btn")}
+                          {t("donate-btn")}
                         </button>
                       )
                     ) : (
@@ -156,9 +157,7 @@ function Project({ params }) {
                     )
                   ) : today < endDate ? (
                     <Link href="/login">
-                      <div className="btn-primary w-full">
-                         {t("login-btn")}
-                      </div>
+                      <div className="btn-primary w-full">{t("login-btn")}</div>
                     </Link>
                   ) : (
                     <div></div>
@@ -180,14 +179,14 @@ function Project({ params }) {
                     today < endDate ? (
                       data.raised === data.goal || data.raised > data.goal ? (
                         <button disabled={true} className="btn-primary w-full">
-                           {t("projects-completed")}
+                          {t("projects-completed")}
                         </button>
                       ) : (
                         <button
                           className="btn-primary w-full"
                           onClick={handleDonationForm}
                         >
-                         {t("donate-btn")}
+                          {t("donate-btn")}
                         </button>
                       )
                     ) : (
@@ -195,15 +194,16 @@ function Project({ params }) {
                     )
                   ) : today < endDate ? (
                     <Link href="/login">
-                      <div className="btn-primary w-full">
-                        {t("login-btn")}
-                      </div>
+                      <div className="btn-primary w-full">{t("login-btn")}</div>
                     </Link>
                   ) : (
                     <div></div>
                   )}
                 </div>
-                <CommentForm />
+                <div className=" hidden lg:block  py-3  ">
+                  <CommentRows id={params.id} />
+                  <CommentForm params={params} />
+                </div>
               </div>
               <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3  ">
                 <DonationsHisory projectsDonations={projectsDonations} />
@@ -266,6 +266,10 @@ function Project({ params }) {
           openDonationForm={openDonationForm}
           setOpenDonationForm={setOpenDonationForm}
         />
+        <div className=" block lg:hidden  py-3  ">
+          <CommentRows id={params.id} />
+          <CommentForm params={params} />
+        </div>
       </section>
 
       <div style={circleBackgroundStyle}></div>
