@@ -24,6 +24,7 @@ import SuccessBadge from "@/components/SuccessBadge";
 import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 import Link from "next/link";
+import CommentForm from "@/components/commentsCom/CommentForm";
 function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
@@ -202,6 +203,7 @@ function Project({ params }) {
                     <div></div>
                   )}
                 </div>
+                <CommentForm />
               </div>
               <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3  ">
                 <DonationsHisory projectsDonations={projectsDonations} />
