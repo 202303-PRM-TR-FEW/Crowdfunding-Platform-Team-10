@@ -71,9 +71,9 @@ export default ProjectOfTheWeek;
 
 const styles = {
   header: "header-2 text-lightGreen px-2 py-4",
-  page: `flex lg:flex-row flex-col gap-10 px-2 py-5 items-start  justify-start`,
+  page: `flex lg:flex-row flex-col gap-10 px-2 py-5 items-center justify-start`,
   flex: "flex items-center gap-1",
-  leftSize: " lg:w-[40%] w-full overflow-hidden rounded-lg flex justify-end",
+  leftSize: " lg:w-[40%] w-full overflow-hidden rounded-lg flex justify-center",
   rightSide: "lg:w-[50%] w-full flex flex-col gap-4",
   cost: "grid grid-cols-2 pt-2 gap-2",
   avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",

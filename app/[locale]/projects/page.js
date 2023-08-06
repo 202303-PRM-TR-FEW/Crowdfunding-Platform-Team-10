@@ -61,11 +61,14 @@ const Home = () => {
 
   return (
     <section className="bg-[#fcfcfe] flex-col items-start justify-center">
-      <div className="container mx-auto py-20 p-3 mt-5 ">
-        <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
-
+      <div className=" bg-gradient-to-t from-transparent to-teal-50">
+        <div className="container mx-auto pt-28 p-3">
+          <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
+        </div>
+      </div>
+      <div className="container mx-auto p-3">
         <CategoryFiltering data={projects} filtrindData={setData} />
-        <div className=" items-start justify-between mx-auto flex flex-wrap gap-3 mt-2 ">
+        <div className=" items-start justify-around mx-auto flex flex-wrap gap-3 mt-2 ">
           {allProjects}
         </div>
       </div>

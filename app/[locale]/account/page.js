@@ -33,7 +33,7 @@ const Page = () => {
   }
 
   return (
-    <div className="bg-gradient-to-t from-transparent to-teal-100">
+    <div className=" bg-gradient-to-t from-transparent to-teal-50">
       <div className="bg-center bg-cover  bg-no-repeat  py-60 bg-[url('../../public/assets/images/AccountBg.png')] ">
         <div
           className="container mx-auto lg:max-w-6xl flex items-center lg:justify-start  justify-center lg:text-left text-center

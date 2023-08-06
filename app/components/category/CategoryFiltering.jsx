@@ -1,10 +1,18 @@
-import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import React, { useState } from "react";
-
+IconButton;
 const styles = {
-  main: "flex justify-between items-center flex-wrap ",
-  header: "header-2 text-lightGreen py-4",
-  categoryContainer: "flex flex-row gap-3",
+  main: "flex justify-center md:justify-between items-center gap-2 flex-col md:flex-row ",
+  header: "header-2 text-lightGreen py-4 text-center md:text-start",
+  categoryContainer:
+    " px-12 sm:px-0 flex flex-row flex-wrap justify-center gap-3",
   categoryBlock: "flex flex-col justify-center items-center py-2 gap-2",
   filterItem:
     "cursor-pointer border-[1px] bg-[#16a34a1a] border-BasicBasicBlack rounded-[8px] px-2 py-3",
@@ -54,15 +62,22 @@ const CategoryFiltering = ({ data, filtrindData }) => {
           {CATEGORY.map((cat) => {
             return (
               <Box key={cat.id} className={styles.categoryBlock}>
-                <Box
+                <IconButton
                   onClick={() => {
                     setIconValue(cat.id);
                     onFilter(cat.id);
                   }}
-                  className={styles.filterItem}
+                  sx={{
+                    background: "#16a34a1a",
+                    // border: "1px",
+                    // borderColor: "black",
+                    height: "44px",
+                    borderRadius: "12px",
+                  }}
+                  // className={styles.filterItem}
                 >
                   {cat.icon(activeCategory === cat.id ? "#00c1a2" : "black")}
-                </Box>
+                </IconButton>
                 <p className="sub-header !text-base">{cat.name}</p>
               </Box>
             );

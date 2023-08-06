@@ -56,8 +56,8 @@ const SummaryCard = ({
           : successState === "Closed"
           ? "bg-[#4b4b4b1d]"
           : "bg-[#ffffffb7]"
-      } flex flex-col  self-stretch   p-3 shadow-md  bg-opacity-20 backdrop-blur-md rounded-lg
-       hover:rounded-tl-[0px]   hover:-translate-y-3 gap-2 w-[350px]
+      } flex flex-col self-stretch p-3 shadow-md bg-opacity-20 backdrop-blur-md rounded-lg
+       hover:rounded-tl-[0px] hover:-translate-y-3 gap-2 w-[300px] md:w-[350px]
         mb-20
           hover:drop-shadow-3xl relative  transition-all duration-300 ease-in-out
           hover-parent
