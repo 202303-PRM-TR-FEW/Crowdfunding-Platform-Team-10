@@ -28,5 +28,12 @@
       "userPicture": "User Picture",
       "sideHeader": "Already Have an Account ?",
       "loginButton": "Login"
+    },
+    "DonationForm": {
+      "header":"Enter amount:",
+      "charityText": "Add 2% for charity ?",
+      "payNowBtn":"Pay Now",
+      "successMessage":"Donation Succesfull !"
     }
   }
+  

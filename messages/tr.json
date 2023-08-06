@@ -28,5 +28,11 @@
     "userPicture": "Kullanıcı Resmi",
     "sideHeader": "Zaten Bir Hesabınız Var Mı ?",
     "loginButton": "Giriş Yapın"
+  },
+  "DonationForm": {
+    "header":"Bir miktar girin:",
+    "charityText": "%2 Hayır kurumlarına bağışlamak ister misiniz?",
+    "payNowBtn":"Hemen Öde",
+    "successMessage":"Bağış ödemeniz başarılı şekilde alındı!"
   }
 }
