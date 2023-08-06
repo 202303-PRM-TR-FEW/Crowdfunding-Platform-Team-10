@@ -4,6 +4,7 @@ const SuccessBadge = ({ endingDate, raised, goal }) => {
   return (
     <div>
       <span
+        data-cy="badge-title"
         className={`text-xs  px-5 py-1  rounded ${
           successState === "Active"
             ? "text-lightGreen bg-yellow-light"
