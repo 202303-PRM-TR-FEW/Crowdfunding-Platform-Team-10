@@ -2,7 +2,7 @@ import React from "react";
 import SummaryCard from "./SummaryCard";
 
 describe("<SummaryCard />", () => {
-  const mockCard = {
+  const mockProject = {
     img: "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",
     title: "Card Title",
     raised: 600,
@@ -20,18 +20,18 @@ describe("<SummaryCard />", () => {
     // see: https://on.cypress.io/mounting-react
     cy.mount(
       <SummaryCard
-        img={mockCard.img}
-        title={mockCard.title}
-        goal={mockCard.goal}
-        raised={mockCard.raised}
-        category={mockCard.category}
-        creator={mockCard.creator}
-        viewCount={mockCard.viewCount}
-        endingDate={mockCard.endingDate}
+        img={mockProject.img}
+        title={mockProject.title}
+        goal={mockProject.goal}
+        raised={mockProject.raised}
+        category={mockProject.category}
+        creator={mockProject.creator}
+        viewCount={mockProject.viewCount}
+        endingDate={mockProject.endingDate}
       />
     );
 
-    cy.get("[data-cy=card-title]").should("have.text", mockCard.title);
+    cy.get("[data-cy=card-title]").should("have.text", mockProject.title);
   });
 });
 
