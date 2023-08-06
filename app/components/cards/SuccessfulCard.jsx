@@ -5,7 +5,7 @@ function SuccessfulCard({ project }) {
   return (
     <div
       className="group flex-col w-[300px] bg-white bg-opacity-20 px-3 pt-3 
-    hover:pb-3 pb-0 backdrop-blur-md rounded-lg shadow-lg cursor-pointer
+    hover:pb-3 pb-4 backdrop-blur-md rounded-lg shadow-lg cursor-pointer
     transition-all duration-400  ease-out
     "
     >
