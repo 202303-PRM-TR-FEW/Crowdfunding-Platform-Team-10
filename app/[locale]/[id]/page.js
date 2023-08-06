@@ -3,6 +3,7 @@
 
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { db } from "@/config/firebase";
@@ -27,6 +28,7 @@ function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
   const [loading, setLoading] = useState(true);
+  const t = useTranslations("Projects");
 
   const { user, donations } = useAuth();
   const [projectsDonations, setProjectsDonations] = useState([]);
@@ -138,14 +140,14 @@ function Project({ params }) {
                     today < endDate ? (
                       data.raised === data.goal || data.raised > data.goal ? (
                         <button disabled={true} className="btn-primary w-full">
-                          The project has been completed 🎉
+                         {t("projects-completed")}
                         </button>
                       ) : (
                         <button
                           className="btn-primary w-full"
                           onClick={handleDonationForm}
                         >
-                          Donate Now
+                         {t("donate-btn")}
                         </button>
                       )
                     ) : (
@@ -154,7 +156,7 @@ function Project({ params }) {
                   ) : today < endDate ? (
                     <Link href="/login">
                       <div className="btn-primary w-full">
-                        Log in to fund this project
+                         {t("login-btn")}
                       </div>
                     </Link>
                   ) : (
@@ -177,14 +179,14 @@ function Project({ params }) {
                     today < endDate ? (
                       data.raised === data.goal || data.raised > data.goal ? (
                         <button disabled={true} className="btn-primary w-full">
-                          The project has been completed 🎉
+                           {t("projects-completed")}
                         </button>
                       ) : (
                         <button
                           className="btn-primary w-full"
                           onClick={handleDonationForm}
                         >
-                          Donate Now
+                         {t("donate-btn")}
                         </button>
                       )
                     ) : (
@@ -193,7 +195,7 @@ function Project({ params }) {
                   ) : today < endDate ? (
                     <Link href="/login">
                       <div className="btn-primary w-full">
-                        Log in to fund this project
+                        {t("login-btn")}
                       </div>
                     </Link>
                   ) : (
