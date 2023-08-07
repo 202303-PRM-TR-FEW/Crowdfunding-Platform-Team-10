@@ -121,7 +121,7 @@ const SignupForm = () => {
   const t = useTranslations("SignupForm");
 
   return (
-    <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl max-w-4xl md:pt-6">
+    <div className="grid lg:grid-cols-5 h-max lg:mt-16 drop-shadow-2xl max-w-4xl md:pt-6">
       <div className="lg:col-span-2 bg-gradient-to-tl from-lightGreen to-teal-700 flex flex-col justify-center items-center md:p-6 p-12 text-center gap-6 lg:rounded-l rounded-b lg:rounded-br-none lg:rounded-tr-none order-2 lg:order-1">
         <p className=" px-10 lg:px-0 text-2xl md:text-3xl font-bold text-white">
           {t("sideHeader")}
@@ -133,7 +133,7 @@ const SignupForm = () => {
           </button>
         </Link>
       </div>
-      <div className="lg:col-span-3 grid gap-2 text-center h-full bg-white lg:rounded-r rounded-t lg:rounded-bl-none order-1 lg:order-2">
+      <div className="lg:col-span-3 grid gap-2 text-center h-full bg-[#fffb] lg:rounded-r rounded-t lg:rounded-bl-none order-1 lg:order-2">
         <div className="grid gap-4 w-full  py-10 px-4">
           <Container maxWidth="xs">
             <div className="grid justify-center items-center h-full">
