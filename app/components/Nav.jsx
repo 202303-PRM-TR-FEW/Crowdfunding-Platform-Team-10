@@ -33,6 +33,8 @@ import {
   PersonAdd,
   Settings,
   MoreVert as MoreIcon,
+  Groups3Rounded,
+  Home,
 } from "@mui/icons-material";
 
 export default function Nav() {
@@ -158,6 +160,22 @@ export default function Nav() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <Link href="/">
+        <MenuItem onClick={handleMenuClose}>
+          <ListItemIcon>
+            <Home fontSize="small" />
+          </ListItemIcon>
+          Home
+        </MenuItem>
+      </Link>
+      <Link href="/about">
+        <MenuItem onClick={handleMenuClose}>
+          <ListItemIcon>
+            <Groups3Rounded fontSize="small" />
+          </ListItemIcon>
+          About Us
+        </MenuItem>
+      </Link>
       <Link href="/projects">
         <MenuItem onClick={handleMenuClose}>
           <ListItemIcon>
@@ -192,7 +210,7 @@ export default function Nav() {
           </Link>
           <MobileLangSwitcher handleMenuClose={handleMenuClose} />
 
-          <MenuItem onClick={handleMenuClose}>
+          <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>
@@ -225,7 +243,7 @@ export default function Nav() {
         transition: "background 0.3s ease-in-out",
       }}
     >
-      <Box sx={{ px: { xs: 2 } }} className="container mx-auto">
+      <Box className="container  md:mx-auto mx-0 px-0">
         <Toolbar>
           <Link href="/" sx={{ display: { xs: "none", sm: "block" } }}>
             <Typography
@@ -241,11 +259,11 @@ export default function Nav() {
               </span>
             </Typography>
           </Link>
-          <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1 }} />
           <Box>
             <SearchComponent />
           </Box>
-          <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "block" } }}>
             <div className="flex justify-center items-center" href="/projects">
               <LangSwitcher />
@@ -259,7 +277,7 @@ export default function Nav() {
             </Link>
           </Box>
 
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { md: "none", lg: "flex" } }}>
             <IconButton
               size="large"
               edge="end"
