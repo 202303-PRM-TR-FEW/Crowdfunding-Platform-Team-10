@@ -63,10 +63,11 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
     try {
       await addDoc(collection(db, "donations"), {
         donaiton: data.donation,
-        userId: data.userId,
+        userId: user.uid,
         projectId: data.projectId,
         userImg: currentUser.userImg,
         userName: currentUser.name,
+        userCountry: currentUser.country,
         projectName: title,
         timeStamp: new Date(),
       });

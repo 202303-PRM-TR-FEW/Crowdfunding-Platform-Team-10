@@ -23,10 +23,10 @@ import SuccessBadge from "@/components/SuccessBadge";
 import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 import Link from "next/link";
+import Chart from "@/components/cards/Chart";
 import CommentForm from "@/components/commentsCom/CommentForm";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import CommentRows from "@/components/commentsCom/CommentRows";
-
 function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
@@ -81,7 +81,6 @@ function Project({ params }) {
     );
     setProjectsDonations(projectDon);
   }, [params.id, donations]);
-
   const handleDonationForm = () => {
     openDonationForm === false
       ? setOpenDonationForm(true)
@@ -158,7 +157,7 @@ function Project({ params }) {
                     </h1>
                     <CategoryIcon category={data.category} />
                   </div>
-                  {/* {console.log(today, data.endingDate)} */}
+
                   <SuccessBadge
                     endingDate={data.endingDate}
                     raised={data.raised}
@@ -246,8 +245,9 @@ function Project({ params }) {
                   {user ? <CommentForm params={params} /> : null}
                 </div>
               </div>
-              <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3  ">
+              <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3 flex flex-col gap-3 ">
                 <DonationsHisory projectsDonations={projectsDonations} />
+                <Chart projectsDonations={projectsDonations} />
               </div>
             </div>
           )}
