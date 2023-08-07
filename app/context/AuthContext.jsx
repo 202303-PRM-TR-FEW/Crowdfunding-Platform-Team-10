@@ -21,7 +21,6 @@ export const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [usersInfo, setUsersInfo] = useState(null);
   const [projects, setProjects] = useState(true);
-  const [donations, setDonations] = useState([]);
 
   const router = useRouter();
   useEffect(() => {
@@ -122,19 +121,6 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    const q = query(collection(db, "donations"));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let donationsArr = [];
-      QuerySnapshot.forEach((doc) => {
-        donationsArr.push({ ...doc.data(), id: doc.id });
-      });
-      setDonations(donationsArr);
-      console.log("im donations UseEffect");
-    });
-    return () => unsubscribe();
-  }, []);
-
   return (
     <AuthContext.Provider
       value={{
@@ -145,7 +131,7 @@ export const AuthContextProvider = ({ children }) => {
         loading,
         usersInfo,
         projects,
-        donations,
+
         googleLogIn,
       }}
     >

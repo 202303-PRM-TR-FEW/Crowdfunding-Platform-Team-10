@@ -3,7 +3,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import LoaderStyle from "../helper/LoaderStyle";
-import { BarChart, BarPlot } from "@mui/x-charts/BarChart";
+import { BarPlot } from "@mui/x-charts/BarChart";
 import {
   ChartContainer,
   ChartsXAxis,
@@ -21,29 +21,7 @@ function Chart({ projectsDonations }) {
   const [seriesData, setSeriesData] = React.useState(
     Object.values(countryDonations) ?? []
   );
-  console.log(countryDonations);
-  console.log(xAxisData);
-  console.log(seriesData);
-  // const series = [
-  //   {
-  //     type: "bar",
-  //     stack: "",
-  //     yAxisKey: "eco",
-  //     data: [2, 5, 3, 4, 1],
-  //   },
-  //   {
-  //     type: "bar",
-  //     stack: "",
-  //     yAxisKey: "eco",
-  //     data: [5, 6, 2, 8, 9],
-  //   },
-  //   {
-  //     type: "line",
-  //     yAxisKey: "pib",
-  //     color: "red",
-  //     data: [1000, 1500, 3000, 5000, 10000],
-  //   },
-  // ];
+
   const series = [
     {
       type: "line",
@@ -113,26 +91,6 @@ function Chart({ projectsDonations }) {
               </LineChart>
             </Box>
           ) : null}
-
-          {/* {projectsDonations.length > 0 ? (
-            <BarChart
-              xAxis={[
-                {
-                  id: "countries",
-                  data: xAxisData,
-                  scaleType: "band",
-                },
-              ]}
-              series={[
-                {
-                  data: seriesData,
-                  color: "#00c1a2",
-                },
-              ]}
-              width={500}
-              height={300}
-            />
-          ) : null} */}
         </>
       </AccordionDetails>
     </Accordion>

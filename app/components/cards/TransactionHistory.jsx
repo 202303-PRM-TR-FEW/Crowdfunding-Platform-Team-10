@@ -23,10 +23,23 @@ import { Avatar, Divider } from "@mui/material";
 
 export default function TransactionHistory({ usersProjects }) {
   const [donate, setDonate] = useState([]);
-  const { loading, donations, projects } = useAuth();
+  const { loading, projects } = useAuth();
   const [selectedProject, setSelectedProject] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const [donations, setDonations] = useState([]);
+
+  useEffect(() => {
+    const q = query(collection(db, "donations"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let donationsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        donationsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setDonations(donationsArr);
+    });
+    return () => unsubscribe();
+  }, []);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import { useAuth } from "@/context/AuthContext";
 import { useTranslations } from "next-intl";
 const WelcomeBanner = () => {
-  const { projects, donations } = useAuth();
+  const { projects } = useAuth();
   const [successfulProjects, setSuccessfulProjects] = useState(24230);
   const [donationCounter, setDonationCounter] = useState(0);
   const [checked, setChecked] = useState(false);

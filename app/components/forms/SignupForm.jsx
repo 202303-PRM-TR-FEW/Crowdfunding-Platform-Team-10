@@ -51,8 +51,7 @@ const SignupForm = () => {
       name: "",
       bio: "",
       userImg: null,
-      projects: [],
-      donations: [],
+
       country: "",
     },
     resolver: yupResolver(schema),
@@ -85,8 +84,7 @@ const SignupForm = () => {
         name: data.name,
         bio: data.bio,
         userImg: imgUrl,
-        projects: data.projects,
-        donations: data.donations,
+
         email: data.email,
         timeStamp: serverTimestamp(),
         country: data.country,
