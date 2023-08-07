@@ -125,9 +125,9 @@
     "button": "Ana Sayfa"
   },
   "Cards": {
-    "don-header": "Yapılan Bağışlar",
+    "don-header": "Yapılan bağışlar",
     "pow-header": "Haftanın Projesi",
-    "trans-header": "Yapılan işlemler",
+    "trans-header": "Yapılan İşlemler",
     "message": "Henüz bağış yapılmadı",
     "button-sel": "Proje seç",
     "button-all": "Tüm projeler",
