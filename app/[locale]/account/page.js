@@ -1,18 +1,43 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
-import { Avatar, Fab } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
-import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
-import AutoAwesomeOutlinedIcon from "@mui/icons-material/AutoAwesomeOutlined";
-import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
-import { ListItemIcon } from "@mui/material";
 import EditUser from "@/components/forms/EditUser";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "@/config/firebase";
+import CardInfo from "./CardInfo";
 
 const Page = () => {
-  const { currentUser, user } = useAuth();
+  const { user } = useAuth();
+  const [currentUser, setCurrentUser] = useState();
+  useEffect(() => {
+    if (user && user.email) {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", user.email)
+      );
+
+      const fetchUserData = async () => {
+        try {
+          const querySnapshot = await getDocs(q);
+
+          if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data();
+
+            setCurrentUser(userData);
+          } else {
+            console.log("no data matched");
+            setCurrentUser({});
+          }
+        } catch (error) {
+          console.error("Error fetching user data: ", error);
+        }
+      };
+
+      fetchUserData();
+      return () => unsubscribe();
+    }
+  }, [user]);
+
   useEffect(() => {
     if (currentUser) {
       if (currentUser.country === "" || currentUser.bio === "") {
@@ -33,93 +58,49 @@ const Page = () => {
   }
 
   return (
-    <div className=" bg-gradient-to-t from-transparent to-teal-50">
-      <div className="bg-center bg-cover  bg-no-repeat  py-60 bg-[url('../../public/assets/images/AccountBg.png')] ">
-        <div
-          className="container mx-auto lg:max-w-6xl flex items-center lg:justify-start  justify-center lg:text-left text-center
-        flex-col lg:flex-row bg-[#ffffff52]  p-10 rounded-lg backdrop-blur-lg  shadow-sm"
-        >
-          {currentUser ? (
-            <>
-              <div className="">
-                <Avatar
-                  alt={currentUser.name}
-                  src={currentUser.userImg}
-                  sx={{ width: 250, height: 250 }}
-                />
-              </div>
-              <div className="p-5 ">
-                <div className="top-5 right-5 z-50 fixed">
-                  <Fab
-                    onClick={handleEditUser}
-                    color="secondary"
-                    aria-label="edit"
-                    size="medium"
-                    sx={{
-                      backgroundColor: "#fff",
-                      "&:hover": {
-                        backgroundColor: "#0d816e",
-                      },
-                    }}
-                  >
-                    <EditIcon
-                      sx={{
-                        color: "#0d816e",
-                        "&:hover": {
-                          color: "#fff",
-                        },
-                      }}
-                    />
-                  </Fab>
-                </div>
-                <h2 className="header-2 color-green mb-10 ml-0" colSpan={2}>
-                  {currentUser.name}
-                </h2>
-
-                <div className="grid lg:grid-cols-2 gap-4">
-                  <li className="color-grey flex items-center">
-                    <ListItemIcon>
-                      <MailOutlineRoundedIcon fontSize="large" />
-                    </ListItemIcon>
-                    {currentUser.email}
-                  </li>
-                  <li className="color-grey flex items-center">
-                    <ListItemIcon>
-                      <FmdGoodOutlinedIcon fontSize="large" />
-                    </ListItemIcon>
-                    {currentUser.country}
-                  </li>
-                  <li className="color-grey flex items-center">
-                    <ListItemIcon>
-                      <AutoAwesomeOutlinedIcon fontSize="large" />
-                    </ListItemIcon>
-                    {currentUser.bio}
-                  </li>
-                  <li className="color-grey flex items-center">
-                    <ListItemIcon>
-                      <AccessTimeRoundedIcon fontSize="large" />
-                    </ListItemIcon>
-                    {currentUser.timeStamp ? (
-                      `Joined since: ${formatTimestamp(currentUser.timeStamp)}`
-                    ) : (
-                      <LoaderStyle />
-                    )}
-                  </li>
-                </div>
-              </div>
-            </>
-          ) : (
-            <LoaderStyle />
-          )}
-        </div>
-      </div>
+    <div className=" bg-gradient-to-t from-transparent to-teal-50 relative bg-no-repeat overflow-hidden bg-cover">
+      <div style={circleBackgroundStyle}></div>
+      <CardInfo
+        currentUser={currentUser}
+        handleEditUser={handleEditUser}
+        formatTimestamp={formatTimestamp}
+      />
       <EditUser
-        authUser={currentUser}
+        currentUser={currentUser}
         openEditUserForm={openEditUserForm}
         setOpenEditUserForm={setOpenEditUserForm}
+        setCurrentUser={setCurrentUser}
       />
+      <div style={circleBackgroundStyle2}></div>
     </div>
   );
 };
 
 export default Page;
+
+const circleBackgroundStyle = {
+  position: "absolute",
+  top: "-50px",
+  right: "50px",
+  width: "300px",
+  height: "300px",
+  borderRadius: "50%",
+  background: "#00c1a1a5",
+  transform: "rotate(45deg)",
+  zIndex: -1,
+  animation: `moveCircle2 10s linear infinite`,
+};
+const circleBackgroundStyle2 = {
+  position: "absolute",
+  bottom: "0",
+  left: "0",
+  width: "500px",
+  height: "500px",
+  borderRadius: "50%",
+  background: "#00c1a144",
+  zIndex: -1,
+  filter: "blur(20px)",
+  transform: "rotate(45deg)",
+
+  animation: `moveCircle2  10s linear infinite`,
+};

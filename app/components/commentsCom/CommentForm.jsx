@@ -39,7 +39,7 @@ const CommentForm = ({ params }) => {
         </h3>
       </div>
       <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
-        <div className="mt-3">
+        <div className="mt-3 w-full">
           <textarea
             label="Message"
             placeholder="Text..."
