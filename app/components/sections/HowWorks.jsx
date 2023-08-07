@@ -24,7 +24,7 @@ const HowWorks = () => {
           <div className="group gr col-span-1 w-full grid grid-cols-1 items-center ">
             <div className="col-span-1 flex md:flex-row flex-col justify-between items-center">
               <div className="lg:w-14 lg:h-14 w-8 h-8 rounded-full bg-[#f0bd07] flex justify-center items-center mb-5 group-hover:bg-[#00c1a2] group-hover:scale-[1.3] transition duration-700 ease-in-out">
-                <p className="header-3 mt-1 text-white">1</p>
+                <p className="header-3 text-white">1</p>
               </div>
               <div className="hidden lg:inline-block border-dotted border-t-8 border-[#f0bd07] lg:w-48 xl:w-60 2xl:w-72 mb-5 group-hover:border-[#00c1a2] transition duration-700 ease-in-out"></div>
             </div>
@@ -55,7 +55,7 @@ const HowWorks = () => {
           <div className="group col-span-1 w-full grid grid-cols-1">
             <div className="col-span-1 flex md:flex-row flex-col justify-between items-center">
               <div className="lg:w-14 lg:h-14 w-8 h-8 rounded-full bg-[#f0bd07] flex justify-center items-center mb-5 group-hover:bg-[#00c1a2] group-hover:scale-[1.3] transition duration-700 ease-in-out">
-                <p className="header-3 mt-1 text-white">2</p>
+                <p className="header-3 text-white">2</p>
               </div>
               <div className="hidden lg:inline-block border-dotted border-t-8 border-[#f0bd07] lg:w-48 xl:w-60 2xl:w-72 mb-5 group-hover:border-[#00c1a2] transition duration-700 ease-in-out"></div>
             </div>
@@ -86,7 +86,7 @@ const HowWorks = () => {
           <div className="group col-span-1 w-full grid grid-cols-1">
             <div className="col-span-1 flex md:flex-row flex-col justify-start items-center">
               <div className="lg:w-14 lg:h-14 w-8 h-8 rounded-full bg-[#f0bd07] flex justify-center items-center mb-5 group-hover:bg-[#00c1a2] group-hover:scale-[1.3] transition duration-700 ease-in-out">
-                <p className="header-3 mt-1 text-white">3</p>
+                <p className="header-3 text-white">3</p>
               </div>
               <svg
                 className=" flex-shrink-0 w-3.5 h-3.5 text-[#f0bd07] -mt-5 scale-[4] ml-14 group-hover:scale-[6] group-hover:translate-x-6 group-hover:text-[#00c1a2] transition duration-700 ease-in-out"

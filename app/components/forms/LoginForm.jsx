@@ -139,7 +139,7 @@ const LoginForm = () => {
               </div>
 
               <button
-                className="btn-primary w-3/6 self-center mb-4"
+                className="btn-primary w-3/6 self-center mb-4 mt-4"
                 type="submit"
                 variant="filled"
                 fullWidth
@@ -156,7 +156,7 @@ const LoginForm = () => {
         </p>
         <p className="text-white text-sm px-4">{t("sideParagraph")}</p>
         <Link href="/signup">
-          <button className="rounded bg-white color-black py-2 px-12 self-center font-bold">
+          <button className="btn-white w-[140px] py-2 px-12 self-center font-bold">
             {t("signupButton")}
           </button>
         </Link>

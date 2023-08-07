@@ -8,13 +8,13 @@ const AboutSection = () => {
   const t = useTranslations("AboutUs");
   return (
     <div className="container mx-auto flex  items-center justify-center ">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:gap-5  items-center justify-center  lg:py-28 lg:pb-28 py-20 px-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:gap-5  items-center justify-center  lg:py-10 lg:pb-28 py-10 px-2">
         <div className="scale-[0.9]">
           <Image src={AboutUs} alt="AboutUs" className="w-full" />
         </div>
 
         <div className="">
-          <span className="text-xs color-green bg-yellow-light px-5 py-1 pt-2 rounded">
+          <span className="text-xs color-green bg-yellow-light px-5 py-1 pt-1 rounded">
             {t("header")}
           </span>
 
