@@ -1,33 +1,51 @@
 {
+  "Nav":{
+    "my-projects": "Projelerim",
+    "settings": "Ayarlar",
+    "logout": "Çıkış yapın",
+    "login": "Giriş yapın",
+    "home": "Ana sayfa",
+    "about-us": "Hakkımızda",
+    "all-pro": "Tüm projeler",
+    "my-projects-two": "Projelerim",
+    "add-new-pro": "Yeni proje ekle",
+    "settings-two": "Ayarlar",
+    "logout-two": "Çıkış yapın",
+    "login-two": "Giriş yapın",
+    "open": "Open",
+    "handed": "Handed",
+    "label-search": "Projeleri Arayın",
+    "placeholder-search": "Arama yap..."
+  },
   "WelcomeBanner": {
     "header": "Büyük amaçları desteklemek artık çok kolay",
     "subHeader": "3.500'den fazla proje ve amaçları destekledik. Bugün kaydolun ve fikrinizi hayata geçirin veya diğer harika projelere destek olun.",
-    "button": "Şimdi Başlayın",
+    "button": "Şimdi başlayın",
     "successful": "Başarılı Projeler: ",
     "donations":"Yapılan Yardımlar: "
   },
   "LoginForm":{
-    "header": "Hesabınıza Giriş Yapın",
+    "header": "Hesabınıza giriş yapın",
     "subHeader": "Google ile giriş yapın",
-    "or":"Veya",
-    "loginButton": "Giriş Yap",
+    "or":"veya",
+    "loginButton": "Giriş yap",
     "emailInput": "Email",
     "passwordInput": "Şifre",
-    "sideHeader": "Burada Yeni Misiniz ?",
+    "sideHeader": "Burada yeni misiniz ?",
     "sideParagraph": "Üye olun ve başkalarına yardım edin veya kendi amaçlarınıza yönelik projeler oluşturun!",
-    "signupButton":"Üye Ol"
+    "signupButton":"Üye ol"
   },
   "SignupForm": {
-    "header": "Üye Olun",
+    "header": "Üye olun",
     "email": "Email",
     "password": "Şifre",
-    "fullName": "Tam Adınız",
+    "fullName": "Tam adınız",
     "bio": "Bio",
     "country": "Ülke",
-    "signupButton": "Üye Olun",
-    "userPicture": "Kullanıcı Resmi",
-    "sideHeader": "Zaten Bir Hesabınız Var Mı ?",
-    "loginButton": "Giriş Yapın"
+    "signupButton": "Üye olun",
+    "userPicture": "Kullanıcı resmi",
+    "sideHeader": "Zaten bir hesabınız var mı?",
+    "loginButton": "Giriş yapın"
   },
   "DonationForm": {
     "header":"Bir miktar girin:",
@@ -35,6 +53,38 @@
     "payNowBtn":"Hemen Öde",
     "successMessage":"Bağış ödemeniz başarılı şekilde alındı!"
   },
+  "EditUser":{
+    "header":"Kişisel Detaylar:",
+    "sub-header":"Lütfen kişisel bilgilerinizi tamamlayın",
+    "country":"Ülke",
+    "btn-update":"Güncelle",
+    "label-name": "Tam adınız",
+    "bio":"Bio",
+    "user-picture":"Kullanıcı resmi"
+  },
+  "ProjectsForm":{
+    "success-msg": "Proje başarıyla oluşturuldu!",
+    "user-ıd-part-one": "Bu",
+    "user-ıd-part-two": "ID'ye sahip bir kullanıcı bulunamadı.",
+    "kick-off": "Projenize hemen başlayın",
+    "alert-success": "Proje başarıyla oluşturuldu!",
+    "name-pro": "Proje adınız",
+    "goal-pro": "Hedef miktarınızı ekleyin",
+    "date-pro": "Başlangıç tarihi",
+    "date-two-pro": "Bitiş tarihi",
+    "about-pro": "Projeniz hakkında bilgi verin",
+    "category": "Kategoriler",
+    "category-animals": "Hayvanlar",
+    "category-education": "Eğitim",
+    "category-culture": "Kültür",
+    "category-children": "Çocuklar",
+    "upload-project": "Projenizi yükleyin"
+  },
+  "UserSettingForms":{
+  "my-pro": "Projelerim",
+  "settings": "Ayarlar",
+  "logout": "Çıkış yap"
+},
   "AboutUs": {
     "header":"HAKKIMIZDA",
     "white-part-header":"En büyük tutkumuz",
@@ -62,6 +112,12 @@
     "btn-one": "Hesap oluşturun",
     "btn-two":"Projelere göz atın"
   },
+  "SuccessfulProjects":{
+    "header-part-one":"En Güncel",
+    "header-part-two":"Başarı Hikayelerimiz",
+    "sub-header":"Başarılı olan en güncel projelerimize göz atın.",
+    "no-projects-text":"Şu an için herhangi bir başarılı proje bulunmamaktadır."
+  },
   "NewsLetterCard":{
     "header1":"Şimdi abone olarak değişimin ön saflarında yer alın!",
     "paragraph":"Ücretsiz bültenimize abone olun, her ay en seçkin konular hakkında özetleri alın. Bilgilenin, ilham alın ve dünyayı şekillendirmeye adanmış tutkulu bireylerden oluşan topluluğumuza katılarak fark yaratın!",
@@ -70,11 +126,8 @@
     "btn":"Abone olun",
     "note-to-user":"Size istenmeyen e-postalar göndermeyeceğiz 🤞🏼"
   },
-  "SuccessfulProjects":{
-    "header-part-one":"En Güncel",
-    "header-part-two":"Başarı Hikayelerimiz",
-    "sub-header":"Başarılı olan en güncel projelerimize göz atın.",
-    "no-projects-text":"Şu an için herhangi bir başarılı proje bulunmamaktadır."
+  "SearchList":{
+    "no-matching-result": "Eşleşen sonuç bulunamadı"
   },
   "Comments":{
     "btn":"Referans ekleyin",
@@ -82,6 +135,20 @@
     "btn-2":"Kapat",
     "btn-3":"Gönder",
     "header":"Referanslar"
+  },
+  "CommentForm": {
+    "leave-com": "Yorum Bırakın:",
+    "btn-submit": "Gönder",
+    "success-msg": "Yorumunuz başarıyla gönderildi!",
+    "message": "Mesajınız",
+    "text": "Mesajınızı yazın..."
+  },
+  "CommentRows":{
+    "comments":"Yorumlar",
+    "sec-ago": "saniye önce",
+    "min-ago": "dakika önce",
+    "hour-ago": "saat önce",
+    "day-ago": "gün önce"
   },
   "Projects":{
     "projects-completed":"Proje başarılı şekilde tamamlandı 🎉",

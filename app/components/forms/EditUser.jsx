@@ -20,6 +20,7 @@ import { FileUpload } from "@mui/icons-material";
 import InfoIcon from "@mui/icons-material/Info";
 import LoaderStyle from "../helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
+import { useTranslations } from "next-intl";
 
 const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
   const handleClose = () => {
@@ -28,6 +29,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
 
   const { currentUser, user } = useAuth();
   const [err, setErr] = useState("");
+  const t = useTranslations("EditUser");
   const [userData, setUserData] = useState({
     name: "",
     bio: "",
@@ -113,21 +115,19 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
           <IconButton onClick={handleClose} aria-label="back">
             <ArrowBackIosNewIcon />
           </IconButton>
-          <h3 className="header-3">Personal Detail:</h3>
+          <h3 className="header-3"> {t("header")}</h3>
         </div>
 
         {currentUser ? (
           currentUser.country === "" || currentUser.bio === "" ? (
-            <p className="text-center text-red-900 py-2">
-              Please complete your personal information
-            </p>
+            <p className="text-center text-red-900 py-2">{t("sub-header")}</p>
           ) : null
         ) : null}
 
         <form className="flex flex-col gap-5" onSubmit={onSubmit}>
           <div className="mt-6">
             <TextField
-              label="Full Name"
+              label={t("label-name")}
               fullWidth
               variant="standard"
               type="text"
@@ -162,7 +162,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
 
           <div>
             <TextField
-              label="Bio"
+              label={t("bio")}
               fullWidth
               variant="standard"
               type="text"
@@ -179,7 +179,9 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
           </div>
           <div>
             <FormControl variant="standard" fullWidth>
-              <InputLabel id="demo-simple-select-label">Country</InputLabel>
+              <InputLabel id="demo-simple-select-label">
+                {t("country")}{" "}
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -232,7 +234,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
               id="userImg"
               name="userImg"
               type="file"
-              label="User Picture"
+              label={t("user-picture")}
               onChange={handleImageChange}
               sx={{ input: { cursor: "pointer" } }}
             />
@@ -250,7 +252,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
             variant="filled"
             fullWidth
           >
-            Update
+            {t("btn-update")}
           </button>
         </form>
         <p>{err}</p>

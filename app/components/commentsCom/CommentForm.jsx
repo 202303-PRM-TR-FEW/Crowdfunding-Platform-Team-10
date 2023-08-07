@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 
@@ -9,6 +10,7 @@ import { useTranslations } from "next-intl";
 
 const CommentForm = ({ params }) => {
   const [commentText, setCommentText] = useState("");
+  const t = useTranslations("CommentForm");
 
   const { currentUser } = useAuth();
 
@@ -26,7 +28,7 @@ const CommentForm = ({ params }) => {
       });
 
       setCommentText("");
-      toast.success("Succesfuly submited your comment!");
+      toast.success(`${t("success-msg")}`);
     } catch (e) {
       console.log(e.message);
     }
@@ -35,14 +37,14 @@ const CommentForm = ({ params }) => {
     <div className="mt-5">
       <div className="title flex flex-col gap-3 ">
         <h3 className="text-base font-bold text-lightGreen">
-          Leave A Comment :
+          {t("leave-com")}
         </h3>
       </div>
       <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
         <div className="mt-3">
           <textarea
-            label="Message"
-            placeholder="Text..."
+            label={t("message")}
+            placeholder={t("text")}
             type="text"
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
@@ -51,7 +53,7 @@ const CommentForm = ({ params }) => {
             required
           />
         </div>
-        <button className="btn-primary w-full">Submit</button>
+        <button className="btn-primary w-full"> {t("btn-submit")}</button>
       </form>
     </div>
   );

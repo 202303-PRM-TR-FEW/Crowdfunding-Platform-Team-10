@@ -3,9 +3,11 @@ import { db } from "@/config/firebase";
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function CommentRows({ id }) {
   const [comments, setComments] = useState([]);
+  const t = useTranslations("CommentRows");
   useEffect(() => {
     const q = query(
       collection(db, "projectsComments"),
@@ -26,7 +28,7 @@ export default function CommentRows({ id }) {
 
   return (
     <div className="flex flex-col gap-2 w-full my-2 ">
-      <h3 className="my-2 text-bold">Comments</h3>
+      <h3 className="my-2 text-bold"> {t("comments")}</h3>
       {comments.map((comment, index) => (
         <div
           key={comment.id}
@@ -59,18 +61,19 @@ export default function CommentRows({ id }) {
 const formatTime = (seconds) => {
   const currentDate = Math.floor(Date.now() / 1000); // Get current time in seconds
   const timeDifference = currentDate - seconds;
+  const t = useTranslations("CommentRows");
 
   if (timeDifference < 60) {
-    return `${timeDifference} sec ago`;
+    return `${timeDifference} ${t("sec-ago")}`;
   } else if (timeDifference < 3600) {
     const minutes = Math.floor(timeDifference / 60);
-    return `${minutes} min ago`;
+    return `${minutes} ${t("min-ago")}`;
   } else if (timeDifference < 86400) {
     const hours = Math.floor(timeDifference / 3600);
-    return `${hours} hour ago`;
+    return `${hours} ${t("hour-ago")}`;
   } else {
     const days = Math.floor(timeDifference / 86400);
-    return `${days} day ago`;
+    return `${days} ${t("day-ago")}`;
   }
 };
 const commentColors = [
