@@ -28,5 +28,65 @@
     "userPicture": "Kullanıcı Resmi",
     "sideHeader": "Zaten Bir Hesabınız Var Mı ?",
     "loginButton": "Giriş Yapın"
+  },
+  "DonationForm": {
+    "header":"Bir miktar girin:",
+    "charityText": "%2 Hayır kurumlarına bağışlamak ister misiniz?",
+    "payNowBtn":"Hemen Öde",
+    "successMessage":"Bağış ödemeniz başarılı şekilde alındı!"
+  },
+  "AboutUs": {
+    "header":"HAKKIMIZDA",
+    "white-part-header":"En büyük tutkumuz",
+    "white-part-two-header":"insanlara",
+    "yellow-part-header":"destek olabilmek",
+    "paragraph":"İşe başlar başlamaz her konuda anında yardımcı kaynaklar edinin, güvenli para transferi çözümlerini kolayca uygulayın, günlük verimliliğinizi artırın, diğer uygulama kullanıcılarıyla bağlantı kurun ve kendi Fronter ağınızı oluşturun ve sadece birkaç dokunuşla çok daha fazlasını yapın.", 
+    "more-link":"Daha fazlasını okuyun"
+  },
+  "HowWorks":{
+    "header2":"Open",
+    "header3":"Handed",
+    "header1":"Nasıl ", 
+    "header4":"Çalışır?",
+    "sub-header":"Sadece birkaç dakikanızı ayırarak bağış toplayabilirsiniz",
+    "sub-header-one":"Basit adımlarla başlayın",
+    "paragraph-one":"Kendinizi, planınızı ve mekanın nerede olduğunu tanıtın",
+    "sub-header-two":"Kampanyanızla ilgili bilgi verin",
+    "paragraph-two":"Yol boyunca, size yardımcı olacak tavsiyelerle yanınızda olacağız",
+    "sub-header-three":"Daha fazla kişiyle paylaşın",
+    "paragraph-three":"Size ve kampanyanıza destek olmak istecek pek çok insan olacak"
+  },
+  "StartNow":{
+    "header":"Hemen Başlayın",
+    "paragraph":"Şimdi başlayarak fikirlerinizi hemen hayata geçirin! Bir proje oluşturun ve hayalinizdeki girişim için fon toplayın ya da tutkularınızla örtüşen projelere bağış yaparak fark yaratın. Değişimin öncülüğünü yapan topluluğumuza bugün katılın!",
+    "btn-one": "Hesap oluşturun",
+    "btn-two":"Projelere göz atın"
+  },
+  "NewsLetterCard":{
+    "header1":"Şimdi abone olarak değişimin ön saflarında yer alın!",
+    "paragraph":"Ücretsiz bültenimize abone olun, her ay en seçkin konular hakkında özetleri alın. Bilgilenin, ilham alın ve dünyayı şekillendirmeye adanmış tutkulu bireylerden oluşan topluluğumuza katılarak fark yaratın!",
+    "header2":"Haber bültenimize abone olun",
+    "email-input-area":"Email Adresiniz",
+    "btn":"Abone olun",
+    "note-to-user":"Size istenmeyen e-postalar göndermeyeceğiz 🤞🏼"
+  },
+  "SuccessfulProjects":{
+    "header-part-one":"En Güncel",
+    "header-part-two":"Başarı Hikayelerimiz",
+    "sub-header":"Başarılı olan en güncel projelerimize göz atın.",
+    "no-projects-text":"Şu an için herhangi bir başarılı proje bulunmamaktadır."
+  },
+  "Comments":{
+    "btn":"Referans ekleyin",
+    "testimonial-input-area":"Referansınızı yazın...",
+    "btn-2":"Kapat",
+    "btn-3":"Gönder",
+    "header":"Referanslar"
+  },
+  "Projects":{
+    "projects-completed":"Proje başarılı şekilde tamamlandı 🎉",
+    "donate-btn":"Şimdi bağış yap",
+    "login-btn":"Bağış yapmak için giriş yapın"
   }
+
 }

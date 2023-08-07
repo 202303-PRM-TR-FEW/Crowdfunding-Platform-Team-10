@@ -73,8 +73,8 @@ const LoginForm = () => {
   };
   const t = useTranslations("LoginForm");
   return (
-    <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl max-w-4xl">
-      <div className="lg:col-span-3 flex flex-col justify-center gap-2 text-center bg-white p-6 sm:p-12 md:p-16 lg:rounded-l rounded-t lg:rounded-tr-none">
+    <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl lg:mt-16 max-w-4xl md:pt-10 ">
+      <div className="lg:col-span-3 flex flex-col justify-center gap-2 text-center bg-[#fffb] p-6 sm:p-12 md:p-16 lg:rounded-l rounded-t lg:rounded-tr-none">
         <p className="text-center text-gray-900 p-4 header-2">{t("header")}</p>
         <div className="flex flex-col gap-2">
           <p className="">{t("subHeader")}</p>
@@ -139,7 +139,7 @@ const LoginForm = () => {
               </div>
 
               <button
-                className="btn-primary w-3/6 self-center mb-4"
+                className="btn-primary w-3/6 self-center mb-4 mt-4"
                 type="submit"
                 variant="filled"
                 fullWidth
@@ -150,13 +150,13 @@ const LoginForm = () => {
           </Container>
         </div>
       </div>
-      <div className="lg:col-span-2 bg-gradient-to-br from-lightGreen to-teal-700 flex flex-col justify-center items-center lg:rounded-r rounded-b lg:rounded-bl-none p-6 text-center gap-6 ">
-        <p className="text:2xl text-3xl font-bold text-white">
+      <div className="lg:col-span-2  overflow-hidden bg-gradient-to-br from-lightGreen to-teal-700 flex flex-col  justify-center items-center lg:rounded-r rounded-b lg:rounded-bl-none p-6 text-center gap-6 ">
+        <p className="text:2xl text-3xl font-bold text-white z-10">
           {t("sideHeader")}
         </p>
-        <p className="text-white text-sm px-4">{t("sideParagraph")}</p>
-        <Link href="/signup">
-          <button className="rounded bg-white color-black py-2 px-12 self-center font-bold">
+        <p className="text-white text-sm px-4 z-10">{t("sideParagraph")}</p>
+        <Link href="/signup" className="z-10">
+          <button className="btn-white w-[140px] z-10 py-2 px-12 self-center font-bold  ">
             {t("signupButton")}
           </button>
         </Link>

@@ -33,6 +33,8 @@ import {
   PersonAdd,
   Settings,
   MoreVert as MoreIcon,
+  Groups3Rounded,
+  Home,
 } from "@mui/icons-material";
 
 export default function Nav() {
@@ -158,6 +160,22 @@ export default function Nav() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <Link href="/">
+        <MenuItem onClick={handleMenuClose}>
+          <ListItemIcon>
+            <Home fontSize="small" />
+          </ListItemIcon>
+          Home
+        </MenuItem>
+      </Link>
+      <Link href="/about">
+        <MenuItem onClick={handleMenuClose}>
+          <ListItemIcon>
+            <Groups3Rounded fontSize="small" />
+          </ListItemIcon>
+          About Us
+        </MenuItem>
+      </Link>
       <Link href="/projects">
         <MenuItem onClick={handleMenuClose}>
           <ListItemIcon>
@@ -192,7 +210,7 @@ export default function Nav() {
           </Link>
           <MobileLangSwitcher handleMenuClose={handleMenuClose} />
 
-          <MenuItem onClick={handleMenuClose}>
+          <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>
@@ -225,7 +243,7 @@ export default function Nav() {
         transition: "background 0.3s ease-in-out",
       }}
     >
-      <Box sx={{ px: { xs: 2 } }} className="container mx-auto">
+      <Box className="container  md:mx-auto mx-0 px-0">
         <Toolbar>
           <Link href="/" sx={{ display: { xs: "none", sm: "block" } }}>
             <Typography
@@ -236,14 +254,16 @@ export default function Nav() {
               sx={{ color: "#00c1a2", display: "flex", alignItems: "center" }}
             >
               <Image src={logo} alt="Logo" width={50} />
-              <span className="hidden lg:block">Open<span className="text-[#1f9e92]">Handed</span></span>
+              <span className="hidden lg:block">
+                Open<span className="text-[#1f9e92]">Handed</span>
+              </span>
             </Typography>
           </Link>
-          <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1 }} />
           <Box>
             <SearchComponent />
           </Box>
-          <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "block" } }}>
             <div className="flex justify-center items-center" href="/projects">
               <LangSwitcher />
@@ -257,7 +277,7 @@ export default function Nav() {
             </Link>
           </Box>
 
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
             <IconButton
               size="large"
               edge="end"
@@ -324,7 +344,7 @@ function SearchComponent() {
     setValues("");
   };
   return (
-    <div className="relative flex w-max mx-2">
+    <div className="relative flex w-max sm:mx-2">
       <input
         onChange={handleSearch}
         onClick={() => setValues()}
@@ -332,7 +352,7 @@ function SearchComponent() {
         label="Search for projects"
         value={values}
         placeholder="Search..."
-        className="min-w-[100px] lg:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100 text-[#00c1a2] focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-sm"
+        className="w-[240px] md:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100  focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-sm"
       />
       <div
         onClick={handleClick}

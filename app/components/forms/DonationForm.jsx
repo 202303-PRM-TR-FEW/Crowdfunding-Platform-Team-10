@@ -6,6 +6,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import InfoIcon from "@mui/icons-material/Info";
+import { useTranslations } from "next-intl";
 import {
   addDoc,
   collection,
@@ -39,6 +40,7 @@ const schema = yup
 
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
   const { user, currentUser } = useAuth();
+  const t = useTranslations("DonationForm");
 
   const router = useRouter();
   const [success, setSuccess] = useState(false);
@@ -93,7 +95,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
             <IconButton onClick={handleClose} aria-label="back">
               <ArrowBackIosNewIcon />
             </IconButton>
-            <h1 className="header-3 ">Enter amount:</h1>
+            <h1 className="header-3 "> {t("header")}</h1>
           </div>
 
           <form
@@ -117,7 +119,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
             </Typography>
             <div className="flex items-center mt-5">
               <label htmlFor="charity" className="">
-                Add 2% for charity ?
+                {t("charityText")}
               </label>
               <Controller
                 name="charity"
@@ -131,11 +133,9 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
                 )}
               />
             </div>
-            {success && (
-              <Alert severity="success">Donation Succesfull ! </Alert>
-            )}
+            {success && <Alert severity="success">{t("successMessage")}</Alert>}
             <button form="donation" type="submit" className="btn-primary mt-24">
-              Pay Now
+              {t("payNowBtn")}
             </button>
           </form>
         </div>

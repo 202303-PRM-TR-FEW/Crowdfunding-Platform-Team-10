@@ -2,15 +2,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useAuth } from "@/context/AuthContext";
+import { useTranslations } from "next-intl";
 // Function to add a new comment to Firebase Firestore
-import {
-  doc,
-  setDoc,
-  collection,
-  addDoc,
-  onSnapshot,
-  query,
-} from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
 
@@ -19,6 +13,7 @@ export default function Comments() {
   const { currentUser } = useAuth();
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [commentText, setCommentText] = useState("");
+  const t = useTranslations("Comments");
   useEffect(() => {
     const q = query(collection(db, "comments"));
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
@@ -54,7 +49,7 @@ export default function Comments() {
       });
 
       setCommentText("");
-      toast.success("Succesfuly left your testimonial to OpenHanded!");
+      toast.success("Succesfuly submited your testimonial to OpenHanded!");
       setShowCommentForm(false);
     } catch (e) {
       console.log(e.message);
@@ -78,7 +73,7 @@ export default function Comments() {
             className="absolute top-3 right-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
             onClick={handleAddCommentClick}
           >
-            Add testimonials
+            {t("btn")}
           </button>
         )}
       </div>
@@ -93,7 +88,7 @@ export default function Comments() {
               style={writingBoxStyle}
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
-              placeholder="Write your testimonial..."
+              placeholder={t("testimonial-input-area")}
             />
 
             <div className="flex justify-end mt-3">
@@ -101,13 +96,13 @@ export default function Comments() {
                 className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md mr-2"
                 onClick={handleCloseCommentForm}
               >
-                Close
+                {t("btn-2")}
               </button>
               <button
                 className="px-4 py-2 bg-hoverLightGreen text-white rounded-md"
                 onClick={handleFormSubmit}
               >
-                Submit
+                {t("btn-3")}
               </button>
             </div>
           </div>
@@ -122,6 +117,7 @@ function FancyTestimonialsSlider({ testimonials }) {
   const [active, setActive] = useState(0);
   const [autorotate, setAutorotate] = useState(true);
   const autorotateTiming = 7000;
+  const t = useTranslations("Comments");
 
   useEffect(() => {
     if (!autorotate) return;
@@ -152,7 +148,7 @@ function FancyTestimonialsSlider({ testimonials }) {
   return (
     <div className="w-full max-w-3xl mx-auto text-center">
       {/* Testimonial image */}
-      <h2 className="header-3 text-center my-3 mb-10">Testimonials</h2>
+      <h2 className="header-3 text-center my-3 mb-10">{t("header")} </h2>
       <div className="relative h-32">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[480px] h-[480px] pointer-events-none before:absolute before:inset-0 before:bg-gradient-to-b before:from-teal-500/25 before:via-teal-500/5 before:via-25% before:to-teal-500/0 before:to-75% before:rounded-full before:-z-10">
           <div className="h-32 [mask-image:_linear-gradient(0deg,transparent,theme(colors.white)_20%,theme(colors.white))]">

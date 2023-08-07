@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "prebuild": "node prebuild.js"
+
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -19,9 +21,7 @@
     "@mui/lab": "^5.0.0-alpha.134",
     "@mui/material": "^5.13.6",
     "@mui/system": "^5.14.3",
-
     "@mui/x-charts": "^6.0.0-alpha.5",
-
     "@mui/x-date-pickers": "^6.9.1",
     "autoprefixer": "10.4.14",
     "dayjs": "^1.11.9",
@@ -41,6 +41,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "cypress": "^12.17.3",
     "encoding": "^0.1.13"
   }
 }

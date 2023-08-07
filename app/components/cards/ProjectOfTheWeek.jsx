@@ -9,6 +9,7 @@ import SuccessBadge from "../SuccessBadge";
 import Target from "../helper/Target";
 import ViewCount from "../helper/ViewCount";
 import CategoryIcon from "../helper/CategoryIcon";
+import Image from "next/image";
 
 function ProjectOfTheWeek({ projectOfWeek }) {
   return (
@@ -17,11 +18,15 @@ function ProjectOfTheWeek({ projectOfWeek }) {
       <div className={styles.page}>
         <div className={styles.leftSize}>
           <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
-            <img
-              src={projectOfWeek.url}
-              alt="Project of the week"
-              className="image-animated w-full"
-            />
+            <div className="w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] lg:w-[473px] lg:h-[295px] relative rounded-lg overflow-hidden ">
+              <Image
+                src={projectOfWeek.url}
+                alt="Project of the week"
+                fill={true}
+                style={{ objectFit: "cover" }}
+                className="  image-animated"
+              />
+            </div>
           </Link>
         </div>
         <div className={styles.rightSide}>
@@ -71,10 +76,10 @@ export default ProjectOfTheWeek;
 
 const styles = {
   header: "header-2 text-lightGreen px-2 py-4",
-  page: `flex lg:flex-row flex-col gap-10 px-2 py-5 items-start  justify-start`,
+  page: `flex lg:flex-row flex-col gap-4 px-2 py-5 items-center justify-start`,
   flex: "flex items-center gap-1",
-  leftSize: " lg:w-[40%] w-full overflow-hidden rounded-lg flex justify-end",
-  rightSide: "lg:w-[50%] w-full flex flex-col gap-4",
+  leftSize: " w-full overflow-hidden rounded-lg flex justify-center",
+  rightSide: " w-full flex flex-col gap-4",
   cost: "grid grid-cols-2 pt-2 gap-2",
   avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
 };

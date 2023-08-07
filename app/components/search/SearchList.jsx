@@ -37,11 +37,7 @@ const SearchList = ({ searchProjects }) => {
         ))
       ) : (
         <ListItem className="z-50 ">
-          <div>
-            <Typography variant="h6" color="textPrimary">
-              No matching result
-            </Typography>
-          </div>
+          <div>No matching results</div>
         </ListItem>
       )}
     </div>

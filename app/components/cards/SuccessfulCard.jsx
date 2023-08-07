@@ -5,7 +5,7 @@ function SuccessfulCard({ project }) {
   return (
     <div
       className="group flex-col w-[300px] bg-white bg-opacity-20 px-3 pt-3 
-    hover:pb-3 pb-0 backdrop-blur-md rounded-lg shadow-lg cursor-pointer
+    hover:pb-3 pb-4 backdrop-blur-md rounded-lg shadow-lg cursor-pointer
     transition-all duration-400  ease-out
     "
     >
@@ -17,9 +17,10 @@ function SuccessfulCard({ project }) {
 
       <div className="pt-2 px-2 pb-0">
         <h4 className="color-green text-md my-3">{project.name}</h4>
-        <Target goal={project.goal} raised={project.raised}  />
+        <Target goal={project.goal} raised={project.raised} />
         <div className="hidden group-hover:block  ">
           <p
+            data-cy="card-about"
             className="text-[#63727e] my-2 text-sm max-h-20 overflow-hidden 
             transition-all duration-700  ease-out
           "
