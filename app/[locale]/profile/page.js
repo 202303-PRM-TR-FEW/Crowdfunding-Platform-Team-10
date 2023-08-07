@@ -10,6 +10,7 @@ import TransactionHistory from "@/components/cards/TransactionHistory";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { NoProjects } from "@/components/NoProjects";
 import { useAuth } from "@/context/AuthContext";
+import { db } from "@/config/firebase";
 
 const Page = () => {
   const { user, loading, projects } = useAuth();
