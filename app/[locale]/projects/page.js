@@ -22,7 +22,7 @@ const Home = () => {
 
     if (projects.length > 0) {
       projects.forEach((project) => {
-        if (project.viewCount > max) {
+        if (project.viewCount > max && project.goal > project.raised) {
           max = project.viewCount;
           setProjectOFWeek(project);
         }

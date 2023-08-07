@@ -62,14 +62,6 @@ const SignupForm = () => {
 
   const { user, signup } = useAuth();
 
-  // const [userData, setUserData] = useState({
-  //   name: "",
-  //   bio: "",
-  //   userImg: "",
-  //   projects: [],
-  //   donations: [],
-  // });
-
   const onSubmit = async (data) => {
     try {
       const res = await signup(data.email, data.password);

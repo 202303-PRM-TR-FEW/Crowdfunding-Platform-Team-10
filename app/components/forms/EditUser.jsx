@@ -28,7 +28,6 @@ const EditUser = ({
   const handleClose = () => {
     setOpenEditUserForm(false);
   };
-
   const [err, setErr] = useState("");
   const [userData, setUserData] = useState({
     name: "",
@@ -50,6 +49,7 @@ const EditUser = ({
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
     setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -70,7 +70,6 @@ const EditUser = ({
         `images/${currentUser.id}/${data.userImg.name}`
       );
       try {
-        // Upload the image and get the download URL
         const snapshot = await uploadBytes(storageRef, data.userImg);
         imgUrl = await getDownloadURL(snapshot.ref);
       } catch (e) {
@@ -84,12 +83,13 @@ const EditUser = ({
         name: data.name || currentUser.name,
         bio: data.bio || currentUser.bio,
         userImg: imgUrl || currentUser.userImg,
-        email: currentUser.email, // Keep the same email
-        timeStamp: currentUser.timeStamp, // Keep the same timestamp
+        email: currentUser.email,
+        timeStamp: currentUser.timeStamp,
         country: data.country || currentUser.country,
       };
 
       await setDoc(doc(db, "users", currentUser.id), updatedUserData);
+
       setCurrentUser(updatedUserData);
       setErr("");
       setOpenEditUserForm(false);
@@ -103,7 +103,7 @@ const EditUser = ({
   }
 
   return (
-    <Dialog open={openEditUserForm} size={"lg"} className="">
+    <Dialog open={openEditUserForm} size={"lg"}>
       <div className="p-6 py-10 ">
         <div className="flex items-center justify-start gap-2">
           <IconButton onClick={handleClose} aria-label="back">
@@ -131,12 +131,6 @@ const EditUser = ({
               value={userData.name}
               onChange={handleInputChange}
             />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* Error messages */}
-            </Typography>
           </div>
 
           <div>
@@ -149,12 +143,6 @@ const EditUser = ({
               value={userData.bio}
               onChange={handleInputChange}
             />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* Error messages */}
-            </Typography>
           </div>
           <div>
             <FormControl variant="standard" className="w-full">
@@ -189,12 +177,6 @@ const EditUser = ({
                 })}
               </Select>
             </FormControl>
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* Error messages */}
-            </Typography>
           </div>
           <div>
             <TextField
@@ -215,12 +197,6 @@ const EditUser = ({
               onChange={handleImageChange}
               sx={{ input: { cursor: "pointer" } }}
             />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* {err} */}
-            </Typography>
           </div>
 
           <button
@@ -231,7 +207,12 @@ const EditUser = ({
             Update
           </button>
         </form>
-        <p>{err}</p>
+        <Typography
+          variant="small"
+          className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+        >
+          {err}
+        </Typography>
       </div>
     </Dialog>
   );

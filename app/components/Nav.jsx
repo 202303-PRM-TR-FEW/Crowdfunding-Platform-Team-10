@@ -1,6 +1,12 @@
 "use client";
 
-import { collection, onSnapshot, query } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  query,
+  getDocs,
+  where,
+} from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next-intl/client";
@@ -38,13 +44,42 @@ import {
 } from "@mui/icons-material";
 
 export default function Nav() {
-  const { user, logout, currentUser } = useAuth();
+  const { user, logout } = useAuth();
   const Router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [currentUser, setCurrentUser] = useState();
+  useEffect(() => {
+    if (user && user.email) {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", user.email)
+      );
+
+      const fetchUserData = async () => {
+        try {
+          const querySnapshot = await getDocs(q);
+
+          if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data();
+
+            setCurrentUser({ ...userData, id: user.uid });
+          } else {
+            console.log("no data matched");
+            setCurrentUser({});
+          }
+        } catch (error) {
+          console.error("Error fetching user data: ", error);
+        }
+      };
+
+      fetchUserData();
+      return () => unsubscribe();
+    }
+  }, [user]);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);

@@ -1,6 +1,5 @@
 "use client";
 import { Alert, Checkbox, IconButton, Input } from "@mui/material";
-
 import { Controller, useForm } from "react-hook-form";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,21 +12,19 @@ import {
   doc,
   increment,
   updateDoc,
+  getDocs,
+  query,
+  where,
 } from "firebase/firestore";
+
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next-intl/client";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { db } from "@/config/firebase";
 import Typography from "@mui/material/Typography";
 import Dialog from "@mui/material/Dialog";
 
-////// These need to be where the new project form button is //////
-// const [openDonationForm, setOpenDonationForm] = useState(false);
-// const handleDonationForm = () => {
-//   openDonationForm === false ? setOpenDonationForm(true) : setOpenDonationForm(false);
-// };
-// <DonationForm openDonationForm={openDonationForm} setOpenDonationForm={setOpenDonationForm} />
 const schema = yup
   .object({
     donation: yup
@@ -39,8 +36,37 @@ const schema = yup
   .required();
 
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
-  const { user, currentUser } = useAuth();
+  const { user } = useAuth();
   const t = useTranslations("DonationForm");
+  const [currentUser, setCurrentUser] = useState();
+  useEffect(() => {
+    if (user && user.email) {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", user.email)
+      );
+
+      const fetchUserData = async () => {
+        try {
+          const querySnapshot = await getDocs(q);
+
+          if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data();
+
+            setCurrentUser({ ...userData, id: user.uid });
+          } else {
+            console.log("no data matched");
+            setCurrentUser({});
+          }
+        } catch (error) {
+          console.error("Error fetching user data: ", error);
+        }
+      };
+
+      fetchUserData();
+      return () => unsubscribe();
+    }
+  }, [user]);
 
   const router = useRouter();
   const [success, setSuccess] = useState(false);

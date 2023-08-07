@@ -23,7 +23,7 @@ const Page = () => {
           if (!querySnapshot.empty) {
             const userData = querySnapshot.docs[0].data();
 
-            setCurrentUser(userData);
+            setCurrentUser({ ...userData, id: user.uid });
           } else {
             console.log("no data matched");
             setCurrentUser({});

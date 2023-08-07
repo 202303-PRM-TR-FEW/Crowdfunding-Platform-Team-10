@@ -4,13 +4,51 @@ import { Transition } from "@headlessui/react";
 import { useAuth } from "@/context/AuthContext";
 import { useTranslations } from "next-intl";
 // Function to add a new comment to Firebase Firestore
-import { collection, addDoc, onSnapshot, query } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  query,
+  getDocs,
+  where,
+} from "firebase/firestore";
+
 import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
 
 export default function Comments() {
   const [comments, setComments] = useState([]);
-  const { currentUser } = useAuth();
+  const { users } = useAuth();
+  const [currentUser, setCurrentUser] = useState();
+  useEffect(() => {
+    if (user && user.email) {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", user.email)
+      );
+
+      const fetchUserData = async () => {
+        try {
+          const querySnapshot = await getDocs(q);
+
+          if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data();
+
+            setCurrentUser({ ...userData, id: user.uid });
+          } else {
+            console.log("no data matched");
+            setCurrentUser({});
+          }
+        } catch (error) {
+          console.error("Error fetching user data: ", error);
+        }
+      };
+
+      fetchUserData();
+      return () => unsubscribe();
+    }
+  }, [user]);
+
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [commentText, setCommentText] = useState("");
   const t = useTranslations("Comments");

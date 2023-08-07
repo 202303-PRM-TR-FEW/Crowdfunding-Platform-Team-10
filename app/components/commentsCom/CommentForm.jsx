@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
@@ -10,8 +10,36 @@ import { useTranslations } from "next-intl";
 const CommentForm = ({ params }) => {
   const [commentText, setCommentText] = useState("");
 
-  const { currentUser } = useAuth();
+  const { user } = useAuth();
+  const [currentUser, setCurrentUser] = useState();
+  useEffect(() => {
+    if (user && user.email) {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", user.email)
+      );
 
+      const fetchUserData = async () => {
+        try {
+          const querySnapshot = await getDocs(q);
+
+          if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data();
+
+            setCurrentUser({ ...userData, id: user.uid });
+          } else {
+            console.log("no data matched");
+            setCurrentUser({});
+          }
+        } catch (error) {
+          console.error("Error fetching user data: ", error);
+        }
+      };
+
+      fetchUserData();
+      return () => unsubscribe();
+    }
+  }, [user]);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
