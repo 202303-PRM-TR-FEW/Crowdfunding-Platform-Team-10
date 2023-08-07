@@ -277,7 +277,7 @@ export default function Nav() {
             </Link>
           </Box>
 
-          <Box sx={{ display: { md: "none", lg: "flex" } }}>
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
             <IconButton
               size="large"
               edge="end"
