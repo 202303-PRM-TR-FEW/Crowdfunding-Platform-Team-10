@@ -70,8 +70,8 @@
     "btn": "Abone olun",
     "note-to-user": "Size istenmeyen e-postalar göndermeyeceğiz 🤞🏼",
     "email":"E-posta adresinizi giriniz",
-    "valid":"Geçerli bir E-posta yazınız",
-    "message":"Subscribed to OpenHanded Newsletter !"
+    "valid":"Geçerli bir e-posta yazınız",
+    "message":"OpenHanded Haber Bültenine abone oldunuz !"
   },
   "SuccessfulProjects": {
     "header-part-one": "En Güncel",
