@@ -71,8 +71,8 @@ export default function NewsLetterCard() {
     .object({
       to_email: yup
         .string()
-        .required("Email is Required !")
-        .email("Use a Valid Email"),
+        .required(`${t("email")}`)
+        .email(`${t("valid")}`),
     })
     .required();
   const {
@@ -110,7 +110,7 @@ export default function NewsLetterCard() {
   };
   const onSubmit = (data, form) => {
     sendEmail(form);
-    toast.success("Subscribed to OpenHanded Newsletter!");
+    toast.success(`${t("message")}`);
     reset();
   };
   return (

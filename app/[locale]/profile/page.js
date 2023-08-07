@@ -10,11 +10,14 @@ import TransactionHistory from "@/components/cards/TransactionHistory";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { NoProjects } from "@/components/NoProjects";
 import { useAuth } from "@/context/AuthContext";
+import { useTranslations } from "next-intl";
+
 
 const Page = () => {
   const { user, loading, projects, currentUser } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const t = useTranslations("Profile")
 
   const router = useRouter();
   const circleBackgroundStyle = {
@@ -73,7 +76,7 @@ const Page = () => {
         ) : usersProjects.length > 0 ? (
           <>
             <h1 className="header-2 text-center lg:text-start text-lightGreen">
-              My Projects
+              {t("header")}
             </h1>
             <div className="flex flex-col lg:flex-row py-6 md:py-10 gap-8 ">
               <div className="w-full lg:w-7/12">

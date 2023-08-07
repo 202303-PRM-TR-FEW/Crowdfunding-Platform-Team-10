@@ -6,12 +6,14 @@ import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 const Home = () => {
   const { projects } = useAuth();
   const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
+  const t = useTranslations("Profile")
 
   useEffect(() => {
     setData(projects);
@@ -51,7 +53,7 @@ const Home = () => {
         );
       })
     ) : (
-      <Box className="header-4 px-10">No Projects In This Category</Box>
+      <Box className="header-4 px-10">{t("message")}</Box>
     )
   ) : (
     <Box className="scale-[0.6]">
