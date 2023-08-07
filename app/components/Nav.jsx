@@ -236,7 +236,9 @@ export default function Nav() {
               sx={{ color: "#00c1a2", display: "flex", alignItems: "center" }}
             >
               <Image src={logo} alt="Logo" width={50} />
-              <span className="hidden lg:block">Open<span className="text-[#1f9e92]">Handed</span></span>
+              <span className="hidden lg:block">
+                Open<span className="text-[#1f9e92]">Handed</span>
+              </span>
             </Typography>
           </Link>
           <Box sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }} />
@@ -324,7 +326,7 @@ function SearchComponent() {
     setValues("");
   };
   return (
-    <div className="relative flex w-max mx-2">
+    <div className="relative flex w-max sm:mx-2">
       <input
         onChange={handleSearch}
         onClick={() => setValues()}
@@ -332,7 +334,7 @@ function SearchComponent() {
         label="Search for projects"
         value={values}
         placeholder="Search..."
-        className="min-w-[100px] lg:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100 text-[#00c1a2] focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-sm"
+        className="w-[240px] md:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100  focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-sm"
       />
       <div
         onClick={handleClick}
