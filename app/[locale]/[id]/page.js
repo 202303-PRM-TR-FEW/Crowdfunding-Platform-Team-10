@@ -27,6 +27,7 @@ import Chart from "@/components/cards/Chart";
 import CommentForm from "@/components/commentsCom/CommentForm";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import CommentRows from "@/components/commentsCom/CommentRows";
+import { useRouter } from "next/router";
 function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
@@ -39,7 +40,7 @@ function Project({ params }) {
   const pathname = usePathname();
 
   const [activeSidebar, setActiveSidebar] = useState(false);
-
+  const router = useRouter();
   const handleClose = async (word) => {
     if (word === "Confirm") {
       await deleteDoc(doc(db, "projects", params.id));

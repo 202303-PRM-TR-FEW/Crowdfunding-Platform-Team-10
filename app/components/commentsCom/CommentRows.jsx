@@ -20,7 +20,6 @@ export default function CommentRows({ id }) {
       setComments(commentsArr);
     });
   }, [id]);
-  console.log(comments);
 
   return (
     <div className="flex flex-col gap-2 w-full my-2 ">

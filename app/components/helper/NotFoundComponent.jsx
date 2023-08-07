@@ -14,7 +14,12 @@ const NotFoundComponent = () => {
           </Link>
         </div>
         <div className="mx-auto w-full lg:w-2/3">
-          <Image className="w-full h-full" src={NotFoundImage} alt="404" />
+          <Image
+            className="w-full h-full lg:w[500px]"
+            src={NotFoundImage}
+            width={500}
+            alt="404"
+          />
         </div>
       </div>
       <div style={circleBackgroundStyle}></div>

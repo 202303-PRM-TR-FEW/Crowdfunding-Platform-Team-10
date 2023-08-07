@@ -1,6 +1,6 @@
 import React from "react";
 import AboutSection from "@/components/sections/AboutUs";
-import Comments from "@/components/Comments";
+import Comments from "@/components/commentsCom/Comments";
 import WelcomeBanner from "@/components/WelcomeBanner";
 import NewsLetterCard from "@/components/cards/NewsLetterCard";
 import StartNow from "@/components/sections/StartNow";

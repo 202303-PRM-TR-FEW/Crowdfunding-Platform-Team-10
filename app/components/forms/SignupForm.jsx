@@ -65,7 +65,7 @@ const SignupForm = () => {
   const onSubmit = async (data) => {
     try {
       const res = await signup(data.email, data.password);
-      const user = res.user; // The signed-up user object
+      const user = res.user;
       handleImageUploadAndUserData(data, user.uid);
     } catch (e) {
       toast.error(e.code, {
@@ -103,7 +103,6 @@ const SignupForm = () => {
           position: toast.POSITION.TOP_RIGHT,
         });
       } else {
-        // For other errors, show a generic error message
         toast.error(e.code, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -226,7 +225,7 @@ const SignupForm = () => {
                                 <div className="flex gap-2 items-center">
                                   <span>
                                     <img
-                                      className="rounded-none "
+                                      className="rounded-none"
                                       loading="lazy"
                                       width="20"
                                       height="10"

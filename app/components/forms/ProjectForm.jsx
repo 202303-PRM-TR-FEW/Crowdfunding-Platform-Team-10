@@ -35,20 +35,13 @@ import { db } from "@/config/firebase";
 import LoaderStyle from "../helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
-//Fixes Date Picker Errors//
+import { useRouter } from "next/router";
+
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
 defaultDayjs.extend(isBetweenPlugin);
 defaultDayjs.extend(utc);
 const today = dayjs();
-//Fixes Date Picker Errors//
-
-////// These need to be where the new project form button is //////
-// const [openProjectForm, setOpenProjectForm] = useState(false);
-// const handleNewProject = () => {
-//   openProjectForm === false ? setOpenProjectForm(true) : setOpenProjectForm(false);
-// };
-// <ProjectForm openProjectForm={openProjectForm} setOpenProjectForm={setOpenProjectForm} />
 
 const schema = yup
   .object({
@@ -69,7 +62,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
   const { usersInfo } = useAuth();
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -148,6 +141,8 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     };
 
     await addDoc(collection(db, "projects"), projectData);
+    router.push("/profile");
+
     setOpenProjectForm(false);
   };
 
