@@ -8,8 +8,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "node prebuild.js"
-
     "cypress": "cypress open"
   },
   "dependencies": {
