@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 
 export default function Comments() {
   const [comments, setComments] = useState([]);
-  const { users } = useAuth();
+  const { user } = useAuth();
   const [currentUser, setCurrentUser] = useState();
   useEffect(() => {
     if (user && user.email) {
