@@ -59,13 +59,13 @@ const CommentForm = ({ params }) => {
     }
   };
   return (
-    <div className="mt-5">
-      <div className="title flex flex-col gap-3 ">
-        <h3 className="text-base font-bold text-lightGreen">
+    <div className="mt-5 w-full">
+      <div className="title flex flex-col gap-3 w-full">
+        <h3 className="text-base font-bold text-lightGreen w-full">
           Leave A Comment :
         </h3>
       </div>
-      <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
+      <form className="flex flex-col gap-4 w-full" onSubmit={handleFormSubmit}>
         <div className="mt-3 w-full">
           <textarea
             label="Message"
@@ -73,7 +73,7 @@ const CommentForm = ({ params }) => {
             type="text"
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
-            className="border-[#00c1a2] border-2 w-full   p-2 rounded-lg"
+            className="border-[#00c1a2] border-2 w-full p-2 rounded-lg"
             rows="4"
             required
           />

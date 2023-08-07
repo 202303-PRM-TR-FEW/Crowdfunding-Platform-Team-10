@@ -140,8 +140,7 @@ function Project({ params }) {
   ////To hide donate button if project marked as closed//////////
   const today = new Date();
   const endDate = new Date(data.endingDate);
-  ////To hide donate button if project marked as closed//////////
-  console.log(data);
+
   const handleDeleteProject = () => {
     setOpen(true);
   };
