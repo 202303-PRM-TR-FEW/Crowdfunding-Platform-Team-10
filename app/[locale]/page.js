@@ -7,7 +7,6 @@ import StartNow from "@/components/sections/StartNow";
 import SuccessfulProjects from "@/components/sections/SuccessfulProjects";
 import HowWorks from "@/components/sections/HowWorks";
 
-
 function page() {
   return (
     <div>
@@ -15,7 +14,7 @@ function page() {
       <AboutSection />
       <div className="relative bg-no-repeat overflow-hidden bg-cover">
         <div style={circleBackgroundStyle}></div>
-        <HowWorks/>
+        <HowWorks />
         <StartNow />
         <SuccessfulProjects />
         <div style={circleBackgroundStyle2}></div>
