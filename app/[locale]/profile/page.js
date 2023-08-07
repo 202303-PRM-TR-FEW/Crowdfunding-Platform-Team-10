@@ -82,7 +82,7 @@ const Page = () => {
       }
     }
   }, []);
-
+  let oneProjectInfo = null;
   if (!isLoading && usersProjects.length > 0) {
     oneProjectInfo = usersProjects[usersProjects.length - 1];
   }
