@@ -210,7 +210,7 @@ export default function Nav() {
           </Link>
           <MobileLangSwitcher handleMenuClose={handleMenuClose} />
 
-          <MenuItem onClick={handleMenuClose}>
+          <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>
