@@ -137,14 +137,18 @@ function Project({ params }) {
           {loading || data.length <= 0 ? (
             <LoaderStyle />
           ) : (
-            <div className="flex flex-col lg:flex-row items-start justify-between gap-8">
-              <div className="p-3 flex flex-col items-center gap-4 lg:w-7/12 w-full overflow-hidden  rounded-lg">
+            <div className="flex flex-col lg:flex-row items-start justify-between gap-8 overflow-hidden rounded-lg ">
+              <div className="px-3 flex flex-col items-center gap-4 lg:w-7/12 w-full overflow-hidden  rounded-lg">
                 <div className="overflow-hidden rounded-lg relative w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] md:h-[554px] lg:h-[366px] xl:h-[554px] md:w-full">
                   <Image
                     src={data.url}
                     alt=""
                     fill={true}
-                    style={{ objectFit: "cover" }}
+                    style={{
+                      objectFit: "cover",
+                      borderRadius: "12px",
+                      overflow: "hidden",
+                    }}
                   />
                 </div>
                 <div className="flex w-full justify-between items-center">
@@ -296,16 +300,17 @@ function Project({ params }) {
             })}
           </div>
         </div>
-
-        <DonationForm
-          id={params}
-          title={data.name}
-          openDonationForm={openDonationForm}
-          setOpenDonationForm={setOpenDonationForm}
-        />
-        <div className=" block lg:hidden  py-3  ">
-          <CommentRows id={params.id} />
-          {user ? <CommentForm params={params} /> : null}
+        <div className="w-full p-2">
+          <DonationForm
+            id={params}
+            title={data.name}
+            openDonationForm={openDonationForm}
+            setOpenDonationForm={setOpenDonationForm}
+          />
+          <div className=" block lg:hidden  py-3 w-full ">
+            <CommentRows id={params.id} />
+            {user ? <CommentForm params={params} /> : null}
+          </div>
         </div>
       </section>
 
