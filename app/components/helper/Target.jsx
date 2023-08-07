@@ -1,26 +1,25 @@
 import React from "react";
 import CustomizedProgressBars from "./ProgressBar";
 
-function Target({ raised = "0", goal = "0" }) {
-  function formatNumber(number) {
-    const suffixes = ["", "K", "M", "B", "T"];
-    const numString = number.toString();
-    const numDigits = numString.length;
-    const suffixNum = Math.floor((numDigits - 1) / 3);
+export function formatNumber(number) {
+  const suffixes = ["", "K", "M", "B", "T"];
+  const numString = number.toString();
+  const numDigits = numString.length;
+  const suffixNum = Math.floor((numDigits - 1) / 3);
 
-    if (suffixNum === 0 || numDigits <= 4) {
-      return number.toString();
-    } else {
-      let shortNumber = parseFloat(
-        (number / Math.pow(1000, suffixNum)).toPrecision(3)
-      );
-      if (shortNumber % 1 !== 0) {
-        shortNumber = shortNumber.toFixed(1);
-      }
-      return shortNumber + suffixes[suffixNum];
+  if (suffixNum === 0 || numDigits <= 4) {
+    return number.toString();
+  } else {
+    let shortNumber = parseFloat(
+      (number / Math.pow(1000, suffixNum)).toPrecision(3)
+    );
+    if (shortNumber % 1 !== 0) {
+      shortNumber = shortNumber.toFixed(1);
     }
+    return shortNumber + suffixes[suffixNum];
   }
-
+}
+function Target({ raised = "0", goal = "0" }) {
   const formattedGoal = formatNumber(goal || 0);
   const formattedRise = formatNumber(raised || 0);
 
