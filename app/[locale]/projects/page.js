@@ -24,6 +24,9 @@ const Home = () => {
         if (project.viewCount > max && project.goal > project.raised) {
           max = project.viewCount;
           setProjectOFWeek(project);
+        } else if (project.viewCount > max) {
+          max = project.viewCount;
+          setProjectOFWeek(project);
         }
       });
     }

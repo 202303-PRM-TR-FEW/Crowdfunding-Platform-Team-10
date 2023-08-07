@@ -11,6 +11,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
+import { useRouter } from "next-intl/client";
 
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -35,7 +36,6 @@ import { db } from "@/config/firebase";
 import LoaderStyle from "../helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
 
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
