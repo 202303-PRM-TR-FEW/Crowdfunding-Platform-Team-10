@@ -20,6 +20,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 
 import { Avatar, Divider } from "@mui/material";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "@/config/firebase";
 
 export default function TransactionHistory({ usersProjects }) {
   const [donate, setDonate] = useState([]);
