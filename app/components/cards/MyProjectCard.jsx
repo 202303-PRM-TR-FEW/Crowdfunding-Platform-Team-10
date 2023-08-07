@@ -5,22 +5,28 @@ import ViewCount from "@/components/helper/ViewCount";
 import UserNameImg from "@/components/helper/UserNameImg";
 import CategoryIcon from "@/components/helper/CategoryIcon";
 import SuccessBadge from "@/components/SuccessBadge";
+import Image from "next/image";
 
 export default function MyProjectCard({ project }) {
   const styles = {
     header: "header-2 text-lightGreen py-4",
     flex: "flex items-center gap-1",
     image: "w-full overflow-hidden rounded",
-    rightSide: " flex flex-col gap-4",
+    rightSide: "w-full flex flex-col gap-4",
     cost: "grid grid-cols-2 pt-2 gap-2",
     avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
   };
 
   return (
     <>
-      <div className="flex flex-col gap-6 overflow-hidden ">
-        <div>
-          <img src={project.url} alt="Project of the week" className="w-full" />
+      <div className="flex flex-col items-center gap-6 overflow-hidden  rounded-lg">
+        <div className="overflow-hidden rounded-lg relative w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] md:h-[554px] lg:h-[366px] xl:h-[554px] md:w-full cursor-pointer">
+          <Image
+            src={project.url}
+            alt="Project of the week"
+            fill={true}
+            style={{ objectFit: "cover" }}
+          />
         </div>
 
         <div className={styles.rightSide}>
