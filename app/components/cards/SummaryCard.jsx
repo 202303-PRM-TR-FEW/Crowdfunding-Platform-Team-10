@@ -7,7 +7,7 @@ import SuccessBadge from "../SuccessBadge";
 import ViewCount from "../helper/ViewCount";
 import Target from "../helper/Target";
 import CategoryIcon from "../helper/CategoryIcon";
-
+import Image from "next/image";
 const SummaryCard = ({
   cardUrl,
   endingDate,
@@ -77,9 +77,11 @@ const SummaryCard = ({
         <ViewCount viewCount={viewCount} />
       </div>
 
-      <div className="overflow-hidden object-contain rounded-lg  cursor-pointer">
-        <img
-          className="w-full h-[222px] image-animated"
+      <div className="overflow-hidden  rounded-lg relative h-[222px] w-full cursor-pointer">
+        <Image
+          fill={true}
+          style={{ objectFit: "cover" }}
+          className="  image-animated"
           src={img}
           alt="project img"
         />

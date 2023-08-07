@@ -9,6 +9,7 @@ import SuccessBadge from "../SuccessBadge";
 import Target from "../helper/Target";
 import ViewCount from "../helper/ViewCount";
 import CategoryIcon from "../helper/CategoryIcon";
+import Image from "next/image";
 
 function ProjectOfTheWeek({ projectOfWeek }) {
   return (
@@ -17,11 +18,15 @@ function ProjectOfTheWeek({ projectOfWeek }) {
       <div className={styles.page}>
         <div className={styles.leftSize}>
           <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
-            <img
-              src={projectOfWeek.url}
-              alt="Project of the week"
-              className="image-animated w-full"
-            />
+            <div className="w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] lg:w-[423px] lg:h-[264px] relative">
+              <Image
+                src={projectOfWeek.url}
+                alt="Project of the week"
+                fill={true}
+                style={{ objectFit: "cover" }}
+                className="  image-animated"
+              />
+            </div>
           </Link>
         </div>
         <div className={styles.rightSide}>
