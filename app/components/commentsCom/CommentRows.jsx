@@ -19,8 +19,6 @@ export default function CommentRows({ id }) {
       });
       setComments(commentsArr);
     });
-
-    return () => unsubscribe();
   }, [id]);
   console.log(comments);
 

@@ -64,7 +64,6 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
       };
 
       fetchUserData();
-      return () => unsubscribe();
     }
   }, [user]);
 

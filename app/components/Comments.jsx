@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { useAuth } from "@/context/AuthContext";
 import { useTranslations } from "next-intl";
-// Function to add a new comment to Firebase Firestore
 import {
   collection,
   addDoc,
@@ -45,7 +44,6 @@ export default function Comments() {
       };
 
       fetchUserData();
-      return () => unsubscribe();
     }
   }, [user]);
 

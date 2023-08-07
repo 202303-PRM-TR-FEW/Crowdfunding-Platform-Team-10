@@ -77,7 +77,6 @@ export default function Nav() {
       };
 
       fetchUserData();
-      return () => unsubscribe();
     }
   }, [user]);
 

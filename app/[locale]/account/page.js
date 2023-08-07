@@ -34,7 +34,6 @@ const Page = () => {
       };
 
       fetchUserData();
-      return () => unsubscribe();
     }
   }, [user]);
 

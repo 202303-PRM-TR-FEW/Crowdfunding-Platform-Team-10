@@ -37,7 +37,6 @@ const CommentForm = ({ params }) => {
       };
 
       fetchUserData();
-      return () => unsubscribe();
     }
   }, [user]);
   const handleFormSubmit = async (event) => {
