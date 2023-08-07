@@ -3,12 +3,55 @@ import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import LoaderStyle from "../helper/LoaderStyle";
-import { BarChart } from "@mui/x-charts/BarChart";
+import { BarChart, BarPlot } from "@mui/x-charts/BarChart";
+import {
+  ChartContainer,
+  ChartsXAxis,
+  ChartsYAxis,
+  LineChart,
+  LinePlot,
+} from "@mui/x-charts";
+import { Box } from "@mui/system";
 
 function Chart({ projectsDonations }) {
   const countryDonations = collectDonationsByCountry(projectsDonations);
-  const xAxisData = Object.keys(countryDonations);
-  const seriesData = Object.values(countryDonations);
+  const [xAxisData, setXAxisData] = React.useState(
+    Object.keys(countryDonations) ?? []
+  );
+  const [seriesData, setSeriesData] = React.useState(
+    Object.values(countryDonations) ?? []
+  );
+  console.log(countryDonations);
+  console.log(xAxisData);
+  console.log(seriesData);
+  // const series = [
+  //   {
+  //     type: "bar",
+  //     stack: "",
+  //     yAxisKey: "eco",
+  //     data: [2, 5, 3, 4, 1],
+  //   },
+  //   {
+  //     type: "bar",
+  //     stack: "",
+  //     yAxisKey: "eco",
+  //     data: [5, 6, 2, 8, 9],
+  //   },
+  //   {
+  //     type: "line",
+  //     yAxisKey: "pib",
+  //     color: "red",
+  //     data: [1000, 1500, 3000, 5000, 10000],
+  //   },
+  // ];
+  const series = [
+    {
+      type: "line",
+      yAxisKey: "pib",
+      color: "#00c1a2",
+      data: seriesData,
+    },
+  ];
 
   if (projectsDonations == null) {
     return <LoaderStyle />;
@@ -34,25 +77,63 @@ function Chart({ projectsDonations }) {
         <h3 className="header-4 p-2">Statistics</h3>
       </AccordionSummary>
       <AccordionDetails>
-        {projectsDonations.length > 0 ? (
-          <BarChart
-            xAxis={[
-              {
-                id: "countries",
-                data: xAxisData,
-                scaleType: "band",
-              },
-            ]}
-            series={[
-              {
-                data: seriesData,
-                color: "#00c1a2",
-              },
-            ]}
-            width={500}
-            height={300}
-          />
-        ) : null}
+        <>
+          {seriesData.length > 0 && xAxisData.length > 0 ? (
+            <Box sx={{ width: "100%", maxWidth: "100%" }}>
+              <LineChart
+                series={series}
+                height={400}
+                sx={{
+                  width: 1,
+                  viewBox: "0 0 500 400",
+                }}
+                xAxis={[
+                  {
+                    id: "country",
+                    data: xAxisData,
+                    scaleType: "band",
+                    valueFormatter: (value) => value.toString(),
+                  },
+                ]}
+                yAxis={[
+                  {
+                    id: "pib",
+                    scaleType: "log",
+                  },
+                ]}
+              >
+                <BarPlot />
+                <LinePlot />
+                <ChartsXAxis
+                  label="Country"
+                  position="bottom"
+                  axisId="country"
+                />
+                <ChartsYAxis label="" position="left" axisId="pib" />
+              </LineChart>
+            </Box>
+          ) : null}
+
+          {/* {projectsDonations.length > 0 ? (
+            <BarChart
+              xAxis={[
+                {
+                  id: "countries",
+                  data: xAxisData,
+                  scaleType: "band",
+                },
+              ]}
+              series={[
+                {
+                  data: seriesData,
+                  color: "#00c1a2",
+                },
+              ]}
+              width={500}
+              height={300}
+            />
+          ) : null} */}
+        </>
       </AccordionDetails>
     </Accordion>
   );
