@@ -4,7 +4,6 @@
 import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { db } from "@/config/firebase";
 import { useAuth } from "@/context/AuthContext";
@@ -27,6 +26,7 @@ import Link from "next/link";
 import CommentForm from "@/components/commentsCom/CommentForm";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import CommentRows from "@/components/commentsCom/CommentRows";
+
 function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
@@ -138,11 +138,16 @@ function Project({ params }) {
             <LoaderStyle />
           ) : (
             <div className="flex flex-col lg:flex-row items-start justify-between gap-8">
-              <div className="p-3 flex flex-col gap-4 lg:w-7/12 w-full">
-                <div className="">
-                  <img src={data.url} alt="" className="w-full rounded" />
+              <div className="p-3 flex flex-col items-center gap-4 lg:w-7/12 w-full overflow-hidden  rounded-lg">
+                <div className="overflow-hidden rounded-lg relative w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] md:h-[554px] lg:h-[366px] xl:h-[554px] md:w-full">
+                  <Image
+                    src={data.url}
+                    alt=""
+                    fill={true}
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex w-full justify-between items-center">
                   <div className="flex  justify-center gap-2 items-center">
                     <h1 className="header-3 text-center my-2 lg:text-start text-lightGreen ">
                       {data.name}
@@ -156,7 +161,9 @@ function Project({ params }) {
                     goal={data.goal}
                   />
                 </div>
-                <Target raised={data.raised} goal={data.goal} />
+                <div className="w-full">
+                  <Target raised={data.raised} goal={data.goal} />
+                </div>
                 <div className=" lg:hidden block w-full">
                   {user ? (
                     today < endDate ? (
@@ -183,15 +190,17 @@ function Project({ params }) {
                     <div></div>
                   )}
                 </div>
-                <p className="color-grey">{data.about}</p>
-                <hr className="border-t-2 border-white my-2"></hr>
+                <div className="w-full">
+                  <p className="color-grey">{data.about}</p>
+                  <hr className="border-t-2 border-white my-2"></hr>
 
-                <div className="flex items-center justify-between">
-                  <UserNameImg
-                    userName={data.creator.userName}
-                    userImg={data.creator.userImg}
-                  />
-                  <ViewCount />
+                  <div className="flex items-center justify-between">
+                    <UserNameImg
+                      userName={data.creator.userName}
+                      userImg={data.creator.userImg}
+                    />
+                    <ViewCount />
+                  </div>
                 </div>
 
                 <div className=" lg:block hidden my-2 w-full">
