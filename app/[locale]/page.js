@@ -28,7 +28,7 @@ function Page() {
 
   return (
     <div>
-      <WelcomeBanner projects={projects} />
+      <WelcomeBanner />
       <AboutSection />
       <div className="relative bg-no-repeat overflow-hidden bg-cover">
         <div style={circleBackgroundStyle}></div>
