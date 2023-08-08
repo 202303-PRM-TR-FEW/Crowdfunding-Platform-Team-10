@@ -19,7 +19,6 @@ import Link from "next-intl/link";
 import Image from "next/image";
 import LangSwitcher from "./LangSwitcher";
 import MobileLangSwitcher from "./MobileLangSwitcher";
-
 import {
   AppBar,
   Toolbar,
@@ -42,6 +41,7 @@ import {
   Groups3Rounded,
   Home,
 } from "@mui/icons-material";
+import { useTranslations } from "next-intl";
 
 export default function Nav() {
   const { user, logout } = useAuth();
@@ -373,7 +373,7 @@ function SearchComponent() {
       }
     });
   };
-
+  const t = useTranslations("Nav");
   const [values, setValues] = useState();
   const handleClick = () => {
     setSearchProjects();
