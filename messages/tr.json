@@ -29,6 +29,38 @@
     "sideHeader": "Zaten Bir Hesabınız Var Mı ?",
     "loginButton": "Giriş Yapın"
   },
+  "EditUser":{
+    "header":"Kişisel Detaylar:",
+    "sub-header":"Lütfen kişisel bilgilerinizi tamamlayın",
+    "country":"Ülke",
+    "btn-update":"Güncelle",
+    "label-name": "Tam adınız",
+    "bio":"Bio",
+    "user-picture":"Kullanıcı resmi"
+  },
+  "ProjectsForm":{
+    "success-msg": "Proje başarıyla oluşturuldu!",
+    "user-ıd-part-one": "Bu",
+    "user-ıd-part-two": "ID'ye sahip bir kullanıcı bulunamadı.",
+    "kick-off": "Projenize hemen başlayın",
+    "alert-success": "Proje başarıyla oluşturuldu!",
+    "name-pro": "Proje adınız",
+    "goal-pro": "Hedef miktarınızı ekleyin",
+    "date-pro": "Başlangıç tarihi",
+    "date-two-pro": "Bitiş tarihi",
+    "about-pro": "Projeniz hakkında bilgi verin",
+    "category": "Kategoriler",
+    "category-animals": "Hayvanlar",
+    "category-education": "Eğitim",
+    "category-culture": "Kültür",
+    "category-children": "Çocuklar",
+    "upload-project": "Projenizi yükleyin"
+  },
+  "UserSettingForms":{
+  "my-pro": "Projelerim",
+  "settings": "Ayarlar",
+  "logout": "Çıkış yap"
+},
   "DonationForm": {
     "header":"Bir miktar girin:",
     "charityText": "%2 Hayır kurumlarına bağışlamak ister misiniz?",
