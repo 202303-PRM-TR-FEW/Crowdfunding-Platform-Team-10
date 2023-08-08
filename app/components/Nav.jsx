@@ -43,7 +43,6 @@ import {
   Groups3Rounded,
   Home,
 } from "@mui/icons-material";
-import { useTranslations } from "next-intl";
 
 export default function Nav() {
   const { user, logout } = useAuth();
