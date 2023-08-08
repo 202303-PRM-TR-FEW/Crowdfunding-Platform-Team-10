@@ -6,7 +6,8 @@
     "subHeader1": "We helped over 3.500 projects and causes.",
     "subHeader2": "Join Us in Bringing Ideas to Life!",
     "successful": "Successful projects: ",
-    "donations": "Donations Made: "
+    "donations": "Donations Made:",
+    "buttom": "Start Now"
   },
   "LoginForm": {
     "header": "Login to Your Account",
