@@ -76,7 +76,7 @@
       "more-link":"Read More"
     },
     "HowWorks":{
-      "header1":"How",
+      "header1":"How ",
       "header2":"Open",
       "header3":"Handed",
       "header4":"Works",
@@ -122,7 +122,12 @@
       "projects-completed":"The project has been completed 🎉",
       "donate-btn":"Donate Now",
       "login-btn":"Login to fund this project"
+    },
+    "MobileLangSwitch":{
+      "header":"Language"
+    },
+    "AddProject":{
+      "button":"Create Project"
     }
-
   }
   
