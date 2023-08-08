@@ -1,4 +1,5 @@
 {
+
   "Nav": {
     "my-projects": "Projelerim",
     "settings": "Ayarlar",
@@ -16,7 +17,7 @@
     "handed": "Handed",
     "label-search": "Projeleri Arayın",
     "placeholder-search": "Arama yap..."
-  },
+
   "WelcomeBanner": {
     "header1": "Güçlendirici",
     "header2": "Hayaller",
