@@ -1,8 +1,8 @@
 import React from "react";
-import NewsLetterCard from "./NewsLetterCard";
+import AboutSection from "./AboutUs";
 import { NextIntlProvider } from "next-intl";
 
-describe("<NewsLetterCard />", () => {
+describe("<AboutSection />", () => {
   const locale = "en";
   const messages = require(`../../../messages/${locale}.json`);
 
@@ -10,7 +10,7 @@ describe("<NewsLetterCard />", () => {
     // see: https://on.cypress.io/mounting-react
     cy.mount(
       <NextIntlProvider locale={locale} messages={messages}>
-        <NewsLetterCard />,
+        <AboutSection />
       </NextIntlProvider>
     );
   });
