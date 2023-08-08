@@ -65,7 +65,22 @@
     "header":"Bir miktar girin:",
     "charityText": "%2 Hayır kurumlarına bağışlamak ister misiniz?",
     "payNowBtn":"Hemen Öde",
-    "successMessage":"Bağış ödemeniz başarılı şekilde alındı!"
+    "successMessage":"Bağış ödemeniz başarılı şekilde alındı!",
+    "addPaymentMethodBtn":"Ödeme yöntemi ekleyin",
+    "notAddedPaymentMethod":" Henüz bir ödeme yöntemi eklemediniz mi? Şimdi eklemek için aşağıdaki düğmeye tıklayın👇",
+    "donation-amount-msg": "Bağış miktarı 1 Doların altında olamaz!",
+    "donation-amount-two-msg": "Bağış miktarı bir sayı olmalıdır!",
+    "donation-required-msg": "Bağış miktarı gerekli!"   
+  },
+  "PaymentMethodForm":{
+    "header": "Bağış Detayları",
+    "cardNumber": "Kart Numarası",
+    "expiryDate": "Son Kullanma Tarihi",
+    "cvc": "CVC",
+    "holderName": "Kart Sahibinin Adı",
+    "alert-text": "Lütfen tüm alanları doldurun",
+    "confirm-btn": "Bağışınızı Onaylayın",
+    "success-msg":"Bağış yöntemi başarıyla eklendi!"
   },
   "AboutUs": {
     "header":"HAKKIMIZDA",
@@ -123,5 +138,4 @@
     "donate-btn":"Şimdi bağış yap",
     "login-btn":"Bağış yapmak için giriş yapın"
   }
-
 }
