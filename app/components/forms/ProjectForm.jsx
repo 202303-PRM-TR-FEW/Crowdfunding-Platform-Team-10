@@ -11,7 +11,6 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import { useRouter } from "next-intl/client";
 
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -29,21 +28,28 @@ import InfoIcon from "@mui/icons-material/Info";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
-
-import { collection, onSnapshot, query,addDoc ,doc} from "firebase/firestore";
-
-
-import { useEffect, useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { useState } from "react";
 import { db } from "@/config/firebase";
 
 import LoaderStyle from "../helper/LoaderStyle";
+import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
-
+import { useTranslations } from "next-intl";
+//Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
 defaultDayjs.extend(isBetweenPlugin);
 defaultDayjs.extend(utc);
 const today = dayjs();
+//Fixes Date Picker Errors//
+
+////// These need to be where the new project form button is //////
+// const [openProjectForm, setOpenProjectForm] = useState(false);
+// const handleNewProject = () => {
+//   openProjectForm === false ? setOpenProjectForm(true) : setOpenProjectForm(false);
+// };
+// <ProjectForm openProjectForm={openProjectForm} setOpenProjectForm={setOpenProjectForm} />
 
 const schema = yup
   .object({
@@ -63,21 +69,9 @@ const schema = yup
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
-  const [usersInfo, setUsersInfo] = useState(null);
+  const { usersInfo } = useAuth();
+  const t = useTranslations("ProjectsForm");
 
-  useEffect(() => {
-    const q = query(collection(db, "users"));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let usersArr = [];
-      QuerySnapshot.forEach((doc) => {
-        usersArr.push({ ...doc.data(), id: doc.id });
-      });
-      console.log("im users UseEffect");
-      setUsersInfo(usersArr);
-    });
-    return () => unsubscribe();
-  }, []);
-  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -106,7 +100,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       await addProjectToFirestore(data, user, imgUrl);
       setSuccess(true);
       setLoadingUpload(false);
-      toast.success("Created Project Succesfully !");
+      toast.success(`${t("success-msg")}`);
       reset();
       setTimeout(() => {
         setSuccess(false);
@@ -123,7 +117,11 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       if (userCurrent) {
         resolve(userCurrent);
       } else {
-        reject(new Error(`User with ID ${userId} not found.`));
+        reject(
+          new Error(
+            `${t("user-ıd-part-one")} ${userId} ${t("user-ıd-part-two")}`
+          )
+        );
       }
     });
   };
@@ -156,8 +154,6 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     };
 
     await addDoc(collection(db, "projects"), projectData);
-    router.push("/profile");
-
     setOpenProjectForm(false);
   };
 
@@ -176,12 +172,10 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
             <IconButton onClick={handleClose} aria-label="back">
               <ArrowBackIosNewIcon />
             </IconButton>
-            <h1 className="header-2 mt-3 mb-10">Kick-off your project</h1>
+            <h1 className="header-2 mt-3 mb-10">{t("kick-off")}</h1>
           </div>
 
-          {success && (
-            <Alert severity="success">Created Project Succesfully ! </Alert>
-          )}
+          {success && <Alert severity="success">{t("alert-success")} </Alert>}
 
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
             <div className="grid lg:grid-cols-2 pb-6 mb-6 border-b border-black">
@@ -189,7 +183,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                 <TextField
                   id="projectName"
                   name="projectName"
-                  label="Name of your project"
+                  label={t("name-pro")}
                   variant="standard"
                   {...register("projectName")}
                 />
@@ -204,7 +198,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                 <TextField
                   id="goal"
                   name="goal"
-                  label="Add your goal"
+                  label={t("goal-pro")}
                   variant="standard"
                   {...register("goal")}
                 />
@@ -228,7 +222,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                         onChange={(newValue) => {
                           onChange(newValue?.utc(true) || null);
                         }}
-                        label="Starting Date"
+                        label={t("date-pro")}
                         timezone="system"
                         format="DD/MM/YYYY"
                         closeOnSelect={true}
@@ -253,7 +247,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                         onChange={(newValue) => {
                           onChange(newValue?.utc(true) || null);
                         }}
-                        label="Ending Date"
+                        label={t("date-two-pro")}
                         timezone="system"
                         format="DD/MM/YYYY"
                         closeOnSelect={true}
@@ -273,7 +267,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                 <TextField
                   id="about"
                   name="about"
-                  label="About your project"
+                  label={t("about-pro")}
                   variant="standard"
                   {...register("about")}
                 />
@@ -290,7 +284,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                   render={({ field: { onChange } }) => (
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-label">
-                        Category
+                        {t("category")}
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
@@ -299,10 +293,18 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                         onChange={onChange}
                         defaultValue=""
                       >
-                        <MenuItem value="animals">Animals</MenuItem>
-                        <MenuItem value="education">Education</MenuItem>
-                        <MenuItem value="culture">Culture</MenuItem>
-                        <MenuItem value="children">Children</MenuItem>
+                        <MenuItem value="animals">
+                          {t("category-animals")}
+                        </MenuItem>
+                        <MenuItem value="education">
+                          {t("category-education")}
+                        </MenuItem>
+                        <MenuItem value="culture">
+                          {t("category-culture")}
+                        </MenuItem>
+                        <MenuItem value="children">
+                          {t("category-children")}
+                        </MenuItem>
                       </Select>
                     </FormControl>
                   )}
@@ -348,7 +350,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
               className="btn-primary flex flex-row items-center justify-center"
               type="submit"
             >
-              Upload Project
+              {t("upload-project")}
               {loadingUpload && (
                 <div
                   style={{
