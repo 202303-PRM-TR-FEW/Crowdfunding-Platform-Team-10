@@ -15,7 +15,9 @@
 ::-webkit-scrollbar-thumb {
   background-color: #00c1a2;
 }
-
+co {
+  color: #00c1a155;
+}
 * {
   scrollbar-color: #00c1a2;
 }
@@ -47,7 +49,7 @@ input[type="file"] {
   @apply opacity-90 hover:opacity-100 hover:scale-[1.05] hover:rotate-1  transition-all duration-300 ease-in-out;
 }
 .header-1 {
-  @apply text-4xl md:text-5xl lg:text-6xl  font-bold !leading-[120%];
+  @apply text-4xl md:text-5xl lg:text-[3.20rem]  font-bold !leading-[120%];
 }
 .header-2 {
   @apply text-3xl md:text-4xl lg:text-5xl  font-bold;
@@ -75,6 +77,14 @@ input[type="file"] {
   @apply bg-lightGreen hover:bg-[#f0bd07] text-white
   text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
+.btn-primary-lg {
+  @apply bg-lightGreen hover:bg-[#f0bd07] text-white
+   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-16;
+}
+.btn-transparent-lg {
+  @apply hover:bg-lightGreen bg-[#f0bd07] hover:text-[#9a937a] text-[#fff]
+  text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-16;
+}
 .btn-red {
   @apply bg-red-500 hover:bg-[#f0bd07] text-white
   text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
@@ -88,7 +98,7 @@ input[type="file"] {
   text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
 .btn-transparent {
-  @apply color-green hover:bg-[#00c1a1a9] hover:text-white
+  @apply text-[#00c1a2] hover:bg-[#00c1a1a9] hover:text-white
   text-base rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-3;
 }
 .btn-yellow {
