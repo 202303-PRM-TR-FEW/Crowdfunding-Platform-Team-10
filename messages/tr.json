@@ -4,18 +4,18 @@
     "subHeader": "3.500'den fazla proje ve amaçları destekledik. Bugün kaydolun ve fikrinizi hayata geçirin veya diğer harika projelere destek olun.",
     "button": "Şimdi Başlayın",
     "successful": "Başarılı Projeler: ",
-    "donations":"Yapılan Yardımlar: "
+    "donations": "Yapılan Yardımlar: "
   },
-  "LoginForm":{
+  "LoginForm": {
     "header": "Hesabınıza Giriş Yapın",
     "subHeader": "Google ile giriş yapın",
-    "or":"Veya",
+    "or": "Veya",
     "loginButton": "Giriş Yap",
     "emailInput": "Email",
     "passwordInput": "Şifre",
     "sideHeader": "Burada Yeni Misiniz ?",
     "sideParagraph": "Üye olun ve başkalarına yardım edin veya kendi amaçlarınıza yönelik projeler oluşturun!",
-    "signupButton":"Üye Ol"
+    "signupButton": "Üye Ol"
   },
   "SignupForm": {
     "header": "Üye Olun",
@@ -29,16 +29,16 @@
     "sideHeader": "Zaten Bir Hesabınız Var Mı ?",
     "loginButton": "Giriş Yapın"
   },
-  "EditUser":{
-    "header":"Kişisel Detaylar:",
-    "sub-header":"Lütfen kişisel bilgilerinizi tamamlayın",
-    "country":"Ülke",
-    "btn-update":"Güncelle",
+  "EditUser": {
+    "header": "Kişisel Detaylar:",
+    "sub-header": "Lütfen kişisel bilgilerinizi tamamlayın",
+    "country": "Ülke",
+    "btn-update": "Güncelle",
     "label-name": "Tam adınız",
-    "bio":"Bio",
-    "user-picture":"Kullanıcı resmi"
+    "bio": "Bio",
+    "user-picture": "Kullanıcı resmi"
   },
-  "ProjectsForm":{
+  "ProjectsForm": {
     "success-msg": "Proje başarıyla oluşturuldu!",
     "user-ıd-part-one": "Bu",
     "user-ıd-part-two": "ID'ye sahip bir kullanıcı bulunamadı.",
@@ -56,23 +56,23 @@
     "category-children": "Çocuklar",
     "upload-project": "Projenizi yükleyin"
   },
-  "UserSettingForms":{
-  "my-pro": "Projelerim",
-  "settings": "Ayarlar",
-  "logout": "Çıkış yap"
-},
+  "UserSettingForms": {
+    "my-pro": "Projelerim",
+    "settings": "Ayarlar",
+    "logout": "Çıkış yap"
+  },
   "DonationForm": {
-    "header":"Bir miktar girin:",
+    "header": "Bir miktar girin:",
     "charityText": "%2 Hayır kurumlarına bağışlamak ister misiniz?",
-    "payNowBtn":"Hemen Öde",
-    "successMessage":"Bağış ödemeniz başarılı şekilde alındı!",
-    "addPaymentMethodBtn":"Ödeme yöntemi ekleyin",
-    "notAddedPaymentMethod":" Henüz bir ödeme yöntemi eklemediniz mi? Şimdi eklemek için aşağıdaki düğmeye tıklayın👇",
+    "payNowBtn": "Hemen Öde",
+    "successMessage": "Bağış ödemeniz başarılı şekilde alındı!",
+    "addPaymentMethodBtn": "Ödeme yöntemi ekleyin",
+    "notAddedPaymentMethod": " Henüz bir ödeme yöntemi eklemediniz mi? Şimdi eklemek için aşağıdaki düğmeye tıklayın👇",
     "donation-amount-msg": "Bağış miktarı 1 Doların altında olamaz!",
     "donation-amount-two-msg": "Bağış miktarı bir sayı olmalıdır!",
-    "donation-required-msg": "Bağış miktarı gerekli!"   
+    "donation-required-msg": "Bağış miktarı gerekli!"
   },
-  "PaymentMethodForm":{
+  "PaymentMethodForm": {
     "header": "Bağış Detayları",
     "cardNumber": "Kart Numarası",
     "expiryDate": "Son Kullanma Tarihi",
@@ -80,62 +80,152 @@
     "holderName": "Kart Sahibinin Adı",
     "alert-text": "Lütfen tüm alanları doldurun",
     "confirm-btn": "Bağışınızı Onaylayın",
-    "success-msg":"Bağış yöntemi başarıyla eklendi!"
+    "success-msg": "Bağış yöntemi başarıyla eklendi!"
   },
   "AboutUs": {
-    "header":"HAKKIMIZDA",
-    "white-part-header":"En büyük tutkumuz",
-    "white-part-two-header":"insanlara",
-    "yellow-part-header":"destek olabilmek",
-    "paragraph":"İşe başlar başlamaz her konuda anında yardımcı kaynaklar edinin, güvenli para transferi çözümlerini kolayca uygulayın, günlük verimliliğinizi artırın, diğer uygulama kullanıcılarıyla bağlantı kurun ve kendi Fronter ağınızı oluşturun ve sadece birkaç dokunuşla çok daha fazlasını yapın.", 
-    "more-link":"Daha fazlasını okuyun"
+    "header": "HAKKIMIZDA",
+    "white-part-header": "En büyük tutkumuz",
+    "white-part-two-header": "insanlara",
+    "yellow-part-header": "destek olabilmek",
+    "paragraph": "İşe başlar başlamaz her konuda anında yardımcı kaynaklar edinin, güvenli para transferi çözümlerini kolayca uygulayın, günlük verimliliğinizi artırın, diğer uygulama kullanıcılarıyla bağlantı kurun ve kendi Fronter ağınızı oluşturun ve sadece birkaç dokunuşla çok daha fazlasını yapın.",
+    "more-link": "Daha fazlasını okuyun"
   },
-  "HowWorks":{
-    "header2":"Open",
-    "header3":"Handed",
-    "header1":"Nasıl ", 
-    "header4":"Çalışır?",
-    "sub-header":"Sadece birkaç dakikanızı ayırarak bağış toplayabilirsiniz",
-    "sub-header-one":"Basit adımlarla başlayın",
-    "paragraph-one":"Kendinizi, planınızı ve mekanın nerede olduğunu tanıtın",
-    "sub-header-two":"Kampanyanızla ilgili bilgi verin",
-    "paragraph-two":"Yol boyunca, size yardımcı olacak tavsiyelerle yanınızda olacağız",
-    "sub-header-three":"Daha fazla kişiyle paylaşın",
-    "paragraph-three":"Size ve kampanyanıza destek olmak istecek pek çok insan olacak"
+  "HowWorks": {
+    "header2": "Open",
+    "header3": "Handed",
+    "header1": "Nasıl ",
+    "header4": "Çalışır?",
+    "sub-header": "Sadece birkaç dakikanızı ayırarak bağış toplayabilirsiniz",
+    "sub-header-one": "Basit adımlarla başlayın",
+    "paragraph-one": "Kendinizi, planınızı ve mekanın nerede olduğunu tanıtın",
+    "sub-header-two": "Kampanyanızla ilgili bilgi verin",
+    "paragraph-two": "Yol boyunca, size yardımcı olacak tavsiyelerle yanınızda olacağız",
+    "sub-header-three": "Daha fazla kişiyle paylaşın",
+    "paragraph-three": "Size ve kampanyanıza destek olmak istecek pek çok insan olacak"
   },
-  "StartNow":{
-    "header":"Hemen Başlayın",
-    "paragraph":"Şimdi başlayarak fikirlerinizi hemen hayata geçirin! Bir proje oluşturun ve hayalinizdeki girişim için fon toplayın ya da tutkularınızla örtüşen projelere bağış yaparak fark yaratın. Değişimin öncülüğünü yapan topluluğumuza bugün katılın!",
+  "StartNow": {
+    "header": "Hemen Başlayın",
+    "paragraph": "Şimdi başlayarak fikirlerinizi hemen hayata geçirin! Bir proje oluşturun ve hayalinizdeki girişim için fon toplayın ya da tutkularınızla örtüşen projelere bağış yaparak fark yaratın. Değişimin öncülüğünü yapan topluluğumuza bugün katılın!",
     "btn-one": "Hesap oluşturun",
-    "btn-two":"Projelere göz atın"
+    "btn-two": "Projelere göz atın"
   },
-  "NewsLetterCard":{
-    "header1":"Şimdi abone olarak değişimin ön saflarında yer alın!",
-    "paragraph":"Ücretsiz bültenimize abone olun, her ay en seçkin konular hakkında özetleri alın. Bilgilenin, ilham alın ve dünyayı şekillendirmeye adanmış tutkulu bireylerden oluşan topluluğumuza katılarak fark yaratın!",
-    "header2":"Haber bültenimize abone olun",
-    "email-input-area":"Email Adresiniz",
-    "btn":"Abone olun",
-    "note-to-user":"Size istenmeyen e-postalar göndermeyeceğiz 🤞🏼"
+  "NewsLetterCard": {
+    "header1": "Şimdi abone olarak değişimin ön saflarında yer alın!",
+    "paragraph": "Ücretsiz bültenimize abone olun, her ay en seçkin konular hakkında özetleri alın. Bilgilenin, ilham alın ve dünyayı şekillendirmeye adanmış tutkulu bireylerden oluşan topluluğumuza katılarak fark yaratın!",
+    "header2": "Haber bültenimize abone olun",
+    "email-input-area": "Email Adresiniz",
+    "btn": "Abone olun",
+    "note-to-user": "Size istenmeyen e-postalar göndermeyeceğiz 🤞🏼",
+    "email": "E-posta adresinizi giriniz",
+    "valid": "Geçerli bir e-posta yazınız",
+    "message": "OpenHanded Haber Bültenine abone oldunuz !"
   },
-  "SuccessfulProjects":{
-    "header-part-one":"En Güncel",
-    "header-part-two":"Başarı Hikayelerimiz",
-    "sub-header":"Başarılı olan en güncel projelerimize göz atın.",
-    "no-projects-text":"Şu an için herhangi bir başarılı proje bulunmamaktadır."
+  "SuccessfulProjects": {
+    "header-part-one": "En Güncel",
+    "header-part-two": "Başarı Hikayelerimiz",
+    "sub-header": "Başarılı olan en güncel projelerimize göz atın.",
+    "no-projects-text": "Şu an için herhangi bir başarılı proje bulunmamaktadır."
   },
-  "SearchList":{
+  "SearchList": {
     "no-matching-result": "Eşleşen sonuç bulunamadı"
   },
-  "Comments":{
-    "btn":"Referans ekleyin",
-    "testimonial-input-area":"Referansınızı yazın...",
-    "btn-2":"Kapat",
-    "btn-3":"Gönder",
-    "header":"Referanslar"
+  "Comments": {
+    "btn": "Referans ekleyin",
+    "testimonial-input-area": "Referansınızı yazın...",
+    "btn-2": "Kapat",
+    "btn-3": "Gönder",
+    "header": "Referanslar"
   },
-  "Projects":{
-    "projects-completed":"Proje başarılı şekilde tamamlandı 🎉",
-    "donate-btn":"Şimdi bağış yap",
-    "login-btn":"Bağış yapmak için giriş yapın"
+  "Projects": {
+    "projects-completed": "Proje başarılı şekilde tamamlandı 🎉",
+    "donate-btn": "Şimdi bağış yap",
+    "login-btn": "Bağış yapmak için giriş yapın"
+  },
+  "About": {
+    "green-header": "Biz Kimiz",
+    "header": "İhtiyacı olan herkesi desteklemek ve elimizden geldiğince",
+    "implication": "yardım etmek için buradayız",
+    "text": "OpenHanded, topluluk destekli bir bağış toplama platformudur. Yardımın güç kattığını düşünüyoruz ve yapılan yardımları daha güvenli, kolay hale getirmekte kararlıyız. Burada amacımız, organizasyonların temel eğitim, topluluk zenginleştirme, bilimsel araştırma veya hayır amaçlı bağış misyonlarına odaklanmak için gerekli maddi desteğe aracı olmaktır. Ekiplerimizin tüm benzersiz sesleri ve etnik kökenleri ile dünyamızın çeşitliliğini temsil edecek şekilde desteklemesi gerektiğine inanıyoruz."
+  },
+  "GetStarted": {
+    "header": "Aramıza katılmaya ne dersiniz ?",
+    "text": "3.500'den fazla proje ve amaçları destekledik. Bugün kaydolun ve fikrinizi hayata geçirin veya diğer harika projelere destek olun.",
+    "button": "Şimdi Başlayın"
+  },
+  "Team": {
+    "green-header": "Ekibimiz",
+    "work": "Web Geliştirici ve Tasarımcı",
+    "message": "İletişime geçmek isterseniz, biz buradayız !"
+  },
+  "Mission": {
+    "green-header": "Misyonumuz",
+    "header-left": "Yaşam koşullarını herkes için iyi hale getirmek",
+    "header-right": "Yardıma ihtiyacı olanların sesini duyurabilmek",
+    "text-left": "Misyonumuz, insanların kendileri için yardım ve destek istemelerini güvenli ve kolay hale getirerek insanların birbirlerine yardım etmelerine yardımcı olmaktır. Herkes dahil edileceğini ve eşit muamele göreceğini bilerek tüm benliğini işe getirme yetkisine sahip hissettiğinde en güçlüyüz. ",
+    "text-right": "Bağımsızlık, herkesin istediği yaşam için temel olan bir bileşendir ve ihtiyacı olan insanlara ses olmak, onlara bunu deneyimleme şansı vermek asıl gayemiz. Tüm projeler aslında bağımsızlığı desteklemek içindir."
+  },
+  "Profile": {
+    "header": "Projelerim",
+    "message": "Bu kategoride proje bulunmamaktadır."
+  },
+  "Thanks": {
+    "header": "Teşekkürler",
+    "sub-header": "Başarılı bir şekilde harika bir bağış yaptınız. Katıldığınız için teşekkürler. Diğer üyelerimizin de bağış yapmasını beklerken göz atabilirsiniz, ",
+    "others": "diğer projeler!",
+    "button": "Ana Sayfa"
+  },
+  "Cards": {
+    "don-header": "Yapılan bağışlar",
+    "pow-header": "Haftanın Projesi",
+    "trans-header": "Yapılan İşlemler",
+    "message": "Henüz bağış yapılmadı",
+    "stats": "İstatistikler",
+    "button-sel": "Proje seç",
+    "button-all": "Tüm projeler",
+    "now": "Şimdi",
+    "ago": "önce",
+    "min": "dakika",
+    "mins": "dakika",
+    "hour": "saat",
+    "hours": "saat",
+    "day": "gün",
+    "days": "gün"
+  },
+  "Helper": {
+    "add": "Proje Oluştur",
+    "cncl": "İptal",
+    "confirm": "Onayla",
+    "sorry": "Üzgünüm, sayfa bulunamadı",
+    "button": "Ana Sayfa",
+    "raised": "Toplanan",
+    "goal": "Hedef",
+    "organize": "tarafından organize ediyor"
+  },
+  "Footer": {
+    "text": "Fikirlerinizi hemen hayata geçirin! İdeal çabanız adına para toplamak için bir proje oluşturun veya bir fark yaratmak istiyorsanız ilginizi çeken amaçlara bağış yapın.",
+    "more": "Daha fazla...",
+    "team": "Ekibimiz",
+    "link": "Linkler",
+    "home": "Ana Sayfa",
+    "projects": "Projeler",
+    "join": "Üye Olun",
+    "login": "Giriş Yap",
+    "prof": "Profil"
+  },
+  "LangSwitcher": {
+    "lang": "Dil"
+  },
+  "NoProjects": {
+    "text": "Aklınızda zaten bir proje varsa, onu da hayata geçirelim ve hediye olarak birilerini mutlu edebilir, yüzünüzü gülümsetebiliriz!",
+    "new": "Proje Oluştur",
+    "message": "Henüz bir projeniz",
+    "colored": "bulunmamaktadır",
+    "donation": "Bağış Yap"
+  },
+  "SuccessBadge": {
+    "left": "gün kaldı",
+    "sccs": "Tamamlandı",
+    "clsd": "Kapatıldı",
+    "actv": "Aktif"
   }
 }

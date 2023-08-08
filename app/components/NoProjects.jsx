@@ -10,10 +10,11 @@ import P1 from "../../public/assets/images/P_P1.png";
 import P2 from "../../public/assets/images/P_P2.png";
 import P3 from "../../public/assets/images/P_P3.png";
 import P4 from "../../public/assets/images/P_P4.png";
+import { useTranslations } from "next-intl";
 
 const AddProjectButton = ({ user }) => {
   const [openProjectForm, setOpenProjectForm] = useState(false);
-
+  const t = useTranslations("NoProjects")
   const handleNewProject = () => {
     setOpenProjectForm(!openProjectForm);
   };
@@ -21,7 +22,7 @@ const AddProjectButton = ({ user }) => {
   return (
     <>
       <button onClick={handleNewProject} className="btn-primary">
-        New Project
+      {t("new")}
       </button>
       <ProjectForm
         authUser={user}
@@ -33,6 +34,7 @@ const AddProjectButton = ({ user }) => {
 };
 
 export const NoProjects = () => {
+  const t = useTranslations("NoProjects")
   const { user, loading } = useAuth();
   if (loading) {
     return <LoaderStyle />;
@@ -65,18 +67,14 @@ export const NoProjects = () => {
           </div>
           <div className="pt-10 flex flex-col text-center justify-items-center col-span-1 w-4/5 group/edit ">
             <p className="header-1 text-center">
-              You do not have{" "}
-              <span className="color-yellow">a project yet</span>{" "}
+            {t("message")}{" "}
+              <span className="color-yellow">{t("colored")}</span>{" "}
             </p>
-            <p className="sub-header pt-10 mx-auto justify-center text-justify">
-              If there is already a project in your mind, let us realize it as
-              well since it would give someone a lift and may put a smile on
-              your face as a gift!
-            </p>
+            <p className="sub-header pt-10 mx-auto justify-center text-justify">{t("text")}</p>
             <div className="flex lg:flex-row flex-col w-full items-center justify-center gap-5 mt-10 ">
               <AddProjectButton user={user} />
               <Link href="/projects" className="btn-yellow">
-                Make A Donation
+              {t("donation")}
               </Link>
             </div>
           </div>

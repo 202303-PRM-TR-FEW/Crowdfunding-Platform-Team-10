@@ -6,12 +6,15 @@ import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 
+
 import Link from "next/link";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
+import { useTranslations } from "next-intl";
 
 const Home = () => {
   const [projectOfWeek, setProjectOFWeek] = useState("");
+  const t = useTranslations("Profile")
   const [projects, setProjects] = useState(true);
   useEffect(() => {
     const q = query(collection(db, "projects"));
@@ -67,7 +70,8 @@ const Home = () => {
         );
       })
     ) : (
-      <Box className="header-4 px-10 py-28">No Projects In This Category</Box>
+      <Box className="header-4 px-10 py-28">
+        {t("header")}</Box>
     )
   ) : (
     <Box className="scale-[0.6]">

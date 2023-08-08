@@ -20,6 +20,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 
 import { Avatar, Divider } from "@mui/material";
+import { useTranslations } from "next-intl";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
 
@@ -30,6 +31,7 @@ export default function TransactionHistory({ usersProjects }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [donations, setDonations] = useState([]);
+  const t = useTranslations("Cards")
 
   useEffect(() => {
     const q = query(collection(db, "donations"));
@@ -76,7 +78,7 @@ export default function TransactionHistory({ usersProjects }) {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <h3 className="header-4 p-2">Transaction History</h3>
+        <h3 className="header-4 p-2">{t("trans-header")}</h3>
       </AccordionSummary>
       <AccordionDetails>
         <div>
@@ -90,7 +92,7 @@ export default function TransactionHistory({ usersProjects }) {
                 onClick={handleClick}
                 endIcon={<KeyboardArrowDownIcon />}
               >
-                Select Project
+                {t("button-sel")}
               </Button>
               <Menu
                 id="basic-menu"
@@ -102,7 +104,7 @@ export default function TransactionHistory({ usersProjects }) {
                 }}
               >
                 <MenuItem onClick={() => handleProjectSelect("")}>
-                  All Projects
+                {t("button-all")}
                 </MenuItem>
                 <Divider />
                 {usersProjects.map((project) => (
@@ -148,7 +150,7 @@ export default function TransactionHistory({ usersProjects }) {
                   );
                 })
               ) : (
-                <div className="text-center">No Donations Found</div>
+                <div className="text-center">{t("message")}</div>
               )}
             </List>
           </div>

@@ -12,12 +12,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-
+import { useTranslations } from "next-intl";
 import { Avatar } from "@mui/material";
 
 export default function DonationsHisory({ projectsDonations }) {
   const { loading } = useAuth();
-
+  const t = useTranslations("Cards")
   function formatTimestamp(timestamp) {
     const now = new Date();
     const date = new Date(timestamp.seconds * 1000);
@@ -28,13 +28,13 @@ export default function DonationsHisory({ projectsDonations }) {
     const diffDays = Math.floor(diffHours / 24);
 
     if (diffSeconds < 60) {
-      return "Now";
+      return `${t("now")}`;
     } else if (diffMinutes < 60) {
-      return `${diffMinutes} ${diffMinutes === 1 ? "minute" : "minutes"} ago`;
+      return `${diffMinutes} ${diffMinutes === 1 ? `${t("min")}`: `${t("mins")}`} ${t("ago")}`;
     } else if (diffHours < 24) {
-      return `${diffHours} ${diffHours === 1 ? "hour" : "hours"} ago`;
+      return `${diffHours} ${diffHours === 1 ? `${t("hour")}` : `${t("hours")}`} ${t("ago")}`;
     } else if (diffDays < 3) {
-      return `${diffDays} ${diffDays === 1 ? "day" : "days"} ago`;
+      return `${diffDays} ${diffDays === 1 ? `${t("day")}` : `${t("days")}`} ${t("ago")}`;
     } else {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -63,7 +63,7 @@ export default function DonationsHisory({ projectsDonations }) {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <h3 className="header-4 p-2">Donations History</h3>
+        <h3 className="header-4 p-2">{t("don-header")}</h3>
       </AccordionSummary>
       <AccordionDetails>
         <div>
@@ -115,7 +115,7 @@ export default function DonationsHisory({ projectsDonations }) {
                     textAlign: "center",
                   }}
                 >
-                  No Donations yet
+                  {t("message")}
                 </Typography>
               )}
             </List>

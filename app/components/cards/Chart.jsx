@@ -12,6 +12,7 @@ import {
   LinePlot,
 } from "@mui/x-charts";
 import { Box } from "@mui/system";
+import { useTranslations } from "next-intl";
 
 function Chart({ projectsDonations }) {
   const countryDonations = collectDonationsByCountry(projectsDonations);
@@ -21,6 +22,7 @@ function Chart({ projectsDonations }) {
   const [seriesData, setSeriesData] = React.useState(
     Object.values(countryDonations) ?? []
   );
+  const t = useTranslations("Cards")
 
   const series = [
     {
@@ -52,7 +54,7 @@ function Chart({ projectsDonations }) {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <h3 className="header-4 p-2">Statistics</h3>
+        <h3 className="header-4 p-2">{t("stats")}</h3>
       </AccordionSummary>
       <AccordionDetails>
         <>

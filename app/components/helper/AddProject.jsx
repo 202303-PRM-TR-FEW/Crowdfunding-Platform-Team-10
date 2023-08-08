@@ -4,14 +4,15 @@ import { Box, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useAuth } from "@/context/AuthContext";
 import ProjectForm from "../forms/ProjectForm";
+import { useTranslations } from "next-intl"
 
 export default function AddProject() {
   const { user } = useAuth();
   const [openProjectForm, setOpenProjectForm] = useState(false);
-
   const handleNewProject = () => {
     setOpenProjectForm(!openProjectForm);
   };
+  const t = useTranslations ("Helper")
   return (
     <div>
       {user ? (
@@ -33,7 +34,7 @@ export default function AddProject() {
                 onClick={handleNewProject}
               >
                 <AddIcon sx={{ mr: 1, color: "white" }} />
-                Add Project
+                {t("add")}
               </Fab>
             </div>
           </Box>

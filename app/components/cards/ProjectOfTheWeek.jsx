@@ -10,11 +10,13 @@ import Target from "../helper/Target";
 import ViewCount from "../helper/ViewCount";
 import CategoryIcon from "../helper/CategoryIcon";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 function ProjectOfTheWeek({ projectOfWeek }) {
+  const t = useTranslations("Cards")
   return (
     <>
-      <h1 className={styles.header}>Project of the week</h1>
+       <h1 className={styles.header}>{t("pow-header")}</h1>
       <div className={styles.page}>
         <div className={styles.leftSize}>
           <Link key={projectOfWeek.id} href={`/projects/${projectOfWeek.id}`}>

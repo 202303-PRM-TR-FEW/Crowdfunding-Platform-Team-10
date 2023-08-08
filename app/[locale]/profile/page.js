@@ -18,11 +18,14 @@ import LoaderStyle from "@/components/helper/LoaderStyle";
 import { NoProjects } from "@/components/NoProjects";
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
+import { useTranslations } from "next-intl";
 
 const Page = () => {
+
   const { user, loading } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const t = useTranslations("Profile");
   const [currentUser, setCurrentUser] = useState();
   const [projects, setProjects] = useState(true);
   useEffect(() => {
@@ -64,6 +67,7 @@ const Page = () => {
       fetchUserData();
     }
   }, [user]);
+
   const router = useRouter();
   const circleBackgroundStyle = {
     position: "absolute",
@@ -119,7 +123,7 @@ const Page = () => {
         ) : usersProjects.length > 0 ? (
           <>
             <h1 className="header-2 text-center lg:text-start text-lightGreen">
-              My Projects
+            {t("header")}
             </h1>
             <div className="flex flex-col lg:flex-row py-6 md:py-10 gap-8 ">
               <div className="w-full lg:w-7/12">
