@@ -1,4 +1,4 @@
-
+{
   "Nav": {
     "my-projects": "Projelerim",
     "settings": "Ayarlar",
@@ -18,12 +18,11 @@
     "placeholder-search": "Arama yap..."
   },
   "WelcomeBanner": {
-    "header1": "Güçlendirici",
-    "header2": "Hayaller",
-    "header3": "Birlikte",
-    "subHeader1": "3.500'den fazla proje ve amaça destek olduk.",
-    "subHeader2": "Fikirleri Hayata Geçirmekte Bize Katılın!",
-    "buttom": "Hemen Başlayın"
+    "header": "Büyük amaçları desteklemek artık çok kolay",
+    "subHeader": "3.500'den fazla proje ve amaçları destekledik. Bugün kaydolun ve fikrinizi hayata geçirin veya diğer harika projelere destek olun.",
+    "button": "Şimdi Başlayın",
+    "successful": "Başarılı Projeler: ",
+    "donations": "Yapılan Yardımlar: "
   },
   "LoginForm": {
     "header": "Hesabınıza Giriş Yapın",

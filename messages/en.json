@@ -18,14 +18,11 @@
     "placeholder-search": "Search..."
   },
   "WelcomeBanner": {
-    "header1": "Empowering",
-    "header2": "Dreams",
-    "header3": "Together",
-    "subHeader1": "We helped over 3.500 projects and causes.",
-    "subHeader2": "Join Us in Bringing Ideas to Life!",
+    "header": "Supporting great causes made easy",
+    "subHeader": "We helped over 3.500 projects and causes. Sign in today and get your idea kicked off or support others kick off their amazing projects.",
+    "button": "Start Today",
     "successful": "Successful projects: ",
-    "donations": "Donations Made:",
-    "buttom": "Start Now"
+    "donations": "Donations Made: "
   },
   "LoginForm": {
     "header": "Login to Your Account",
