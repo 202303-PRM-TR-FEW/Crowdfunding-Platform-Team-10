@@ -33,11 +33,10 @@ import { FileUpload } from "@mui/icons-material";
 import { collection, onSnapshot, query,addDoc ,doc} from "firebase/firestore";
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "@/config/firebase";
 
 import LoaderStyle from "../helper/LoaderStyle";
-import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
 
 defaultDayjs.extend(customParseFormatPlugin);
@@ -64,7 +63,6 @@ const schema = yup
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
-
   const [usersInfo, setUsersInfo] = useState(null);
 
   useEffect(() => {
