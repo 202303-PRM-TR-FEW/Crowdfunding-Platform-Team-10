@@ -83,6 +83,20 @@
       "btn-3":"Submit",
       "header":"Testimonials"
     },
+    "CommentForm": {
+      "leave-com":"Leave A Comment:",
+      "btn-submit":"Submit",
+      "success-msg":"Succesfuly submited your comment!",
+      "message":"Message",
+      "text":"Text..."
+    },
+    "CommentRows":{
+      "comments":"Comments",
+      "sec-ago": "sec ago",
+      "min ago":"min-ago",
+      "hour ago":"hour-ago",
+      "day ago":"day-ago"
+    },
     "Projects":{
       "projects-completed":"The project has been completed 🎉",
       "donate-btn":"Donate Now",

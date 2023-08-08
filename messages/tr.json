@@ -83,6 +83,20 @@
     "btn-3":"Gönder",
     "header":"Referanslar"
   },
+  "CommentForm": {
+    "leave-com": "Yorum Bırakın:",
+    "btn-submit": "Gönder",
+    "success-msg": "Yorumunuz başarıyla gönderildi!",
+    "message": "Mesajınız",
+    "text": "Mesajınızı yazın..."
+  },
+  "CommentRows":{
+    "comments":"Yorumlar",
+    "sec-ago": "saniye önce",
+    "min-ago": "dakika önce",
+    "hour-ago": "saat önce",
+    "day-ago": "gün önce"
+  },
   "Projects":{
     "projects-completed":"Proje başarılı şekilde tamamlandı 🎉",
     "donate-btn":"Şimdi bağış yap",
