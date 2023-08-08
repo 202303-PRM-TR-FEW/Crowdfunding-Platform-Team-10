@@ -1,4 +1,22 @@
 {
+  "Nav":{
+    "my-projects": "Projelerim",
+    "settings": "Ayarlar",
+    "logout": "Çıkış yapın",
+    "login": "Giriş yapın",
+    "home": "Ana sayfa",
+    "about-us": "Hakkımızda",
+    "all-pro": "Tüm projeler",
+    "my-projects-two": "Projelerim",
+    "add-new-pro": "Yeni proje ekle",
+    "settings-two": "Ayarlar",
+    "logout-two": "Çıkış yapın",
+    "login-two": "Giriş yapın",
+    "open": "Open",
+    "handed": "Handed",
+    "label-search": "Projeleri Arayın",
+    "placeholder-search": "Arama yap..."
+  },
   "WelcomeBanner": {
     "header": "Büyük amaçları desteklemek artık çok kolay",
     "subHeader": "3.500'den fazla proje ve amaçları destekledik. Bugün kaydolun ve fikrinizi hayata geçirin veya diğer harika projelere destek olun.",
