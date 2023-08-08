@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
@@ -14,10 +15,12 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next-intl/client";
 import Link from "next-intl/link";
 import { AccountCircle } from "@mui/icons-material";
+import { useTranslations } from "next-intl";
 
 export default function UserSettingsForm() {
   const { user, logout } = useAuth();
   const router = useRouter();
+  const t = useTranslations("UserSettingForms");
   const handleLogout = () => {
     logout();
     setAnchorEl(null);
@@ -88,7 +91,7 @@ export default function UserSettingsForm() {
             <ListItemIcon>
               <AccountCircle fontSize="small" />
             </ListItemIcon>
-            My Projects
+            {t("my-pro")}
           </MenuItem>
         </Link>
         <Divider />
@@ -97,7 +100,7 @@ export default function UserSettingsForm() {
             <ListItemIcon>
               <Settings fontSize="small" />
             </ListItemIcon>
-            Settings
+            {t("settings")}
           </MenuItem>
         </Link>
 
@@ -105,7 +108,7 @@ export default function UserSettingsForm() {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          {t("logout")}
         </MenuItem>
       </Menu>
     </React.Fragment>

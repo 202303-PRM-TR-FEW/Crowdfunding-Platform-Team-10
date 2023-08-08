@@ -8,8 +8,10 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next-intl/link";
+import { useTranslations } from "next-intl";
 
 const SearchList = ({ searchProjects }) => {
+  const t = useTranslations("SearchList");
   return (
     <div className="absolute w-full lg:w-[350px] rounded bg-white bg-opacity-90 backdrop-filter backdrop-blur-[20px]">
       {searchProjects && searchProjects.length !== 0 ? (
@@ -33,7 +35,7 @@ const SearchList = ({ searchProjects }) => {
         ))
       ) : (
         <ListItem className="z-50 ">
-          <div>No matching results</div>
+          <div>{t("no-matching-result")}</div>
         </ListItem>
       )}
     </div>

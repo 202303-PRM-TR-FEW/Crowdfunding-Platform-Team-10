@@ -5,7 +5,6 @@
     "header3": "Together",
     "subHeader1": "We helped over 3.500 projects and causes.",
     "subHeader2": "Join Us in Bringing Ideas to Life!",
-    "button": "Start Today",
     "successful": "Successful projects: ",
     "donations": "Donations Made: "
   },
@@ -32,11 +31,58 @@
     "sideHeader": "Already Have an Account ?",
     "loginButton": "Login"
   },
+  "EditUser": {
+    "header": "Personal Detail:",
+    "sub-header": "Please complete your personal information",
+    "country": "Country",
+    "btn-update": "Update",
+    "label-name": "Full name",
+    "bio": "Bio",
+    "user-picture": "User Picture"
+  },
+  "ProjectsForm": {
+    "success-msg": "Created Project Succesfully !",
+    "user-ıd-part-one": "User with ID",
+    "user-ıd-part-two": "not found.",
+    "kick-off": "Kick-off your project",
+    "alert-success": "Created Project Succesfully !",
+    "name-pro": "Name of your project",
+    "goal-pro": "Add your goal",
+    "date-pro": "Starting Date",
+    "date-two-pro": "Ending Date",
+    "about-pro": "About your project",
+    "category": "Category",
+    "category-animals": "Animals",
+    "category-education": " Education",
+    "category-culture": "Culture",
+    "category-children": "Children",
+    "upload-project": "Upload Project"
+  },
+  "UserSettingForms": {
+    "my-pro": " My Projects",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
   "DonationForm": {
     "header": "Enter amount:",
     "charityText": "Add 2% for charity ?",
     "payNowBtn": "Pay Now",
-    "successMessage": "Donation Succesfull !"
+    "successMessage": "Donation Succesfull !",
+    "addPaymentMethodBtn": "Add Payment Method",
+    "notAddedPaymentMethod": "Haven't added a payment method yet? Click the button below to add now 👇",
+    "donation-amount-msg": "Donation Amount Can't Be Lower Than 1 Dollar !",
+    "donation-amount-two-msg": "Donation Amount Must Be a Number !",
+    "donation-required-msg": "Donation Amount is Required !"
+  },
+  "PaymentMethodForm": {
+    "header": "Donation Details",
+    "cardNumber": "Card Number",
+    "expiryDate": "Expiry Date",
+    "cvc": "CVC",
+    "holderName": "Holder Name",
+    "alert-text": "Please fill out all the fields.",
+    "confirm-btn": "Confirm your donation",
+    "success-msg": "You have successfully added a donation method!"
   },
   "AboutUs": {
     "header": "ABOUT US",
@@ -47,7 +93,7 @@
     "more-link": "Read More"
   },
   "HowWorks": {
-    "header1": "How",
+    "header1": "How ",
     "header2": "Open",
     "header3": "Handed",
     "header4": "Works",
@@ -64,7 +110,7 @@
     "paragraph": "Start Now and Bring Your Ideas to Life! Create a project and raise funds for your dream venture, or make a difference by donating to projects that align with your passions. Join our community of changemakers today!",
     "btn-one": "Create New Account",
     "btn-two": "Check Projects",
-    "btn-three": "My Projects"
+    "btn-three": "Projelerim"
   },
   "NewsLetterCard": {
     "header1": "Subscribe now and be at the forefront of change!",
@@ -80,6 +126,9 @@
     "sub-header": "Check out our most recent successful cases",
     "no-projects-text": "No successful projects found Yet."
   },
+  "SearchList": {
+    "no-matching-result": "No matching results"
+  },
   "Comments": {
     "btn": "Add testimonials",
     "testimonial-input-area": "Write your testimonial...",
@@ -91,5 +140,11 @@
     "projects-completed": "The project has been completed 🎉",
     "donate-btn": "Donate Now",
     "login-btn": "Login to fund this project"
+  },
+  "MobileLangSwitch": {
+    "header": "Language"
+  },
+  "AddProject": {
+    "button": "Create Project"
   }
 }
