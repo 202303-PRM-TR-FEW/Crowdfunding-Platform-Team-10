@@ -19,7 +19,6 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [usersInfo, setUsersInfo] = useState(null);
   const [projects, setProjects] = useState(true);
 
   const router = useRouter();
@@ -95,18 +94,7 @@ export const AuthContextProvider = ({ children }) => {
     await signOut(auth);
   };
 
-  useEffect(() => {
-    const q = query(collection(db, "users"));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let usersArr = [];
-      QuerySnapshot.forEach((doc) => {
-        usersArr.push({ ...doc.data(), id: doc.id });
-      });
-      console.log("im users UseEffect");
-      setUsersInfo(usersArr);
-    });
-    return () => unsubscribe();
-  }, []);
+
 
   useEffect(() => {
     const q = query(collection(db, "projects"));
@@ -129,7 +117,7 @@ export const AuthContextProvider = ({ children }) => {
         signup,
         logout,
         loading,
-        usersInfo,
+    
         projects,
 
         googleLogIn,

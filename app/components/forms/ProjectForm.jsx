@@ -29,7 +29,10 @@ import InfoIcon from "@mui/icons-material/Info";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
-import { addDoc, collection } from "firebase/firestore";
+
+import { collection, onSnapshot, query,addDoc ,doc} from "firebase/firestore";
+
+
 import { useState } from "react";
 import { db } from "@/config/firebase";
 
@@ -61,7 +64,21 @@ const schema = yup
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
-  const { usersInfo } = useAuth();
+
+  const [usersInfo, setUsersInfo] = useState(null);
+
+  useEffect(() => {
+    const q = query(collection(db, "users"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let usersArr = [];
+      QuerySnapshot.forEach((doc) => {
+        usersArr.push({ ...doc.data(), id: doc.id });
+      });
+      console.log("im users UseEffect");
+      setUsersInfo(usersArr);
+    });
+    return () => unsubscribe();
+  }, []);
   const router = useRouter();
   const {
     register,
