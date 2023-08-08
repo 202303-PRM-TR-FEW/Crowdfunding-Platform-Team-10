@@ -47,6 +47,38 @@
       "sideHeader": "Already Have an Account ?",
       "loginButton": "Login"
     },
+    "EditUser":{
+      "header":"Personal Detail:",
+      "sub-header":"Please complete your personal information",
+      "country":"Country",
+      "btn-update":"Update",
+      "label-name": "Full name",
+      "bio":"Bio",
+      "user-picture":"User Picture"
+    },
+    "ProjectsForm":{
+      "success-msg":"Created Project Succesfully !",
+      "user-ıd-part-one": "User with ID",
+      "user-ıd-part-two":"not found.",
+      "kick-off": "Kick-off your project",
+      "alert-success":"Created Project Succesfully !",
+      "name-pro": "Name of your project",
+      "goal-pro": "Add your goal",
+      "date-pro":"Starting Date",
+      "date-two-pro" : "Ending Date",
+      "about-pro": "About your project",
+      "category":"Category",
+      "category-animals":"Animals",
+      "category-education": " Education",
+      "category-culture": "Culture",
+      "category-children": "Children",
+      "upload-project":"Upload Project"
+    },
+    "UserSettingForms":{
+      "my-pro":" My Projects",
+      "settings":"Settings",
+      "logout":"Logout"
+    },
     "DonationForm": {
       "header":"Enter amount:",
       "charityText": "Add 2% for charity ?",
@@ -93,6 +125,9 @@
       "header-part-two":" Successful Projects ",
       "sub-header":"Check out our most recent successful cases",
       "no-projects-text":"No successful projects found Yet."
+    },
+    "SearchList":{
+      "no-matching-result":"No matching results"
     },
     "Comments":{
       "btn":"Add testimonials",
