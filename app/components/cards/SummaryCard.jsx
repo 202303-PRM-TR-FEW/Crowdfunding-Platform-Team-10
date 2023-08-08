@@ -84,6 +84,7 @@ const SummaryCard = ({
           className="  image-animated"
           src={img}
           alt="project img"
+          sizes="(max-width: 768px) 100vw"
         />
       </div>
 

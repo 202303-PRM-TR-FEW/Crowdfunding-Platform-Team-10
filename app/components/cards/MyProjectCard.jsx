@@ -11,7 +11,7 @@ export default function MyProjectCard({ project }) {
   const styles = {
     header: "header-2 text-lightGreen py-4",
     flex: "flex items-center gap-1",
-    image: "w-full overflow-hidden rounded",
+    image: "w-full  p-4 md:p-0 overflow-hidden rounded",
     rightSide: "w-full flex flex-col gap-4",
     cost: "grid grid-cols-2 pt-2 gap-2",
     avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",
@@ -19,13 +19,14 @@ export default function MyProjectCard({ project }) {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-6 overflow-hidden p-4 md:p-0 rounded-lg">
+      <div className="flex flex-col items-center gap-6 overflow-hidden rounded-lg">
         <div className="overflow-hidden rounded-lg relative w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] md:h-[554px] lg:h-[366px] xl:h-[554px] md:w-full cursor-pointer">
           <Image
             src={project.url}
             alt="Project of the week"
             fill={true}
             style={{ objectFit: "cover" }}
+            sizes="(max-width: 768px) 100vw"
           />
         </div>
 

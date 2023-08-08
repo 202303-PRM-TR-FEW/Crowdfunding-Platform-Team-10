@@ -170,6 +170,7 @@ function Project({ params }) {
                       borderRadius: "12px",
                       overflow: "hidden",
                     }}
+                    sizes="(max-width: 768px) 100vw"
                   />
                 </div>
                 <div className="flex w-full justify-between items-center">
