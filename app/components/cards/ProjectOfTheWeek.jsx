@@ -25,6 +25,7 @@ function ProjectOfTheWeek({ projectOfWeek }) {
                 fill={true}
                 style={{ objectFit: "cover" }}
                 className="  image-animated"
+                sizes="(max-width: 768px) 100vw"
               />
             </div>
           </Link>
