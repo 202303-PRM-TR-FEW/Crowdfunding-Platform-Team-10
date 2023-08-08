@@ -25,7 +25,7 @@ import { db } from "@/config/firebase";
 
 export default function TransactionHistory({ usersProjects }) {
   const [donate, setDonate] = useState([]);
-  const { loading, projects } = useAuth();
+  const { loading } = useAuth();
   const [selectedProject, setSelectedProject] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);

@@ -83,7 +83,22 @@
       "header":"Enter amount:",
       "charityText": "Add 2% for charity ?",
       "payNowBtn":"Pay Now",
-      "successMessage":"Donation Succesfull !"
+      "successMessage":"Donation Succesfull !",
+      "addPaymentMethodBtn":"Add Payment Method",
+      "notAddedPaymentMethod":"Haven't added a payment method yet? Click the button below to add now 👇",
+      "donation-amount-msg":"Donation Amount Can't Be Lower Than 1 Dollar !", 
+      "donation-amount-two-msg":"Donation Amount Must Be a Number !",
+      "donation-required-msg":"Donation Amount is Required !"
+    },
+    "PaymentMethodForm":{
+      "header":"Donation Details",
+      "cardNumber":"Card Number",
+      "expiryDate":"Expiry Date",
+      "cvc":"CVC", 
+      "holderName":"Holder Name",
+      "alert-text":"Please fill out all the fields.",
+      "confirm-btn":"Confirm your donation",
+      "success-msg":"You have successfully added a donation method!"
     },
     "AboutUs": {
       "header":"ABOUT US",
@@ -94,7 +109,7 @@
       "more-link":"Read More"
     },
     "HowWorks":{
-      "header1":"How",
+      "header1":"How ",
       "header2":"Open",
       "header3":"Handed",
       "header4":"Works",
@@ -140,7 +155,12 @@
       "projects-completed":"The project has been completed 🎉",
       "donate-btn":"Donate Now",
       "login-btn":"Login to fund this project"
+    },
+    "MobileLangSwitch":{
+      "header":"Language"
+    },
+    "AddProject":{
+      "button":"Create Project"
     }
-
   }
   

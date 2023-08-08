@@ -1,18 +1,15 @@
 "use client";
 import React from "react";
- 
+
 import Link from "next/link";
- 
+
 import { useTranslations } from "next-intl";
 
- 
 import { Transition } from "@headlessui/react";
-import { useAuth } from "@/context/AuthContext";
 import LoaderStyle from "../helper/LoaderStyle";
 import SuccessfulCard from "../cards/SuccessfulCard";
 
-function SuccessfulProjects() {
-  const { projects } = useAuth();
+function SuccessfulProjects({ projects }) {
   const t = useTranslations("SuccessfulProjects");
 
   if (!projects || typeof projects !== "object") {
@@ -32,16 +29,15 @@ function SuccessfulProjects() {
             {t("header-part-one")}
             <span className="color-green mx-3  ">{t("header-part-two")}</span>
           </h2>
- 
+
           <p className="text-sm color-grey py-2 text-center">
             {t("sub-header")}
- 
           </p>
         </div>
         <div className="container  grid lg:gap-2 gap-10 lg:grid-cols-3 items-start justify-center lg:h-[600px]">
           {latestThreeProjects.length > 0 ? (
             latestThreeProjects.map((pro) => (
-              <Link key={pro.id} href={`/${pro.id}`}>
+              <Link key={pro.id} href={`/projects/${pro.id}`}>
                 <SuccessfulCard
                   project={pro}
                   img={pro.url}

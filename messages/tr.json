@@ -83,7 +83,22 @@
     "header":"Bir miktar girin:",
     "charityText": "%2 Hayır kurumlarına bağışlamak ister misiniz?",
     "payNowBtn":"Hemen Öde",
-    "successMessage":"Bağış ödemeniz başarılı şekilde alındı!"
+    "successMessage":"Bağış ödemeniz başarılı şekilde alındı!",
+    "addPaymentMethodBtn":"Ödeme yöntemi ekleyin",
+    "notAddedPaymentMethod":" Henüz bir ödeme yöntemi eklemediniz mi? Şimdi eklemek için aşağıdaki düğmeye tıklayın👇",
+    "donation-amount-msg": "Bağış miktarı 1 Doların altında olamaz!",
+    "donation-amount-two-msg": "Bağış miktarı bir sayı olmalıdır!",
+    "donation-required-msg": "Bağış miktarı gerekli!"   
+  },
+  "PaymentMethodForm":{
+    "header": "Bağış Detayları",
+    "cardNumber": "Kart Numarası",
+    "expiryDate": "Son Kullanma Tarihi",
+    "cvc": "CVC",
+    "holderName": "Kart Sahibinin Adı",
+    "alert-text": "Lütfen tüm alanları doldurun",
+    "confirm-btn": "Bağışınızı Onaylayın",
+    "success-msg":"Bağış yöntemi başarıyla eklendi!"
   },
   "AboutUs": {
     "header":"HAKKIMIZDA",
@@ -94,10 +109,10 @@
     "more-link":"Daha fazlasını okuyun"
   },
   "HowWorks":{
+    "header1":"", 
     "header2":"Open",
     "header3":"Handed",
-    "header1":"Nasıl ", 
-    "header4":"Çalışır?",
+    "header4":"Nasıl Çalışır?",
     "sub-header":"Sadece birkaç dakikanızı ayırarak bağış toplayabilirsiniz",
     "sub-header-one":"Basit adımlarla başlayın",
     "paragraph-one":"Kendinizi, planınızı ve mekanın nerede olduğunu tanıtın",
@@ -110,14 +125,14 @@
     "header":"Hemen Başlayın",
     "paragraph":"Şimdi başlayarak fikirlerinizi hemen hayata geçirin! Bir proje oluşturun ve hayalinizdeki girişim için fon toplayın ya da tutkularınızla örtüşen projelere bağış yaparak fark yaratın. Değişimin öncülüğünü yapan topluluğumuza bugün katılın!",
     "btn-one": "Hesap oluşturun",
-    "btn-two":"Projelere göz atın"
+    "btn-two":"Projelere Göz Atın"
   },
   "NewsLetterCard":{
     "header1":"Şimdi abone olarak değişimin ön saflarında yer alın!",
     "paragraph":"Ücretsiz bültenimize abone olun, her ay en seçkin konular hakkında özetleri alın. Bilgilenin, ilham alın ve dünyayı şekillendirmeye adanmış tutkulu bireylerden oluşan topluluğumuza katılarak fark yaratın!",
     "header2":"Haber bültenimize abone olun",
     "email-input-area":"Email Adresiniz",
-    "btn":"Abone olun",
+    "btn":"Abone Olun",
     "note-to-user":"Size istenmeyen e-postalar göndermeyeceğiz 🤞🏼"
   },
   "SuccessfulProjects":{
@@ -140,6 +155,11 @@
     "projects-completed":"Proje başarılı şekilde tamamlandı 🎉",
     "donate-btn":"Şimdi bağış yap",
     "login-btn":"Bağış yapmak için giriş yapın"
+  },
+  "MobileLangSwitch":{
+    "header":"Dil"
+  },
+  "AddProject":{
+    "button":"Proje Oluştur"
   }
-
 }

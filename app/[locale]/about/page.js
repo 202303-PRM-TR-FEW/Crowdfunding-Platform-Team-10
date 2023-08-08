@@ -29,9 +29,10 @@ const AboutUs = () => {
             </p>
           </div>
           {/* pt-20 animate-bounce */}
-          <Image
-            src={logo}
+          <img
+            src={logo.src}
             alt="Logo"
+            loading="lazy"
             className="w-[20rem] lg:w-[32rem] pt-20 mx-auto transition ease-in-out hover:scale-[1.2] hover:rotate-[-10deg] duration-700 col-span-1"
           />
         </div>

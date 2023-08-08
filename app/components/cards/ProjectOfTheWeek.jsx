@@ -17,8 +17,10 @@ function ProjectOfTheWeek({ projectOfWeek }) {
       <h1 className={styles.header}>Project of the week</h1>
       <div className={styles.page}>
         <div className={styles.leftSize}>
+
           <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
-            <div className="w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] lg:w-[473px] lg:h-[295px] relative rounded-lg overflow-hidden ">
+            <div className="w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] lg:w-[539px] lg:h-[314px] relative rounded-lg overflow-hidden ">
+
               <Image
                 unoptimized
                 src={projectOfWeek.url}
@@ -85,7 +87,8 @@ const styles = {
   header: "header-2 text-lightGreen px-2 py-4",
   page: `flex lg:flex-row flex-col gap-4 px-2 py-5 items-center justify-start`,
   flex: "flex items-center gap-1",
-  leftSize: " w-full overflow-hidden rounded-lg flex justify-center",
+  leftSize:
+    " w-full overflow-hidden rounded-lg flex justify-center lg:justify-between",
   rightSide: " w-full flex flex-col gap-4",
   cost: "grid grid-cols-2 pt-2 gap-2",
   avatar: "border-[1px] border-basicgray w-10 h-10 bg-[#00c1a23d]",

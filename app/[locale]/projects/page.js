@@ -5,13 +5,27 @@ import { Box } from "@mui/material";
 import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
-import { useAuth } from "@/context/AuthContext";
+
 import Link from "next/link";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "@/config/firebase";
 
 const Home = () => {
-  const { projects } = useAuth();
-  const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
+  const [projects, setProjects] = useState(true);
+  useEffect(() => {
+    const q = query(collection(db, "projects"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let projectsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        projectsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setProjects(projectsArr);
+      console.log("im projects UseEffect");
+    });
+    return () => unsubscribe();
+  }, []);
+  const [data, setData] = useState(projects ?? []);
 
   useEffect(() => {
     setData(projects);
@@ -37,7 +51,7 @@ const Home = () => {
     data.length > 0 ? (
       data.map((card) => {
         return (
-          <Link href={`/${card.id} `} key={card.id}>
+          <Link href={`/projects/${card.id} `} key={card.id}>
             <SummaryCard
               key={card.id}
               img={card.url}
@@ -53,7 +67,7 @@ const Home = () => {
         );
       })
     ) : (
-      <Box className="header-4 px-10">No Projects In This Category</Box>
+      <Box className="header-4 px-10 py-28">No Projects In This Category</Box>
     )
   ) : (
     <Box className="scale-[0.6]">
