@@ -112,6 +112,10 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
     setOpenDonationForm(false);
   };
 
+  const handleAddPaymentMethod = () => {
+    router.push("/payment");
+  };
+
   return (
     <div>
       <Dialog open={openDonationForm}>
@@ -161,6 +165,17 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
             {success && <Alert severity="success">{t("successMessage")}</Alert>}
             <button form="donation" type="submit" className="btn-primary mt-24">
               {t("payNowBtn")}
+            </button>
+            <Typography variant="body1" gutterBottom>
+              {t("notAddedPaymentMethod")}
+            </Typography>
+            <button
+              form="donation"
+              type="submit"
+              className="btn-primary mt-24"
+              onClick={() => handleAddPaymentMethod()}
+            >
+              {t("addPaymentMethodBtn")}
             </button>
           </form>
         </div>
