@@ -29,15 +29,11 @@ function StartNow() {
           ) : (
             <div className="mt-5 flex flex-col lg:flex-row gap-5">
               <div className=" btn-primary-lg">
-                <Link href="/profile" className="w-full">
-                  {t("btn-three")}
-                </Link>
+                <Link href="/profile">{t("btn-three")}</Link>
               </div>
 
               <div className="btn-transparent-lg">
-                <Link href="/projects" className="w-full">
-                  {t("btn-two")}
-                </Link>
+                <Link href="/projects">{t("btn-two")}</Link>
               </div>
             </div>
           )}
