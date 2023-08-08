@@ -52,6 +52,7 @@ export default function Nav() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const [currentUser, setCurrentUser] = useState();
+  const t = useTranslations("Nav");
   useEffect(() => {
     if (user && user.email) {
       const q = query(
