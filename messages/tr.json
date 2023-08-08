@@ -108,6 +108,9 @@
     "sub-header":"Başarılı olan en güncel projelerimize göz atın.",
     "no-projects-text":"Şu an için herhangi bir başarılı proje bulunmamaktadır."
   },
+  "SearchList":{
+    "no-matching-result": "Eşleşen sonuç bulunamadı"
+  },
   "Comments":{
     "btn":"Referans ekleyin",
     "testimonial-input-area":"Referansınızı yazın...",
