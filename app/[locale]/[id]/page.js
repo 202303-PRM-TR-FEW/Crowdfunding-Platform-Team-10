@@ -158,7 +158,7 @@ function Project({ params }) {
           {loading || data.length <= 0 ? (
             <LoaderStyle />
           ) : (
-            <div className="flex flex-col lg:flex-row items-start justify-between gap-8 overflow-hidden rounded-lg ">
+            <div className="flex flex-col lg:flex-row items-start justify-between gap-8 pt-0 mt-0 overflow-hidden rounded-lg  relative">
               <div className="px-3 flex flex-col items-center gap-4 lg:w-7/12 w-full overflow-hidden  rounded-lg">
                 <div className="overflow-hidden rounded-lg relative w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] md:h-[554px] lg:h-[366px] xl:h-[554px] md:w-full">
                   <Image
@@ -177,7 +177,9 @@ function Project({ params }) {
                     <h1 className="header-3 text-center my-2 lg:text-start text-lightGreen ">
                       {data.name}
                     </h1>
-                    <CategoryIcon category={data.category} />
+                    <div className="mt-3">
+                      <CategoryIcon category={data.category} />
+                    </div>
                   </div>
 
                   <SuccessBadge
@@ -262,12 +264,12 @@ function Project({ params }) {
                     Delete Project
                   </button>
                 ) : null}
-                <div className=" hidden lg:block  py-3">
+                <div className=" hidden lg:block w-full py-3">
                   <CommentRows id={params.id} />
                   {user ? <CommentForm params={params} /> : null}
                 </div>
               </div>
-              <div className="lg:sticky top-20 lg:w-5/12 w-full mt-3 flex flex-col gap-3 ">
+              <div className="lg:sticky lg:top-0 lg:w-5/12 w-full mt-3 flex flex-col gap-3 ">
                 <DonationsHisory projectsDonations={projectsDonations} />
                 <Chart projectsDonations={projectsDonations} />
               </div>
@@ -322,14 +324,14 @@ function Project({ params }) {
             })}
           </div>
         </div>
-        <div className="w-full p-2">
+        <div className="w-full flex flex-col items-start  p-2">
           <DonationForm
             id={params}
             title={data.name}
             openDonationForm={openDonationForm}
             setOpenDonationForm={setOpenDonationForm}
           />
-          <div className=" block lg:hidden  py-3 w-full ">
+          <div className=" block lg:hidden py-3 w-full ">
             <CommentRows id={params.id} />
             {user ? <CommentForm params={params} /> : null}
           </div>

@@ -19,7 +19,7 @@ export default function MyProjectCard({ project }) {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-6 overflow-hidden  rounded-lg">
+      <div className="flex flex-col items-center gap-6 overflow-hidden p-4 md:p-0 rounded-lg">
         <div className="overflow-hidden rounded-lg relative w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] md:h-[554px] lg:h-[366px] xl:h-[554px] md:w-full cursor-pointer">
           <Image
             src={project.url}
@@ -35,7 +35,9 @@ export default function MyProjectCard({ project }) {
               <h1 className="header-3 text-center my-2 lg:text-start text-lightGreen ">
                 {project.name}
               </h1>
-              <CategoryIcon category={project.category} />
+              <div className="mt-3">
+                <CategoryIcon category={project.category} />
+              </div>
             </div>
 
             <SuccessBadge
