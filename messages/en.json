@@ -1,4 +1,22 @@
 {
+  "Nav": {
+    "my-projects": " My Projects",
+    "settings": "Settings",
+    "logout": "Logout",
+    "login": "Login",
+    "home": "Home",
+    "about-us": "About Us",
+    "all-pro": "All Projects",
+    "my-projects-two": "My Projects",
+    "add-new-pro": "Add New Project",
+    "settings-two": "Settings",
+    "logout-two": " Logout",
+    "login-two": "Login",
+    "open": "Open",
+    "handed": "Handed",
+    "label-search": "Search for projects",
+    "placeholder-search": "Search..."
+  },
   "WelcomeBanner": {
     "header1": "Empowering",
     "header2": "Dreams",
@@ -110,8 +128,7 @@
     "header": "Start Now",
     "paragraph": "Start Now and Bring Your Ideas to Life! Create a project and raise funds for your dream venture, or make a difference by donating to projects that align with your passions. Join our community of changemakers today!",
     "btn-one": "Create New Account",
-    "btn-two": "Check Projects",
-    "btn-three": "Projelerim"
+    "btn-two": "Check Projects"
   },
   "NewsLetterCard": {
     "header1": "Subscribe now and be at the forefront of change!",

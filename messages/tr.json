@@ -1,4 +1,22 @@
 {
+  "Nav": {
+    "my-projects": "Projelerim",
+    "settings": "Ayarlar",
+    "logout": "Çıkış yapın",
+    "login": "Giriş yapın",
+    "home": "Ana sayfa",
+    "about-us": "Hakkımızda",
+    "all-pro": "Tüm projeler",
+    "my-projects-two": "Projelerim",
+    "add-new-pro": "Yeni proje ekle",
+    "settings-two": "Ayarlar",
+    "logout-two": "Çıkış yapın",
+    "login-two": "Giriş yapın",
+    "open": "Open",
+    "handed": "Handed",
+    "label-search": "Projeleri Arayın",
+    "placeholder-search": "Arama yap..."
+  },
   "WelcomeBanner": {
     "header1": "Güçlendirici",
     "header2": "Hayaller",
@@ -108,8 +126,7 @@
     "header": "Hemen Başlayın",
     "paragraph": "Şimdi başlayarak fikirlerinizi hemen hayata geçirin! Bir proje oluşturun ve hayalinizdeki girişim için fon toplayın ya da tutkularınızla örtüşen projelere bağış yaparak fark yaratın. Değişimin öncülüğünü yapan topluluğumuza bugün katılın!",
     "btn-one": "Hesap oluşturun",
-    "btn-two": "Projelere Göz Atın",
-    "btn-three": "Projelerim"
+    "btn-two": "Projelere Göz Atın"
   },
   "NewsLetterCard": {
     "header1": "Şimdi abone olarak değişimin ön saflarında yer alın!",
