@@ -1,7 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  deleteDoc,
+  collection,
+  query,
+  onSnapshot,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import LoaderStyle from "@/components/helper/LoaderStyle";
@@ -27,19 +35,34 @@ import Chart from "@/components/cards/Chart";
 import CommentForm from "@/components/commentsCom/CommentForm";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import CommentRows from "@/components/commentsCom/CommentRows";
+import { useRouter } from "next-intl/client";
+
 function Project({ params }) {
   const [data, setData] = useState([]);
   const [notExists, setNotExists] = useState(false);
   const [loading, setLoading] = useState(true);
   const t = useTranslations("Projects");
   const [open, setOpen] = useState(false);
-  const { user, donations } = useAuth();
+  const { user } = useAuth();
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
   const pathname = usePathname();
 
   const [activeSidebar, setActiveSidebar] = useState(false);
+  const router = useRouter();
+  const [donations, setDonations] = useState([]);
 
+  useEffect(() => {
+    const q = query(collection(db, "donations"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let donationsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        donationsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setDonations(donationsArr);
+    });
+    return () => unsubscribe();
+  }, []);
   const handleClose = async (word) => {
     if (word === "Confirm") {
       await deleteDoc(doc(db, "projects", params.id));
@@ -117,8 +140,7 @@ function Project({ params }) {
   ////To hide donate button if project marked as closed//////////
   const today = new Date();
   const endDate = new Date(data.endingDate);
-  ////To hide donate button if project marked as closed//////////
-  console.log(data);
+
   const handleDeleteProject = () => {
     setOpen(true);
   };

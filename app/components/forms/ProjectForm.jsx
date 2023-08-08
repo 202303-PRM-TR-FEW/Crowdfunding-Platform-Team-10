@@ -11,6 +11,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
+import { useRouter } from "next-intl/client";
 
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -28,27 +29,21 @@ import InfoIcon from "@mui/icons-material/Info";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FileUpload } from "@mui/icons-material";
-import { addDoc, collection } from "firebase/firestore";
-import { useState } from "react";
+
+import { collection, onSnapshot, query,addDoc ,doc} from "firebase/firestore";
+
+
+import { useEffect, useState } from "react";
 import { db } from "@/config/firebase";
 
 import LoaderStyle from "../helper/LoaderStyle";
-import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
-//Fixes Date Picker Errors//
+
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
 defaultDayjs.extend(isBetweenPlugin);
 defaultDayjs.extend(utc);
 const today = dayjs();
-//Fixes Date Picker Errors//
-
-////// These need to be where the new project form button is //////
-// const [openProjectForm, setOpenProjectForm] = useState(false);
-// const handleNewProject = () => {
-//   openProjectForm === false ? setOpenProjectForm(true) : setOpenProjectForm(false);
-// };
-// <ProjectForm openProjectForm={openProjectForm} setOpenProjectForm={setOpenProjectForm} />
 
 const schema = yup
   .object({
@@ -68,8 +63,21 @@ const schema = yup
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
-  const { usersInfo } = useAuth();
+  const [usersInfo, setUsersInfo] = useState(null);
 
+  useEffect(() => {
+    const q = query(collection(db, "users"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let usersArr = [];
+      QuerySnapshot.forEach((doc) => {
+        usersArr.push({ ...doc.data(), id: doc.id });
+      });
+      console.log("im users UseEffect");
+      setUsersInfo(usersArr);
+    });
+    return () => unsubscribe();
+  }, []);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -148,6 +156,8 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     };
 
     await addDoc(collection(db, "projects"), projectData);
+    router.push("/profile");
+
     setOpenProjectForm(false);
   };
 

@@ -1,4 +1,4 @@
-import Comments from "@/components/Comments";
+import Comments from "@/components/commentsCom/Comments";
 import GetStarted from "@/components/GetStarted";
 import MissionCom from "./MissionCom";
 import OurTeam from "./OurTeam";

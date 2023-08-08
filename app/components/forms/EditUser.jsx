@@ -17,26 +17,25 @@ import {
 } from "@mui/material";
 import { countries } from "@/data/countries";
 import { FileUpload } from "@mui/icons-material";
-import InfoIcon from "@mui/icons-material/Info";
 import LoaderStyle from "../helper/LoaderStyle";
-import { useAuth } from "@/context/AuthContext";
 
-const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
+const EditUser = ({
+  openEditUserForm,
+  setOpenEditUserForm,
+  setCurrentUser,
+  currentUser,
+}) => {
   const handleClose = () => {
     setOpenEditUserForm(false);
   };
-
-  const { currentUser, user } = useAuth();
   const [err, setErr] = useState("");
   const [userData, setUserData] = useState({
     name: "",
     bio: "",
     userImg: "",
     country: "",
-    // email: "",
   });
 
-  // Populate the form fields with currentUser data when the component mounts
   useEffect(() => {
     if (currentUser) {
       setUserData({
@@ -44,13 +43,13 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
         bio: currentUser.bio,
         userImg: currentUser.userImg,
         country: currentUser.country,
-        // email: currentUser.email,
       });
     }
   }, [currentUser]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
     setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -63,17 +62,14 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
     event.preventDefault();
     const data = { ...userData };
     const storage = getStorage();
-    let imgUrl = data.userImg; // Set the imgUrl to the current userImg in case the user doesn't change the image
+    let imgUrl = data.userImg;
 
-    // Check if the user uploaded a new image
     if (data.userImg instanceof File) {
-      // Create a non-root reference for the image upload
       const storageRef = ref(
         storage,
         `images/${currentUser.id}/${data.userImg.name}`
       );
       try {
-        // Upload the image and get the download URL
         const snapshot = await uploadBytes(storageRef, data.userImg);
         imgUrl = await getDownloadURL(snapshot.ref);
       } catch (e) {
@@ -83,18 +79,18 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
     }
 
     try {
-      // Create a new object with the updated data, using the current data if fields are not modified
       const updatedUserData = {
         name: data.name || currentUser.name,
         bio: data.bio || currentUser.bio,
         userImg: imgUrl || currentUser.userImg,
-        email: currentUser.email, // Keep the same email
-        timeStamp: currentUser.timeStamp, // Keep the same timestamp
+        email: currentUser.email,
+        timeStamp: currentUser.timeStamp,
         country: data.country || currentUser.country,
       };
 
-      // Save the updated user data back to the database
       await setDoc(doc(db, "users", currentUser.id), updatedUserData);
+
+      setCurrentUser(updatedUserData);
       setErr("");
       setOpenEditUserForm(false);
     } catch (e) {
@@ -107,7 +103,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
   }
 
   return (
-    <Dialog open={openEditUserForm} size={"lg"} className="">
+    <Dialog open={openEditUserForm} size={"lg"}>
       <div className="p-6 py-10 ">
         <div className="flex items-center justify-start gap-2">
           <IconButton onClick={handleClose} aria-label="back">
@@ -128,57 +124,28 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
           <div className="mt-6">
             <TextField
               label="Full Name"
-              fullWidth
+              className="w-full"
               variant="standard"
               type="text"
               name="name"
               value={userData.name}
               onChange={handleInputChange}
             />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* Error messages */}
-            </Typography>
           </div>
-          {/* <div>
-              <TextField
-                label="Email"
-                fullWidth
-                type="email"
-                variant="standard"
-                name="email"
-                value={userData.email}
-                onChange={handleInputChange}
-              />
-              <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-              >
-           
-              </Typography>
-            </div> */}
 
           <div>
             <TextField
               label="Bio"
-              fullWidth
+              className="w-full"
               variant="standard"
               type="text"
               name="bio"
               value={userData.bio}
               onChange={handleInputChange}
             />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* Error messages */}
-            </Typography>
           </div>
           <div>
-            <FormControl variant="standard" fullWidth>
+            <FormControl variant="standard" className="w-full">
               <InputLabel id="demo-simple-select-label">Country</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -210,16 +177,10 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
                 })}
               </Select>
             </FormControl>
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* Error messages */}
-            </Typography>
           </div>
           <div>
             <TextField
-              fullWidth
+              className="w-full"
               variant="standard"
               InputProps={{
                 startAdornment: (
@@ -236,24 +197,22 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
               onChange={handleImageChange}
               sx={{ input: { cursor: "pointer" } }}
             />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* {err} */}
-            </Typography>
           </div>
 
           <button
             className="mt-8 btn-primary w-full "
             type="submit"
             variant="filled"
-            fullWidth
           >
             Update
           </button>
         </form>
-        <p>{err}</p>
+        <Typography
+          variant="small"
+          className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+        >
+          {err}
+        </Typography>
       </div>
     </Dialog>
   );

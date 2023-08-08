@@ -19,10 +19,7 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [usersInfo, setUsersInfo] = useState(null);
   const [projects, setProjects] = useState(true);
-  const [donations, setDonations] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
 
   const router = useRouter();
   useEffect(() => {
@@ -93,22 +90,11 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     setUser(null);
-    setCurrentUser(null);
+
     await signOut(auth);
   };
 
-  useEffect(() => {
-    const q = query(collection(db, "users"));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let usersArr = [];
-      QuerySnapshot.forEach((doc) => {
-        usersArr.push({ ...doc.data(), id: doc.id });
-      });
-      console.log("im users UseEffect");
-      setUsersInfo(usersArr);
-    });
-    return () => unsubscribe();
-  }, []);
+
 
   useEffect(() => {
     const q = query(collection(db, "projects"));
@@ -123,35 +109,6 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    const q = query(collection(db, "donations"));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let donationsArr = [];
-      QuerySnapshot.forEach((doc) => {
-        donationsArr.push({ ...doc.data(), id: doc.id });
-      });
-      setDonations(donationsArr);
-      console.log("im donations UseEffect");
-    });
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    if (usersInfo && user !== null) {
-      const userCurrent = usersInfo.find(
-        (usersinfo) => usersinfo.id === user.uid
-      );
-      if (userCurrent) {
-        setCurrentUser(userCurrent);
-      } else {
-        setCurrentUser(null);
-      }
-    }
-    console.log("im current user UseEffect");
-
-    setLoading(false);
-  }, [user, usersInfo, currentUser]);
-
   return (
     <AuthContext.Provider
       value={{
@@ -160,10 +117,9 @@ export const AuthContextProvider = ({ children }) => {
         signup,
         logout,
         loading,
-        usersInfo,
+    
         projects,
-        donations,
-        currentUser,
+
         googleLogIn,
       }}
     >

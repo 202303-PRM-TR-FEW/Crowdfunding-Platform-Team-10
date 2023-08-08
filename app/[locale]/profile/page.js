@@ -3,19 +3,47 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next-intl/client";
-
+import { collection, getDocs, query, where } from "firebase/firestore";
 import Link from "next-intl/link";
 import MyProjectCard from "@/components/cards/MyProjectCard";
 import TransactionHistory from "@/components/cards/TransactionHistory";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { NoProjects } from "@/components/NoProjects";
 import { useAuth } from "@/context/AuthContext";
+import { db } from "@/config/firebase";
 
 const Page = () => {
-  const { user, loading, projects, currentUser } = useAuth();
+  const { user, loading, projects } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState();
+  useEffect(() => {
+    if (user && user.email) {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", user.email)
+      );
 
+      const fetchUserData = async () => {
+        try {
+          const querySnapshot = await getDocs(q);
+
+          if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data();
+
+            setCurrentUser({ ...userData, id: user.uid });
+          } else {
+            console.log("no data matched");
+            setCurrentUser({});
+          }
+        } catch (error) {
+          console.error("Error fetching user data: ", error);
+        }
+      };
+
+      fetchUserData();
+    }
+  }, [user]);
   const router = useRouter();
   const circleBackgroundStyle = {
     position: "absolute",
@@ -54,9 +82,7 @@ const Page = () => {
       }
     }
   }, []);
-  console.log(usersProjects);
   let oneProjectInfo = null;
-
   if (!isLoading && usersProjects.length > 0) {
     oneProjectInfo = usersProjects[usersProjects.length - 1];
   }

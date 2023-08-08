@@ -16,13 +16,15 @@ const Home = () => {
   useEffect(() => {
     setData(projects);
   }, [projects]);
-  // Find project with maximum contributions
   useEffect(() => {
     let max = 0;
 
     if (projects.length > 0) {
       projects.forEach((project) => {
-        if (project.viewCount > max) {
+        if (project.viewCount > max && project.goal > project.raised) {
+          max = project.viewCount;
+          setProjectOFWeek(project);
+        } else if (project.viewCount > max) {
           max = project.viewCount;
           setProjectOFWeek(project);
         }
