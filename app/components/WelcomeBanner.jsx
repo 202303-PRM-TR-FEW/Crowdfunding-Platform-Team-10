@@ -2,10 +2,8 @@
 import Link from "next-intl/link";
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import { useAuth } from "@/context/AuthContext";
 import { useTranslations } from "next-intl";
-const WelcomeBanner = () => {
-  const { projects } = useAuth();
+const WelcomeBanner = ({ projects }) => {
   const [successfulProjects, setSuccessfulProjects] = useState(24230);
   const [donationCounter, setDonationCounter] = useState(0);
   const [checked, setChecked] = useState(false);

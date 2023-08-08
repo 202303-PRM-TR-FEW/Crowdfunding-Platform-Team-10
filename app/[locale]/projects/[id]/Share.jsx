@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { notFound, usePathname, useSearchParams } from "next/navigation";
-import faceBook from "../../../public/assets/images/facebookIcon.png";
-import twitter from "../../../public/assets/images/twitterIcon.png";
-import whatsapp from "../../../public/assets/images/whatsapp.png";
-import telegram from "../../../public/assets/images/telegram.png";
+import faceBook from "../../../../public/assets/images/facebookIcon.png";
+import twitter from "../../../../public/assets/images/twitterIcon.png";
+import whatsapp from "../../../../public/assets/images/whatsapp.png";
+import telegram from "../../../../public/assets/images/telegram.png";
 import SocialButton from "@/components/helper/SocialButton";
 import { ShareRounded } from "@mui/icons-material";
 
@@ -50,8 +50,7 @@ export default function Share() {
         >
           <div className="relative bg-hoverLightGreen pt-3 pb-1 rounded-r top-1/2 -translate-y-1/2 left-[108%]">
             <ShareRounded
-         
-              className="ml-[50%]  pr-2 hover:scale-[1.2] text-white -translate-y-1
+              className="ml-[50%] text-md pr-2 hover:scale-[1.2] text-white -translate-y-1
           transition-all duration-300 ease-in-out"
             />
           </div>

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import AboutSection from "@/components/sections/AboutUs";
 import Comments from "@/components/commentsCom/Comments";
 import WelcomeBanner from "@/components/WelcomeBanner";
@@ -6,17 +7,34 @@ import NewsLetterCard from "@/components/cards/NewsLetterCard";
 import StartNow from "@/components/sections/StartNow";
 import SuccessfulProjects from "@/components/sections/SuccessfulProjects";
 import HowWorks from "@/components/sections/HowWorks";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "@/config/firebase";
 
-function page() {
+function Page() {
+  const [projects, setProjects] = useState(true);
+
+  useEffect(() => {
+    const q = query(collection(db, "projects"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let projectsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        projectsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setProjects(projectsArr);
+      console.log("im projects UseEffect");
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <div>
-      <WelcomeBanner />
+      <WelcomeBanner projects={projects} />
       <AboutSection />
       <div className="relative bg-no-repeat overflow-hidden bg-cover">
         <div style={circleBackgroundStyle}></div>
         <HowWorks />
         <StartNow />
-        <SuccessfulProjects />
+        <SuccessfulProjects projects={projects} />
         <div style={circleBackgroundStyle2}></div>
       </div>
       <NewsLetterCard />
@@ -25,7 +43,7 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
 
 const circleBackgroundStyle = {
   position: "absolute",

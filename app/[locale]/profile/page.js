@@ -3,7 +3,14 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next-intl/client";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
+
 import Link from "next-intl/link";
 import MyProjectCard from "@/components/cards/MyProjectCard";
 import TransactionHistory from "@/components/cards/TransactionHistory";
@@ -13,10 +20,23 @@ import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
 
 const Page = () => {
-  const { user, loading, projects } = useAuth();
+  const { user, loading } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState();
+  const [projects, setProjects] = useState(true);
+  useEffect(() => {
+    const q = query(collection(db, "projects"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let projectsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        projectsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setProjects(projectsArr);
+      console.log("im projects UseEffect");
+    });
+    return () => unsubscribe();
+  }, []);
   useEffect(() => {
     if (user && user.email) {
       const q = query(
@@ -106,7 +126,11 @@ const Page = () => {
                 <div className="flex flex-col gap-10 ">
                   {usersProjects.map((project, i) => {
                     return (
-                      <Link key={i} className="grid" href={`/${project?.id}`}>
+                      <Link
+                        key={i}
+                        className="grid"
+                        href={`/projects/${project?.id}`}
+                      >
                         <MyProjectCard project={project} />
                       </Link>
                     );
