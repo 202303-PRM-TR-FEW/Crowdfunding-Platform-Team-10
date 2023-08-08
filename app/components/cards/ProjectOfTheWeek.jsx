@@ -17,7 +17,7 @@ function ProjectOfTheWeek({ projectOfWeek }) {
       <h1 className={styles.header}>Project of the week</h1>
       <div className={styles.page}>
         <div className={styles.leftSize}>
-          <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
+          <Link key={projectOfWeek.id} href={`/projects/${projectOfWeek.id}`}>
             <div className="w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] lg:w-[473px] lg:h-[295px] relative rounded-lg overflow-hidden ">
               <Image
                 unoptimized

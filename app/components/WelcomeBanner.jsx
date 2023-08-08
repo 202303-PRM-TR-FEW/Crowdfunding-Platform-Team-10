@@ -2,12 +2,10 @@
 import Link from "next-intl/link";
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import { useAuth } from "@/context/AuthContext";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 const WelcomeBanner = () => {
-  const { projects } = useAuth();
   const [successfulProjects, setSuccessfulProjects] = useState(24230);
-  const [donationCounter, setDonationCounter] = useState(0);
   const [checked, setChecked] = useState(false);
   const t = useTranslations("WelcomeBanner");
   const handleChange = (event) => {
@@ -16,13 +14,11 @@ const WelcomeBanner = () => {
 
   useEffect(() => {
     setChecked(true);
-    // Convert the projects object into an array and get the number of successful projects
-    const projectsArray = Object.values(projects);
-    // const totalSuccessfulProjects = projectsArray.filter((project) => project.successful).length;
+
     const totalSuccessfulProjects = "23423";
-    // Animate the counter from 0 to the number of successful projects
+
     let counter = 0;
-    const step = Math.ceil(totalSuccessfulProjects / 100); // Change the denominator to control the animation speed
+    const step = Math.ceil(totalSuccessfulProjects / 100);
 
     const timer = setInterval(() => {
       counter = Math.min(counter + step, totalSuccessfulProjects);
@@ -34,7 +30,7 @@ const WelcomeBanner = () => {
     }, 100);
 
     return () => clearInterval(timer);
-  }, [projects]);
+  }, []);
 
   return (
     <section className="flex justify-center items-center bg-gradient-to-t from-transparent to-teal-50">
@@ -73,9 +69,11 @@ const WelcomeBanner = () => {
             {t("successful")}
             {successfulProjects}
           </Box>
-          <img
+          <Image
             src="/assets/images/team_work.png"
-            alt=""
+            alt="welcome img"
+            width={400}
+            height={400}
             style={{
               maxWidth: "100%",
               height: "auto",
