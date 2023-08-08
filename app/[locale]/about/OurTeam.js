@@ -1,5 +1,6 @@
 import React from "react";
-import Link from "next/link";
+
+import Link from "next-intl/link";
 import { GitHub } from "@mui/icons-material";
 import Image from "next/image";
 import { IconButton } from "@mui/material";
