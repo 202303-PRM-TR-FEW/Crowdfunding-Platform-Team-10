@@ -13,6 +13,8 @@ module.exports = {
         hoverLightGreen: " #019d91",
         basicBlack: "#20272c",
         basicgray: "#63727e",
+        basicYellow: "#FBE490",
+        basicRed: "#e04a0d",
         //
         basicOrange: "#ED7B49",
         basicPink: "E9B19D",
