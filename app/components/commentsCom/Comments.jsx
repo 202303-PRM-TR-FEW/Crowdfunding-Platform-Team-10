@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import ChatIcon from "@mui/icons-material/Chat";
 import { Transition } from "@headlessui/react";
 import { useAuth } from "@/context/AuthContext";
 import { useTranslations } from "next-intl";
@@ -11,9 +12,9 @@ import {
   getDocs,
   where,
 } from "firebase/firestore";
-
 import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
+import { IconButton } from "@mui/material";
 
 export default function Comments() {
   const [comments, setComments] = useState([]);
@@ -102,16 +103,26 @@ export default function Comments() {
 
   return (
     <section className="lg:h-[700px] py-20 p-3 overflow-hidden">
+      <div className="flex justify-end container">
+        {currentUser && (
+          <IconButton
+            size="large"
+            // className="absolute top-3 right-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
+            onClick={handleAddCommentClick}
+            sx={{
+              backgroundColor: "#00c1a2",
+              "&:hover": {
+                backgroundColor: "#0d816e",
+              },
+              color: "white",
+            }}
+          >
+            <ChatIcon />
+          </IconButton>
+        )}
+      </div>
       <div className="relative">
         <FancyTestimonialsSlider testimonials={comments} />
-        {currentUser && (
-          <button
-            className="absolute top-3 right-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
-            onClick={handleAddCommentClick}
-          >
-            {t("btn")}
-          </button>
-        )}
       </div>
       {showCommentForm && currentUser ? (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
