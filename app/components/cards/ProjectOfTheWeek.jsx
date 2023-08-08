@@ -20,6 +20,7 @@ function ProjectOfTheWeek({ projectOfWeek }) {
           <Link key={projectOfWeek.id} href={`/${projectOfWeek.id}`}>
             <div className="w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] lg:w-[473px] lg:h-[295px] relative rounded-lg overflow-hidden ">
               <Image
+                unoptimized
                 src={projectOfWeek.url}
                 alt="Project of the week"
                 fill={true}
@@ -39,7 +40,9 @@ function ProjectOfTheWeek({ projectOfWeek }) {
           </div>
 
           <div className="  flex justify-between">
-            <h3 className="header-3 text-start">{projectOfWeek.name}</h3>
+            <h3 data-cy="project-name" className="header-3 text-start">
+              {projectOfWeek.name}
+            </h3>
             <div className="flex justify-end">
               <CategoryIcon
                 category={projectOfWeek.category}
@@ -48,7 +51,10 @@ function ProjectOfTheWeek({ projectOfWeek }) {
             </div>
           </div>
 
-          <p className="text-base text-basicgray line-clamp-3 ">
+          <p
+            data-cy="project-about"
+            className="text-base text-basicgray line-clamp-3 "
+          >
             {projectOfWeek.about}
           </p>
           <Target raised={projectOfWeek.raised} goal={projectOfWeek.goal} />

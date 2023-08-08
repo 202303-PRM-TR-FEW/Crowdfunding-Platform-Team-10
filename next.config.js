@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "firebasestorage.googleapis.com",
       },
+      {
+        protocol: "https",
+        hostname: "media.sproutsocial.com",
+      },
     ],
   },
 };
