@@ -19,6 +19,7 @@ import Link from "next-intl/link";
 import Image from "next/image";
 import LangSwitcher from "./LangSwitcher";
 import MobileLangSwitcher from "./MobileLangSwitcher";
+import { useTranslations } from "next-intl";
 
 import {
   AppBar,
