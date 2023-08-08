@@ -1,5 +1,5 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next-intl/client";
 import { useState, useTransition } from "react";
 import Button from "@mui/material/Button";
@@ -8,7 +8,9 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import LanguageIcon from "@mui/icons-material/Language";
 import { ListItemIcon } from "@mui/material";
+
 function MobileLangSwitcher({ handleMenuClose }) {
+  const t = useTranslations("MobileLangSwitch");
   const [isPending, startTransition] = useTransition();
   const locale = useLocale();
   const router = useRouter();
@@ -38,7 +40,7 @@ function MobileLangSwitcher({ handleMenuClose }) {
         <ListItemIcon>
           <LanguageIcon fontSize="small" />
         </ListItemIcon>
-        Language
+        {t("header")}
       </MenuItem>
       <Menu
         id="basic-menu"
