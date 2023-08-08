@@ -18,11 +18,12 @@
     "placeholder-search": "Arama yap..."
   },
   "WelcomeBanner": {
-    "header": "Büyük amaçları desteklemek artık çok kolay",
-    "subHeader": "3.500'den fazla proje ve amaçları destekledik. Bugün kaydolun ve fikrinizi hayata geçirin veya diğer harika projelere destek olun.",
-    "button": "Şimdi Başlayın",
-    "successful": "Başarılı Projeler: ",
-    "donations": "Yapılan Yardımlar: "
+    "header1": "Güçlendirici",
+    "header2": "Hayaller",
+    "header3": "Birlikte",
+    "subHeader1": "3.500'den fazla proje ve amaça destek olduk.",
+    "subHeader2": "Fikirleri Hayata Geçirmekte Bize Katılın!",
+    "buttom": "Hemen Başlayın"
   },
   "LoginForm": {
     "header": "Hesabınıza Giriş Yapın",
@@ -125,7 +126,8 @@
     "header": "Hemen Başlayın",
     "paragraph": "Şimdi başlayarak fikirlerinizi hemen hayata geçirin! Bir proje oluşturun ve hayalinizdeki girişim için fon toplayın ya da tutkularınızla örtüşen projelere bağış yaparak fark yaratın. Değişimin öncülüğünü yapan topluluğumuza bugün katılın!",
     "btn-one": "Hesap oluşturun",
-    "btn-two": "Projelere Göz Atın"
+    "btn-two": "Projelere Göz Atın",
+    "btn-three": "Check Projects"
   },
   "NewsLetterCard": {
     "header1": "Şimdi abone olarak değişimin ön saflarında yer alın!",

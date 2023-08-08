@@ -18,11 +18,14 @@
     "placeholder-search": "Search..."
   },
   "WelcomeBanner": {
-    "header": "Supporting great causes made easy",
-    "subHeader": "We helped over 3.500 projects and causes. Sign in today and get your idea kicked off or support others kick off their amazing projects.",
-    "button": "Start Today",
+    "header1": "Empowering",
+    "header2": "Dreams",
+    "header3": "Together",
+    "subHeader1": "We helped over 3.500 projects and causes.",
+    "subHeader2": "Join Us in Bringing Ideas to Life!",
     "successful": "Successful projects: ",
-    "donations": "Donations Made: "
+    "donations": "Donations Made:",
+    "buttom": "Start Now"
   },
   "LoginForm": {
     "header": "Login to Your Account",
@@ -125,7 +128,8 @@
     "header": "Start Now",
     "paragraph": "Start Now and Bring Your Ideas to Life! Create a project and raise funds for your dream venture, or make a difference by donating to projects that align with your passions. Join our community of changemakers today!",
     "btn-one": "Create New Account",
-    "btn-two": "Check Projects"
+    "btn-two": "Check Projects",
+    "btn-three": "Check Projects"
   },
   "NewsLetterCard": {
     "header1": "Subscribe now and be at the forefront of change!",
