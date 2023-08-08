@@ -76,6 +76,9 @@
       "sub-header":"Check out our most recent successful cases",
       "no-projects-text":"No successful projects found Yet."
     },
+    "SearchList":{
+      "no-matching-result":"No matching results"
+    },
     "Comments":{
       "btn":"Add testimonials",
       "testimonial-input-area":"Write your testimonial...",
