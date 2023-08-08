@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import Target from "../helper/Target";
+import Image from "next/image";
 
 function SuccessfulCard({ project }) {
   return (
@@ -9,10 +10,12 @@ function SuccessfulCard({ project }) {
     transition-all duration-400  ease-out
     "
     >
-      <img
+      <Image
         src={project.url}
         className="w-full  object-cover lg:h-[250px]"
         alt="project img"
+        width={300}
+        height={250}
       />
 
       <div className="pt-2 px-2 pb-0">
