@@ -1,3 +1,4 @@
+"use client";
 import SuccessBadge from "@/components/SuccessBadge";
 import CommentForm from "@/components/commentsCom/CommentForm";
 import CommentRows from "@/components/commentsCom/CommentRows";
@@ -7,7 +8,7 @@ import UserNameImg from "@/components/helper/UserNameImg";
 import ViewCount from "@/components/helper/ViewCount";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next-intl/link";
 import React from "react";
 
 export default function SingleProjectPage({

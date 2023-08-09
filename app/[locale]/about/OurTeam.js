@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 
 import Link from "next-intl/link";
 import { GitHub } from "@mui/icons-material";
