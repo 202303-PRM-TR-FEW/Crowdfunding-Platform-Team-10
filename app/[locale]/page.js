@@ -7,21 +7,24 @@ import NewsLetterCard from "@/components/cards/NewsLetterCard";
 import StartNow from "@/components/sections/StartNow";
 import SuccessfulProjects from "@/components/sections/SuccessfulProjects";
 import HowWorks from "@/components/sections/HowWorks";
+import { Fade } from "react-awesome-reveal";
 
 function Page() {
   return (
     <div>
-      <WelcomeBanner />
-      <AboutSection />
-      <div className="relative bg-no-repeat overflow-hidden bg-cover">
-        <div style={circleBackgroundStyle}></div>
-        <HowWorks />
-        <StartNow />
-        <SuccessfulProjects />
-        <div style={circleBackgroundStyle2}></div>
-      </div>
-      <NewsLetterCard />
-      <Comments />
+      <Fade>
+        <WelcomeBanner />
+        <AboutSection />
+        <div className="relative bg-no-repeat overflow-hidden bg-cover">
+          <div style={circleBackgroundStyle}></div>
+          <HowWorks />
+          <StartNow />
+          <SuccessfulProjects />
+          <div style={circleBackgroundStyle2}></div>
+        </div>
+        <NewsLetterCard />
+        <Comments />
+      </Fade>
     </div>
   );
 }
