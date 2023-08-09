@@ -73,7 +73,15 @@
     "category-education": " Education",
     "category-culture": "Culture",
     "category-children": "Children",
-    "upload-project": "Upload Project"
+    "upload-project": "Upload Project",
+    "Project Name is Required": "Project Name is Required !",
+    "Goal Amount Must Be a Number": "Goal Amount Must Be a Number !",
+    "Goal is Required":"Goal is Required !",
+    "Starting Date is Required":"Starting Date is Required !",
+    "Ending Date is Required":"Ending Date is Required !",
+    "About is Required":"About is Required !",
+    "Project Category is Required":"Project Category is Required !",
+    "Project Picture is Required":"Project Picture is Required !"
   },
   "UserSettingForms": {
     "my-pro": " My Projects",
