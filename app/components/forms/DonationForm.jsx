@@ -167,7 +167,7 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
             <button form="donation" type="submit" className="btn-primary mt-24">
               {t("payNowBtn")}
             </button>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" className="pb-10 pt-10">
               {t("notAddedPaymentMethod")}
             </Typography>
             <button
