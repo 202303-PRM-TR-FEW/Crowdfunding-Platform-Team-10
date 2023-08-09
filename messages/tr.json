@@ -16,13 +16,13 @@
     "placeholder-search": "Arama yap..."
   },
   "WelcomeBanner": {
-    "header1": "Güçlendirici",
-    "header2": "Hayaller",
-    "header3": "Birlikte",
+    "header1": "Hayalleri",
+    "header2": "Birlikte",
+    "header3": "Gerçekleştirin",
     "subHeader1": "3.500'den fazla proje ve amaça destek olduk.",
     "subHeader2": "Fikirleri Hayata Geçirmekte Bize Katılın!",
-    "successful": "Tamamlanmış projeler: ",
-    "donations": "Yapılan bağışlar: ",
+    "successful": "Başarılı Projeler: ",
+    "donations": "Toplam Yardımlar: ",
     "button": "Hemen Başlayın"
   },
   "LoginForm": {

@@ -19,7 +19,7 @@ const SearchList = ({ searchProjects }) => {
           <React.Fragment key={project.id}>
             {index > 0}
             <Link href={`/${project.id}`}>
-              <ListItem className="z-50 ">
+              <ListItem className="z-50 hover:bg-[#f0bd0732] hover:rounded">
                 <ListItemAvatar>
                   <Avatar
                     variant="rounded"
