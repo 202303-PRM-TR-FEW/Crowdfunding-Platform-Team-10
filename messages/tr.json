@@ -21,6 +21,8 @@
     "header3": "Birlikte",
     "subHeader1": "3.500'den fazla proje ve amaça destek olduk.",
     "subHeader2": "Fikirleri Hayata Geçirmekte Bize Katılın!",
+    "successful": "Tamamlanmış projeler: ",
+    "donations": "Yapılan bağışlar: ",
     "button": "Hemen Başlayın"
   },
   "LoginForm": {
