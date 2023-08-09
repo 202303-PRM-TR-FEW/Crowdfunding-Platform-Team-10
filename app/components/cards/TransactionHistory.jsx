@@ -65,6 +65,8 @@ export default function TransactionHistory({ usersProjects }) {
   }, [donations, selectedProject, loading, usersProjects]);
   const handleProjectSelect = (projectId) => {
     setSelectedProject(projectId);
+    setAnchorEl(null); 
+
   };
 
   if (loading) {

@@ -7,26 +7,14 @@ import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
-import { collection, onSnapshot, query } from "firebase/firestore";
-import { db } from "@/config/firebase";
+import { useAuth } from "@/context/AuthContext";
 
 const Home = () => {
+  const { projects } = useAuth();
   const [projectOfWeek, setProjectOFWeek] = useState("");
-  const [projects, setProjects] = useState(true);
+
   const t = useTranslations("Profile")
 
-  useEffect(() => {
-    const q = query(collection(db, "projects"));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let projectsArr = [];
-      QuerySnapshot.forEach((doc) => {
-        projectsArr.push({ ...doc.data(), id: doc.id });
-      });
-      setProjects(projectsArr);
-      console.log("im projects UseEffect");
-    });
-    return () => unsubscribe();
-  }, []);
   const [data, setData] = useState(projects ?? []);
 
   useEffect(() => {
