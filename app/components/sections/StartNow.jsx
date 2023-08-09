@@ -14,8 +14,8 @@ function StartNow() {
         <div className="space-y-4"></div>
         <div className="md:space-x-4 md:flex-row flex justify-center items-center flex-col">
           {user == null ? (
-            <div className="mt-5 flex flex-col lg:flex-row gap-3">
-              <Link href="/profile" className="w-full px-16">
+            <div className="mt-5 grid md:grid-cols-2 gap-3">
+              <Link href="/profile" className="">
                 <div
                   className="bg-lightGreen hover:bg-[#f0bd07] text-white
    text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 ;"
@@ -30,8 +30,8 @@ function StartNow() {
               </div>
             </div>
           ) : (
-            <div className="mt-5 flex flex-col lg:flex-row gap-5">
-              <Link href="/profile" className="px-16">
+            <div className="mt-5 grid md:grid-cols-2 gap-3">
+              <Link href="/profile" className="">
                 <div
                   className="bg-lightGreen hover:bg-[#f0bd07] text-white
    text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 ;"
