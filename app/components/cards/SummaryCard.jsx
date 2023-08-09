@@ -8,6 +8,8 @@ import ViewCount from "../helper/ViewCount";
 import Target from "../helper/Target";
 import CategoryIcon from "../helper/CategoryIcon";
 import Image from "next/image";
+import Link from "next-intl/link";
+
 const SummaryCard = ({
   endingDate,
   img,
@@ -17,6 +19,7 @@ const SummaryCard = ({
   category,
   creator,
   viewCount,
+  key
 }) => {
   function isSuccessful(endingDate, raised, goal) {
     const endDate = new Date(endingDate);
@@ -89,36 +92,39 @@ const SummaryCard = ({
       </div>
 
       <div className={styles.body}>
-        <div className="flex items-center justify-between">
-          <div className="grid grid-cols-2  items-start mt-2 w-full justify-between">
-            <div className=" justify-self-start flex justify-start">
-              <h4
-                data-cy="card-title"
-                className="header-5 text-start text-[#2f2f2f]  overflow-hidden w-full h-7"
-              >
-                {title}
-              </h4>
-            </div>
-            <div className="flex justify-end">
-              <CategoryIcon category={category} color={"#00c1a2"} />
+        <Link href={`/projects/${key} `}>
+          <div className="flex items-center justify-between">
+            <div className="grid grid-cols-2  items-start mt-2 w-full justify-between">
+              <div className=" justify-self-start flex justify-start">
+                <h4
+                  data-cy="card-title"
+                  className="header-5 text-start text-[#2f2f2f]  overflow-hidden w-full h-7"
+                >
+                  {title}
+                </h4>
+              </div>
+              <div className="flex justify-end">
+                <CategoryIcon category={category} color={"#00c1a2"} />
+              </div>
             </div>
           </div>
-        </div>
-
+        </Link>
         <Target raised={raised} goal={goal} />
 
         <hr className=" border-t-2  border-white"></hr>
 
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start justify-self-start">
-            <div className={`${styles.flex} `}>
-              <Avatar
-                alt={creator?.userName}
-                src={creator?.userImg}
-                className="w-10 h-10 me-1 overflow-hidden"
-              />
-              <p className="text-base text-basicgray ">{creator?.userName}</p>
-            </div>
+            <Link href={`users/${creator.userId}`}>
+              <div className={`${styles.flex} `}>
+                <Avatar
+                  alt={creator?.userName}
+                  src={creator?.userImg}
+                  className="w-10 h-10 me-1 overflow-hidden"
+                />
+                <p className="text-base text-basicgray ">{creator?.userName}</p>
+              </div>
+            </Link>
           </div>
           <div className=" ">
             <SuccessBadge endingDate={endingDate} raised={raised} goal={goal} />

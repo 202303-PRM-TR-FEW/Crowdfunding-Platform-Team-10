@@ -6,7 +6,7 @@ import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useTranslations } from "next-intl";
-import Link from "next-intl/link";
+
 import { useAuth } from "@/context/AuthContext";
 
 const Home = () => {
@@ -41,7 +41,6 @@ const Home = () => {
     data.length > 0 ? (
       data.map((card) => {
         return (
-          <Link href={`/projects/${card.id} `} key={card.id}>
             <SummaryCard
               key={card.id}
               img={card.url}
@@ -53,7 +52,7 @@ const Home = () => {
               viewCount={card.viewCount}
               endingDate={card.endingDate}
             />
-          </Link>
+      
         );
       })
     ) : (
