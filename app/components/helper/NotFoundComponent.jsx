@@ -1,16 +1,19 @@
+"use client"
 import React from "react";
 import NotFoundImage from "../../../public/assets/images/notFound.png";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const NotFoundComponent = () => {
+  const t = useTranslations("Helper");
   return (
     <div className=" bg-gradient-to-t from-transparent to-teal-50 relative overflow-hidden">
       <div className="py-16 ">
         <div className="text-center">
-          <h2 className="header-3 py-8 "> Sorry Page Not Found</h2>
+          <h2 className="header-3 py-8 ">{t("sorry")}</h2>
           <Link href="/">
-            <button className="btn-primary lg:-mb-8"> Home Page</button>
+            <button className="btn-primary lg:-mb-8">{t("button")}</button>
           </Link>
         </div>
         <div className="mx-auto w-full lg:w-2/3">

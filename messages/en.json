@@ -137,7 +137,10 @@
     "header2": "Subscribe to our newsletter",
     "email-input-area": "Email Address",
     "btn": "Subscribe",
-    "note-to-user": " We will not spam you 🤞🏼"
+    "note-to-user": " We will not spam you 🤞🏼",
+    "email": "Email is required",
+    "valid": "Use a valid email",
+    "message": "Subscribed to OpenHanded Newsletter !"
   },
   "SuccessfulProjects": {
     "header-part-one": "Latest",
@@ -205,5 +208,31 @@
     "message": "You do not have",
     "colored": "a project yet",
     "donation": "Make A Donation"
+  },
+  "Cards": {
+    "don-header": "Donation history",
+    "pow-header": "Project of the week",
+    "trans-header": "Transaction history",
+    "message": "No donations yet",
+    "stats": "Statistics",
+    "button-sel": "Select project",
+    "button-all": "All projects",
+    "now": "Now",
+    "ago": "ago",
+    "min": "minute",
+    "mins": "minutes",
+    "hour": "hour",
+    "hours": "hours",
+    "day": "day",
+    "days": "days"
+  },
+  "Helper": {
+    "cncl": "Cancel",
+    "confirm": "Confirm",
+    "sorry": "Sorry, page not found",
+    "button": "Home Page",
+    "raised": "Raised",
+    "goal": "Goal",
+    "organize": "organizing this fundraiser."
   }
 }
