@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 
 const CommentForm = ({ params }) => {
   const [commentText, setCommentText] = useState("");
-
+  const t = useTranslations("CommentForm");
   const { user } = useAuth();
   const [currentUser, setCurrentUser] = useState();
   useEffect(() => {
@@ -62,14 +62,14 @@ const CommentForm = ({ params }) => {
     <div className="mt-5 w-full">
       <div className="title flex flex-col gap-3 w-full">
         <h3 className="text-base font-bold text-lightGreen w-full">
-          Leave A Comment :
+          {t("Leave A Comment")}
         </h3>
       </div>
       <form className="flex flex-col gap-4 w-full" onSubmit={handleFormSubmit}>
         <div className="mt-3 w-full">
           <textarea
             label="Message"
-            placeholder="Text..."
+            placeholder={t("text")}
             type="text"
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
@@ -78,7 +78,7 @@ const CommentForm = ({ params }) => {
             required
           />
         </div>
-        <button className="btn-primary w-full">Submit</button>
+        <button className="btn-primary w-full"> {t("Submit")}</button>
       </form>
     </div>
   );
