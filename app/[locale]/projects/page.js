@@ -13,7 +13,7 @@ const Home = () => {
   const { projects } = useAuth();
   const [projectOfWeek, setProjectOFWeek] = useState("");
 
-  const t = useTranslations("Profile")
+  const t = useTranslations("Profile");
 
   const [data, setData] = useState(projects ?? []);
 
