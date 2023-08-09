@@ -85,7 +85,7 @@
       "payNowBtn":"Pay Now",
       "successMessage":"Donation Succesfull !",
       "addPaymentMethodBtn":"Add Payment Method",
-      "notAddedPaymentMethod":"Haven't added a payment method yet? Click the button below to add now 👇",
+      "notAddedPaymentMethod":"Haven't added a payment method yet?",
       "donation-amount-msg":"Donation Amount Can't Be Lower Than 1 Dollar !", 
       "donation-amount-two-msg":"Donation Amount Must Be a Number !",
       "donation-required-msg":"Donation Amount is Required !"
