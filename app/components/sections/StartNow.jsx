@@ -14,23 +14,28 @@ function StartNow() {
         <div className="space-y-4"></div>
         <div className="md:space-x-4 md:flex-row flex justify-center items-center flex-col">
           {user == null ? (
-            <>
-              <Link href="/signup" className="shadow-lg btn-primary">
-                {t("btn-one")}
-              </Link>
-              <Link href="/projects" className="btn-transparent mt-5 md:mt-0">
-                {t("btn-two")}
-              </Link>
-            </>
+            <div className="mt-5 flex flex-col lg:flex-row gap-3">
+              <div className="btn-priamry-lg shadow-lg">
+                <Link href="/profile" className="w-full">
+                  {t("btn-one")}
+                </Link>
+              </div>
+              <div className="btn-transparent  ">
+                <Link href="/projects" className="w-full">
+                  {t("btn-two")}
+                </Link>
+              </div>
+            </div>
           ) : (
-            <>
-              <Link href="/profile" className="shadow-lg btn-primary">
-                My Projects
+            <div className="mt-5 flex flex-col lg:flex-row gap-5">
+              <Link href="/profile">
+                <div className=" btn-primary-lg">{t("btn-three")}</div>
               </Link>
-              <Link href="/projects" className="btn-transparent mt-5 md:mt-0">
-                {t("btn-two")}
+
+              <Link href="/projects">
+                <div className="btn-transparent-lg">{t("btn-two")}</div>
               </Link>
-            </>
+            </div>
           )}
         </div>
       </section>
