@@ -15,7 +15,7 @@ function StartNow() {
         <div className="md:space-x-4 md:flex-row flex justify-center items-center flex-col">
           {user == null ? (
             <div className="mt-5 flex flex-col lg:flex-row gap-3">
-              <div className="btn-priamry-lg shadow-lg">
+              <div className="btn-priamry-lg ">
                 <Link href="/profile" className="w-full">
                   {t("btn-one")}
                 </Link>
