@@ -17,7 +17,7 @@ function StartNow() {
             <div className="mt-5 flex flex-col lg:flex-row gap-3">
               <div
                 className="bg-lightGreen hover:bg-[#f0bd07] text-white
-   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-16;"
+   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-14;"
               >
                 <Link href="/profile" className="w-full">
                   {t("btn-one")}
@@ -34,7 +34,7 @@ function StartNow() {
               <Link href="/profile">
                 <div
                   className="bg-lightGreen hover:bg-[#f0bd07] text-white
-   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-16;"
+   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-14;"
                 >
                   {t("btn-three")}
                 </div>
