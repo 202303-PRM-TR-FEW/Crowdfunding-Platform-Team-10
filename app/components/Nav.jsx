@@ -45,8 +45,8 @@ import {
 } from "@mui/icons-material";
 
 export default function Nav() {
-  const { user, logout } = useAuth();
-  const Router = useRouter();
+  const { user, logout, setLoading } = useAuth();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -95,10 +95,11 @@ export default function Nav() {
     handleMobileMenuClose();
   };
   const handleLogout = () => {
+    setLoading(true);
     setAnchorEl(null);
     handleMobileMenuClose();
+    setCurrentUser(null);
     logout();
-    Router.push("/login");
   };
   const [scrolling, setScrolling] = useState(false);
 

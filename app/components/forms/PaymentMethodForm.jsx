@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const PaymentMethodForm = () => {
   const [cardNumber, setCardNumber] = useState("");
@@ -13,13 +14,16 @@ const PaymentMethodForm = () => {
   const t = useTranslations("PaymentMethodForm");
 
   const handleSubmit = (e) => {
-    toast.success(`${t("success-msg")}`);
+
     e.preventDefault();
     if (!cardNumber || !expiryDate || !cvv || !holderName) {
       setShowAlert(true);
       return;
     }
     // Clear the input fields after successful submission
+    setShowAlert(false);
+
+    toast.success(`${t("success-msg")}`);
     setCardNumber("");
     setExpiryDate("");
     setCvv("");
@@ -39,10 +43,12 @@ const PaymentMethodForm = () => {
     <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl max-w-4xl">
       <div className="lg:col-span-3 bg-gradient-to-br from-lightGreen to-teal-700 flex flex-col justify-center gap-2 text-center bg-white p-6 sm:p-12 md:p-16 lg:rounded-l rounded-t lg:rounded-tr-none">
         <div className="mb-4">
-          <img
-            src="assets/images/donation-image.png"
+          <Image
+            src="/assets/images/donation-image.png"
             alt="Donation Image"
             className="w-full rounded-md"
+            width={400}
+            height={400}
           />
         </div>
       </div>

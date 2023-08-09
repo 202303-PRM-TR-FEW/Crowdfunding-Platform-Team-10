@@ -9,6 +9,7 @@ import CardInfo from "./CardInfo";
 const Page = () => {
   const { user } = useAuth();
   const [currentUser, setCurrentUser] = useState();
+  
   useEffect(() => {
     if (user && user.email) {
       const q = query(

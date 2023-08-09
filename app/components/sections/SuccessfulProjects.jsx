@@ -8,8 +8,10 @@ import { useTranslations } from "next-intl";
 import { Transition } from "@headlessui/react";
 import LoaderStyle from "../helper/LoaderStyle";
 import SuccessfulCard from "../cards/SuccessfulCard";
+import { useAuth } from "@/context/AuthContext";
 
-function SuccessfulProjects({ projects }) {
+function SuccessfulProjects() {
+  const { projects }=useAuth()
   const t = useTranslations("SuccessfulProjects");
 
   if (!projects || typeof projects !== "object") {

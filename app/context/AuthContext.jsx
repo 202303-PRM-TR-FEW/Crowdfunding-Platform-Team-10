@@ -21,6 +21,7 @@ export const AuthContextProvider = ({ children }) => {
   const [projects, setProjects] = useState(true);
   const [usersInfo, setUsersInfo] = useState(null);
   const router = useRouter();
+
   useEffect(() => {
     const q = query(collection(db, "users"));
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
@@ -78,7 +79,6 @@ export const AuthContextProvider = ({ children }) => {
 
   const googleLogIn = () => {
     const provider = new GoogleAuthProvider();
-
     signInWithPopup(auth, provider).then(async (result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -114,8 +114,8 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     setUser(null);
-
     await signOut(auth);
+    setLoading(false)
   };
 
   return (
@@ -127,6 +127,7 @@ export const AuthContextProvider = ({ children }) => {
         logout,
         loading,
         googleLogIn,
+        setLoading
       }}
     >
       {loading ? null : children}
