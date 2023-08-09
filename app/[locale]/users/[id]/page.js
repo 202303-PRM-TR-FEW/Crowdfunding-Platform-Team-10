@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 import { Box } from "@mui/system";
 import SummaryCard from "@/components/cards/SummaryCard";
 
-function page({ params }) {
+function Page({ params }) {
   console.log(params);
   const { user, loading, projects } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
@@ -77,4 +77,4 @@ function page({ params }) {
   );
 }
 
-export default page;
+export default Page;
