@@ -292,8 +292,7 @@ export default function Nav() {
             >
               <Image src={logo} alt="Logo" width={50} />
               <span className="hidden lg:block">
-                {t("open")}
-                <span className="text-[#1f9e92]"> {t("handed")}</span>
+                Open<span className="text-[#1f9e92]">Handed</span>
               </span>
             </Typography>
           </Link>

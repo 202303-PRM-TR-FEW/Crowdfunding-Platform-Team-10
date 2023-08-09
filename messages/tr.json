@@ -12,8 +12,6 @@
     "settings-two": "Ayarlar",
     "logout-two": "Çıkış yapın",
     "login-two": "Giriş yapın",
-    "open": "Open",
-    "handed": "Handed",
     "label-search": "Projeleri Arayın",
     "placeholder-search": "Arama yap..."
   },
@@ -83,10 +81,10 @@
   "DonationForm": {
     "header": "Bir miktar girin:",
     "charityText": "%2 Hayır kurumlarına bağışlamak ister misiniz?",
-    "payNowBtn":"Hemen Öde",
-    "successMessage":"Bağış ödemeniz başarılı şekilde alındı!",
-    "addPaymentMethodBtn":"Ödeme yöntemi ekleyin",
-    "notAddedPaymentMethod":" Henüz bir ödeme yöntemi eklemediniz mi?",
+    "payNowBtn": "Hemen Öde",
+    "successMessage": "Bağış ödemeniz başarılı şekilde alındı!",
+    "addPaymentMethodBtn": "Ödeme yöntemi ekleyin",
+    "notAddedPaymentMethod": " Henüz bir ödeme yöntemi eklemediniz mi?",
     "donation-amount-msg": "Bağış miktarı 1 Doların altında olamaz!",
     "donation-amount-two-msg": "Bağış miktarı bir sayı olmalıdır!",
     "donation-required-msg": "Bağış miktarı gerekli!"
@@ -232,5 +230,26 @@
     "raised": "Toplanan",
     "goal": "Hedef",
     "organize": "tarafından organize ediyor"
+  },
+  "Footer": {
+    "text": "Fikirlerinizi hemen hayata geçirin! İdeal çabanız adına para toplamak için bir proje oluşturun veya bir fark yaratmak istiyorsanız ilginizi çeken amaçlara bağış yapın.",
+    "more": "Daha fazla...",
+    "team": "Ekibimiz",
+    "link": "Linkler",
+    "home": "Ana Sayfa",
+    "projects": "Projeler",
+    "join": "Üye Olun",
+    "login": "Giriş Yap",
+    "prof": "Profil"
+  },
+  "SuccessBadge": {
+    "left": "gün kaldı",
+    "sccs": "Tamamlandı",
+    "clsd": "Kapatıldı",
+    "actv": "Aktif"
+  },
+  "Filtering": {
+    "header": "Kategoriler",
+    "filter": "Filtrele"
   }
 }

@@ -1,12 +1,11 @@
 "use client"
 
 import Comments from "@/components/commentsCom/Comments";
-import GetStarted from "@/components/GetStarted";
+import GetStarted from "./GetStarted";
 import MissionCom from "./MissionCom";
 import OurTeam from "./OurTeam";
 import React from "react";
 import logo from "../../../public/logo.svg";
-import Image from "next/image";
 import { useTranslations } from 'next-intl';
 
 const AboutUs = () => {

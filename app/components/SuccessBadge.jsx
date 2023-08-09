@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 const SuccessBadge = ({ endingDate, raised, goal }) => {
   const successState = isSuccessful(endingDate, raised, goal);
 
@@ -6,15 +8,15 @@ const SuccessBadge = ({ endingDate, raised, goal }) => {
       <span
         data-cy="badge-title"
         className={`text-xs  px-5 py-1  rounded ${
-          successState === "Active"
-            ? "text-lightGreen bg-yellow-light"
-            : successState === "Successful"
-            ? "text-white bg-lightGreen"
-            : successState === "Successful"
-            ? "text-white bg-gray-500"
-            : successState === "Closed"
-            ? "text-white bg-gray-700"
-            : "text-white bg-red-800 "
+          successState === "Active" || "Aktif"
+          ? "text-lightGreen bg-yellow-light"
+          : successState === "Successful" || "Tamamlandı"
+          ? "text-white bg-lightGreen"
+          : successState === "Successful" || "Tamamlandı"
+          ? "text-white bg-gray-500"
+          : successState === "Closed" || "Kapatıldı"
+          ? "text-white bg-gray-700"
+          : "text-white bg-red-800 "
         }`}
       >
         {successState}
@@ -30,14 +32,15 @@ function isSuccessful(endingDate, raised, goal) {
   const today = new Date();
   const timeDiff = endDate.getTime() - today.getTime();
   const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  const t = useTranslations("SuccessBadge")
 
   if (raised >= goal) {
-    return "Successful";
+    return `${t("sccs")}`;
   } else if (daysRemaining <= 0) {
-    return "Closed";
+    return `${t("clsd")}`;
   } else if (daysRemaining < 5) {
-    return `${daysRemaining} Days Left`;
+    return `${daysRemaining} ${t("left")}`;
   } else {
-    return "Active";
+    return `${t("actv")}`;
   }
 }

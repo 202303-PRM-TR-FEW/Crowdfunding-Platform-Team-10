@@ -6,7 +6,9 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
+
 IconButton;
 const styles = {
   main:
@@ -61,7 +63,7 @@ const CategoryFiltering = ({ data, filtrindData }) => {
     );
     filtrindData(filters);
   };
-
+  const t = useTranslations("Filtering")
   return (
     <Box className="py-10">
       <h2 className={styles.header}>Categories</h2>
