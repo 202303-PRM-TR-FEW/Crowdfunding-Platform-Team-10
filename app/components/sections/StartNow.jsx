@@ -29,7 +29,12 @@ function StartNow() {
           ) : (
             <div className="mt-5 flex flex-col lg:flex-row gap-5">
               <Link href="/profile">
-                <div className=" btn-primary-lg">{t("btn-three")}</div>
+                <div
+                  className="bg-lightGreen hover:bg-[#f0bd07] text-white
+   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-16;"
+                >
+                  {t("btn-three")}
+                </div>
               </Link>
 
               <Link href="/projects">
