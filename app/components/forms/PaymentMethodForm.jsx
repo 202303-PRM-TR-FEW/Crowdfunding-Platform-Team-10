@@ -21,6 +21,8 @@ const PaymentMethodForm = () => {
       return;
     }
     // Clear the input fields after successful submission
+    setShowAlert(false);
+
     toast.success(`${t("success-msg")}`);
     setCardNumber("");
     setExpiryDate("");
