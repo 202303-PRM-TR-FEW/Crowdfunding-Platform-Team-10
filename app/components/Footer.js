@@ -1,5 +1,6 @@
-import React from "react";
-import Link from "next/link";
+"use client";
+
+import Link from "next-intl/link";
 
 const Footer = () => {
   return (

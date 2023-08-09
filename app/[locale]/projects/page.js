@@ -6,7 +6,7 @@ import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 
-import Link from "next/link";
+import Link from "next-intl/link";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
 

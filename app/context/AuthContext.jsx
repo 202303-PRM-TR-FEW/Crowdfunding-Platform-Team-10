@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { db } from "@/config/firebase";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
-
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { auth } from "../config/firebase";
 import { useRouter } from "next-intl/client";
 const AuthContext = createContext();
@@ -18,8 +18,34 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [projects, setProjects] = useState(true);
+  const [usersInfo, setUsersInfo] = useState(null);
   const router = useRouter();
+  useEffect(() => {
+    const q = query(collection(db, "users"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let usersArr = [];
+      QuerySnapshot.forEach((doc) => {
+        usersArr.push({ ...doc.data(), id: doc.id });
+      });
+      console.log("im users UseEffect");
+      setUsersInfo(usersArr);
+    });
+    return () => (usersInfo === null ? unsubscribe() : "");
+  }, []);
+  useEffect(() => {
+    const q = query(collection(db, "projects"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let projectsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        projectsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setProjects(projectsArr);
+      console.log("im projects UseEffect");
+    });
+    return () => (projects === null ? unsubscribe() : "");
+  }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {

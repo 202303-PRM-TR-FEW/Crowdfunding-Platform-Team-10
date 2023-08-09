@@ -22,12 +22,12 @@ import LoaderStyle from "../helper/LoaderStyle";
 import { useAuth } from "@/context/AuthContext";
 import { useTranslations } from "next-intl";
 
-const EditUser = ({ openEditUserForm, setOpenEditUserForm }) => {
+const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
   const handleClose = () => {
     setOpenEditUserForm(false);
   };
 
-  const { currentUser, user } = useAuth();
+  // const { currentUser, user } = useAuth();
   const [err, setErr] = useState("");
   const t = useTranslations("EditUser");
   const [userData, setUserData] = useState({
