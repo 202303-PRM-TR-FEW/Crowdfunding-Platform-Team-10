@@ -6,9 +6,9 @@ import Footer from "@/components/Footer";
 import AddProject from "@/components/helper/AddProject";
 import Toaster from "@/components/helper/Toaster";
 import Providers from "@/providers";
+import { Fade } from "react-awesome-reveal";
 // import Providers from "@/components/helper/ProviderTheme";
 // import ThemeButton from "@/components/theme/ThemeButton";
-
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
@@ -49,7 +49,9 @@ async function RootLayout({ children, params: { locale } }) {
           {/* <ThemeButton /> */}
 
           <Nav />
-          <div>{children}</div>
+          <div>
+            <Fade>{children}</Fade>
+          </div>
           <Footer />
           <AddProject />
           <Toaster />
