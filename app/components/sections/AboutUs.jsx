@@ -13,7 +13,7 @@ const AboutSection = () => {
           <Image src={AboutUs} alt="AboutUs" className="w-full" />
         </div>
 
-        <div className="">
+        <div className="flex flex-col items-center lg:items-start">
           <span className="text-xs color-green bg-yellow-light px-5 py-1 pt-1 rounded">
             {t("header")}
           </span>
@@ -26,10 +26,8 @@ const AboutSection = () => {
 
           <p className="mb-0 sub-header">{t("paragraph")}</p>
 
-          <div className="mt-5">
-            <Link href="/about" className="btn-primary">
-              {t("more-link")}
-            </Link>
+          <div className="mt-7 btn-primary-lg">
+            <Link href="/about">{t("more-link")}</Link>
           </div>
         </div>
       </div>
