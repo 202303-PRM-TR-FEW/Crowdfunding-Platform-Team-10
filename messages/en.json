@@ -12,8 +12,6 @@
     "settings-two": "Settings",
     "logout-two": " Logout",
     "login-two": "Login",
-    "open": "Open",
-    "handed": "Handed",
     "label-search": "Search for projects",
     "placeholder-search": "Search..."
   },
@@ -24,7 +22,7 @@
     "subHeader1": "We helped over 3.500 projects and causes.",
     "subHeader2": "Join Us in Bringing Ideas to Life!",
     "successful": "Successful projects: ",
-    "donations": "Donations Made:",
+    "donations": "Donations Made: ",
     "button": "Start Now"
   },
   "LoginForm": {
@@ -234,5 +232,26 @@
     "raised": "Raised",
     "goal": "Goal",
     "organize": "organizing this fundraiser."
+  },
+  "Footer": {
+    "text": "Bring your ideas to life right away! Create a project to fundraise money for your ideal endeavor, or donate to causes that interest you to make a difference.",
+    "more": "Read more...",
+    "team": "Our Team",
+    "link": "Links",
+    "home": "Home Page",
+    "projects": "Projects",
+    "join": "Join",
+    "login": "Log In",
+    "prof": "Profile"
+  },
+  "SuccessBadge": {
+    "left": "days left",
+    "sccs": "Successful",
+    "clsd": "Closed",
+    "actv": "Active"
+  },
+  "Filtering": {
+    "header": "Categories",
+    "filter": "Filter by"
   }
 }
