@@ -6,10 +6,13 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
+
 IconButton;
 const styles = {
-  main: "flex justify-center md:justify-between items-center gap-2 flex-col md:flex-row ",
+  main:
+    "flex justify-center md:justify-between items-center gap-2 flex-col md:flex-row ",
   header: "header-2 text-lightGreen py-4 text-center md:text-start",
   categoryContainer:
     " px-12 sm:px-0 flex flex-row flex-wrap justify-center gap-3",
@@ -35,15 +38,22 @@ const CategoryFiltering = ({ data, filtrindData }) => {
     if (dropcategory === "All" || dropcategory === "") gruopCat = data;
     else if (dropcategory == "Successful")
       gruopCat = data.filter((project) => project.raised >= project.goal);
-    else if (dropcategory === "Closed") {
+    else if (dropcategory === "Active") {
+      gruopCat = data.filter((project) => {
+        const projectTime = timeStatus(project.endingDate);
+        return projectTime > 0 && project.raised < project.goal;
+      });
+    } else if (dropcategory === "Ending soon") {
+      gruopCat = data.filter((project) => {
+        const projectTime = timeStatus(project.endingDate);
+        return (
+          projectTime <= 5 && projectTime > 0 && project.raised < project.goal
+        );
+      });
+    } else if (dropcategory === "Closed") {
       gruopCat = data.filter((project) => {
         const projectTime = timeStatus(project.endingDate);
         return projectTime <= 0 && project.raised < project.goal;
-      });
-    } else if (dropcategory === "Active") {
-      gruopCat = data.filter((project) => {
-        const projectTime = timeStatus(project.endingDate);
-        return projectTime >= 0 && project.raised < project.goal;
       });
     }
     setActiveCategory(CATEGORY.find((item) => item.id === category).id);
@@ -53,10 +63,10 @@ const CategoryFiltering = ({ data, filtrindData }) => {
     );
     filtrindData(filters);
   };
-
+  const t = useTranslations("Filtering")
   return (
     <Box className="py-10">
-      <h2 className={styles.header}>Categories</h2>
+      <h2 className={styles.header}>{t("header")}</h2>
       <div className={styles.main}>
         <Box className={styles.categoryContainer}>
           {CATEGORY.map((cat) => {
@@ -85,7 +95,7 @@ const CategoryFiltering = ({ data, filtrindData }) => {
         </Box>
         <div className="relative ">
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel>Filter by</InputLabel>
+            <InputLabel>{t("filter")}</InputLabel>
             <Select
               value={gruopCatValue}
               onChange={(event) => {
@@ -167,11 +177,13 @@ const CATEGORY = [
     },
   },
 ];
+
 const GROUP_CATEGORY = [
   { id: 1, name: "All", value: "All" },
   { id: 2, name: "Successful", value: "Successful" },
   { id: 3, name: "Active", value: "Active" },
-  { id: 4, name: "Closed", value: "Closed" },
+  { id: 4, name: "Ending soon", value: "Ending soon" },
+  { id: 5, name: "Closed", value: "Closed" },
 ];
 function timeStatus(endingDate) {
   const endDate = new Date(endingDate);

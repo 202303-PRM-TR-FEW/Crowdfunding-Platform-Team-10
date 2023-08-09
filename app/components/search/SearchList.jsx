@@ -8,16 +8,18 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next-intl/link";
+import { useTranslations } from "next-intl";
 
 const SearchList = ({ searchProjects }) => {
+  const t = useTranslations("SearchList");
   return (
-    <div className="absolute w-full lg:w-[350px] rounded bg-white bg-opacity-80 backdrop-filter backdrop-blur-[20px]">
+    <div className="absolute w-full lg:w-[350px] rounded bg-white bg-opacity-90 backdrop-filter backdrop-blur-[20px]">
       {searchProjects && searchProjects.length !== 0 ? (
         searchProjects.map((project, index) => (
           <React.Fragment key={project.id}>
             {index > 0}
             <Link href={`/${project.id}`}>
-              <ListItem className="z-50 ">
+              <ListItem className="z-50 hover:bg-[#f0bd0732] hover:rounded">
                 <ListItemAvatar>
                   <Avatar
                     variant="rounded"
@@ -26,18 +28,14 @@ const SearchList = ({ searchProjects }) => {
                     className="w-12 h-12 object-contain"
                   />
                 </ListItemAvatar>
-                <div>
-                  <Typography variant="h6" color="textPrimary">
-                    {project.name}
-                  </Typography>
-                </div>
+                <div>{project.name}</div>
               </ListItem>
             </Link>
           </React.Fragment>
         ))
       ) : (
         <ListItem className="z-50 ">
-          <div>No matching results</div>
+          <div>{t("no-matching-result")}</div>
         </ListItem>
       )}
     </div>

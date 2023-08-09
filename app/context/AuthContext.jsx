@@ -8,10 +8,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
-
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { auth } from "../config/firebase";
 import { useRouter } from "next-intl/client";
 const AuthContext = createContext();
@@ -20,8 +19,34 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState(true);
-
+  const [usersInfo, setUsersInfo] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const q = query(collection(db, "users"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let usersArr = [];
+      QuerySnapshot.forEach((doc) => {
+        usersArr.push({ ...doc.data(), id: doc.id });
+      });
+      console.log("im users UseEffect");
+      setUsersInfo(usersArr);
+    });
+    return () => (usersInfo === null ? unsubscribe() : "");
+  }, []);
+  useEffect(() => {
+    const q = query(collection(db, "projects"));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      let projectsArr = [];
+      QuerySnapshot.forEach((doc) => {
+        projectsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setProjects(projectsArr);
+      console.log("im projects UseEffect");
+    });
+    return () => (projects === null ? unsubscribe() : "");
+  }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -54,7 +79,6 @@ export const AuthContextProvider = ({ children }) => {
 
   const googleLogIn = () => {
     const provider = new GoogleAuthProvider();
-
     signInWithPopup(auth, provider).then(async (result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -90,24 +114,9 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     setUser(null);
-
     await signOut(auth);
+    setLoading(false)
   };
-
-
-
-  useEffect(() => {
-    const q = query(collection(db, "projects"));
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let projectsArr = [];
-      QuerySnapshot.forEach((doc) => {
-        projectsArr.push({ ...doc.data(), id: doc.id });
-      });
-      setProjects(projectsArr);
-      console.log("im projects UseEffect");
-    });
-    return () => unsubscribe();
-  }, []);
 
   return (
     <AuthContext.Provider
@@ -117,10 +126,11 @@ export const AuthContextProvider = ({ children }) => {
         signup,
         logout,
         loading,
-    
+        googleLogIn,
+
         projects,
 
-        googleLogIn,
+        setLoading
       }}
     >
       {loading ? null : children}

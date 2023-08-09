@@ -2,27 +2,20 @@
 import Link from "next-intl/link";
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import { useAuth } from "@/context/AuthContext";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 const WelcomeBanner = () => {
-  const { projects } = useAuth();
   const [successfulProjects, setSuccessfulProjects] = useState(24230);
-  const [donationCounter, setDonationCounter] = useState(0);
   const [checked, setChecked] = useState(false);
   const t = useTranslations("WelcomeBanner");
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
 
   useEffect(() => {
     setChecked(true);
-    // Convert the projects object into an array and get the number of successful projects
-    const projectsArray = Object.values(projects);
-    // const totalSuccessfulProjects = projectsArray.filter((project) => project.successful).length;
+
     const totalSuccessfulProjects = "23423";
-    // Animate the counter from 0 to the number of successful projects
+
     let counter = 0;
-    const step = Math.ceil(totalSuccessfulProjects / 100); // Change the denominator to control the animation speed
+    const step = Math.ceil(totalSuccessfulProjects / 100);
 
     const timer = setInterval(() => {
       counter = Math.min(counter + step, totalSuccessfulProjects);
@@ -31,26 +24,38 @@ const WelcomeBanner = () => {
       if (counter >= totalSuccessfulProjects) {
         clearInterval(timer);
       }
-    }, 100);
+    }, 80);
 
     return () => clearInterval(timer);
-  }, [projects]);
+  }, []);
 
   return (
     <section className="flex justify-center items-center bg-gradient-to-t from-transparent to-teal-50">
-      <div className="grid lg:grid-cols-2 gap-8 py-28 container">
-        <div className="p-10 flex flex-col gap-4 text-center lg:text-left bg-no-repeat bg-right-top bg-[url('../../public/assets/images/dots.svg')]">
-          <p className="header-1">{t("header")}</p>
-          <p className="sub-header">{t("subHeader")}</p>
-          <Link href="/projects" className="justify-self-end xl:mt-8">
-            <button className="btn-primary">{t("button")}</button>
-          </Link>
+      <div className="flex flex-col lg:flex-row items-start justify-between gap-8 py-28 container">
+        <div className="p-10 flex lg:w-[47%] flex-col gap-5 text-center lg:items-start items-center lg:text-left bg-no-repeat bg-right-top bg-[url('../../public/assets/images/dots.svg')]">
+          <h1 className="header-1">
+            {t("header1")}
+            <span className="color-yellow"> {t("header2")} </span>{" "}
+            {t("header3")}
+          </h1>
+          <p className="sub-header">
+            {t("subHeader1")}
+            <br />
+            {t("subHeader2")}
+          </p>
+
+          <div className="btn-primary-lg  mt-5">
+            <Link href="/projects">{t("button")}</Link>
+          </div>
         </div>
-        <div className="p-10 sm:p-24 relative" style={{ position: "relative" }}>
+        <div
+          className="py-10 sm:py-24 relative lg:w-[63%] align-self-and"
+          style={{ position: "relative" }}
+        >
           <Box
             sx={{
               position: "absolute",
-              top: checked ? "20%" : "-500%",
+              top: checked ? "30%" : "-500%",
               left: "20%",
               transform: "translate(-50%, -50%)",
               p: 2,
@@ -61,7 +66,7 @@ const WelcomeBanner = () => {
               fontWeight: "bold",
               transition: "top 1.5s ease-in-out",
               textAlign: "center",
-              width: "fit-content",
+              width: "15rem",
               zIndex: 2,
               "@media screen and (max-width: 768px)": {
                 top: checked ? "10%" : "-500%",
@@ -73,9 +78,11 @@ const WelcomeBanner = () => {
             {t("successful")}
             {successfulProjects}
           </Box>
-          <img
-            src="/assets/images/team_work.png"
-            alt=""
+          <Image
+            src="/assets/images/welcome1.jpg"
+            alt="welcome img"
+            width={700}
+            height={700}
             style={{
               maxWidth: "100%",
               height: "auto",
@@ -86,18 +93,19 @@ const WelcomeBanner = () => {
           <Box
             sx={{
               position: "absolute",
-              top: checked ? "25%" : "-500%",
-              right: "-10%",
+              top: checked ? "20%" : "-500%",
+              right: "-20%",
               transform: "translate(-50%, -50%)",
               p: 2,
-              background: "#ffffffb3",
+              background: "#00c1a155",
               backdropFilter: "blur(2px)",
-              color: "#f08307",
+              color: "#fff",
               borderRadius: "10px",
               fontWeight: "bold",
               transition: "top 2s ease-in-out",
               textAlign: "center",
-              width: "fit-content",
+              width: "15rem",
+
               zIndex: 2,
               "@media screen and (max-width: 768px)": {
                 top: checked ? "70%" : "-500%",

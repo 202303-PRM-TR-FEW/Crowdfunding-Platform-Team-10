@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { useRouter } from "next-intl/client";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";

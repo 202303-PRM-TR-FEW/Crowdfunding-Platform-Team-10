@@ -1,88 +1,255 @@
 {
-    "WelcomeBanner": {
-      "header": "Supporting great causes made easy",
-      "subHeader": "We helped over 3.500 projects and causes. Sign in today and get your idea kicked off or support others kick off their amazing projects.",
-      "button": "Start Today",
-      "successful": "Successful projects: ",
-      "donations":"Donations Made: "
-    },
-    "LoginForm":{
-      "header": "Login to Your Account",
-      "subHeader": "Login using Google",
-      "or":"OR",
-      "loginButton": "Login",
-      "emailInput": "Email",
-      "passwordInput": "Password",
-      "sideHeader": "New Here ?",
-      "sideParagraph": "Sign up and discover great opportunities for both helping others and creating your own cause!",
-      "signupButton":"Sign Up"
-    },
-    "SignupForm": {
-      "header": "Sign Up",
-      "email": "Email",
-      "password": "Password",
-      "fullName": "Full Name",
-      "bio": "Bio",
-      "country": "Country",
-      "signupButton": "Sign Up",
-      "userPicture": "User Picture",
-      "sideHeader": "Already Have an Account ?",
-      "loginButton": "Login"
-    },
-    "DonationForm": {
-      "header":"Enter amount:",
-      "charityText": "Add 2% for charity ?",
-      "payNowBtn":"Pay Now",
-      "successMessage":"Donation Succesfull !"
-    },
-    "AboutUs": {
-      "header":"ABOUT US",
-      "white-part-header":"Our Highest Ambition",
-      "white-part-two-header":"is to",
-      "yellow-part-header":"Help People",
-      "paragraph":"Get instant helpful resources about anything on the go, easily implement secure money transfer solutions, boost your daily efficiency, connect to other app users and create your own Fronter network, and much more with just a few taps.", 
-      "more-link":"Read More"
-    },
-    "HowWorks":{
-      "header1":"How",
-      "header2":"Open",
-      "header3":"Handed",
-      "header4":"Works",
-      "sub-header":"With just a few minute you can fundraise",
-      "sub-header-one":"Begin with the basic things",
-      "paragraph-one":"Introduce yourself, your plan and where the place is",
-      "sub-header-two":"Tell about your idea and event",
-      "paragraph-two":"Along the way, we will provide advice to help you",
-      "sub-header-three":"Share with friends and family",
-      "paragraph-three":"  There are many people who want to help you as well"
-    },  
-    "StartNow":{
-      "header":"Start Now",
-      "paragraph":"Start Now and Bring Your Ideas to Life! Create a project and raise funds for your dream venture, or make a difference by donating to projects that align with your passions. Join our community of changemakers today!",
-      "btn-one": "Create New Account",
-      "btn-two":"Check Projects"
-    },
-    "NewsLetterCard":{
-      "header1":"Subscribe now and be at the forefront of change!",
-      "paragraph":"Sign up for our free newsletter to receive our monthly digest of the best causes. Stay informed, get inspired, and make a difference by joining our community of passionate individuals dedicated to shaping the world for the better!",
-      "header2":"Subscribe to our newsletter",
-      "email-input-area":"Email Address",
-      "btn":"Subscribe",
-      "note-to-user":" We will not spam you 🤞🏼"
-    },
-    "SuccessfulProjects":{
-      "header-part-one":"Latest",
-      "header-part-two":" Successful Projects ",
-      "sub-header":"Check out our most recent successful cases",
-      "no-projects-text":"No successful projects found Yet."
-    },
-    "Comments":{
-      "btn":"Add testimonials",
-      "testimonial-input-area":"Write your testimonial...",
-      "btn-2":"Close",
-      "btn-3":"Submit",
-      "header":"Testimonials"
-    },
+  "Nav": {
+    "my-projects": " My Projects",
+    "settings": "Settings",
+    "logout": "Logout",
+    "login": "Login",
+    "home": "Home",
+    "about-us": "About Us",
+    "all-pro": "All Projects",
+    "my-projects-two": "My Projects",
+    "add-new-pro": "Add New Project",
+    "settings-two": "Settings",
+    "logout-two": " Logout",
+    "login-two": "Login",
+    "label-search": "Search for projects",
+    "placeholder-search": "Search..."
+  },
+  "WelcomeBanner": {
+    "header1": "Empowering",
+    "header2": "Dreams",
+    "header3": "Together",
+    "subHeader1": "We helped over 3.500 projects and causes.",
+    "subHeader2": "Join Us in Bringing Ideas to Life!",
+    "successful": "Successful projects: ",
+    "donations": "Donations Made: ",
+    "button": "Start Now"
+  },
+  "LoginForm": {
+    "header": "Login to Your Account",
+    "subHeader": "Login using Google",
+    "or": "OR",
+    "loginButton": "Login",
+    "emailInput": "Email",
+    "passwordInput": "Password",
+    "sideHeader": "New Here ?",
+    "sideParagraph": "Sign up and discover great opportunities for both helping others and creating your own cause!",
+    "signupButton": "Sign Up"
+  },
+  "SignupForm": {
+    "header": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full Name",
+    "bio": "Bio",
+    "country": "Country",
+    "signupButton": "Sign Up",
+    "userPicture": "User Picture",
+    "sideHeader": "Already Have an Account ?",
+    "loginButton": "Login"
+  },
+  "EditUser": {
+    "header": "Personal Detail:",
+    "sub-header": "Please complete your personal information",
+    "country": "Country",
+    "btn-update": "Update",
+    "label-name": "Full name",
+    "bio": "Bio",
+    "user-picture": "User Picture"
+  },
+  "ProjectsForm": {
+    "success-msg": "Created Project Succesfully !",
+    "user-ıd-part-one": "User with ID",
+    "user-ıd-part-two": "not found.",
+    "kick-off": "Kick-off your project",
+    "alert-success": "Created Project Succesfully !",
+    "name-pro": "Name of your project",
+    "goal-pro": "Add your goal",
+    "date-pro": "Starting Date",
+    "date-two-pro": "Ending Date",
+    "about-pro": "About your project",
+    "category": "Category",
+    "category-animals": "Animals",
+    "category-education": " Education",
+    "category-culture": "Culture",
+    "category-children": "Children",
+    "upload-project": "Upload Project"
+  },
+  "UserSettingForms": {
+    "my-pro": " My Projects",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "DonationForm": {
+    "header": "Enter amount:",
+    "charityText": "Add 2% for charity ?",
+    "payNowBtn": "Pay Now",
+    "successMessage": "Donation Succesfull !",
+    "addPaymentMethodBtn": "Add Payment Method",
+    "notAddedPaymentMethod": "Haven't added a payment method yet? Click the button below to add now 👇",
+    "donation-amount-msg": "Donation Amount Can't Be Lower Than 1 Dollar !",
+    "donation-amount-two-msg": "Donation Amount Must Be a Number !",
+    "donation-required-msg": "Donation Amount is Required !"
+  },
+  "PaymentMethodForm": {
+    "header": "Donation Details",
+    "cardNumber": "Card Number",
+    "expiryDate": "Expiry Date",
+    "cvc": "CVC",
+    "holderName": "Holder Name",
+    "alert-text": "Please fill out all the fields.",
+    "confirm-btn": "Confirm your donation",
+    "success-msg": "You have successfully added a donation method!"
+  },
+  "AboutUs": {
+    "header": "ABOUT US",
+    "white-part-header": "Our Highest Ambition",
+    "white-part-two-header": "is to",
+    "yellow-part-header": "Help People",
+    "paragraph": "Get instant helpful resources about anything on the go, easily implement secure money transfer solutions, boost your daily efficiency, connect to other app users and create your own Fronter network, and much more with just a few taps.",
+    "more-link": "Read More"
+  },
+  "HowWorks": {
+    "header1": "How ",
+    "header2": "Open",
+    "header3": "Handed",
+    "header4": "Works",
+    "sub-header": "With just a few minute you can fundraise",
+    "sub-header-one": "Begin with the basic things",
+    "paragraph-one": "Introduce yourself, your plan and where the place is",
+    "sub-header-two": "Tell about your idea and event",
+    "paragraph-two": "Along the way, we will provide advice to help you",
+    "sub-header-three": "Share with friends and family",
+    "paragraph-three": "  There are many people who want to help you as well"
+  },
+  "StartNow": {
+    "header": "Start Now",
+    "paragraph": "Start Now and Bring Your Ideas to Life! Create a project and raise funds for your dream venture, or make a difference by donating to projects that align with your passions. Join our community of changemakers today!",
+    "btn-one": "Create New Account",
+    "btn-two": "Check Projects",
+    "btn-three": "My Projects"
+  },
+  "NewsLetterCard": {
+    "header1": "Subscribe now and be at the forefront of change!",
+    "paragraph": "Sign up for our free newsletter to receive our monthly digest of the best causes. Stay informed, get inspired, and make a difference by joining our community of passionate individuals dedicated to shaping the world for the better!",
+    "header2": "Subscribe to our newsletter",
+    "email-input-area": "Email Address",
+    "btn": "Subscribe",
+    "note-to-user": " We will not spam you 🤞🏼",
+    "email": "Email is required",
+    "valid": "Use a valid email",
+    "message": "Subscribed to OpenHanded Newsletter !"
+  },
+  "SuccessfulProjects": {
+    "header-part-one": "Latest",
+    "header-part-two": " Successful Projects ",
+    "sub-header": "Check out our most recent successful cases",
+    "no-projects-text": "No successful projects found Yet."
+  },
+  "SearchList": {
+    "no-matching-result": "No matching results"
+  },
+  "Comments": {
+    "btn": "Add testimonials",
+    "testimonial-input-area": "Write your testimonial...",
+    "btn-2": "Close",
+    "btn-3": "Submit",
+    "header": "Testimonials"
+  },
+  "Projects": {
+    "projects-completed": "The project has been completed 🎉",
+    "donate-btn": "Donate Now",
+    "login-btn": "Login to fund this project"
+  },
+  "MobileLangSwitch": {
+    "header": "Language"
+  },
+  "AddProject": {
+    "button": "Create Project"
+  },
+  "About": {
+    "green-header": "Who We Are",
+    "header": "We are here to support all people and help each other",
+    "implication": "as much as we can",
+    "text": "OpenHanded is a community-powered fundraising platform. We believe that help is powerful, which is why we are committed to making it safe and easy for anyone to give and get help. Here, our goal is to help organizations generate the funding that is necessary to focus on their core missions of education, community enrichment, scientific research, or charitable giving. We believe that our teams should uphold all unique voices and ethnicities in a way that represents the diversity of our world."
+  },
+  "GetStarted": {
+    "header": "Now, you may be thinking on join us",
+    "text": "We helped over 3,500 projects and causes. Sing in today and get your idea kicked off or support others kick off their amazing projects.",
+    "button": "Get Started"
+  },
+  "Team": {
+    "green-header": "Our Team",
+    "work": "Web Developer and Designer",
+    "message": "If you would like to contact us, we are here !"
+  },
+  "Mission": {
+    "green-header": "Our Mission",
+    "header-left": "Making life standards better for everyone",
+    "header-right": "Being the voice of those who need a help",
+    "text-left": "Our mission is to help people help each other by making it safe and easy for people to ask for help and support causes for themselves. We are strongest when everyone feels empowered to bring their whole self to work knowing that they will be included and treated equally.",
+    "text-right": "Independence is kind of a core component for living everyone wants, and being a voice for people in need of is giving them that chance to experience. All projects are actually meant to support independence."
+  },
+  "Profile": {
+    "header": "My Projects",
+    "message": "No projects in this category "
+  },
+  "Thanks": {
+    "header": "Thank you",
+    "sub-header": "You have successfully made an amazing donation. Thanks for joining OpenHanded community. While you waiting for new attempts from other people, check out the",
+    "others": "latest projects !",
+    "button": "Go to Home Page"
+  },
+  "NoProjects": {
+    "text": " If there is already a project in your mind, let us realize it as well since it would give someone a lift and may put a smile on your face as a gift!",
+    "new": "New Project",
+    "message": "You do not have",
+    "colored": "a project yet",
+    "donation": "Make A Donation"
+  },
+  "Cards": {
+    "don-header": "Donation history",
+    "pow-header": "Project of the week",
+    "trans-header": "Transaction history",
+    "message": "No donations yet",
+    "stats": "Statistics",
+    "button-sel": "Select project",
+    "button-all": "All projects",
+    "now": "Now",
+    "ago": "ago",
+    "min": "minute",
+    "mins": "minutes",
+    "hour": "hour",
+    "hours": "hours",
+    "day": "day",
+    "days": "days"
+  },
+  "Helper": {
+    "cncl": "Cancel",
+    "confirm": "Confirm",
+    "sorry": "Sorry, page not found",
+    "button": "Home Page",
+    "raised": "Raised",
+    "goal": "Goal",
+    "organize": "organizing this fundraiser."
+  },
+  "Footer": {
+    "text": "Bring your ideas to life right away! Create a project to fundraise money for your ideal endeavor, or donate to causes that interest you to make a difference.",
+    "more": "Read more...",
+    "team": "Our Team",
+    "link": "Links",
+    "home": "Home Page",
+    "projects": "Projects",
+    "join": "Join",
+    "login": "Log In",
+    "prof": "Profile"
+  },
+  "SuccessBadge": {
+    "left": "days left",
+    "sccs": "Successful",
+    "clsd": "Closed",
+    "actv": "Active"
+  },
     "CommentForm": {
       "leave-com":"Leave A Comment:",
       "btn-submit":"Submit",
@@ -97,11 +264,8 @@
       "hour ago":"hour-ago",
       "day ago":"day-ago"
     },
-    "Projects":{
-      "projects-completed":"The project has been completed 🎉",
-      "donate-btn":"Donate Now",
-      "login-btn":"Login to fund this project"
-    }
-
+  "Filtering": {
+    "header": "Categories",
+    "filter": "Filter by"
   }
-  
+}

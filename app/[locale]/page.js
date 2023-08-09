@@ -1,13 +1,19 @@
+"use client";
 import React from "react";
 import AboutSection from "@/components/sections/AboutUs";
 import Comments from "@/components/commentsCom/Comments";
-import WelcomeBanner from "@/components/WelcomeBanner";
+import WelcomeBanner from "@/components/sections/WelcomeBanner";
 import NewsLetterCard from "@/components/cards/NewsLetterCard";
 import StartNow from "@/components/sections/StartNow";
 import SuccessfulProjects from "@/components/sections/SuccessfulProjects";
 import HowWorks from "@/components/sections/HowWorks";
 
-function page() {
+
+
+function Page() {
+ 
+
+
   return (
     <div>
       <WelcomeBanner />
@@ -25,7 +31,7 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
 
 const circleBackgroundStyle = {
   position: "absolute",

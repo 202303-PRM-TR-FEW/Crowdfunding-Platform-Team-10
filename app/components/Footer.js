@@ -1,7 +1,11 @@
-import React from "react";
-import Link from "next/link";
+"use client";
+
+import { useTranslations } from "next-intl";
+import Link from "next-intl/link";
+useTranslations
 
 const Footer = () => {
+  const t = useTranslations("Footer")
   return (
     <div className="justify-center flex bg-[#374259] px-5 md:mx-0">
       <div className=" py-10 md:px-12 container w-screen">
@@ -10,21 +14,17 @@ const Footer = () => {
             <p className="header-3 text-[#d8d8d8] drop-shadow-lg">
               Open<span className="text-[#d8d8d8]">Handed</span>
             </p>
-            <p className="text-sm text-[#a5a9aa] py-4 md:py-6">
-              Bring your ideas to life right away! Create a project to fundraise
-              money for your ideal endeavor, or donate to causes that interest
-              you to make a difference.
-              <br />
+            <p className="text-sm text-[#a5a9aa] py-4 md:py-6">{t("text")}
               <Link href="/about">
-                <span className="font-bold transition duration-300 ease-in-out hover:text-lightGreen">
-                  Read more...
+                <span className="font-bold transition duration-300 ease-in-out hover:text-lightGreen"><br/>
+                {t("more")}
                 </span>
               </Link>{" "}
             </p>
           </div>
           <div className="col-span-2 grid-cols-3 grid">
             <div className="col-span-1">
-              <p className="header-5 text-[#d8d8d8]">Our Team</p>
+              <p className="header-5 text-[#d8d8d8]">{t("team")}</p>
               <ul className="text-sm text-[#a5a9aa] py-4 md:py-6 list-none inline-block">
                 <Link href="https://github.com/aysemerveksv" target="_blank">
                   <li className="py-1 transition hover:text-lightGreen duration-300 ease-in-out">
@@ -57,34 +57,34 @@ const Footer = () => {
               </ul>
             </div>
             <div className="col-span-1 lg:ml-5">
-              <p className="header-5 text-[#d8d8d8]">Links</p>
+              <p className="header-5 text-[#d8d8d8]">{t("link")}</p>
               <ul className="text-sm text-[#a5a9aa] py-4 md:py-6 list-none">
                 <Link href="/">
                   <li className="py-1 transition hover:text-lightGreen duration-300 ease-in-out">
-                    Home
+                  {t("home")}
                   </li>
                 </Link>
                 <Link href="/projects">
                   <li className="py-1 transition hover:text-lightGreen duration-300 ease-in-out">
-                    Projects
+                  {t("projects")}
                   </li>
                 </Link>
               </ul>
             </div>
             <div className="col-span-1">
-              <p className="header-5 text-[#d8d8d8]">Join</p>
+              <p className="header-5 text-[#d8d8d8]">{t("join")}</p>
               <ul className=" py-4 md:py-6 list-none">
                 <li className="py-1">
                   <Link
                     href="/signup"
                     className="py-1 transition hover:text-lightGreen duration-300 ease-in-out text-sm text-[#a5a9aa]"
                   >
-                    Log In
+                  {t("login")}
                   </Link>
                 </li>
                 <Link href="/profile">
                   <li className="py-1 transition hover:text-lightGreen duration-300 ease-in-out text-sm text-[#a5a9aa]">
-                    Profile
+                  {t("prof")}
                   </li>
                 </Link>
               </ul>

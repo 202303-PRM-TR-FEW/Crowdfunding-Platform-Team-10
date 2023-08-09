@@ -25,20 +25,21 @@ import { db } from "@/config/firebase";
 import Typography from "@mui/material/Typography";
 import Dialog from "@mui/material/Dialog";
 
-const schema = yup
-  .object({
-    donation: yup
-      .number()
-      .min(1, "Donation Amount Can't Be Lower Than 1 Dollar !")
-      .typeError("Donation Amount Must Be a Number !")
-      .required("Donation Amount is Required !"),
-  })
-  .required();
-
 const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
   const { user } = useAuth();
   const t = useTranslations("DonationForm");
   const [currentUser, setCurrentUser] = useState();
+
+  const schema = yup
+    .object({
+      donation: yup
+        .number()
+        .min(1, `${t("donation-amount-msg")}`)
+        .typeError(`${t("donation-amount-two-msg")}`)
+        .required(`${t("donation-required-msg")}`),
+    })
+    .required();
+
   useEffect(() => {
     if (user && user.email) {
       const q = query(
@@ -112,11 +113,15 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
     setOpenDonationForm(false);
   };
 
+  const handleAddPaymentMethod = () => {
+    router.push("/payment");
+  };
+
   return (
     <div>
       <Dialog open={openDonationForm}>
-        <div className="  p-5  lg:px-10   relative">
-          <div className="flex items-center mt-3 mb-10 justify-center gap-2">
+        <div className="p-5  lg:px-10 flex flex-col gap-3  relative">
+          <div className="flex items-center   mt-3  justify-start gap-2">
             <IconButton onClick={handleClose} aria-label="back">
               <ArrowBackIosNewIcon />
             </IconButton>
@@ -159,10 +164,21 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
               />
             </div>
             {success && <Alert severity="success">{t("successMessage")}</Alert>}
-            <button form="donation" type="submit" className="btn-primary mt-24">
+            <button form="donation" type="submit" className="btn-primary mt-2">
               {t("payNowBtn")}
             </button>
           </form>
+          <div className="my-5 w-full flex flex-col gap-2">
+            <Typography variant="body1">
+              {t("notAddedPaymentMethod")}
+            </Typography>
+            <button
+              className="btn-yellow"
+              onClick={() => handleAddPaymentMethod()}
+            >
+              {t("addPaymentMethodBtn")}
+            </button>
+          </div>
         </div>
       </Dialog>
     </div>

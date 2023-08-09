@@ -19,6 +19,7 @@ import Link from "next-intl/link";
 import Image from "next/image";
 import LangSwitcher from "./LangSwitcher";
 import MobileLangSwitcher from "./MobileLangSwitcher";
+import { useTranslations } from "next-intl";
 
 import {
   AppBar,
@@ -44,14 +45,15 @@ import {
 } from "@mui/icons-material";
 
 export default function Nav() {
-  const { user, logout } = useAuth();
-  const Router = useRouter();
+  const { user, logout, setLoading } = useAuth();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const [currentUser, setCurrentUser] = useState();
+  const t = useTranslations("Nav");
   useEffect(() => {
     if (user && user.email) {
       const q = query(
@@ -93,10 +95,11 @@ export default function Nav() {
     handleMobileMenuClose();
   };
   const handleLogout = () => {
+    setLoading(true);
     setAnchorEl(null);
     handleMobileMenuClose();
+    setCurrentUser(null);
     logout();
-    Router.push("/login");
   };
   const [scrolling, setScrolling] = useState(false);
 
@@ -144,7 +147,7 @@ export default function Nav() {
               <ListItemIcon>
                 <Person fontSize="small" />
               </ListItemIcon>
-              My Projects
+              {t("my-projects")}
             </MenuItem>
           </Link>
 
@@ -153,14 +156,14 @@ export default function Nav() {
               <ListItemIcon>
                 <Settings fontSize="small" />
               </ListItemIcon>
-              Settings
+              {t("settings")}
             </MenuItem>
           </Link>
           <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>
-            Logout
+            {t("logout")}
           </MenuItem>
         </div>
       ) : (
@@ -169,7 +172,7 @@ export default function Nav() {
             <ListItemIcon>
               <Login fontSize="small" />
             </ListItemIcon>
-            Login
+            {t("login")}
           </MenuItem>
         </Link>
       )}
@@ -199,7 +202,7 @@ export default function Nav() {
           <ListItemIcon>
             <Home fontSize="small" />
           </ListItemIcon>
-          Home
+          {t("home")}
         </MenuItem>
       </Link>
       <Link href="/about">
@@ -207,7 +210,7 @@ export default function Nav() {
           <ListItemIcon>
             <Groups3Rounded fontSize="small" />
           </ListItemIcon>
-          About Us
+          {t("about-us")}
         </MenuItem>
       </Link>
       <Link href="/projects">
@@ -215,7 +218,7 @@ export default function Nav() {
           <ListItemIcon>
             <Dashboard fontSize="small" />
           </ListItemIcon>
-          All Projects
+          {t("all-pro")}
         </MenuItem>
       </Link>
       {user ? (
@@ -225,21 +228,21 @@ export default function Nav() {
               <ListItemIcon>
                 <Person fontSize="small" />
               </ListItemIcon>
-              My Projects
+              {t("my-projects-two")}
             </MenuItem>
           </Link>
           <MenuItem onClick={handleMenuClose}>
             <ListItemIcon>
               <PersonAdd fontSize="small" />
             </ListItemIcon>
-            Add New Project
+            {t("add-new-pro")}
           </MenuItem>
           <Link href="/account">
             <MenuItem onClick={handleMenuClose}>
               <ListItemIcon>
                 <Settings fontSize="small" />
               </ListItemIcon>
-              Settings
+              {t("settings-two")}
             </MenuItem>
           </Link>
           <MobileLangSwitcher handleMenuClose={handleMenuClose} />
@@ -248,7 +251,7 @@ export default function Nav() {
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>
-            Logout
+            {t("logout-two")}
           </MenuItem>
         </div>
       ) : (
@@ -260,7 +263,7 @@ export default function Nav() {
               <ListItemIcon>
                 <Login fontSize="small" />
               </ListItemIcon>
-              Login
+              {t("login-two")}
             </MenuItem>
           </Link>
         </div>
@@ -371,7 +374,7 @@ function SearchComponent() {
       }
     });
   };
-
+  const t = useTranslations("Nav");
   const [values, setValues] = useState();
   const handleClick = () => {
     setSearchProjects();
@@ -383,9 +386,9 @@ function SearchComponent() {
         onChange={handleSearch}
         onClick={() => setValues()}
         type="search"
-        label="Search for projects"
+        label={t("label-search")}
         value={values}
-        placeholder="Search..."
+        placeholder={t("placeholder-search")}
         className="w-[240px] md:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100  focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-sm"
       />
       <div

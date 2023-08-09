@@ -79,11 +79,13 @@ const SummaryCard = ({
 
       <div className="overflow-hidden  rounded-lg relative h-[222px] w-full cursor-pointer">
         <Image
+          unoptimized
           fill={true}
           style={{ objectFit: "cover" }}
           className="  image-animated"
           src={img}
           alt="project img"
+          sizes="(max-width: 768px) 100vw"
         />
       </div>
 

@@ -11,6 +11,7 @@ export default function CardInfo({
   currentUser,
   handleEditUser,
   formatTimestamp,
+
 }) {
   return (
     <div className="lg:py-60 py-32">

@@ -14,23 +14,35 @@ function StartNow() {
         <div className="space-y-4"></div>
         <div className="md:space-x-4 md:flex-row flex justify-center items-center flex-col">
           {user == null ? (
-            <>
-              <Link href="/signup" className="shadow-lg btn-primary">
-                {t("btn-one")}
+            <div className="mt-5 grid md:grid-cols-2 gap-3">
+              <Link href="/profile" className="">
+                <div
+                  className="bg-lightGreen hover:bg-[#f0bd07] text-white
+   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 ;"
+                >
+                  {t("btn-one")}
+                </div>
               </Link>
-              <Link href="/projects" className="btn-transparent mt-5 md:mt-0">
-                {t("btn-two")}
+
+              <Link href="/projects">
+                <div className="btn-transparent-lg">{t("btn-two")}</div>
               </Link>
-            </>
+            </div>
           ) : (
-            <>
-              <Link href="/profile" className="shadow-lg btn-primary">
-                My Projects
+            <div className="mt-5 grid md:grid-cols-2 gap-3">
+              <Link href="/profile" className="">
+                <div
+                  className="bg-lightGreen hover:bg-[#f0bd07] text-white
+   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 ;"
+                >
+                  {t("btn-three")}
+                </div>
               </Link>
-              <Link href="/projects" className="btn-transparent mt-5 md:mt-0">
-                {t("btn-two")}
+
+              <Link href="/projects">
+                <div className="btn-transparent-lg">{t("btn-two")}</div>
               </Link>
-            </>
+            </div>
           )}
         </div>
       </section>
