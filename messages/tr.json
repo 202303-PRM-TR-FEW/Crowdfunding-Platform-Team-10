@@ -260,7 +260,16 @@
   },
   "Filtering": {
     "header": "Kategoriler",
-    "filter": "Filtrele"
+    "filter": "Filtrele",
+    "all": "Hepsi",
+    "education":"Eğitim",
+    "culture":"Kültür",
+    "animals":"Hayvanlar",
+    "children":"Çocuklar",
+    "successful":"Başarılı",
+    "active":"Aktif",
+    "ending":"Yakında Kapanacak",
+    "closed":"Kapandı"
   },
   "CommentForm": {
     "Leave A Comment":"Bir Yorum Bırakın :",
