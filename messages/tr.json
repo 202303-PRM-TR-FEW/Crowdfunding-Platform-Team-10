@@ -163,5 +163,45 @@
   },
   "AddProject": {
     "button": "Proje Oluştur"
+  },
+  "About": {
+    "green-header": "Biz Kimiz",
+    "header": "İhtiyacı olan herkesi desteklemek ve elimizden geldiğince",
+    "implication": "yardım etmek için buradayız",
+    "text": "OpenHanded, topluluk destekli bir bağış toplama platformudur. Yardımın güç kattığını düşünüyoruz ve yapılan yardımları daha güvenli, kolay hale getirmekte kararlıyız. Burada amacımız, organizasyonların temel eğitim, topluluk zenginleştirme, bilimsel araştırma veya hayır amaçlı bağış misyonlarına odaklanmak için gerekli maddi desteğe aracı olmaktır. Ekiplerimizin tüm benzersiz sesleri ve etnik kökenleri ile dünyamızın çeşitliliğini temsil edecek şekilde desteklemesi gerektiğine inanıyoruz."
+  },
+  "GetStarted": {
+    "header": "Aramıza katılmaya ne dersiniz ?",
+    "text": "3.500'den fazla proje ve amaçları destekledik. Bugün kaydolun ve fikrinizi hayata geçirin veya diğer harika projelere destek olun.",
+    "button": "Hemen Başlayın"
+  },
+  "Team": {
+    "green-header": "Ekibimiz",
+    "work": "Web Geliştirici ve Tasarımcı",
+    "message": "İletişime geçmek isterseniz, biz buradayız !"
+  },
+  "Mission": {
+    "green-header": "Misyonumuz",
+    "header-left": "Yaşam koşullarını herkes için iyi hale getirmek",
+    "header-right": "Yardıma ihtiyacı olanların sesini duyurabilmek",
+    "text-left": "Misyonumuz, insanların kendileri için yardım ve destek istemelerini güvenli ve kolay hale getirerek insanların birbirlerine yardım etmelerine yardımcı olmaktır. Herkes dahil edileceğini ve eşit muamele göreceğini bilerek tüm benliğini işe getirme yetkisine sahip hissettiğinde en güçlüyüz. ",
+    "text-right": "Bağımsızlık, herkesin istediği yaşam için temel olan bir bileşendir ve ihtiyacı olan insanlara ses olmak, onlara bunu deneyimleme şansı vermek asıl gayemiz. Tüm projeler aslında bağımsızlığı desteklemek içindir."
+  },
+  "Profile": {
+    "header": "Projelerim",
+    "message": "Bu kategoride proje bulunmamaktadır."
+  },
+  "Thanks": {
+    "header": "Teşekkürler",
+    "sub-header": "Başarılı bir şekilde harika bir bağış yaptınız, katıldığınız için teşekkürler. Diğer üyelerimizin de bağış yapmasını beklerken göz atabilirsiniz, ",
+    "others": "diğer projeler!",
+    "button": "Ana Sayfa"
+  },
+  "NoProjects": {
+    "text": "Aklınızda zaten bir proje varsa, onu da hayata geçirelim ve hediye olarak birilerini mutlu edebilir, yüzünüzü gülümsetebiliriz!",
+    "new": "Proje Oluştur",
+    "message": "Henüz bir projeniz",
+    "colored": "bulunmamaktadır",
+    "donation": "Bağış Yap"
   }
 }

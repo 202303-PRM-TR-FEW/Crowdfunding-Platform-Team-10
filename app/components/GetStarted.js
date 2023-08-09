@@ -1,21 +1,23 @@
 "use client";
 import Link from "next-intl/link";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 const GetStarted = () => {
+  const t = useTranslations("GetStarted")
+  
   return (
     <div className="bg-lightGreen justify-center flex">
       <section className="grid lg:grid-cols-2 gap-5 py-5 container items-center">
         <div className="p-10 flex flex-col gap-4 text-center lg:text-left">
           <p className="header-2 text-white">
-            Now, you may be thinking on join us
+          {t("header")}
           </p>
           <p className="white-subheader">
-            We helped over 3,500 projects and causes. Sing in today and get your
-            idea kicked off or support others kick off their amazing projects.
+          {t("text")}
           </p>
           <Link href="/projects" className="justify-self-end xl:mt-8">
-            <button className="btn-tertiary">Get Started</button>
+            <button className="btn-tertiary">{t("button")}</button>
           </Link>
         </div>
         <div className="flex flex-col justify-items-center">
