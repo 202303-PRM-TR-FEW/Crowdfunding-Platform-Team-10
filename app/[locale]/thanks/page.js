@@ -4,8 +4,11 @@ import Link from "next-intl/link";
 import React from "react";
 import Heart from "../../../public/assets/images/Hearth.png";
 import Hands from "../../../public/assets/images/Hands.png";
+import { useTranslations } from "next-intl";
 
 const Thank = () => {
+
+  const t = useTranslations("Thanks")
   return (
     <div>
       <section className="grid justify-items-center w-full pb-20 bg-gradient-to-t from-transparent to-teal-50 overflow-y-hidden">
@@ -24,25 +27,23 @@ const Thank = () => {
           </div>
           <div className="pt-10 md:pt-20 flex flex-col text-center justify-items-center col-span-1 w-4/5 group/edit ">
             <p className="header-1 text-center">
-              Thank you{" "}
+            {t("header")}{" "}
               <span className="color-green">
                 Open<span className="text-[#1f9e92]">Handed</span>
               </span>
             </p>
             <p className="sub-header pt-10 mx-auto justify-center text-justify">
-              You have successfully made an amazing donation. Thanks for joining
-              OpenHanded community. While you wait for new attempts from other
-              people, check out the{" "}
+            {t("sub-header")}{" "}
               <Link
                 href="/projects"
                 className="color-yellow font-extrabold cursor-pointer"
               >
                 {" "}
-                latest projects!
+                {t("others")}
               </Link>
             </p>
             <Link href="/">
-              <button className="btn-primary mt-10">Go to home page</button>
+              <button className="btn-primary mt-10">{t("button")}</button>
             </Link>
           </div>
         </div>

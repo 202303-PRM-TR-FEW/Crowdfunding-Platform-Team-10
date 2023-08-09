@@ -12,8 +12,6 @@
     "settings-two": "Settings",
     "logout-two": " Logout",
     "login-two": "Login",
-    "open": "Open",
-    "handed": "Handed",
     "label-search": "Search for projects",
     "placeholder-search": "Search..."
   },
@@ -24,7 +22,7 @@
     "subHeader1": "We helped over 3.500 projects and causes.",
     "subHeader2": "Join Us in Bringing Ideas to Life!",
     "successful": "Successful projects: ",
-    "donations": "Donations Made:",
+    "donations": "Donations Made: ",
     "button": "Start Now"
   },
   "LoginForm": {
@@ -137,7 +135,10 @@
     "header2": "Subscribe to our newsletter",
     "email-input-area": "Email Address",
     "btn": "Subscribe",
-    "note-to-user": " We will not spam you 🤞🏼"
+    "note-to-user": " We will not spam you 🤞🏼",
+    "email": "Email is required",
+    "valid": "Use a valid email",
+    "message": "Subscribed to OpenHanded Newsletter !"
   },
   "SuccessfulProjects": {
     "header-part-one": "Latest",
@@ -165,5 +166,92 @@
   },
   "AddProject": {
     "button": "Create Project"
+  },
+  "About": {
+    "green-header": "Who We Are",
+    "header": "We are here to support all people and help each other",
+    "implication": "as much as we can",
+    "text": "OpenHanded is a community-powered fundraising platform. We believe that help is powerful, which is why we are committed to making it safe and easy for anyone to give and get help. Here, our goal is to help organizations generate the funding that is necessary to focus on their core missions of education, community enrichment, scientific research, or charitable giving. We believe that our teams should uphold all unique voices and ethnicities in a way that represents the diversity of our world."
+  },
+  "GetStarted": {
+    "header": "Now, you may be thinking on join us",
+    "text": "We helped over 3,500 projects and causes. Sing in today and get your idea kicked off or support others kick off their amazing projects.",
+    "button": "Get Started"
+  },
+  "Team": {
+    "green-header": "Our Team",
+    "work": "Web Developer and Designer",
+    "message": "If you would like to contact us, we are here !"
+  },
+  "Mission": {
+    "green-header": "Our Mission",
+    "header-left": "Making life standards better for everyone",
+    "header-right": "Being the voice of those who need a help",
+    "text-left": "Our mission is to help people help each other by making it safe and easy for people to ask for help and support causes for themselves. We are strongest when everyone feels empowered to bring their whole self to work knowing that they will be included and treated equally.",
+    "text-right": "Independence is kind of a core component for living everyone wants, and being a voice for people in need of is giving them that chance to experience. All projects are actually meant to support independence."
+  },
+  "Profile": {
+    "header": "My Projects",
+    "message": "No projects in this category "
+  },
+  "Thanks": {
+    "header": "Thank you",
+    "sub-header": "You have successfully made an amazing donation. Thanks for joining OpenHanded community. While you waiting for new attempts from other people, check out the",
+    "others": "latest projects !",
+    "button": "Go to Home Page"
+  },
+  "NoProjects": {
+    "text": " If there is already a project in your mind, let us realize it as well since it would give someone a lift and may put a smile on your face as a gift!",
+    "new": "New Project",
+    "message": "You do not have",
+    "colored": "a project yet",
+    "donation": "Make A Donation"
+  },
+  "Cards": {
+    "don-header": "Donation history",
+    "pow-header": "Project of the week",
+    "trans-header": "Transaction history",
+    "message": "No donations yet",
+    "stats": "Statistics",
+    "button-sel": "Select project",
+    "button-all": "All projects",
+    "now": "Now",
+    "ago": "ago",
+    "min": "minute",
+    "mins": "minutes",
+    "hour": "hour",
+    "hours": "hours",
+    "day": "day",
+    "days": "days"
+  },
+  "Helper": {
+    "cncl": "Cancel",
+    "confirm": "Confirm",
+    "sorry": "Sorry, page not found",
+    "button": "Home Page",
+    "raised": "Raised",
+    "goal": "Goal",
+    "organize": "organizing this fundraiser."
+  },
+  "Footer": {
+    "text": "Bring your ideas to life right away! Create a project to fundraise money for your ideal endeavor, or donate to causes that interest you to make a difference.",
+    "more": "Read more...",
+    "team": "Our Team",
+    "link": "Links",
+    "home": "Home Page",
+    "projects": "Projects",
+    "join": "Join",
+    "login": "Log In",
+    "prof": "Profile"
+  },
+  "SuccessBadge": {
+    "left": "days left",
+    "sccs": "Successful",
+    "clsd": "Closed",
+    "actv": "Active"
+  },
+  "Filtering": {
+    "header": "Categories",
+    "filter": "Filter by"
   }
 }
