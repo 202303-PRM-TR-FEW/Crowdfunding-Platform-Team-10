@@ -42,26 +42,26 @@ defaultDayjs.extend(isBetweenPlugin);
 defaultDayjs.extend(utc);
 const today = dayjs();
 
-const schema = yup
-  .object({
-    projectName: yup.string().required("Project Name is Required !"),
-    goal: yup
-      .number()
-      .typeError("Goal Amount Must Be a Number !")
-      .required("Goal is Required !"),
-    startingDate: yup.string().required("Starting Date is Required !"),
-    endingDate: yup.string().required("Ending Date is Required !"),
-    about: yup.string().required("About is Required !"),
-    category: yup.string().required("Project Category is Required !"),
-    media: yup.mixed().required("Project Picture is Required !"),
-  })
-  .required();
-
 const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
   const [success, setSuccess] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
   const [usersInfo, setUsersInfo] = useState(null);
   const t = useTranslations("ProjectsForm");
+  const schema = yup
+    .object({
+      projectName: yup.string().required(`${t("Project Name is Required")}`),
+      goal: yup
+        .number()
+        .typeError(`${t("Goal Amount Must Be a Number")}`)
+        .required(`${t("Goal is Required")}`),
+      startingDate: yup.string().required(`${t("Starting Date is Required")}`),
+      endingDate: yup.string().required(`${t("Ending Date is Required")}`),
+      about: yup.string().required(`${t("About is Required")}`),
+      category: yup.string().required(`${t("Project Category is Required")}`),
+      media: yup.mixed().required(`${t("Project Picture is Required")}`),
+    })
+    .required();
+
   useEffect(() => {
     const q = query(collection(db, "users"));
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
