@@ -11,6 +11,7 @@ function SuccessfulCard({ project }) {
     "
     >
       <Image
+        unoptimized
         src={project.url}
         className="w-full  object-cover lg:h-[250px]"
         alt="project img"
