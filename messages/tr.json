@@ -73,7 +73,15 @@
     "category-education": "Eğitim",
     "category-culture": "Kültür",
     "category-children": "Çocuklar",
-    "upload-project": "Projenizi yükleyin"
+    "upload-project": "Projenizi yükleyin",
+    "Project Name is Required": "Proje Adı Gereklidir !",
+    "Goal Amount Must Be a Number": "Hedef Miktarı Sayı Olmalıdır !",
+    "Goal is Required":"Hedef Gereklidir !",
+    "Starting Date is Required":"Başlangıç Tarihi Gereklidir !",
+    "Ending Date is Required":"Bitiş Tarihi Gereklidir !",
+    "About is Required":"Hakkında Gereklidir !",
+    "Project Category is Required":"Proje Kategorisi Gereklidir !",
+    "Project Picture is Required":"Proje Resmi Gereklidir !"
   },
   "UserSettingForms": {
     "my-pro": "Projelerim",
@@ -253,5 +261,13 @@
   "Filtering": {
     "header": "Kategoriler",
     "filter": "Filtrele"
+  },
+  "CommentForm": {
+    "Leave A Comment":"Bir Yorum Bırakın :",
+    "text": "Metin...",
+    "Submit": "Gönder"
+  },
+  "CommentHeader":{
+    "header": "Yorumlar"
   }
 }

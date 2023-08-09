@@ -3,9 +3,12 @@ import { db } from "@/config/firebase";
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function CommentRows({ id }) {
   const [comments, setComments] = useState([]);
+  const t = useTranslations("CommentHeader");
+
   useEffect(() => {
     const q = query(
       collection(db, "projectsComments"),
@@ -23,7 +26,7 @@ export default function CommentRows({ id }) {
 
   return (
     <div className="flex flex-col gap-2 w-full my-2 ">
-      <h3 className="my-2 text-bold">Comments</h3>
+      <h3 className="my-2 text-bold">{t("header")}</h3>
       {comments.map((comment, index) => (
         <div
           key={comment.id}
