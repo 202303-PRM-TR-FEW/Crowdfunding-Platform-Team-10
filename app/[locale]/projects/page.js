@@ -8,7 +8,7 @@ import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 import { useAuth } from "@/context/AuthContext";
-import { Fade } from "react-awesome-reveal";
+
 const Home = () => {
   const { projects } = useAuth();
   const [projectOfWeek, setProjectOFWeek] = useState("");
@@ -67,19 +67,17 @@ const Home = () => {
 
   return (
     <section className="bg-[#fcfcfe] flex-col items-start justify-center">
-      <Fade>
-        <div className=" bg-gradient-to-t from-transparent to-teal-50">
-          <div className="container mx-auto pt-28 p-3">
-            <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
-          </div>
+      <div className=" bg-gradient-to-t from-transparent to-teal-50">
+        <div className="container mx-auto pt-28 p-3">
+          <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
         </div>
-        <div className="container mx-auto p-3">
-          <CategoryFiltering data={projects} filtrindData={setData} />
-          <div className=" items-start justify-around mx-auto flex flex-wrap gap-3 mt-2 ">
-            {allProjects}
-          </div>
+      </div>
+      <div className="container mx-auto p-3">
+        <CategoryFiltering data={projects} filtrindData={setData} />
+        <div className=" items-start justify-around mx-auto flex flex-wrap gap-3 mt-2 ">
+          {allProjects}
         </div>
-      </Fade>
+      </div>
     </section>
   );
 };
