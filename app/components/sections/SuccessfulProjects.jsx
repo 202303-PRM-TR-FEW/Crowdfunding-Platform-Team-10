@@ -11,7 +11,6 @@ import SuccessfulCard from "../cards/SuccessfulCard";
 import { useAuth } from "@/context/AuthContext";
 
 function SuccessfulProjects() {
-
   const { projects } = useAuth();
 
   const t = useTranslations("SuccessfulProjects");
@@ -38,7 +37,7 @@ function SuccessfulProjects() {
             {t("sub-header")}
           </p>
         </div>
-        <div className="container  grid lg:gap-2 gap-10 lg:grid-cols-3 items-start justify-center lg:h-[600px]">
+        <div className="container grid md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 items-start justify-center lg:h-[600px]">
           {latestThreeProjects.length > 0 ? (
             latestThreeProjects.map((pro) => (
               <Link key={pro.id} href={`/projects/${pro.id}`}>
