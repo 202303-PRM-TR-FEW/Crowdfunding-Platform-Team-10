@@ -14,8 +14,9 @@ import SummaryCard from "@/components/cards/SummaryCard";
 
 function Page({ params }) {
   console.log(params);
-  const { user, loading, projects } = useAuth();
+  const { user, loading, projects, setLoading } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
+  const t = useTranslations("Cards");
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,12 +24,14 @@ function Page({ params }) {
         // router.push("/login");
         console.log(user);
       } else {
+        setLoading(true);
+
         const projectArray = Object.values(projects);
         const projectWithUser = projectArray.filter(
           (project) => project.creator.userId === params.id
         );
         setUsersProjects(projectWithUser);
-        setIsLoading(false);
+        setLoading(false);
         console.log(user);
       }
     }, 600);
