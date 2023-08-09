@@ -84,9 +84,11 @@ const LoginForm = () => {
               onClick={handleGoogleLogIn}
             >
               <img
+                unoptimized
                 src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                alt=""
+                alt="google"
                 width={25}
+                height={25}
               />
             </button>
           </div>

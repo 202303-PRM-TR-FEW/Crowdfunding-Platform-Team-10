@@ -44,6 +44,7 @@ const PaymentMethodForm = () => {
       <div className="lg:col-span-3 bg-gradient-to-br from-lightGreen to-teal-700 flex flex-col justify-center gap-2 text-center bg-white p-6 sm:p-12 md:p-16 lg:rounded-l rounded-t lg:rounded-tr-none">
         <div className="mb-4">
           <Image
+          unoptimized
             src="/assets/images/donation-image.png"
             alt="Donation Image"
             className="w-full rounded-md"

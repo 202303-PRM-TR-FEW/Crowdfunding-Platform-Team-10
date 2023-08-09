@@ -24,6 +24,7 @@ import { countries } from "@/data/countries";
 import Link from "next-intl/link";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const schema = yup
   .object({
@@ -223,11 +224,12 @@ const SignupForm = () => {
                               >
                                 <div className="flex gap-2 items-center">
                                   <span>
-                                    <img
+                                    <Image
+                                      unoptimized
                                       className="rounded-none"
                                       loading="lazy"
-                                      width="20"
-                                      height="10"
+                                      width={20}
+                                      height={10}
                                       src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
                                     />
                                   </span>

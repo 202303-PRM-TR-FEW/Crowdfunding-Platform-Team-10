@@ -19,6 +19,7 @@ import { countries } from "@/data/countries";
 import { FileUpload } from "@mui/icons-material";
 import LoaderStyle from "../helper/LoaderStyle";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const EditUser = ({
   openEditUserForm,
@@ -171,11 +172,12 @@ const EditUser = ({
                     <MenuItem key={country.label} value={country.label}>
                       <div className="flex gap-2 items-center">
                         <span>
-                          <img
+                          <Image
+                          unoptimized
                             className="rounded-none "
                             loading="lazy"
-                            width="20"
-                            height="10"
+                            width={20}
+                            height={10}
                             src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
                             srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
                             alt={country.label}

@@ -15,6 +15,7 @@ import {
 import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
 import { IconButton } from "@mui/material";
+import Image from "next/image";
 
 export default function Comments() {
   const [comments, setComments] = useState([]);
@@ -211,12 +212,13 @@ function FancyTestimonialsSlider({ testimonials }) {
                 leaveFrom="opacity-100 rotate-0"
                 leaveTo="opacity-0 rotate-[60deg]"
               >
-                <img
+                <Image
                   className="relative top-11 left-1/2 -translate-x-1/2 rounded-full"
                   src={testimonial.userImg}
                   width={56}
                   height={56}
                   alt={testimonial.userName}
+                  unoptimized
                 />
               </Transition>
             ))}

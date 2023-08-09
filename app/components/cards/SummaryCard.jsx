@@ -9,7 +9,6 @@ import Target from "../helper/Target";
 import CategoryIcon from "../helper/CategoryIcon";
 import Image from "next/image";
 const SummaryCard = ({
-  cardUrl,
   endingDate,
   img,
   title,

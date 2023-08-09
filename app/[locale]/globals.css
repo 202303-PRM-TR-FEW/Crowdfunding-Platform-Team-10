@@ -36,12 +36,7 @@ input[type="file"] {
   width: 100%;
   margin-left: 10px;
 }
-.bg-cards-container {
-  background-image: url("../../public/assets/images/bg-cards.png");
-  background-position: center top;
-  background-size: contain;
-  background-repeat: repeat-y;
-}
+
 .ellipsis-text {
   @apply whitespace-nowrap overflow-hidden text-ellipsis;
 }

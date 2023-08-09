@@ -8,6 +8,7 @@ import * as yup from "yup";
 import InfoIcon from "@mui/icons-material/Info";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function NewsLetterCard() {
   const t = useTranslations("NewsLetterCard");
@@ -129,9 +130,12 @@ export default function NewsLetterCard() {
           <div className="p-1 sm:p-10 flex flex-col gap-4 justify-center text-center">
             <p className="header-4 pb-2">{t("header2")}</p>
             <div style={imageContainer}>
-              <img
+              <Image
+              unoptimized
                 src="/assets/images/newsletter_image.png"
                 alt="Newsletter Image"
+                width={200}
+                height={200}
                 style={{ width: "200px", height: "auto" }}
               />
             </div>
