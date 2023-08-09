@@ -253,5 +253,13 @@
   "Filtering": {
     "header": "Categories",
     "filter": "Filter by"
+  },
+  "CommentForm": {
+    "Leave A Comment":"Leave A Comment :",
+    "text": "Text...",
+    "Submit": "Submit"
+  },
+  "CommentHeader":{
+    "header": "Comments"
   }
 }

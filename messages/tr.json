@@ -253,5 +253,13 @@
   "Filtering": {
     "header": "Kategoriler",
     "filter": "Filtrele"
+  },
+  "CommentForm": {
+    "Leave A Comment":"Bir Yorum Bırakın :",
+    "text": "Metin...",
+    "Submit": "Gönder"
+  },
+  "CommentHeader":{
+    "header": "Yorumlar"
   }
 }
