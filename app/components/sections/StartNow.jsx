@@ -23,11 +23,10 @@ function StartNow() {
                   {t("btn-one")}
                 </div>
               </Link>
-              <div className="btn-transparent  ">
-                <Link href="/projects" className="w-full">
-                  {t("btn-two")}
-                </Link>
-              </div>
+
+              <Link href="/projects">
+                <div className="btn-transparent-lg">{t("btn-two")}</div>
+              </Link>
             </div>
           ) : (
             <div className="mt-5 grid md:grid-cols-2 gap-3">
