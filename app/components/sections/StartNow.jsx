@@ -15,7 +15,10 @@ function StartNow() {
         <div className="md:space-x-4 md:flex-row flex justify-center items-center flex-col">
           {user == null ? (
             <div className="mt-5 flex flex-col lg:flex-row gap-3">
-              <div className="btn-priamry-lg ">
+              <div
+                className="bg-lightGreen hover:bg-[#f0bd07] text-white
+   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-16;"
+              >
                 <Link href="/profile" className="w-full">
                   {t("btn-one")}
                 </Link>
