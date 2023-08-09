@@ -127,6 +127,8 @@ export const AuthContextProvider = ({ children }) => {
         logout,
         loading,
         googleLogIn,
+        projects,
+        setLoading
       }}
     >
       {loading ? null : children}
