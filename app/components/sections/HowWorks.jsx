@@ -8,7 +8,7 @@ const HowWorks = () => {
     <section className="bg-gradient-to-t from-transparent to-teal-50 ">
       <div
         className="container mx-auto flex flex-col text-center p-2  md:text-left items-center justify-center pt-28 pb-20 
-        bg-[length:200px_200px] bg-[right_top_2rem] bg-no-repeat bg-[url('https://firebasestorage.googleapis.com/v0/b/crowdfunding-99b5a.appspot.com/o/dots.svg?alt=media&token=7a903a0a-56f7-4321-8497-13b2325a2477')]
+        bg-[length:200px_200px] bg-[right_top_2rem] bg-no-repeat [url('../../public/assets/images/dots.svg')]
       "
       >
         <p className="header-3">

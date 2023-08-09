@@ -11,9 +11,7 @@ const WelcomeBanner = () => {
 
   useEffect(() => {
     setChecked(true);
-
     const totalSuccessfulProjects = "23423";
-
     let counter = 0;
     const step = Math.ceil(totalSuccessfulProjects / 100);
 
@@ -79,7 +77,8 @@ const WelcomeBanner = () => {
             {successfulProjects}
           </Box>
           <Image
-            src="/assets/images/welcome1.jpg"
+          unoptimized
+            src="/assets/images/welcome.png"
             alt="welcome img"
             width={700}
             height={700}

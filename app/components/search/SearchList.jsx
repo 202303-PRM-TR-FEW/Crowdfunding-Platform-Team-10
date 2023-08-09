@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import {
-  Card,
+  
   ListItem,
   ListItemAvatar,
   Avatar,
-  Typography,
+ 
 } from "@mui/material";
 import Link from "next-intl/link";
 import { useTranslations } from "next-intl";

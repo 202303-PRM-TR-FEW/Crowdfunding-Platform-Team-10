@@ -7,7 +7,7 @@ function ViewCount({ viewCount = "322" }) {
   return (
     <div className="flex  items-end gap-1 -ml-4  justify-center">
       <h3 className=" color-green text-sm p-0 m-0">{formattedViewCount}</h3>
-      <Image src={eyeIcon} alt="eye" width={20} height={20} className="mx-2" />
+      <Image src={eyeIcon} unoptimized alt="eye" width={20} height={20} className="mx-2" />
     </div>
   );
 }
