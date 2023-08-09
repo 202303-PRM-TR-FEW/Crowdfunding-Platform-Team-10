@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
-
+import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
@@ -13,6 +13,8 @@ import { db } from "@/config/firebase";
 const Home = () => {
   const [projectOfWeek, setProjectOFWeek] = useState("");
   const [projects, setProjects] = useState(true);
+  const t = useTranslations("Profile")
+
   useEffect(() => {
     const q = query(collection(db, "projects"));
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
@@ -67,7 +69,7 @@ const Home = () => {
         );
       })
     ) : (
-      <Box className="header-4 px-10 py-28">No Projects In This Category</Box>
+      <Box className="header-4 px-10 py-28">{t("message")}</Box>
     )
   ) : (
     <Box className="scale-[0.6]">
