@@ -49,7 +49,7 @@ export default function CommentRows({ id }) {
           <div className="flex-1  rounded-lg   leading-relaxed">
             <strong>{comment.userName}</strong>
             <span className="text-xs  text-gray-400 mx-2">
-              {formatTime(comment.commintTime.seconds)}
+              {FormatTime(comment.commintTime.seconds)}
             </span>
             <p className="text-sm">{comment.text}</p>
           </div>
@@ -59,7 +59,7 @@ export default function CommentRows({ id }) {
   );
 }
 
-const formatTime = (seconds) => {
+const FormatTime = (seconds) => {
   const currentDate = Math.floor(Date.now() / 1000); // Get current time in seconds
   const timeDifference = currentDate - seconds;
   const t = useTranslations("CommentRows");
