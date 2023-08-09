@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
 const SuccessBadge = ({ endingDate, raised, goal }) => {
-  const successState = isSuccessful(endingDate, raised, goal);
+  const successState = IsSuccessful(endingDate, raised, goal);
 
   return (
     <div>
@@ -27,7 +27,7 @@ const SuccessBadge = ({ endingDate, raised, goal }) => {
 
 export default SuccessBadge;
 
-function isSuccessful(endingDate, raised, goal) {
+function IsSuccessful(endingDate, raised, goal) {
   const endDate = new Date(endingDate);
   const today = new Date();
   const timeDiff = endDate.getTime() - today.getTime();
