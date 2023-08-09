@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AboutSection from "@/components/sections/AboutUs";
 import Comments from "@/components/commentsCom/Comments";
 import WelcomeBanner from "@/components/sections/WelcomeBanner";
@@ -8,7 +8,10 @@ import StartNow from "@/components/sections/StartNow";
 import SuccessfulProjects from "@/components/sections/SuccessfulProjects";
 import HowWorks from "@/components/sections/HowWorks";
 
+
+
 function Page() {
+ 
 
 
   return (

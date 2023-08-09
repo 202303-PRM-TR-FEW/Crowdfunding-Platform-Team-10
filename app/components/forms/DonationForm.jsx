@@ -120,8 +120,8 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
   return (
     <div>
       <Dialog open={openDonationForm}>
-        <div className="  p-5  lg:px-10   relative">
-          <div className="flex items-center mt-3 mb-10 justify-center gap-2">
+        <div className="p-5  lg:px-10 flex flex-col gap-3  relative">
+          <div className="flex items-center   mt-3  justify-start gap-2">
             <IconButton onClick={handleClose} aria-label="back">
               <ArrowBackIosNewIcon />
             </IconButton>
@@ -164,21 +164,21 @@ const DonationForm = ({ openDonationForm, setOpenDonationForm, id, title }) => {
               />
             </div>
             {success && <Alert severity="success">{t("successMessage")}</Alert>}
-            <button form="donation" type="submit" className="btn-primary mt-24">
+            <button form="donation" type="submit" className="btn-primary mt-2">
               {t("payNowBtn")}
             </button>
-            <Typography variant="body1" className="pb-10 pt-10">
+          </form>
+          <div className="my-5 w-full flex flex-col gap-2">
+            <Typography variant="body1">
               {t("notAddedPaymentMethod")}
             </Typography>
             <button
-              form="donation"
-              type="submit"
-              className="btn-primary mt-24"
+              className="btn-yellow"
               onClick={() => handleAddPaymentMethod()}
             >
               {t("addPaymentMethodBtn")}
             </button>
-          </form>
+          </div>
         </div>
       </Dialog>
     </div>

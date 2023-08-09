@@ -17,17 +17,20 @@ import {
 } from "@mui/material";
 import { countries } from "@/data/countries";
 import { FileUpload } from "@mui/icons-material";
-import InfoIcon from "@mui/icons-material/Info";
 import LoaderStyle from "../helper/LoaderStyle";
-import { useAuth } from "@/context/AuthContext";
 import { useTranslations } from "next-intl";
 
-const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
+const EditUser = ({
+  openEditUserForm,
+  setOpenEditUserForm,
+  currentUser,
+  setCurrentUser,
+}) => {
   const handleClose = () => {
     setOpenEditUserForm(false);
   };
 
-  // const { currentUser, user } = useAuth();
+
   const [err, setErr] = useState("");
   const t = useTranslations("EditUser");
   const [userData, setUserData] = useState({
@@ -35,7 +38,6 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
     bio: "",
     userImg: "",
     country: "",
-    // email: "",
   });
 
   // Populate the form fields with currentUser data when the component mounts
@@ -46,7 +48,6 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
         bio: currentUser.bio,
         userImg: currentUser.userImg,
         country: currentUser.country,
-        // email: currentUser.email,
       });
     }
   }, [currentUser]);
@@ -97,6 +98,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
 
       // Save the updated user data back to the database
       await setDoc(doc(db, "users", currentUser.id), updatedUserData);
+      setCurrentUser(updatedUserData);
       setErr("");
       setOpenEditUserForm(false);
     } catch (e) {
@@ -135,30 +137,9 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
               value={userData.name}
               onChange={handleInputChange}
             />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* Error messages */}
-            </Typography>
+    
           </div>
-          {/* <div>
-              <TextField
-                label="Email"
-                fullWidth
-                type="email"
-                variant="standard"
-                name="email"
-                value={userData.email}
-                onChange={handleInputChange}
-              />
-              <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-              >
-           
-              </Typography>
-            </div> */}
+
 
           <div>
             <TextField
@@ -170,12 +151,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
               value={userData.bio}
               onChange={handleInputChange}
             />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* Error messages */}
-            </Typography>
+   
           </div>
           <div>
             <FormControl variant="standard" fullWidth>
@@ -212,12 +188,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
                 })}
               </Select>
             </FormControl>
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* Error messages */}
-            </Typography>
+        
           </div>
           <div>
             <TextField
@@ -238,12 +209,7 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
               onChange={handleImageChange}
               sx={{ input: { cursor: "pointer" } }}
             />
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
-            >
-              {/* {err} */}
-            </Typography>
+    
           </div>
 
           <button
@@ -255,7 +221,12 @@ const EditUser = ({ openEditUserForm, setOpenEditUserForm, currentUser }) => {
             {t("btn-update")}
           </button>
         </form>
-        <p>{err}</p>
+        <Typography
+          variant="small"
+          className="flex items-center gap-1 font-normal mt-2 text-red-800 mb-4"
+        >
+          {err}
+        </Typography>
       </div>
     </Dialog>
   );

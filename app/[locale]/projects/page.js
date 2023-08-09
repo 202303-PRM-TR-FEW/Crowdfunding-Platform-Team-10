@@ -5,13 +5,15 @@ import { Box } from "@mui/material";
 import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
-
+import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 import { useAuth } from "@/context/AuthContext";
 
 const Home = () => {
   const { projects } = useAuth();
   const [projectOfWeek, setProjectOFWeek] = useState("");
+
+  const t = useTranslations("Profile")
 
   const [data, setData] = useState(projects ?? []);
 
@@ -55,7 +57,7 @@ const Home = () => {
         );
       })
     ) : (
-      <Box className="header-4 px-10 py-28">No Projects In This Category</Box>
+      <Box className="header-4 px-10 py-28">{t("message")}</Box>
     )
   ) : (
     <Box className="scale-[0.6]">
