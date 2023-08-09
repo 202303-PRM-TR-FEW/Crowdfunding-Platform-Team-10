@@ -15,14 +15,14 @@ function StartNow() {
         <div className="md:space-x-4 md:flex-row flex justify-center items-center flex-col">
           {user == null ? (
             <div className="mt-5 flex flex-col lg:flex-row gap-3">
-              <div
-                className="bg-lightGreen hover:bg-[#f0bd07] text-white
-   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-14;"
-              >
-                <Link href="/profile" className="w-full">
+              <Link href="/profile" className="w-full px-16">
+                <div
+                  className="bg-lightGreen hover:bg-[#f0bd07] text-white
+   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 ;"
+                >
                   {t("btn-one")}
-                </Link>
-              </div>
+                </div>
+              </Link>
               <div className="btn-transparent  ">
                 <Link href="/projects" className="w-full">
                   {t("btn-two")}
@@ -31,10 +31,10 @@ function StartNow() {
             </div>
           ) : (
             <div className="mt-5 flex flex-col lg:flex-row gap-5">
-              <Link href="/profile">
+              <Link href="/profile" className="px-16">
                 <div
                   className="bg-lightGreen hover:bg-[#f0bd07] text-white
-   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 px-14;"
+   text-lg rounded-md shadow-lg text-center cursor-pointer transition-all duration-300 ease-in-out py-2 ;"
                 >
                   {t("btn-three")}
                 </div>
