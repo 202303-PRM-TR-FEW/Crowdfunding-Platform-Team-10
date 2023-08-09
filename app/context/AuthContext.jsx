@@ -114,9 +114,8 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     setUser(null);
-
     await signOut(auth);
-    router.push("/login");
+    setLoading(false)
   };
 
   return (
@@ -128,6 +127,7 @@ export const AuthContextProvider = ({ children }) => {
         logout,
         loading,
         googleLogIn,
+        setLoading
       }}
     >
       {loading ? null : children}
