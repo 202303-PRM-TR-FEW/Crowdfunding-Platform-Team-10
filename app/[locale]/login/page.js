@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
 const Login = () => {
   const { user } = useAuth();
-  const router = useRouter;
+  const router = useRouter();
   useEffect(() => {
     if (user !== null) {
       router.push("/profile");
