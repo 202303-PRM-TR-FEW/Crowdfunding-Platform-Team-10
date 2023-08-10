@@ -8,15 +8,21 @@ const SuccessBadge = ({ endingDate, raised, goal }) => {
       <span
         data-cy="badge-title"
         className={`text-xs  px-5 py-1  rounded ${
-          successState === "Active" || "Aktif"
-          ? "text-lightGreen bg-yellow-light"
-          : successState === "Successful" || "Tamamlandı"
-          ? "text-white bg-lightGreen"
-          : successState === "Successful" || "Tamamlandı"
-          ? "text-white bg-gray-500"
-          : successState === "Closed" || "Kapatıldı"
-          ? "text-white bg-gray-700"
-          : "text-white bg-red-800 "
+          successState === "Active"
+            ? "text-lightGreen bg-yellow-light"
+            : successState === "Successful"
+            ? "text-white bg-lightGreen"
+            : successState === "Closed"
+            ? "text-white bg-gray-700"
+            : successState === "days left"
+            ? "text-white bg-red-800 "
+            : successState === "Aktif"
+            ? "text-lightGreen bg-yellow-light"
+            : successState === "Tamamlandı"
+            ? "text-white bg-lightGreen"
+            : successState === "Kapatıldı"
+            ? "text-white bg-gray-700"
+            : "text-white bg-red-800 "
         }`}
       >
         {successState}
@@ -32,7 +38,7 @@ function IsSuccessful(endingDate, raised, goal) {
   const today = new Date();
   const timeDiff = endDate.getTime() - today.getTime();
   const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
-  const t = useTranslations("SuccessBadge")
+  const t = useTranslations("SuccessBadge");
 
   if (raised >= goal) {
     return `${t("sccs")}`;
