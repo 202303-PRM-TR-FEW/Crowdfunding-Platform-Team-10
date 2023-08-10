@@ -25,7 +25,7 @@ function StartNow() {
               </Link>
 
               <Link href="/projects">
-                <div className="btn-transparent-lg">{t("btn-two")}</div>
+                <div className="btn-transparent-lg h-full">{t("btn-two")}</div>
               </Link>
             </div>
           ) : (
@@ -40,7 +40,7 @@ function StartNow() {
               </Link>
 
               <Link href="/projects">
-                <div className="btn-transparent-lg">{t("btn-two")}</div>
+                <div className="btn-transparent-lg h-full">{t("btn-two")}</div>
               </Link>
             </div>
           )}

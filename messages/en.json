@@ -13,7 +13,9 @@
     "logout-two": " Logout",
     "login-two": "Login",
     "label-search": "Search for projects",
-    "placeholder-search": "Search..."
+    "placeholder-search": "Search...",
+    "projects":"PROJECTS",
+    "aboutus":"ABOUT US"
   },
   "WelcomeBanner": {
     "header1": "Empowering",
@@ -250,7 +252,8 @@
     "projects": "Projects",
     "join": "Join",
     "login": "Log In",
-    "prof": "Profile"
+    "prof": "Profile",
+    "about":"About Us"
   },
   "SuccessBadge": {
     "left": "days left",
@@ -278,5 +281,12 @@
   },
   "CommentHeader":{
     "header": "Comments"
+  },
+  "UserPage":{
+    "contributions":"Contributions",
+    "s":"s ",
+    "project": "Projects",
+    "donations": "Donations",
+    "amount":"Donation Amount"
   }
 }

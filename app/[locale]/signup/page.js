@@ -1,13 +1,16 @@
 "use client";
 
 import SignupForm from "@/components/forms/SignupForm";
+import { Fade } from "react-awesome-reveal";
 const Signup = () => {
   return (
     <div className="relative flex justify-center items-center bg-gradient-to-t from-transparent   to-teal-50 lg:h-[100vh]  lg:p-4    py-20  bg-no-repeat overflow-hidden bg-cover">
-      <div style={circleBackgroundStyle}></div>
+      <Fade>
+        <div style={circleBackgroundStyle}></div>
 
-      <SignupForm />
-      <div style={circleBackgroundStyle2}></div>
+        <SignupForm />
+        <div style={circleBackgroundStyle2}></div>
+      </Fade>
     </div>
   );
 };

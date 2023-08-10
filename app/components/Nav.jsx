@@ -302,18 +302,25 @@ export default function Nav() {
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Link className="flex justify-center items-center" href="/projects">
+              <p className="transition text-lightGreen hover:text-[#f0bd07] duration-300 ease-in-out px-[10px]">
+                {t("projects")}
+              </p>
+            </Link>
+          </Box>
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Link className="flex justify-center items-center" href="/about">
+              <p className="transition text-lightGreen hover:text-[#f0bd07] duration-300 ease-in-out px-[10px]">
+                {t("aboutus")}
+              </p>
+            </Link>
+          </Box>
+
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
             <div className="flex justify-center items-center" href="/projects">
               <LangSwitcher />
             </div>
           </Box>
-          <Box sx={{ display: { xs: "none", md: "block" } }}>
-            <Link className="flex justify-center items-center" href="/projects">
-              <IconButton>
-                <HomeRoundedIcon fontSize="large" sx={{ color: "#00c1a2" }} />
-              </IconButton>
-            </Link>
-          </Box>
-
           <Box sx={{ display: { xs: "none", md: "block" } }}>
             <IconButton
               size="large"
@@ -389,7 +396,7 @@ function SearchComponent() {
         label={t("label-search")}
         value={values}
         placeholder={t("placeholder-search")}
-        className="w-[240px] md:w-[350px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100  focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-sm"
+        className="w-[240px] md:w-[334px] border  rounded-full pr-16 pl-4 py-2 bg-gray-100  focus:outline-none focus:ring-1 focus:ring-[#00c1a2] shadow-sm"
       />
       <div
         onClick={handleClick}
