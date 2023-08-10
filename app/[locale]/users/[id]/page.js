@@ -91,19 +91,17 @@ function Page({ params }) {
   const allProjects =
     projects.length > 0 ? (
       projects.map((card) => (
-        <Link href={`/projects/${card.id}`} key={card.id}>
-          <SummaryCard
-            key={card.id}
-            img={card.url}
-            title={card.name}
-            goal={card.goal}
-            raised={card.raised}
-            category={card.category}
-            creator={card.creator}
-            viewCount={card.viewCount}
-            endingDate={card.endingDate}
-          />
-        </Link>
+        <SummaryCard
+          key={card.id}
+          img={card.url}
+          title={card.name}
+          goal={card.goal}
+          raised={card.raised}
+          category={card.category}
+          creator={card.creator}
+          viewCount={card.viewCount}
+          endingDate={card.endingDate}
+        />
       ))
     ) : (
       <Box className="header-4 px-10 py-28">{t("message")}</Box>
