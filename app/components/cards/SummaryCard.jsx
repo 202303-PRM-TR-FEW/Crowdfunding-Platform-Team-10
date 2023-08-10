@@ -19,7 +19,7 @@ const SummaryCard = ({
   category,
   creator,
   viewCount,
-  key
+  key,
 }) => {
   function isSuccessful(endingDate, raised, goal) {
     const endDate = new Date(endingDate);
@@ -78,37 +78,36 @@ const SummaryCard = ({
       >
         <ViewCount viewCount={viewCount} />
       </div>
-
-      <div className="overflow-hidden  rounded-lg relative h-[222px] w-full cursor-pointer">
-        <Image
-          unoptimized
-          fill={true}
-          style={{ objectFit: "cover" }}
-          className="  image-animated"
-          src={img}
-          alt="project img"
-          sizes="(max-width: 768px) 100vw"
-        />
-      </div>
+      <Link href={`/projects/${key} `}>
+        <div className="overflow-hidden  rounded-lg relative h-[222px] w-full cursor-pointer">
+          <Image
+            unoptimized
+            fill={true}
+            style={{ objectFit: "cover" }}
+            className="  image-animated"
+            src={img}
+            alt="project img"
+            sizes="(max-width: 768px) 100vw"
+          />
+        </div>
+      </Link>
 
       <div className={styles.body}>
-        <Link href={`/projects/${key} `}>
-          <div className="flex items-center justify-between">
-            <div className="grid grid-cols-2  items-start mt-2 w-full justify-between">
-              <div className=" justify-self-start flex justify-start">
-                <h4
-                  data-cy="card-title"
-                  className="header-5 text-start text-[#2f2f2f]  overflow-hidden w-full h-7"
-                >
-                  {title}
-                </h4>
-              </div>
-              <div className="flex justify-end">
-                <CategoryIcon category={category} color={"#00c1a2"} />
-              </div>
+        <div className="flex items-center justify-between">
+          <div className="grid grid-cols-2  items-start mt-2 w-full justify-between">
+            <div className=" justify-self-start flex justify-start">
+              <h4
+                data-cy="card-title"
+                className="header-5 text-start text-[#2f2f2f]  overflow-hidden w-full h-7"
+              >
+                {title}
+              </h4>
+            </div>
+            <div className="flex justify-end">
+              <CategoryIcon category={category} color={"#00c1a2"} />
             </div>
           </div>
-        </Link>
+        </div>
         <Target raised={raised} goal={goal} />
 
         <hr className=" border-t-2  border-white"></hr>
