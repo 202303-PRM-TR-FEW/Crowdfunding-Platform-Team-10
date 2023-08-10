@@ -138,7 +138,7 @@ function Page({ params }) {
               <div className="mt-4">
                 <h1 className="font-semibold text-lg  text-gray-500">
                   <span className=" color-green">{user.userName}</span>
-                  {locale === "en" ? `&apos;` : ""}
+                  {locale === "en" ? <span>&apos;</span> : ""}
                   {t("s")}
                   {t("contributions")}
                 </h1>
