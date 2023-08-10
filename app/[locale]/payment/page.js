@@ -2,7 +2,10 @@
 
 import PleaseLogin from "@/components/PleaseLogin";
 import PaymentMethodForm from "@/components/forms/PaymentMethodForm";
+import { useAuth } from "@/context/AuthContext";
+
 const Payment = () => {
+  const { user } = useAuth();
   return (
     <div className="relative flex justify-center items-center bg-gradient-to-t from-transparent   to-teal-50 lg:h-[100vh]  p-4   py-20  bg-no-repeat overflow-hidden bg-cover">
       {user === null ? (
