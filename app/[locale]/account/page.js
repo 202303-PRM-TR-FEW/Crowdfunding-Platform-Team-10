@@ -5,11 +5,11 @@ import EditUser from "@/components/forms/EditUser";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import CardInfo from "./CardInfo";
-
+import PleaseLogin from "@/components/PleaseLogin";
 const Page = () => {
   const { user } = useAuth();
   const [currentUser, setCurrentUser] = useState();
-  
+
   useEffect(() => {
     if (user && user.email) {
       const q = query(
@@ -59,19 +59,25 @@ const Page = () => {
 
   return (
     <div className=" bg-gradient-to-t from-transparent to-teal-50 relative bg-no-repeat overflow-hidden bg-cover">
-      <div style={circleBackgroundStyle}></div>
-      <CardInfo
-        currentUser={currentUser}
-        handleEditUser={handleEditUser}
-        formatTimestamp={formatTimestamp}
-      />
-      <EditUser
-        currentUser={currentUser}
-        openEditUserForm={openEditUserForm}
-        setOpenEditUserForm={setOpenEditUserForm}
-        setCurrentUser={setCurrentUser}
-      />
-      <div style={circleBackgroundStyle2}></div>
+      {user === null ? (
+        <PleaseLogin />
+      ) : (
+        <>
+          <div style={circleBackgroundStyle}></div>
+          <CardInfo
+            currentUser={currentUser}
+            handleEditUser={handleEditUser}
+            formatTimestamp={formatTimestamp}
+          />
+          <EditUser
+            currentUser={currentUser}
+            openEditUserForm={openEditUserForm}
+            setOpenEditUserForm={setOpenEditUserForm}
+            setCurrentUser={setCurrentUser}
+          />
+          <div style={circleBackgroundStyle2}></div>
+        </>
+      )}
     </div>
   );
 };
