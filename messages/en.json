@@ -260,7 +260,16 @@
   },
   "Filtering": {
     "header": "Categories",
-    "filter": "Filter by"
+    "filter": "Filter by",
+    "all": "All",
+    "education":"Education",
+    "culture":"Culture",
+    "animals":"Animals",
+    "children":"Children",
+    "successful":"Successful",
+    "active":"Active",
+    "ending":"Ending Soon",
+    "closed":"Closed"
   },
   "CommentForm": {
     "Leave A Comment":"Leave A Comment :",
