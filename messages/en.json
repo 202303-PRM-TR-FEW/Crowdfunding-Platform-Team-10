@@ -281,7 +281,7 @@
   },
   "userPage":{
     "contributions":"Contributions",
-    "s":"'s ",
+    "s":"s ",
     "projects": "Projects",
     "donations": "Donations",
     "amount":"Donation Amount"

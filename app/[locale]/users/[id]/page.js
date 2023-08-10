@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { db } from "@/config/firebase";
 import Image from "next/image";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -8,7 +8,6 @@ import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/system";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { Fade } from "react-awesome-reveal";
-
 function Page({ params }) {
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +17,7 @@ function Page({ params }) {
     donationsCount: 0,
     totalDonatedAmount: 0,
   });
-
+  const locale = useLocale();
   const t = useTranslations("UserPage");
 
   useEffect(() => {
@@ -139,6 +138,7 @@ function Page({ params }) {
               <div className="mt-4">
                 <h1 className="font-semibold text-lg  text-gray-500">
                   <span className=" color-green">{user.userName}</span>
+                  {locale === "en" ? `&apos;` : ""}
                   {t("s")}
                   {t("contributions")}
                 </h1>
