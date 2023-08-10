@@ -285,7 +285,7 @@
   "UserPage":{
     "contributions":"Katkıları",
     "s":" Adlı Kullanıcının ",
-    "projects": "Projeler",
+    "project": "Projeler",
     "donations": "Bağışlar",
     "amount":"Bağış Miktarı"
   }

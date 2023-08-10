@@ -285,7 +285,7 @@
   "UserPage":{
     "contributions":"Contributions",
     "s":"s ",
-    "projects": "Projects",
+    "project": "Projects",
     "donations": "Donations",
     "amount":"Donation Amount"
   }
