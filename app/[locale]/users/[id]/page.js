@@ -7,6 +7,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/system";
 import LoaderStyle from "@/components/helper/LoaderStyle";
+import { Fade } from "react-awesome-reveal";
 
 function Page({ params }) {
   const [loading, setLoading] = useState(true);
@@ -121,47 +122,49 @@ function Page({ params }) {
 
   return (
     <div className="bg-gradient-to-t from-transparent to-teal-50 relative overflow-hidden">
-      <div className="container mx-auto py-28 text-center">
-        {user && (
-          <div className="mb-6">
-            <div className="relative inline-block">
-              <Image
-                src={user.userImg}
-                alt={`${user.name}'s Profile`}
-                className="w-32 h-32 rounded-full mx-auto mb-2"
-                width={300}
-                height={300}
-              />
-            </div>
+      <Fade>
+        <div className="container mx-auto py-28 text-center">
+          {user && (
+            <div className="mb-6">
+              <div className="relative inline-block">
+                <Image
+                  src={user.userImg}
+                  alt={`${user.name}'s Profile`}
+                  className="w-32 h-32 rounded-full mx-auto mb-2"
+                  width={300}
+                  height={300}
+                />
+              </div>
 
-            <div className="mt-4">
-              <h1 className="font-semibold text-lg  text-gray-500">
-                <span className=" color-green">{user.userName}</span>&apos;s
-                Contributions
-              </h1>
+              <div className="mt-4">
+                <h1 className="font-semibold text-lg  text-gray-500">
+                  <span className=" color-green">{user.userName}</span>&apos;s
+                  Contributions
+                </h1>
+              </div>
+            </div>
+          )}
+          <div className="grid grid-cols-3 gap-4 items-start justify-center mx-auto my-2">
+            <div className="text-center">
+              <p className="font-semibold text-gray-500">Projects</p>
+              <p className="text-lg font-bold color-green">{projects.length}</p>
+            </div>
+            <div className="text-center">
+              <p className="font-semibold text-gray-500">Donations</p>
+              <p className="text-lg font-bold color-green">{donationsCount}</p>
+            </div>
+            <div className="text-center">
+              <p className="font-semibold text-gray-500">Donations Amount</p>
+              <p className="text-lg font-bold color-green">
+                ${formatNumber(totalDonatedAmount)}
+              </p>
             </div>
           </div>
-        )}
-        <div className="grid grid-cols-3 gap-4 items-start justify-center mx-auto my-2">
-          <div className="text-center">
-            <p className="font-semibold text-gray-500">Projects</p>
-            <p className="text-lg font-bold color-green">{projects.length}</p>
-          </div>
-          <div className="text-center">
-            <p className="font-semibold text-gray-500">Donations</p>
-            <p className="text-lg font-bold color-green">{donationsCount}</p>
-          </div>
-          <div className="text-center">
-            <p className="font-semibold text-gray-500">Donations Amount</p>
-            <p className="text-lg font-bold color-green">
-              ${formatNumber(totalDonatedAmount)}
-            </p>
+          <div className="items-start justify-around mx-auto flex flex-wrap gap-3 lg:mt-20 mt-10">
+            {allProjects}
           </div>
         </div>
-        <div className="items-start justify-around mx-auto flex flex-wrap gap-3 lg:mt-20 mt-10">
-          {allProjects}
-        </div>
-      </div>
+      </Fade>
     </div>
   );
 }

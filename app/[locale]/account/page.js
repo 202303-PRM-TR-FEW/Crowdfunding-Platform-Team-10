@@ -6,6 +6,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import CardInfo from "./CardInfo";
 import PleaseLogin from "@/components/PleaseLogin";
+import { Fade } from "react-awesome-reveal";
 const Page = () => {
   const { user } = useAuth();
   const [currentUser, setCurrentUser] = useState();
@@ -59,25 +60,27 @@ const Page = () => {
 
   return (
     <div className=" bg-gradient-to-t from-transparent to-teal-50 relative bg-no-repeat overflow-hidden bg-cover">
-      {user === null ? (
-        <PleaseLogin />
-      ) : (
-        <>
-          <div style={circleBackgroundStyle}></div>
-          <CardInfo
-            currentUser={currentUser}
-            handleEditUser={handleEditUser}
-            formatTimestamp={formatTimestamp}
-          />
-          <EditUser
-            currentUser={currentUser}
-            openEditUserForm={openEditUserForm}
-            setOpenEditUserForm={setOpenEditUserForm}
-            setCurrentUser={setCurrentUser}
-          />
-          <div style={circleBackgroundStyle2}></div>
-        </>
-      )}
+      <Fade>
+        {user === null ? (
+          <PleaseLogin />
+        ) : (
+          <>
+            <div style={circleBackgroundStyle}></div>
+            <CardInfo
+              currentUser={currentUser}
+              handleEditUser={handleEditUser}
+              formatTimestamp={formatTimestamp}
+            />
+            <EditUser
+              currentUser={currentUser}
+              openEditUserForm={openEditUserForm}
+              setOpenEditUserForm={setOpenEditUserForm}
+              setCurrentUser={setCurrentUser}
+            />
+            <div style={circleBackgroundStyle2}></div>
+          </>
+        )}
+      </Fade>
     </div>
   );
 };
