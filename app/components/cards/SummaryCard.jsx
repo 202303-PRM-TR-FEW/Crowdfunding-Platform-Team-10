@@ -8,6 +8,8 @@ import ViewCount from "../helper/ViewCount";
 import Target from "../helper/Target";
 import CategoryIcon from "../helper/CategoryIcon";
 import Image from "next/image";
+import Link from "next-intl/link";
+
 const SummaryCard = ({
   endingDate,
   img,
@@ -17,6 +19,7 @@ const SummaryCard = ({
   category,
   creator,
   viewCount,
+  projectId,
 }) => {
   function isSuccessful(endingDate, raised, goal) {
     const endDate = new Date(endingDate);
@@ -75,18 +78,19 @@ const SummaryCard = ({
       >
         <ViewCount viewCount={viewCount} />
       </div>
-
-      <div className="overflow-hidden  rounded-lg relative h-[222px] w-full cursor-pointer">
-        <Image
-          unoptimized
-          fill={true}
-          style={{ objectFit: "cover" }}
-          className="  image-animated"
-          src={img}
-          alt="project img"
-          sizes="(max-width: 768px) 100vw"
-        />
-      </div>
+      <Link href={`/projects/${projectId} `}>
+        <div className="overflow-hidden  rounded-lg relative h-[222px] w-full cursor-pointer">
+          <Image
+            unoptimized
+            fill={true}
+            style={{ objectFit: "cover" }}
+            className="  image-animated"
+            src={img}
+            alt="project img"
+            sizes="(max-width: 768px) 100vw"
+          />
+        </div>
+      </Link>
 
       <div className={styles.body}>
         <div className="flex items-center justify-between">
@@ -104,21 +108,22 @@ const SummaryCard = ({
             </div>
           </div>
         </div>
-
         <Target raised={raised} goal={goal} />
 
         <hr className=" border-t-2  border-white"></hr>
 
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start justify-self-start">
-            <div className={`${styles.flex} `}>
-              <Avatar
-                alt={creator?.userName}
-                src={creator?.userImg}
-                className="w-10 h-10 me-1 overflow-hidden"
-              />
-              <p className="text-base text-basicgray ">{creator?.userName}</p>
-            </div>
+            <Link href={`users/${creator.userId}`}>
+              <div className={`${styles.flex} `}>
+                <Avatar
+                  alt={creator?.userName}
+                  src={creator?.userImg}
+                  className="w-10 h-10 me-1 overflow-hidden"
+                />
+                <p className="text-base text-basicgray ">{creator?.userName}</p>
+              </div>
+            </Link>
           </div>
           <div className=" ">
             <SuccessBadge endingDate={endingDate} raised={raised} goal={goal} />

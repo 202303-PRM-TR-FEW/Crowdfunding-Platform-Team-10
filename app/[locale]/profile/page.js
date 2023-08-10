@@ -72,7 +72,7 @@ const Page = () => {
   useEffect(() => {
     setTimeout(() => {
       if (user === null) {
-        // router.push("/login");
+        router.push("/login");
         console.log(user);
       } else {
         const projectArray = Object.values(projects);
@@ -93,10 +93,6 @@ const Page = () => {
       }
     }
   }, []);
-  let oneProjectInfo = null;
-  if (!isLoading && usersProjects.length > 0) {
-    oneProjectInfo = usersProjects[usersProjects.length - 1];
-  }
 
   if (loading && user !== null) {
     return <LoaderStyle />;

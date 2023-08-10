@@ -6,16 +6,14 @@ import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useTranslations } from "next-intl";
-import Link from "next-intl/link";
+
 import { useAuth } from "@/context/AuthContext";
 import { Fade } from "react-awesome-reveal";
 const Home = () => {
   const { projects } = useAuth();
-  const [projectOfWeek, setProjectOFWeek] = useState("");
-
-  const t = useTranslations("Profile");
-
   const [data, setData] = useState(projects ?? []);
+  const [projectOfWeek, setProjectOFWeek] = useState("");
+  const t = useTranslations("Profile");
 
   useEffect(() => {
     setData(projects);
@@ -41,19 +39,18 @@ const Home = () => {
     data.length > 0 ? (
       data.map((card) => {
         return (
-          <Link href={`/projects/${card.id} `} key={card.id}>
-            <SummaryCard
-              key={card.id}
-              img={card.url}
-              title={card.name}
-              goal={card.goal}
-              raised={card.raised}
-              category={card.category}
-              creator={card.creator}
-              viewCount={card.viewCount}
-              endingDate={card.endingDate}
-            />
-          </Link>
+          <SummaryCard
+            key={card.id}
+            projectId={card.id}
+            img={card.url}
+            title={card.name}
+            goal={card.goal}
+            raised={card.raised}
+            category={card.category}
+            creator={card.creator}
+            viewCount={card.viewCount}
+            endingDate={card.endingDate}
+          />
         );
       })
     ) : (
