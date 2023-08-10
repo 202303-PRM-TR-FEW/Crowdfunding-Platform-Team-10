@@ -10,6 +10,7 @@ import LoaderStyle from "@/components/helper/LoaderStyle";
 
 function Page({ params }) {
   const [loading, setLoading] = useState(true);
+
   const [userData, setUserData] = useState({
     user: null,
     projects: [],
@@ -40,8 +41,12 @@ function Page({ params }) {
         const donationsSnapshot = await getDocs(donationsQuery);
 
         if (!projectsSnapshot.empty) {
-          const userProjects = projectsSnapshot.docs.map((doc) => doc.data());
-          console.log(userProjects);
+          const userProjects = projectsSnapshot.docs.map((doc) => {
+            const projectData = doc.data();
+            const projectId = doc.id;
+            return { id: projectId, ...projectData }; // Include the ID in the data
+          });
+
           if (!donationsSnapshot.empty) {
             const userDonations = donationsSnapshot.docs.map((doc) =>
               doc.data()
@@ -83,8 +88,8 @@ function Page({ params }) {
     fetchData();
   }, [params.id]);
 
-  console.log(userData);
   const { user, projects, donationsCount, totalDonatedAmount } = userData;
+  console.log(projects);
 
   const allProjects =
     projects.length > 0 ? (

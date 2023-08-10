@@ -11,11 +11,10 @@ import { useAuth } from "@/context/AuthContext";
 
 const Home = () => {
   const { projects } = useAuth();
+  const [data, setData] = useState(projects ?? []);
   const [projectOfWeek, setProjectOFWeek] = useState("");
 
-  const t = useTranslations("Profile")
-
-  const [data, setData] = useState(projects ?? []);
+  const t = useTranslations("Profile");
 
   useEffect(() => {
     setData(projects);
@@ -41,19 +40,18 @@ const Home = () => {
     data.length > 0 ? (
       data.map((card) => {
         return (
-            <SummaryCard
-              key={card.id}
-              projectId={card.id}
-              img={card.url}
-              title={card.name}
-              goal={card.goal}
-              raised={card.raised}
-              category={card.category}
-              creator={card.creator}
-              viewCount={card.viewCount}
-              endingDate={card.endingDate}
-            />
-      
+          <SummaryCard
+            key={card.id}
+            projectId={card.id}
+            img={card.url}
+            title={card.name}
+            goal={card.goal}
+            raised={card.raised}
+            category={card.category}
+            creator={card.creator}
+            viewCount={card.viewCount}
+            endingDate={card.endingDate}
+          />
         );
       })
     ) : (

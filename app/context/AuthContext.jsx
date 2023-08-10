@@ -115,7 +115,7 @@ export const AuthContextProvider = ({ children }) => {
   const logout = async () => {
     setUser(null);
     await signOut(auth);
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
@@ -130,7 +130,7 @@ export const AuthContextProvider = ({ children }) => {
 
         projects,
 
-        setLoading
+        setLoading,
       }}
     >
       {loading ? null : children}
