@@ -1,12 +1,6 @@
 "use client";
 import React from "react";
-import {
-  
-  ListItem,
-  ListItemAvatar,
-  Avatar,
- 
-} from "@mui/material";
+import { ListItem, ListItemAvatar, Avatar } from "@mui/material";
 import Link from "next-intl/link";
 import { useTranslations } from "next-intl";
 
