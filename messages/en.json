@@ -278,5 +278,12 @@
   },
   "CommentHeader":{
     "header": "Comments"
+  },
+  "userPage":{
+    "contributions":"Contributions",
+    "s":"'s ",
+    "projects": "Projects",
+    "donations": "Donations",
+    "amount":"Donation Amount"
   }
 }

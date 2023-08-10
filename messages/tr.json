@@ -19,7 +19,7 @@
     "header1": "Hayalleri",
     "header2": "Birlikte",
     "header3": "Gerçekleştirin",
-    "subHeader1": "3.500'den fazla proje ve amaça destek olduk.",
+    "subHeader1": "3.500'den fazla proje ve amaca destek olduk.",
     "subHeader2": "Fikirleri Hayata Geçirmekte Bize Katılın!",
     "successful": "Başarılı Projeler: ",
     "donations": "Toplam Yardımlar: ",
@@ -278,5 +278,12 @@
   },
   "CommentHeader":{
     "header": "Yorumlar"
+  },
+  "userPage":{
+    "contributions":"Katkıları",
+    "s":" Adlı Kullanıcının ",
+    "projects": "Projeler",
+    "donations": "Bağışlar",
+    "amount":"Bağış Miktarı"
   }
 }

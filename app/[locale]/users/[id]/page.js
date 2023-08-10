@@ -19,7 +19,7 @@ function Page({ params }) {
     totalDonatedAmount: 0,
   });
 
-  const t = useTranslations("Cards");
+  const t = useTranslations("UserPage");
 
   useEffect(() => {
     setLoading(true);
@@ -138,23 +138,24 @@ function Page({ params }) {
 
               <div className="mt-4">
                 <h1 className="font-semibold text-lg  text-gray-500">
-                  <span className=" color-green">{user.userName}</span>&apos;s
-                  Contributions
+                  <span className=" color-green">{user.userName}</span>
+                  {t("s")}
+                  {t("contributions")}
                 </h1>
               </div>
             </div>
           )}
           <div className="grid grid-cols-3 gap-4 items-start justify-center mx-auto my-2">
             <div className="text-center">
-              <p className="font-semibold text-gray-500">Projects</p>
+              <p className="font-semibold text-gray-500">{t("project")}</p>
               <p className="text-lg font-bold color-green">{projects.length}</p>
             </div>
             <div className="text-center">
-              <p className="font-semibold text-gray-500">Donations</p>
+              <p className="font-semibold text-gray-500">{t("donations")}</p>
               <p className="text-lg font-bold color-green">{donationsCount}</p>
             </div>
             <div className="text-center">
-              <p className="font-semibold text-gray-500">Donations Amount</p>
+              <p className="font-semibold text-gray-500">{t("amount")}</p>
               <p className="text-lg font-bold color-green">
                 ${formatNumber(totalDonatedAmount)}
               </p>
