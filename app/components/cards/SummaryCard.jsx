@@ -19,7 +19,7 @@ const SummaryCard = ({
   category,
   creator,
   viewCount,
-  key,
+  projectId,
 }) => {
   function isSuccessful(endingDate, raised, goal) {
     const endDate = new Date(endingDate);
@@ -78,7 +78,7 @@ const SummaryCard = ({
       >
         <ViewCount viewCount={viewCount} />
       </div>
-      <Link href={`/projects/${key} `}>
+      <Link href={`/projects/${projectId} `}>
         <div className="overflow-hidden  rounded-lg relative h-[222px] w-full cursor-pointer">
           <Image
             unoptimized

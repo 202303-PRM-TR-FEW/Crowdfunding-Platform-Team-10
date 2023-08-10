@@ -43,6 +43,7 @@ const Home = () => {
         return (
             <SummaryCard
               key={card.id}
+              projectId={card.id}
               img={card.url}
               title={card.name}
               goal={card.goal}

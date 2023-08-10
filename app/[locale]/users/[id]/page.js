@@ -4,8 +4,6 @@ import { useTranslations } from "next-intl";
 import { db } from "@/config/firebase";
 import Image from "next/image";
 import { collection, getDocs, query, where } from "firebase/firestore";
-
-import Link from "next-intl/link";
 import SummaryCard from "@/components/cards/SummaryCard";
 import { Box } from "@mui/system";
 import LoaderStyle from "@/components/helper/LoaderStyle";
@@ -93,6 +91,7 @@ function Page({ params }) {
       projects.map((card) => (
         <SummaryCard
           key={card.id}
+          projectId={card.id}
           img={card.url}
           title={card.name}
           goal={card.goal}
