@@ -1,10 +1,8 @@
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "@/config/firebase";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-
 export default function CommentRows({ id }) {
   const [comments, setComments] = useState([]);
   const t = useTranslations("CommentHeader");
@@ -36,7 +34,7 @@ export default function CommentRows({ id }) {
         >
           <div className="flex-shrink-0 mr-3">
             <Image
-            unoptimized
+              unoptimized
               className="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
               src={comment.userImg}
               alt={comment.userName}
