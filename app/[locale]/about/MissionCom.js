@@ -1,9 +1,8 @@
 "use client";
-
 import { useTranslations } from "next-intl";
 
 const MissionCom = () => {
-  const t = useTranslations("Mission")
+  const t = useTranslations("Mission");
   const circleBackgroundStyle = {
     position: "absolute",
     top: "-50px",
@@ -29,7 +28,7 @@ const MissionCom = () => {
     filter: "blur(20px)",
     animation: `moveCircle 10s linear infinite`,
   };
-    
+
   return (
     <div
       className="justify-center  flex relative overflow-hidden bg-gray-100"
@@ -40,17 +39,12 @@ const MissionCom = () => {
         <p className="header-3Green pb-10 text-center ">{t("green-header")}</p>
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-between gap-10 md:gap-20 ">
           <div className="text-center lg:text-right col-span-1">
-            <p className="header-3">{t("header-left")}{" "}
-            </p>
-            <p className="sub-header py-10">{t("text-left")}
-            </p>
+            <p className="header-3">{t("header-left")} </p>
+            <p className="sub-header py-10">{t("text-left")}</p>
           </div>
           <div className=" text-center lg:text-left col-span-1">
-            <p className="header-3">
-              {t("header-right")}{" "}
-            </p>
-            <p className="sub-header py-10">{t("text-right")}
-            </p>
+            <p className="header-3">{t("header-right")} </p>
+            <p className="sub-header py-10">{t("text-right")}</p>
           </div>
         </div>
       </section>

@@ -1,5 +1,4 @@
 "use client";
-
 import {
   doc,
   getDoc,
@@ -10,20 +9,16 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { db } from "@/config/firebase";
 import { useAuth } from "@/context/AuthContext";
-
 import { toast } from "react-toastify";
-
 import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 import Chart from "@/components/cards/Chart";
 import CommentForm from "@/components/commentsCom/CommentForm";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import CommentRows from "@/components/commentsCom/CommentRows";
-
 import { useRouter } from "next-intl/client";
 import Share from "./Share";
 import SingleProjectPage from "./SingleProjectPage";
@@ -36,7 +31,6 @@ function Project({ params }) {
   const { user } = useAuth();
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
-
   const router = useRouter();
   const [donations, setDonations] = useState([]);
   //fetching all users
@@ -81,12 +75,9 @@ function Project({ params }) {
           setData(updatedData);
           setLoading(false);
         } else {
-          console.log("No such document!");
           setNotExists(true);
         }
-      } catch (error) {
-        console.error("Error fetching document:", error);
-      }
+      } catch (error) {}
     };
 
     fetchData();
@@ -128,7 +119,6 @@ function Project({ params }) {
                   handleDeleteProject={handleDeleteProject}
                   params={params}
                 />
-
                 <div className="lg:sticky lg:top-0 lg:w-5/12 w-full mt-3 flex flex-col gap-3 ">
                   <DonationsHisory projectsDonations={projectsDonations} />
                   <Chart projectsDonations={projectsDonations} />
@@ -150,7 +140,6 @@ function Project({ params }) {
             </div>
           </div>
         </section>
-
         <div style={circleBackgroundStyle}></div>
       </Fade>
     </div>

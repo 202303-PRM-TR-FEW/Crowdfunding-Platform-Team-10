@@ -8,9 +8,7 @@ import {
   Select,
 } from "@mui/material";
 import { useTranslations } from "next-intl";
-import React, { useEffect, useState } from "react";
-
-IconButton;
+import React, { useState } from "react";
 const styles = {
   main: "flex justify-center md:justify-between items-center gap-2 flex-col md:flex-row ",
   header: "header-2 text-lightGreen py-4 text-center md:text-start",

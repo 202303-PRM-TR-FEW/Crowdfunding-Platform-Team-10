@@ -1,7 +1,10 @@
 import React from "react";
 import SummaryCard from "./SummaryCard";
+import { NextIntlProvider } from "next-intl";
 
 describe("<SummaryCard />", () => {
+  const locale = "en";
+  const messages = require(`../../../messages/${locale}.json`);
   const mockProject = {
     img: "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",
     title: "Card Title",
@@ -19,16 +22,18 @@ describe("<SummaryCard />", () => {
   it("renders", () => {
     // see: https://on.cypress.io/mounting-react
     cy.mount(
-      <SummaryCard
-        img={mockProject.img}
-        title={mockProject.title}
-        goal={mockProject.goal}
-        raised={mockProject.raised}
-        category={mockProject.category}
-        creator={mockProject.creator}
-        viewCount={mockProject.viewCount}
-        endingDate={mockProject.endingDate}
-      />
+      <NextIntlProvider locale={locale} messages={messages}>
+        <SummaryCard
+          img={mockProject.img}
+          title={mockProject.title}
+          goal={mockProject.goal}
+          raised={mockProject.raised}
+          category={mockProject.category}
+          creator={mockProject.creator}
+          viewCount={mockProject.viewCount}
+          endingDate={mockProject.endingDate}
+        />
+      </NextIntlProvider>
     );
 
     cy.get("[data-cy=card-title]").should("have.text", mockProject.title);

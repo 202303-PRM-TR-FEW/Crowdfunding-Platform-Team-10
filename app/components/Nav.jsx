@@ -1,5 +1,4 @@
 "use client";
-
 import {
   collection,
   onSnapshot,
@@ -20,7 +19,6 @@ import Image from "next/image";
 import LangSwitcher from "./LangSwitcher";
 import MobileLangSwitcher from "./MobileLangSwitcher";
 import { useTranslations } from "next-intl";
-
 import {
   AppBar,
   Toolbar,
@@ -46,10 +44,8 @@ import {
 
 export default function Nav() {
   const { user, logout, setLoading } = useAuth();
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const [currentUser, setCurrentUser] = useState();

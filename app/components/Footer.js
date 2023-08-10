@@ -1,9 +1,6 @@
 "use client";
-
 import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
-useTranslations;
-
 const Footer = () => {
   const t = useTranslations("Footer");
   return (
@@ -83,7 +80,7 @@ const Footer = () => {
               <ul className=" py-4 md:py-6 list-none">
                 <li className="">
                   <Link
-                    href="/signup"
+                    href="/login"
                     className="py-1 transition hover:text-lightGreen duration-300 ease-in-out text-sm text-[#a5a9aa]"
                   >
                     {t("login")}

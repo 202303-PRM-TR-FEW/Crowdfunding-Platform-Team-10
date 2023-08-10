@@ -1,9 +1,6 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
-
 import Link from "next-intl/link";
-
 import { Avatar } from "@mui/material";
 import SuccessBadge from "../SuccessBadge";
 import Target from "../helper/Target";

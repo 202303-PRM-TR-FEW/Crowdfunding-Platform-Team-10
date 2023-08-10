@@ -1,5 +1,4 @@
 "use client";
-
 import PleaseLogin from "@/components/PleaseLogin";
 import PaymentMethodForm from "@/components/forms/PaymentMethodForm";
 import { useAuth } from "@/context/AuthContext";
@@ -36,7 +35,6 @@ const circleBackgroundStyle = {
   background: "#00c1a1a5",
   transform: "rotate(45deg)",
   zIndex: -1,
-
   animation: `moveCircle2 10s linear infinite`,
 };
 

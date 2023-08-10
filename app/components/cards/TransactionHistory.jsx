@@ -1,8 +1,6 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
-
 import LoaderStyle from "../helper/LoaderStyle";
 import * as React from "react";
 import Accordion from "@mui/material/Accordion";
@@ -10,15 +8,12 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-
 import { Avatar, Divider } from "@mui/material";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
@@ -31,7 +26,7 @@ export default function TransactionHistory({ usersProjects }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [donations, setDonations] = useState([]);
-  const t = useTranslations("Cards")
+  const t = useTranslations("Cards");
 
   useEffect(() => {
     const q = query(collection(db, "donations"));
@@ -65,8 +60,7 @@ export default function TransactionHistory({ usersProjects }) {
   }, [donations, selectedProject, loading, usersProjects]);
   const handleProjectSelect = (projectId) => {
     setSelectedProject(projectId);
-    setAnchorEl(null); 
-
+    setAnchorEl(null);
   };
 
   if (loading) {
@@ -106,7 +100,7 @@ export default function TransactionHistory({ usersProjects }) {
                 }}
               >
                 <MenuItem onClick={() => handleProjectSelect("")}>
-                {t("button-all")}
+                  {t("button-all")}
                 </MenuItem>
                 <Divider />
                 {usersProjects.map((project) => (
