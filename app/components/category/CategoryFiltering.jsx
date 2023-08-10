@@ -133,11 +133,11 @@ const CategoryFiltering = ({ data, filtrindData }) => {
   ];
 
   const GROUP_CATEGORY = [
-    { id: 1, name: all, value: all },
-    { id: 2, name: successful, value: successful },
-    { id: 3, name: active, value: active },
-    { id: 4, name: ending, value: ending },
-    { id: 5, name: closed, value: closed },
+    { id: 1, name: all, value: "All" },
+    { id: 2, name: successful, value: "Successful" },
+    { id: 3, name: active, value: "Active" },
+    { id: 4, name: ending, value: "Ending soon" },
+    { id: 5, name: closed, value: "Closed" },
   ];
   return (
     <Box className="py-10">
