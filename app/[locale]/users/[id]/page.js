@@ -10,7 +10,6 @@ import LoaderStyle from "@/components/helper/LoaderStyle";
 import { Fade } from "react-awesome-reveal";
 function Page({ params }) {
   const [loading, setLoading] = useState(true);
-
   const [userData, setUserData] = useState({
     user: null,
     projects: [],

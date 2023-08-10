@@ -27,12 +27,9 @@ const Page = () => {
 
             setCurrentUser({ ...userData, id: user.uid });
           } else {
-            console.log("no data matched");
             setCurrentUser({});
           }
-        } catch (error) {
-          console.error("Error fetching user data: ", error);
-        }
+        } catch (error) {}
       };
 
       fetchUserData();

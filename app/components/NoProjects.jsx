@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next-intl/link";
@@ -12,10 +11,9 @@ import P3 from "../../public/assets/images/P_P3.png";
 import P4 from "../../public/assets/images/P_P4.png";
 import { useTranslations } from "next-intl";
 
-
 const AddProjectButton = ({ user }) => {
   const [openProjectForm, setOpenProjectForm] = useState(false);
-  const t = useTranslations("NoProjects")
+  const t = useTranslations("NoProjects");
   const handleNewProject = () => {
     setOpenProjectForm(!openProjectForm);
   };
@@ -23,7 +21,7 @@ const AddProjectButton = ({ user }) => {
   return (
     <>
       <button onClick={handleNewProject} className="btn-primary">
-      {t("new")}
+        {t("new")}
       </button>
       <ProjectForm
         authUser={user}
@@ -36,7 +34,7 @@ const AddProjectButton = ({ user }) => {
 
 export const NoProjects = () => {
   const { user, loading } = useAuth();
-  const t = useTranslations("NoProjects")
+  const t = useTranslations("NoProjects");
   if (loading) {
     return <LoaderStyle />;
   }
@@ -68,15 +66,16 @@ export const NoProjects = () => {
           </div>
           <div className="pt-10 flex flex-col text-center justify-items-center col-span-1 w-4/5 group/edit ">
             <p className="header-1 text-center">
-            {t("message")}{" "}
+              {t("message")}{" "}
               <span className="color-yellow">{t("colored")}</span>{" "}
             </p>
-            <p className="sub-header pt-10 mx-auto justify-center text-justify">{t("text")}
+            <p className="sub-header pt-10 mx-auto justify-center text-justify">
+              {t("text")}
             </p>
             <div className="flex lg:flex-row flex-col w-full items-center justify-center gap-5 mt-10 ">
               <AddProjectButton user={user} />
               <Link href="/projects" className="btn-yellow">
-              {t("donation")}
+                {t("donation")}
               </Link>
             </div>
           </div>

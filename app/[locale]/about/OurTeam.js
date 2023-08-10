@@ -1,10 +1,8 @@
 "use client";
-
 import { GitHub } from "@mui/icons-material";
 import Image from "next/image";
 import { IconButton } from "@mui/material";
 import { useTranslations } from "next-intl";
-
 const OurTeam = () => {
   const t = useTranslations("Team");
 

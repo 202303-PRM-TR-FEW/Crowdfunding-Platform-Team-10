@@ -1,15 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next-intl/client";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import Link from "next-intl/link";
 import MyProjectCard from "@/components/cards/MyProjectCard";
@@ -45,12 +37,9 @@ const Page = () => {
 
             setCurrentUser({ ...userData, id: user.uid });
           } else {
-            console.log("no data matched");
             setCurrentUser({});
           }
-        } catch (error) {
-          console.error("Error fetching user data: ", error);
-        }
+        } catch (error) {}
       };
 
       fetchUserData();
@@ -74,7 +63,6 @@ const Page = () => {
     setTimeout(() => {
       if (user === null) {
         router.push("/login");
-        console.log(user);
       } else {
         const projectArray = Object.values(projects);
         const projectWithUser = projectArray.filter(
@@ -82,7 +70,6 @@ const Page = () => {
         );
         setUsersProjects(projectWithUser);
         setIsLoading(false);
-        console.log(user);
       }
     }, 600);
   }, [projects]);

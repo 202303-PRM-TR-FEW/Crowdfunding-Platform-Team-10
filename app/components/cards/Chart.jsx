@@ -1,16 +1,9 @@
 import * as React from "react";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 import LoaderStyle from "../helper/LoaderStyle";
 import { BarPlot } from "@mui/x-charts/BarChart";
-import {
-  ChartContainer,
-  ChartsXAxis,
-  ChartsYAxis,
-  LineChart,
-  LinePlot,
-} from "@mui/x-charts";
+import { ChartsXAxis, ChartsYAxis, LineChart, LinePlot } from "@mui/x-charts";
 import { Box } from "@mui/system";
 import { useTranslations } from "next-intl";
 
@@ -22,7 +15,7 @@ function Chart({ projectsDonations }) {
   const [seriesData, setSeriesData] = React.useState(
     Object.values(countryDonations) ?? []
   );
-  const t = useTranslations("Cards")
+  const t = useTranslations("Cards");
   const series = [
     {
       type: "line",

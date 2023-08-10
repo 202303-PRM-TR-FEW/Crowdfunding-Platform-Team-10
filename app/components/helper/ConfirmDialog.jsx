@@ -5,16 +5,15 @@ import {
   DialogContent,
   DialogContentText,
 } from "@mui/material";
-import { useTranslations } from "next-intl"
+import { useTranslations } from "next-intl";
 
 export default function ConfirmDialog({
   open,
   title,
   message,
-  handleOpen = () => {},
   handleClose = () => {},
 }) {
-  const t = useTranslations ("Helper")
+  const t = useTranslations("Helper");
   return (
     <>
       <Dialog open={open}>
@@ -32,7 +31,7 @@ export default function ConfirmDialog({
         <DialogActions>
           <Button onClick={() => handleClose("Cancel")}>{t("cncl")}</Button>
           <Button onClick={() => handleClose("Confirm")} autoFocus>
-          {t("confirm")}
+            {t("confirm")}
           </Button>
         </DialogActions>
       </Dialog>

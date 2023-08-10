@@ -6,7 +6,6 @@ import ProjectOfTheWeek from "@/components/cards/ProjectOfTheWeek";
 import CategoryFiltering from "@/components/category/CategoryFiltering";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { useTranslations } from "next-intl";
-
 import { useAuth } from "@/context/AuthContext";
 import { Fade } from "react-awesome-reveal";
 const Home = () => {

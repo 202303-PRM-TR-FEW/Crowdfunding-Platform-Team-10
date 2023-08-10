@@ -1,5 +1,4 @@
 "use client";
-Fade;
 import Comments from "@/components/commentsCom/Comments";
 import GetStarted from "./GetStarted";
 import MissionCom from "./MissionCom";

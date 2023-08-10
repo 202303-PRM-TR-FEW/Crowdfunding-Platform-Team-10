@@ -1,9 +1,6 @@
 "use client";
-
 import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
-useTranslations;
-
 const Footer = () => {
   const t = useTranslations("Footer");
   return (
