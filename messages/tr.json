@@ -13,7 +13,9 @@
     "logout-two": "Çıkış yapın",
     "login-two": "Giriş yapın",
     "label-search": "Projeleri Arayın",
-    "placeholder-search": "Arama yap..."
+    "placeholder-search": "Arama yap...",
+    "projects":"PROJELER",
+    "aboutus":"HAKKIMIZDA"
   },
   "WelcomeBanner": {
     "header1": "Hayalleri",
@@ -250,7 +252,8 @@
     "projects": "Projeler",
     "join": "Üye Olun",
     "login": "Giriş Yap",
-    "prof": "Profil"
+    "prof": "Profil",
+    "about":"Hakkımızda"
   },
   "SuccessBadge": {
     "left": "gün kaldı",
