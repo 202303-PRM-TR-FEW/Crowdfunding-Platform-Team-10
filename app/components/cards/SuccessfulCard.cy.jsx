@@ -1,7 +1,10 @@
 import React from "react";
 import SuccessfulCard from "./SuccessfulCard";
+import { NextIntlProvider } from "next-intl";
 
 describe("<SuccessfulCard />", () => {
+  const locale = "en";
+  const messages = require(`../../../messages/${locale}.json`);
   const mockProject = {
     url: "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",
     title: "Card Title",
@@ -20,7 +23,11 @@ describe("<SuccessfulCard />", () => {
 
   it("renders", () => {
     // see: https://on.cypress.io/mounting-react
-    cy.mount(<SuccessfulCard project={mockProject} />);
+    cy.mount(
+      <NextIntlProvider locale={locale} messages={messages}>
+        <SuccessfulCard project={mockProject} />
+      </NextIntlProvider>
+    );
     cy.get("[data-cy=card-about]").should("have.text", mockProject.about);
   });
 });

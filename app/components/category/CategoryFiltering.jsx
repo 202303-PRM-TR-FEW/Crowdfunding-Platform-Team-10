@@ -8,9 +8,7 @@ import {
   Select,
 } from "@mui/material";
 import { useTranslations } from "next-intl";
-import React, { useEffect, useState } from "react";
-
-IconButton;
+import React, { useState } from "react";
 const styles = {
   main: "flex justify-center md:justify-between items-center gap-2 flex-col md:flex-row ",
   header: "header-2 text-lightGreen py-4 text-center md:text-start",
@@ -133,11 +131,11 @@ const CategoryFiltering = ({ data, filtrindData }) => {
   ];
 
   const GROUP_CATEGORY = [
-    { id: 1, name: all, value: all },
-    { id: 2, name: successful, value: successful },
-    { id: 3, name: active, value: active },
-    { id: 4, name: ending, value: ending },
-    { id: 5, name: closed, value: closed },
+    { id: 1, name: all, value: "All" },
+    { id: 2, name: successful, value: "Successful" },
+    { id: 3, name: active, value: "Active" },
+    { id: 4, name: ending, value: "Ending soon" },
+    { id: 5, name: closed, value: "Closed" },
   ];
   return (
     <Box className="py-10">

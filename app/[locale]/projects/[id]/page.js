@@ -1,5 +1,4 @@
 "use client";
-
 import {
   doc,
   getDoc,
@@ -10,23 +9,20 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import LoaderStyle from "@/components/helper/LoaderStyle";
 import { db } from "@/config/firebase";
 import { useAuth } from "@/context/AuthContext";
-
 import { toast } from "react-toastify";
-
 import DonationForm from "@/components/forms/DonationForm";
 import DonationsHisory from "@/components/cards/DonationsHisory";
 import Chart from "@/components/cards/Chart";
 import CommentForm from "@/components/commentsCom/CommentForm";
 import ConfirmDialog from "@/components/helper/ConfirmDialog";
 import CommentRows from "@/components/commentsCom/CommentRows";
-
 import { useRouter } from "next-intl/client";
 import Share from "./Share";
 import SingleProjectPage from "./SingleProjectPage";
+import { Fade } from "react-awesome-reveal";
 
 function Project({ params }) {
   const [data, setData] = useState([]);
@@ -35,7 +31,6 @@ function Project({ params }) {
   const { user } = useAuth();
   const [projectsDonations, setProjectsDonations] = useState([]);
   const [openDonationForm, setOpenDonationForm] = useState(false);
-
   const router = useRouter();
   const [donations, setDonations] = useState([]);
   //fetching all users
@@ -80,12 +75,9 @@ function Project({ params }) {
           setData(updatedData);
           setLoading(false);
         } else {
-          console.log("No such document!");
           setNotExists(true);
         }
-      } catch (error) {
-        console.error("Error fetching document:", error);
-      }
+      } catch (error) {}
     };
 
     fetchData();
@@ -106,50 +98,50 @@ function Project({ params }) {
 
   return (
     <div className=" relative overflow-hidden">
-      <ConfirmDialog
-        open={open}
-        setOpen={setOpen}
-        title={"Are you sure to delete this project?"}
-        message={""}
-        handleClose={handleClose}
-      />
-      <section className=" static py-28 p-3 bg-gradient-to-t from-transparent to-teal-50">
-        <div className="container mx-auto">
-          {loading || data.length <= 0 ? (
-            <LoaderStyle />
-          ) : (
-            <div className="flex flex-col lg:flex-row items-start justify-between gap-8 pt-0 mt-0 overflow-hidden rounded-lg  relative">
-              <SingleProjectPage
-                data={data}
-                user={user}
-                handleDonationForm={handleDonationForm}
-                handleDeleteProject={handleDeleteProject}
-                params={params}
-              />
-
-              <div className="lg:sticky lg:top-0 lg:w-5/12 w-full mt-3 flex flex-col gap-3 ">
-                <DonationsHisory projectsDonations={projectsDonations} />
-                <Chart projectsDonations={projectsDonations} />
+      <Fade>
+        <ConfirmDialog
+          open={open}
+          setOpen={setOpen}
+          title={"Are you sure to delete this project?"}
+          message={""}
+          handleClose={handleClose}
+        />
+        <section className=" static py-28 p-3 bg-gradient-to-t from-transparent to-teal-50">
+          <div className="container mx-auto">
+            {loading || data.length <= 0 ? (
+              <LoaderStyle />
+            ) : (
+              <div className="flex flex-col lg:flex-row items-start justify-between gap-8 pt-0 mt-0 overflow-hidden rounded-lg  relative">
+                <SingleProjectPage
+                  data={data}
+                  user={user}
+                  handleDonationForm={handleDonationForm}
+                  handleDeleteProject={handleDeleteProject}
+                  params={params}
+                />
+                <div className="lg:sticky lg:top-0 lg:w-5/12 w-full mt-3 flex flex-col gap-3 ">
+                  <DonationsHisory projectsDonations={projectsDonations} />
+                  <Chart projectsDonations={projectsDonations} />
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-        <Share />
-        <div className="w-full flex flex-col items-start  p-2">
-          <DonationForm
-            id={params}
-            title={data.name}
-            openDonationForm={openDonationForm}
-            setOpenDonationForm={setOpenDonationForm}
-          />
-          <div className=" block lg:hidden py-3 w-full ">
-            <CommentRows id={params.id} />
-            {user ? <CommentForm params={params} /> : null}
+            )}
           </div>
-        </div>
-      </section>
-
-      <div style={circleBackgroundStyle}></div>
+          <Share />
+          <div className="w-full flex flex-col items-start  p-2">
+            <DonationForm
+              id={params}
+              title={data.name}
+              openDonationForm={openDonationForm}
+              setOpenDonationForm={setOpenDonationForm}
+            />
+            <div className=" block lg:hidden py-3 w-full ">
+              <CommentRows id={params.id} />
+              {user ? <CommentForm params={params} /> : null}
+            </div>
+          </div>
+        </section>
+        <div style={circleBackgroundStyle}></div>
+      </Fade>
     </div>
   );
 }

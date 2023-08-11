@@ -13,13 +13,15 @@
     "logout-two": "Çıkış yapın",
     "login-two": "Giriş yapın",
     "label-search": "Projeleri Arayın",
-    "placeholder-search": "Arama yap..."
+    "placeholder-search": "Arama yap...",
+    "projects":"PROJELER",
+    "aboutus":"HAKKIMIZDA"
   },
   "WelcomeBanner": {
     "header1": "Hayalleri",
     "header2": "Birlikte",
     "header3": "Gerçekleştirin",
-    "subHeader1": "3.500'den fazla proje ve amaça destek olduk.",
+    "subHeader1": "3.500'den fazla proje ve amaca destek olduk.",
     "subHeader2": "Fikirleri Hayata Geçirmekte Bize Katılın!",
     "successful": "Başarılı Projeler: ",
     "donations": "Toplam Yardımlar: ",
@@ -250,7 +252,8 @@
     "projects": "Projeler",
     "join": "Üye Olun",
     "login": "Giriş Yap",
-    "prof": "Profil"
+    "prof": "Profil",
+    "about":"Hakkımızda"
   },
   "SuccessBadge": {
     "left": "gün kaldı",
@@ -278,5 +281,12 @@
   },
   "CommentHeader":{
     "header": "Yorumlar"
+  },
+  "UserPage":{
+    "contributions":"Katkıları",
+    "s":" Adlı Kullanıcının ",
+    "project": "Projeler",
+    "donations": "Bağışlar",
+    "amount":"Bağış Miktarı"
   }
 }

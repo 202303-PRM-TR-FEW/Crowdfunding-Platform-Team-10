@@ -1,83 +1,91 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
-
-import { Avatar } from "@mui/material";
-
 import Link from "next-intl/link";
-
+import { Avatar } from "@mui/material";
 import SuccessBadge from "../SuccessBadge";
 import Target from "../helper/Target";
 import ViewCount from "../helper/ViewCount";
 import CategoryIcon from "../helper/CategoryIcon";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import LoaderStyle from "@/components/helper/LoaderStyle";
 
 function ProjectOfTheWeek({ projectOfWeek }) {
-  const t = useTranslations("Cards")
+  const t = useTranslations("Cards");
   return (
     <>
-      <h1 className={styles.header}>{t("pow-header")}</h1>
-      <div className={styles.page}>
-        <div className={styles.leftSize}>
-          <Link key={projectOfWeek.id} href={`/projects/${projectOfWeek.id}`}>
-            <div className="w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] lg:w-[539px] lg:h-[314px] relative rounded-lg overflow-hidden ">
-              <Image
-                unoptimized
-                src={projectOfWeek.url}
-                alt="Project of the week"
-                fill={true}
-                style={{ objectFit: "cover" }}
-                className="  image-animated"
-                sizes="(max-width: 768px) 100vw"
-              />
+      {projectOfWeek ? (
+        <>
+          <h1 className={styles.header}>{t("pow-header")}</h1>
+          <div className={styles.page}>
+            <div className={styles.leftSize}>
+              <Link
+                key={projectOfWeek.id}
+                href={`/projects/${projectOfWeek.id}`}
+              >
+                <div className="w-[326px] h-[222px] sm:w-[660px] sm:h-[390px] lg:w-[539px] lg:h-[314px] relative rounded-lg overflow-hidden ">
+                  <Image
+                    unoptimized
+                    src={projectOfWeek.url}
+                    alt="Project of the week"
+                    fill={true}
+                    style={{ objectFit: "cover" }}
+                    className="  image-animated"
+                    sizes="(max-width: 768px) 100vw"
+                  />
+                </div>
+              </Link>
             </div>
-          </Link>
-        </div>
-        <div className={styles.rightSide}>
-          <div className=" justify-self-start">
-            <SuccessBadge
-              endingDate={projectOfWeek.endingDate}
-              raised={projectOfWeek.raised}
-              goal={projectOfWeek.goal}
-            />
-          </div>
+            <div className={styles.rightSide}>
+              <div className=" justify-self-start">
+                <SuccessBadge
+                  endingDate={projectOfWeek.endingDate}
+                  raised={projectOfWeek.raised}
+                  goal={projectOfWeek.goal}
+                />
+              </div>
 
-          <div className="  flex justify-between">
-            <h3 data-cy="project-name" className="header-3 text-start">
-              {projectOfWeek.name}
-            </h3>
-            <div className="flex justify-end">
-              <CategoryIcon
-                category={projectOfWeek.category}
-                color={"#f0bd07"}
-              />
-            </div>
-          </div>
+              <div className="  flex justify-between">
+                <h3 data-cy="project-name" className="header-3 text-start">
+                  {projectOfWeek.name}
+                </h3>
+                <div className="flex justify-end">
+                  <CategoryIcon
+                    category={projectOfWeek.category}
+                    color={"#f0bd07"}
+                  />
+                </div>
+              </div>
 
-          <p
-            data-cy="project-about"
-            className="text-base text-basicgray line-clamp-3 "
-          >
-            {projectOfWeek.about}
-          </p>
-          <Target raised={projectOfWeek.raised} goal={projectOfWeek.goal} />
-
-          <div className={`${styles.flex} justify-between  `}>
-            <div className={styles.flex}>
-              <Avatar
-                alt={projectOfWeek.creator?.userName}
-                src={projectOfWeek.creator?.userImg}
-                className="w-10 h-10 me-1 overflow-hidden"
-              />
-              <p className="text-base text-basicgray ">
-                {projectOfWeek.creator?.userName}
+              <p
+                data-cy="project-about"
+                className="text-base text-basicgray line-clamp-3 "
+              >
+                {projectOfWeek.about}
               </p>
+              <Target raised={projectOfWeek.raised} goal={projectOfWeek.goal} />
+
+              <div className={`${styles.flex} justify-between  `}>
+                <Link href={`users/${projectOfWeek.creator.userId}`}>
+                  <div className={styles.flex}>
+                    <Avatar
+                      alt={projectOfWeek.creator?.userName}
+                      src={projectOfWeek.creator?.userImg}
+                      className="w-10 h-10 me-1 overflow-hidden"
+                    />
+                    <p className="text-base text-basicgray ">
+                      {projectOfWeek.creator?.userName}
+                    </p>
+                  </div>
+                </Link>
+                <ViewCount viewCount={projectOfWeek.viewCount} />
+              </div>
             </div>
-            <ViewCount viewCount={projectOfWeek.viewCount} />
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <LoaderStyle />
+      )}
     </>
   );
 }

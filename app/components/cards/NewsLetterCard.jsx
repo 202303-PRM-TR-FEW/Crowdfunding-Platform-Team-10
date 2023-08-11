@@ -131,7 +131,7 @@ export default function NewsLetterCard() {
             <p className="header-4 pb-2">{t("header2")}</p>
             <div style={imageContainer}>
               <Image
-              unoptimized
+                unoptimized
                 src="/assets/images/newsletter_image.png"
                 alt="Newsletter Image"
                 width={200}

@@ -1,11 +1,7 @@
 "use client";
 import React from "react";
-
 import Link from "next-intl/link";
-
 import { useTranslations } from "next-intl";
-
-import { Transition } from "@headlessui/react";
 import LoaderStyle from "../helper/LoaderStyle";
 import SuccessfulCard from "../cards/SuccessfulCard";
 import { useAuth } from "@/context/AuthContext";

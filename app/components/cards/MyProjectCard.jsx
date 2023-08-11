@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Target from "@/components/helper/Target";
 import ViewCount from "@/components/helper/ViewCount";

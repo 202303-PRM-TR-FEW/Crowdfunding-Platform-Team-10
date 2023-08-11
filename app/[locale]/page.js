@@ -8,23 +8,27 @@ import StartNow from "@/components/sections/StartNow";
 import SuccessfulProjects from "@/components/sections/SuccessfulProjects";
 import HowWorks from "@/components/sections/HowWorks";
 import Loading from "./loading";
+import { Fade } from "react-awesome-reveal";
 
 function Page() {
   return (
     <div>
-      <Suspense fallback={<Loading />}>
+      <Fade>
+          <Suspense fallback={<Loading />}>
         <WelcomeBanner />
       </Suspense>
-      <AboutSection />
-      <div className="relative bg-no-repeat overflow-hidden bg-cover">
-        <div style={circleBackgroundStyle}></div>
-        <HowWorks />
-        <StartNow />
-        <SuccessfulProjects />
-        <div style={circleBackgroundStyle2}></div>
-      </div>
-      <NewsLetterCard />
-      <Comments />
+            
+        <AboutSection />
+        <div className="relative bg-no-repeat overflow-hidden bg-cover">
+          <div style={circleBackgroundStyle}></div>
+          <HowWorks />
+          <StartNow />
+          <SuccessfulProjects />
+          <div style={circleBackgroundStyle2}></div>
+        </div>
+        <NewsLetterCard />
+        <Comments />
+      </Fade>
     </div>
   );
 }

@@ -4,7 +4,6 @@ import { AccountCircle } from "@mui/icons-material";
 import { useTranslations } from "next-intl";
 
 function UserNameImg({ userImg, userName }) {
-
   const t = useTranslations("Helper");
   return (
     <div className="flex items-center justify-start gap-3 ">
@@ -17,9 +16,7 @@ function UserNameImg({ userImg, userName }) {
       </div>
       <div>
         <p className="text-md color-yellow">{userName} </p>
-        <p className="text-blue-gray-400 text-xs">
-        {t("organize")}
-        </p>
+        <p className="text-blue-gray-400 text-xs">{t("organize")}</p>
       </div>
     </div>
   );

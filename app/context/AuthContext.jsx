@@ -29,7 +29,6 @@ export const AuthContextProvider = ({ children }) => {
       QuerySnapshot.forEach((doc) => {
         usersArr.push({ ...doc.data(), id: doc.id });
       });
-      console.log("im users UseEffect");
       setUsersInfo(usersArr);
     });
     return () => (usersInfo === null ? unsubscribe() : "");
@@ -42,7 +41,6 @@ export const AuthContextProvider = ({ children }) => {
         projectsArr.push({ ...doc.data(), id: doc.id });
       });
       setProjects(projectsArr);
-      console.log("im projects UseEffect");
     });
     return () => (projects === null ? unsubscribe() : "");
   }, []);
@@ -63,7 +61,6 @@ export const AuthContextProvider = ({ children }) => {
         setUser(null);
       }
       setLoading(false);
-      console.log(user);
     });
 
     return () => unsubscribe();
@@ -85,7 +82,6 @@ export const AuthContextProvider = ({ children }) => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
-      console.log(user);
       function isEmailMatching(email) {
         return email === user.email;
       }
@@ -103,10 +99,8 @@ export const AuthContextProvider = ({ children }) => {
           timeStamp: serverTimestamp(),
           country: "",
         });
-        console.log("user created in db");
         router.push("/account");
       } else {
-        console.log("user already exist in db");
         router.push("/profile");
       }
     });
@@ -115,7 +109,7 @@ export const AuthContextProvider = ({ children }) => {
   const logout = async () => {
     setUser(null);
     await signOut(auth);
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
@@ -127,10 +121,8 @@ export const AuthContextProvider = ({ children }) => {
         logout,
         loading,
         googleLogIn,
-
         projects,
-
-        setLoading
+        setLoading,
       }}
     >
       {loading ? null : children}

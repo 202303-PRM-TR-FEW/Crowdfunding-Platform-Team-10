@@ -1,13 +1,26 @@
 "use client";
-
 import LoginForm from "@/components/forms/LoginForm";
-
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next-intl/client";
+import { useEffect } from "react";
+import { Fade } from "react-awesome-reveal";
 const Login = () => {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user !== null) {
+      router.push("/profile");
+    }
+  }, []);
+
   return (
     <div className="relative flex justify-center items-center bg-gradient-to-t from-transparent   to-teal-50 lg:h-[100vh]  p-4   py-20  bg-no-repeat overflow-hidden bg-cover">
-      <div style={circleBackgroundStyle}></div>
-      <LoginForm />
-      <div style={circleBackgroundStyle2}></div>
+      <Fade>
+        <div style={circleBackgroundStyle}></div>
+        <LoginForm />
+        <div style={circleBackgroundStyle2}></div>
+      </Fade>
     </div>
   );
 };

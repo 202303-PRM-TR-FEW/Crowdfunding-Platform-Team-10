@@ -3,7 +3,6 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { AuthContextProvider } from "@/context/AuthContext";
 import { NextIntlClientProvider } from "next-intl";
 import Loading from "loading";
-import { Outfit } from "next/font/google";
 import { Suspense } from "react";
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "tr" }];

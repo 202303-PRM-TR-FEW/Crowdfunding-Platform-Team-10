@@ -1,7 +1,5 @@
 "use client";
-
 import { useAuth } from "@/context/AuthContext";
-
 import LoaderStyle from "../helper/LoaderStyle";
 import * as React from "react";
 import Accordion from "@mui/material/Accordion";
@@ -9,7 +7,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { useTranslations } from "next-intl";
@@ -17,7 +14,7 @@ import { Avatar } from "@mui/material";
 
 export default function DonationsHisory({ projectsDonations }) {
   const { loading } = useAuth();
-  const t = useTranslations("Cards")
+  const t = useTranslations("Cards");
   function formatTimestamp(timestamp) {
     const now = new Date();
     const date = new Date(timestamp.seconds * 1000);
@@ -30,11 +27,17 @@ export default function DonationsHisory({ projectsDonations }) {
     if (diffSeconds < 60) {
       return `${t("now")}`;
     } else if (diffMinutes < 60) {
-      return `${diffMinutes} ${diffMinutes === 1 ? `${t("min")}`: `${t("mins")}`} ${t("ago")}`;
+      return `${diffMinutes} ${
+        diffMinutes === 1 ? `${t("min")}` : `${t("mins")}`
+      } ${t("ago")}`;
     } else if (diffHours < 24) {
-      return `${diffHours} ${diffHours === 1 ? `${t("hour")}` : `${t("hours")}`} ${t("ago")}`;
+      return `${diffHours} ${
+        diffHours === 1 ? `${t("hour")}` : `${t("hours")}`
+      } ${t("ago")}`;
     } else if (diffDays < 3) {
-      return `${diffDays} ${diffDays === 1 ?`${t("day")}` : `${t("days")}`} ${t("ago")}`;
+      return `${diffDays} ${
+        diffDays === 1 ? `${t("day")}` : `${t("days")}`
+      } ${t("ago")}`;
     } else {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");

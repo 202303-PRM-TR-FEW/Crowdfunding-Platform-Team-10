@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
-
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
-
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 

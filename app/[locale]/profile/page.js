@@ -1,15 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next-intl/client";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import Link from "next-intl/link";
 import MyProjectCard from "@/components/cards/MyProjectCard";
@@ -19,9 +11,10 @@ import { NoProjects } from "@/components/NoProjects";
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/config/firebase";
 import { useTranslations } from "next-intl";
-
+import PleaseLogin from "@/components/PleaseLogin";
+import { Fade } from "react-awesome-reveal";
 const Page = () => {
-  const { user, loading,projects } = useAuth();
+  const { user, loading, projects } = useAuth();
   const [usersProjects, setUsersProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState();
@@ -44,12 +37,9 @@ const Page = () => {
 
             setCurrentUser({ ...userData, id: user.uid });
           } else {
-            console.log("no data matched");
             setCurrentUser({});
           }
-        } catch (error) {
-          console.error("Error fetching user data: ", error);
-        }
+        } catch (error) {}
       };
 
       fetchUserData();
@@ -72,8 +62,7 @@ const Page = () => {
   useEffect(() => {
     setTimeout(() => {
       if (user === null) {
-        // router.push("/login");
-        console.log(user);
+        router.push("/login");
       } else {
         const projectArray = Object.values(projects);
         const projectWithUser = projectArray.filter(
@@ -81,7 +70,6 @@ const Page = () => {
         );
         setUsersProjects(projectWithUser);
         setIsLoading(false);
-        console.log(user);
       }
     }, 600);
   }, [projects]);
@@ -93,10 +81,6 @@ const Page = () => {
       }
     }
   }, []);
-  let oneProjectInfo = null;
-  if (!isLoading && usersProjects.length > 0) {
-    oneProjectInfo = usersProjects[usersProjects.length - 1];
-  }
 
   if (loading && user !== null) {
     return <LoaderStyle />;
@@ -104,42 +88,50 @@ const Page = () => {
 
   return (
     <div className=" bg-gradient-to-t from-transparent to-teal-50 relative overflow-hidden ">
-      <div className="container mx-auto py-28">
-        {isLoading ? (
-          <LoaderStyle />
-        ) : usersProjects.length > 0 ? (
-          <>
-            <h1 className="header-2 text-center lg:text-start text-lightGreen">
-            {t("header")}
-            </h1>
-            <div className="flex flex-col lg:flex-row py-6 md:py-10 gap-8 ">
-              <div className="w-full lg:w-7/12">
-                <div className="flex flex-col gap-10 ">
-                  {usersProjects.map((project, i) => {
-                    return (
-                      <Link
-                        key={i}
-                        className="grid"
-                        href={`/projects/${project?.id}`}
-                      >
-                        <MyProjectCard project={project} />
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-              <div className="sticky z-50 top-[68px]  overflow-y-auto w-full lg:w-5/12 self-start order-first lg:order-last">
-                <div className="max-h-screen  overflow-y-auto">
-                  <TransactionHistory usersProjects={usersProjects} />
-                </div>
-              </div>
-            </div>
-          </>
+      <Fade>
+        {user === null ? (
+          <PleaseLogin />
         ) : (
-          <NoProjects />
+          <>
+            <div className="container mx-auto py-28">
+              {isLoading ? (
+                <LoaderStyle />
+              ) : usersProjects.length > 0 ? (
+                <>
+                  <h1 className="header-2 text-center lg:text-start text-lightGreen">
+                    {t("header")}
+                  </h1>
+                  <div className="flex flex-col lg:flex-row py-6 md:py-10 gap-8 ">
+                    <div className="w-full lg:w-7/12">
+                      <div className="flex flex-col gap-10 ">
+                        {usersProjects.map((project, i) => {
+                          return (
+                            <Link
+                              key={i}
+                              className="grid"
+                              href={`/projects/${project?.id}`}
+                            >
+                              <MyProjectCard project={project} />
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className="sticky z-50 top-[68px]  overflow-y-auto w-full lg:w-5/12 self-start order-first lg:order-last">
+                      <div className="max-h-screen  overflow-y-auto">
+                        <TransactionHistory usersProjects={usersProjects} />
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <NoProjects />
+              )}
+            </div>
+            <div style={circleBackgroundStyle}></div>
+          </>
         )}
-      </div>
-      <div style={circleBackgroundStyle}></div>
+      </Fade>
     </div>
   );
 };

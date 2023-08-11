@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { notFound, usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import faceBook from "../../../../public/assets/images/facebookIcon.png";
 import twitter from "../../../../public/assets/images/twitterIcon.png";
 import whatsapp from "../../../../public/assets/images/whatsapp.png";

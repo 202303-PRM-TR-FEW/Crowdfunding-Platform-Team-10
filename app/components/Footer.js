@@ -1,11 +1,8 @@
 "use client";
-
 import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
-useTranslations
-
 const Footer = () => {
-  const t = useTranslations("Footer")
+  const t = useTranslations("Footer");
   return (
     <div className="justify-center flex bg-[#374259] px-5 md:mx-0">
       <div className=" py-10 md:px-12 container w-screen">
@@ -14,10 +11,12 @@ const Footer = () => {
             <p className="header-3 text-[#d8d8d8] drop-shadow-lg">
               Open<span className="text-[#d8d8d8]">Handed</span>
             </p>
-            <p className="text-sm text-[#a5a9aa] py-4 md:py-6">{t("text")}
+            <p className="text-sm text-[#a5a9aa] py-4 md:py-6">
+              {t("text")}
               <Link href="/about">
-                <span className="font-bold transition duration-300 ease-in-out hover:text-lightGreen"><br/>
-                {t("more")}
+                <span className="font-bold transition duration-300 ease-in-out hover:text-lightGreen">
+                  <br />
+                  {t("more")}
                 </span>
               </Link>{" "}
             </p>
@@ -61,12 +60,17 @@ const Footer = () => {
               <ul className="text-sm text-[#a5a9aa] py-4 md:py-6 list-none">
                 <Link href="/">
                   <li className="py-1 transition hover:text-lightGreen duration-300 ease-in-out">
-                  {t("home")}
+                    {t("home")}
                   </li>
                 </Link>
                 <Link href="/projects">
                   <li className="py-1 transition hover:text-lightGreen duration-300 ease-in-out">
-                  {t("projects")}
+                    {t("projects")}
+                  </li>
+                </Link>
+                <Link href="/about">
+                  <li className="py-1 transition hover:text-lightGreen duration-300 ease-in-out">
+                    {t("about")}
                   </li>
                 </Link>
               </ul>
@@ -74,17 +78,17 @@ const Footer = () => {
             <div className="col-span-1">
               <p className="header-5 text-[#d8d8d8]">{t("join")}</p>
               <ul className=" py-4 md:py-6 list-none">
-                <li className="py-1">
+                <li className="">
                   <Link
-                    href="/signup"
+                    href="/login"
                     className="py-1 transition hover:text-lightGreen duration-300 ease-in-out text-sm text-[#a5a9aa]"
                   >
-                  {t("login")}
+                    {t("login")}
                   </Link>
                 </li>
                 <Link href="/profile">
                   <li className="py-1 transition hover:text-lightGreen duration-300 ease-in-out text-sm text-[#a5a9aa]">
-                  {t("prof")}
+                    {t("prof")}
                   </li>
                 </Link>
               </ul>
