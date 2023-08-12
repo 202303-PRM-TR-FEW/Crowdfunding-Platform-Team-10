@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import AboutSection from "@/components/sections/AboutUs";
 import Comments from "@/components/commentsCom/Comments";
 import WelcomeBanner from "@/components/sections/WelcomeBanner";
@@ -7,13 +7,17 @@ import NewsLetterCard from "@/components/cards/NewsLetterCard";
 import StartNow from "@/components/sections/StartNow";
 import SuccessfulProjects from "@/components/sections/SuccessfulProjects";
 import HowWorks from "@/components/sections/HowWorks";
+import Loading from "./loading";
 import { Fade } from "react-awesome-reveal";
 
 function Page() {
   return (
     <div>
       <Fade>
+          <Suspense fallback={<Loading />}>
         <WelcomeBanner />
+      </Suspense>
+            
         <AboutSection />
         <div className="relative bg-no-repeat overflow-hidden bg-cover">
           <div style={circleBackgroundStyle}></div>

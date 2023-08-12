@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import AddProject from "@/components/helper/AddProject";
 import Toaster from "@/components/helper/Toaster";
 import Providers from "@/providers";
+import { Suspense } from "react";
+import Loading from "./loading";
 // import Providers from "@/components/helper/ProviderTheme";
 // import ThemeButton from "@/components/theme/ThemeButton";
 
@@ -49,7 +51,9 @@ async function RootLayout({ children, params: { locale } }) {
           {/* <ThemeButton /> */}
 
           <Nav />
-          <div>{children}</div>
+          <Suspense fallback={<Loading />}>
+            <div>{children}</div>
+          </Suspense>
           <Footer />
           <AddProject />
           <Toaster />
