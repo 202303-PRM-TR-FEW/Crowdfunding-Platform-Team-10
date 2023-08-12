@@ -108,7 +108,6 @@ export default function Comments() {
         {currentUser && (
           <IconButton
             size="large"
-            // className="absolute top-3 right-3 px-4 py-2 bg-hoverLightGreen text-white rounded-md"
             onClick={handleAddCommentClick}
             sx={{
               backgroundColor: "#00c1a2",
