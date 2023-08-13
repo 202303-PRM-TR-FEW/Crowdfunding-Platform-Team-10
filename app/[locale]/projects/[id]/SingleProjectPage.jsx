@@ -91,7 +91,7 @@ export default function SingleProjectPage({
             userName={data.creator.userName}
             userImg={data.creator.userImg}
           />
-          <ViewCount />
+          <ViewCount viewCount={data.viewCount} />
         </div>
       </div>
 
