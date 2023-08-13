@@ -52,6 +52,7 @@ export default function MyProjectCard({ project }) {
 
           <div className="flex items-center justify-between">
             <UserNameImg
+              userId={project.creator.userId}
               userName={project.creator.userName}
               userImg={project.creator.userImg}
             />
