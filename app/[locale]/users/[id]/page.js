@@ -43,7 +43,7 @@ function Page({ params }) {
           const userProjects = projectsSnapshot.docs.map((doc) => {
             const projectData = doc.data();
             const projectId = doc.id;
-            return { id: projectId, ...projectData }; // Include the ID in the data
+            return { id: projectId, ...projectData };
           });
 
           if (!donationsSnapshot.empty) {
@@ -144,7 +144,7 @@ function Page({ params }) {
               </div>
             </div>
           )}
-          <div className="grid grid-cols-3 gap-4 items-start justify-center mx-auto my-2">
+          <div className="grid grid-cols-3 gap-4 items-start justify-center mx-auto mt-10 shadow-md  rounded-xl py-5 bg-white">
             <div className="text-center">
               <p className="font-semibold text-gray-500">{t("project")}</p>
               <p className="text-lg font-bold color-green">{projects.length}</p>
