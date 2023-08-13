@@ -19,7 +19,7 @@ export default function SingleProjectPage({
   params,
 }) {
   const t = useTranslations("Projects");
-console.log(data.creator.userId)
+
   const today = new Date();
   const endDate = new Date(data.endingDate);
   return (

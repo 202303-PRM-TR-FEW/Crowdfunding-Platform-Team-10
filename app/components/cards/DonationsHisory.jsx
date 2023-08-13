@@ -49,6 +49,7 @@ export default function DonationsHisory({ projectsDonations }) {
   if (loading || projectsDonations == null) {
     return <LoaderStyle />;
   }
+
   return (
     <Accordion
       defaultExpanded
@@ -83,12 +84,11 @@ export default function DonationsHisory({ projectsDonations }) {
                       >
                         <div className="flex gap-2 p-2 items-center   justify-between">
                           <div className="flex gap-2  items-center ">
-                          <Link href={`/users/${donation.userId}`}>
-
-                            <Avatar
-                              src={donation.userImg}
-                              alt={donation.userName}
-                            />
+                            <Link href={`/users/${donation.userId}`}>
+                              <Avatar
+                                src={donation.userImg}
+                                alt={donation.userName}
+                              />
                             </Link>
                             <div className="flex flex-col">
                               <Typography variant="h6">
