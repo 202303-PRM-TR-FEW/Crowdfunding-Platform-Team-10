@@ -19,7 +19,7 @@ export default function SingleProjectPage({
   params,
 }) {
   const t = useTranslations("Projects");
-
+console.log(data.creator.userId)
   const today = new Date();
   const endDate = new Date(data.endingDate);
   return (
@@ -88,6 +88,7 @@ export default function SingleProjectPage({
 
         <div className="flex items-center justify-between">
           <UserNameImg
+            userId={data.creator.userId}
             userName={data.creator.userName}
             userImg={data.creator.userImg}
           />

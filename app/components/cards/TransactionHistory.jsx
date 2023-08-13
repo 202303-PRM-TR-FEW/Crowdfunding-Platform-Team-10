@@ -18,6 +18,7 @@ import { Avatar, Divider } from "@mui/material";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { useTranslations } from "next-intl";
+import Link from "next-intl/link";
 
 export default function TransactionHistory({ usersProjects }) {
   const [donate, setDonate] = useState([]);
@@ -126,10 +127,12 @@ export default function TransactionHistory({ usersProjects }) {
                       >
                         <div className="flex gap-2 items-center p-2 justify-between">
                           <div className="flex gap-2  items-center ">
+                          <Link href={`/users/${donation.userId}`}>
                             <Avatar
                               src={donation.userImg}
                               alt={donation.userName}
-                            />
+                              />
+                              </Link>
                             <div className="flex flex-col">
                               <Typography variant="h6">
                                 {donation.userName}

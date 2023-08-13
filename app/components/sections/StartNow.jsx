@@ -10,7 +10,7 @@ function StartNow() {
     <div>
       <section className="container mx-auto flex flex-col text-center p-2 lg:text-left items-center justify-center py-28">
         <h1 className="header-3Green mb-4"> {t("header")}</h1>
-        <p className="sub-header lg:w-[700px] mmt-2 mb-5">{t("paragraph")}</p>
+        <p className="sub-header lg:w-[700px] mt-2 mb-5 text-center">{t("paragraph")}</p>
         <div className="space-y-4"></div>
         <div className="md:space-x-4 md:flex-row flex justify-center items-center flex-col">
           {user == null ? (
