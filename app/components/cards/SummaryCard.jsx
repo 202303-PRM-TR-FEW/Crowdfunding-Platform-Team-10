@@ -92,7 +92,7 @@ const SummaryCard = ({
 
       <div className={styles.body}>
         <div className="flex items-center justify-between">
-          <div className="grid grid-cols-2  items-start mt-2 w-full justify-between">
+          <div className="flex items-start mt-2 w-full justify-between">
             <div className=" justify-self-start flex justify-start">
               <h4
                 data-cy="card-title"
