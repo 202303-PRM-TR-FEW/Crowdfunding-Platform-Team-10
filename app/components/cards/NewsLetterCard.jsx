@@ -165,7 +165,7 @@ export default function NewsLetterCard() {
                 {t("btn")}
               </button>
 
-              <p className="spam-message pt-2 text-center text-[#00c1a2] font-extrabold ">
+              <p className="spam-message pt-2 text-center text-[#ffffff]  ">
                 {t("note-to-user")}
               </p>
             </form>
