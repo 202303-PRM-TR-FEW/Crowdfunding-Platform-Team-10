@@ -50,7 +50,7 @@ const CategoryFiltering = ({ data, filtrindData }) => {
     else if (dropcategory === "Active") {
       gruopCat = data.filter((project) => {
         const projectTime = timeStatus(project.endingDate);
-        return projectTime > 0 && project.raised < project.goal;
+        return projectTime > 5 && project.raised < project.goal;
       });
     } else if (dropcategory === "Ending soon") {
       gruopCat = data.filter((project) => {
