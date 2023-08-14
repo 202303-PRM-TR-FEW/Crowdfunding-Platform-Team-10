@@ -11,6 +11,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { useTranslations } from "next-intl";
 import { Avatar } from "@mui/material";
+import Link from "next-intl/link";
 
 export default function DonationsHisory({ projectsDonations }) {
   const { loading } = useAuth();
@@ -48,6 +49,7 @@ export default function DonationsHisory({ projectsDonations }) {
   if (loading || projectsDonations == null) {
     return <LoaderStyle />;
   }
+
   return (
     <Accordion
       defaultExpanded
@@ -82,10 +84,12 @@ export default function DonationsHisory({ projectsDonations }) {
                       >
                         <div className="flex gap-2 p-2 items-center   justify-between">
                           <div className="flex gap-2  items-center ">
-                            <Avatar
-                              src={donation.userImg}
-                              alt={donation.userName}
-                            />
+                            <Link href={`/users/${donation.userId}`}>
+                              <Avatar
+                                src={donation.userImg}
+                                alt={donation.userName}
+                              />
+                            </Link>
                             <div className="flex flex-col">
                               <Typography variant="h6">
                                 {donation.userName}

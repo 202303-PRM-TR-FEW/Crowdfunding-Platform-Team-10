@@ -19,6 +19,7 @@ import Image from "next/image";
 import LangSwitcher from "./LangSwitcher";
 import MobileLangSwitcher from "./MobileLangSwitcher";
 import { useTranslations } from "next-intl";
+
 import {
   AppBar,
   Toolbar,
@@ -227,12 +228,7 @@ export default function Nav() {
               {t("my-projects-two")}
             </MenuItem>
           </Link>
-          <MenuItem onClick={handleMenuClose}>
-            <ListItemIcon>
-              <PersonAdd fontSize="small" />
-            </ListItemIcon>
-            {t("add-new-pro")}
-          </MenuItem>
+     
           <Link href="/account">
             <MenuItem onClick={handleMenuClose}>
               <ListItemIcon>

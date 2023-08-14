@@ -88,6 +88,7 @@ export default function SingleProjectPage({
 
         <div className="flex items-center justify-between">
           <UserNameImg
+            userId={data.creator.userId}
             userName={data.creator.userName}
             userImg={data.creator.userImg}
           />
