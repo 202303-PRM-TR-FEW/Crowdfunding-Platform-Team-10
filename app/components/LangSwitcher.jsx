@@ -23,7 +23,6 @@ function LangSwitcher() {
     startTransition(() => {
       router.replace(pathname, { locale: nextLocale });
     });
-    console.log(event.target.value);
     setAnchorEl(null);
   };
   function onSelectChange(event) {

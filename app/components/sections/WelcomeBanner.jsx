@@ -29,7 +29,7 @@ const WelcomeBanner = () => {
 
   return (
     <section className="flex justify-center items-center bg-gradient-to-t from-transparent to-teal-50">
-      <div className="flex flex-col lg:flex-row items-start justify-between gap-8 py-28 container">
+      <div class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 py-28 container">
         <div className="p-10 flex lg:w-[47%] flex-col gap-5 text-center lg:items-start items-center lg:text-left bg-no-repeat bg-right-top bg-[url('../../public/assets/images/dots.svg')]">
           <h1 className="header-1">
             {t("header1")}
@@ -77,7 +77,7 @@ const WelcomeBanner = () => {
             {successfulProjects}
           </Box>
           <Image
-          unoptimized
+            unoptimized
             src="/assets/images/welcome.png"
             alt="welcome img"
             width={700}

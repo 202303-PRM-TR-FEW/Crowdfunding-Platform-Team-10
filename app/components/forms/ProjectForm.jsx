@@ -69,7 +69,6 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
       QuerySnapshot.forEach((doc) => {
         usersArr.push({ ...doc.data(), id: doc.id });
       });
-      console.log("im users UseEffect");
       setUsersInfo(usersArr);
     });
     return () => unsubscribe();
@@ -79,7 +78,6 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
     register,
     handleSubmit,
     control,
-    setValue,
     reset,
     formState: { errors },
   } = useForm({

@@ -5,14 +5,12 @@ import { useState, useTransition } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import IconButton from "@mui/material/IconButton";
 import LanguageIcon from "@mui/icons-material/Language";
 import { ListItemIcon } from "@mui/material";
 
 function MobileLangSwitcher({ handleMenuClose }) {
   const t = useTranslations("MobileLangSwitch");
   const [isPending, startTransition] = useTransition();
-  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -28,12 +26,7 @@ function MobileLangSwitcher({ handleMenuClose }) {
     setAnchorEl(null);
     handleMenuClose();
   };
-  function onSelectChange(event) {
-    const nextLocale = event.target.value;
-    startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
-    });
-  }
+
   return (
     <div>
       <MenuItem onClick={handleClick}>
