@@ -13,8 +13,9 @@ const styles = {
   main: "flex justify-center md:justify-between items-center gap-2 flex-col md:flex-row ",
   header: "header-2 text-lightGreen py-4 text-center md:text-start",
   categoryContainer:
-    " px-12 sm:px-0 flex flex-row flex-wrap justify-center gap-3",
-  categoryBlock: "flex flex-col justify-center items-center py-2 gap-2",
+    " px-6 sm:px-0 flex flex-row flex-wrap justify-center gap-3",
+  categoryBlock:
+    "flex flex-col w-[70px] justify-center items-center py-2 gap-2",
   filterItem:
     "cursor-pointer border-[1px] bg-[#16a34a1a] border-BasicBasicBlack rounded-[8px] px-2 py-3",
   categoryName: "font-bold text-[18px]",

@@ -8,8 +8,6 @@ import Toaster from "@/components/helper/Toaster";
 import Providers from "@/providers";
 import { Suspense } from "react";
 import Loading from "./loading";
-// import Providers from "@/components/helper/ProviderTheme";
-// import ThemeButton from "@/components/theme/ThemeButton";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -18,19 +16,6 @@ export const metadata = {
   description:
     "Our app empowers users to turn their dreams into reality by bringing together passionate creators and generous backers. Whether you're an aspiring entrepreneur, artist, or community project leader, our app provides a user-friendly interface to showcase your ideas and receive support from a global community. Backers can discover exciting campaigns, pledge their support, and be part of a transformative journey.",
 };
-
-// export function generateStaticParams() {
-//   return [{ locale: "en" }, { locale: "tr" }];
-// }
-
-// export async function LocaleLayout({ children, params: { locale } }) {
-//   let messages;
-//   try {
-//     messages = (await import(`../../messages/${locale}.json`)).default;
-//   } catch (error) {
-//     notFound();
-//   }
-// }
 
 async function RootLayout({ children, params: { locale } }) {
   let messages;
@@ -48,8 +33,6 @@ async function RootLayout({ children, params: { locale } }) {
           locale={locale}
           messages={messages}
         >
-          {/* <ThemeButton /> */}
-
           <Nav />
           <Suspense fallback={<Loading />}>
             <div>{children}</div>
