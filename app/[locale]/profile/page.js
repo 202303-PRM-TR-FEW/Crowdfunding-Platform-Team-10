@@ -98,10 +98,10 @@ const Page = () => {
                 <LoaderStyle />
               ) : usersProjects.length > 0 ? (
                 <>
-                  <h1 className="header-2 text-center lg:text-start text-lightGreen">
+                  <h1 className="header-2 text-center lg:text-start text-lightGreen  pb-6 md:pb-10">
                     {t("header")}
                   </h1>
-                  <div className="flex flex-col lg:flex-row py-6 md:py-10 gap-8 ">
+                  <div className="flex flex-col lg:flex-row pb-6 md:pb-10 gap-8 h-screen overflow-auto">
                     <div className="w-full lg:w-7/12">
                       <div className="flex flex-col gap-10 ">
                         {usersProjects.map((project, i) => {
@@ -117,7 +117,7 @@ const Page = () => {
                         })}
                       </div>
                     </div>
-                    <div className="sticky z-50 top-[68px]  overflow-y-auto w-full lg:w-5/12 self-start order-first lg:order-last">
+                    <div className="sticky z-50 top-0  overflow-y-auto w-full lg:w-5/12 self-start order-first lg:order-last">
                       <div className="max-h-screen  overflow-y-auto">
                         <TransactionHistory usersProjects={usersProjects} />
                       </div>
