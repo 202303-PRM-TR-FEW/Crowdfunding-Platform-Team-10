@@ -37,15 +37,7 @@ function SuccessfulProjects() {
           {latestThreeProjects.length > 0 ? (
             latestThreeProjects.map((pro) => (
               <Link key={pro.id} href={`/projects/${pro.id}`}>
-                <SuccessfulCard
-                  project={pro}
-                  img={pro.url}
-                  title={pro.name}
-                  goal={pro.goal}
-                  raised={pro.raised}
-                  about={pro.about}
-                  creator={pro?.creator?.userName}
-                />
+                <SuccessfulCard project={pro} />
               </Link>
             ))
           ) : (
