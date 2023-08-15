@@ -11,7 +11,6 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Controller, useForm } from "react-hook-form";
@@ -32,9 +31,9 @@ import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "@/config/firebase";
 
-import LoaderStyle from "../helper/LoaderStyle";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
+import SmallLoaderStyle from "../helper/SmallLoderStyle";
 //Fixes Date Picker Errors//
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
@@ -348,7 +347,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
               </div>
             </div>
             <button
-              className="btn-primary flex flex-row items-center justify-center"
+              className="btn-primary h-[40px] flex flex-row items-center justify-center"
               type="submit"
             >
               {t("upload-project")}
@@ -358,7 +357,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
                     zoom: 0.2,
                   }}
                 >
-                  <LoaderStyle />
+                  <SmallLoaderStyle />
                 </div>
               )}
             </button>
