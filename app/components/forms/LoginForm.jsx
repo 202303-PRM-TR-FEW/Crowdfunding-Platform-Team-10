@@ -4,7 +4,6 @@ import { useRouter } from "next-intl/client";
 import Link from "next-intl/link";
 
 import InfoIcon from "@mui/icons-material/Info";
-import GoogleIcon from "@mui/icons-material/Google";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -71,6 +70,7 @@ const LoginForm = () => {
       }
     }
   };
+  
   const t = useTranslations("LoginForm");
   return (
     <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl lg:mt-16 max-w-4xl md:pt-10 ">
