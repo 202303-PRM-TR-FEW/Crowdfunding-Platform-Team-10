@@ -36,9 +36,9 @@ const SummaryCard = ({
     }
   }
   const successState = isSuccessful(
-    cardDetails.endingDate,
-    cardDetails.raised,
-    cardDetails.goal
+    endingDate,
+    raised,
+    goal
   );
   const styles = {
     flex: "flex items-center gap-1",
