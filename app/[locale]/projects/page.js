@@ -40,15 +40,8 @@ const Home = () => {
         return (
           <SummaryCard
             key={card.id}
-            projectId={card.id}
-            img={card.url}
-            title={card.name}
-            goal={card.goal}
-            raised={card.raised}
-            category={card.category}
+            cardDetails={card}
             creator={card.creator}
-            viewCount={card.viewCount}
-            endingDate={card.endingDate}
           />
         );
       })
@@ -63,15 +56,12 @@ const Home = () => {
 
   return (
     <section className="bg-[#fcfcfe] flex-col items-start justify-center">
-
       <Fade>
         <div className=" bg-gradient-to-t from-transparent to-teal-50">
           <div className="container mx-auto pt-28 p-3">
-          <Suspense fallback={<LoaderStyle />}>
-       
-            <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
-          </Suspense>
-              
+            <Suspense fallback={<LoaderStyle />}>
+              <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
+            </Suspense>
           </div>
         </div>
         <div className="container mx-auto p-3">

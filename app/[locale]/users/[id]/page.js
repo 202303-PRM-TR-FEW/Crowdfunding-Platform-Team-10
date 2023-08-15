@@ -93,18 +93,7 @@ function Page({ params }) {
   const allProjects =
     projects.length > 0 ? (
       projects.map((card) => (
-        <SummaryCard
-          key={card.id}
-          projectId={card.id}
-          img={card.url}
-          title={card.name}
-          goal={card.goal}
-          raised={card.raised}
-          category={card.category}
-          creator={card.creator}
-          viewCount={card.viewCount}
-          endingDate={card.endingDate}
-        />
+        <SummaryCard key={card.id} cardDetails={card} creator={card.creator} />
       ))
     ) : (
       <Box className="header-4 px-10 py-28">{t("message")}</Box>

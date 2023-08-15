@@ -8,17 +8,7 @@ import CategoryIcon from "../helper/CategoryIcon";
 import Image from "next/image";
 import Link from "next-intl/link";
 
-const SummaryCard = ({
-  endingDate,
-  img,
-  title,
-  raised,
-  goal,
-  category,
-  creator,
-  viewCount,
-  projectId,
-}) => {
+const SummaryCard = ({ cardDetails, creator }) => {
   function isSuccessful(endingDate, raised, goal) {
     const endDate = new Date(endingDate);
     const today = new Date();
@@ -35,10 +25,15 @@ const SummaryCard = ({
       return "Active";
     }
   }
-  const successState = isSuccessful(endingDate, raised, goal);
+  const successState = isSuccessful(
+    cardDetails.endingDate,
+    cardDetails.raised,
+    cardDetails.goal
+  );
   const styles = {
     flex: "flex items-center gap-1",
-    card: "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[410px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
+    card:
+      "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[410px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
     body: " flex flex-col gap-y-2 ",
     avatar: "  w-10 h-10  ",
     button: `bg-black hover:bg-orange-800 lg:hover:scale-[1.8] origin-left transform transition duration-500 hover:scale-[1.2] text-white font-bold py-2 px-4 rounded-md border border-black mt-8 w-80 text-center ms-0 md:w-100`,
@@ -74,16 +69,16 @@ const SummaryCard = ({
             : "bg-[#ffffffb7]"
         }  custom-clip-path items-start opacity-0 hover:opacity-100 `}
       >
-        <ViewCount viewCount={viewCount} />
+        <ViewCount viewCount={cardDetails.viewCount} />
       </div>
-      <Link href={`/projects/${projectId} `}>
+      <Link href={`/projects/${cardDetails.projectId} `}>
         <div className="overflow-hidden  rounded-lg relative h-[222px] w-full cursor-pointer">
           <Image
             unoptimized
             fill={true}
             style={{ objectFit: "cover" }}
-            className="  image-animated"
-            src={img}
+            className="image-animated"
+            src={cardDetails.url}
             alt="project img"
             sizes="(max-width: 768px) 100vw"
           />
@@ -98,15 +93,15 @@ const SummaryCard = ({
                 data-cy="card-title"
                 className="header-5 text-start text-[#2f2f2f]  overflow-hidden w-full h-7"
               >
-                {title}
+                {cardDetails.title}
               </h4>
             </div>
             <div className="flex justify-end">
-              <CategoryIcon category={category} color={"#00c1a2"} />
+              <CategoryIcon category={cardDetails.category} color={"#00c1a2"} />
             </div>
           </div>
         </div>
-        <Target raised={raised} goal={goal} />
+        <Target raised={cardDetails.raised} goal={cardDetails.goal} />
 
         <hr className=" border-t-2  border-white"></hr>
 
@@ -124,7 +119,11 @@ const SummaryCard = ({
             </Link>
           </div>
           <div className=" ">
-            <SuccessBadge endingDate={endingDate} raised={raised} goal={goal} />
+            <SuccessBadge
+              endingDate={cardDetails.endingDate}
+              raised={cardDetails.raised}
+              goal={cardDetails.goal}
+            />
           </div>
         </div>
       </div>

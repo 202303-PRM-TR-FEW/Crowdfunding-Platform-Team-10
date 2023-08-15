@@ -6,7 +6,8 @@ describe("<SummaryCard />", () => {
   const locale = "en";
   const messages = require(`../../../messages/${locale}.json`);
   const mockProject = {
-    img: "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",
+    img:
+      "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",
     title: "Card Title",
     raised: 600,
     goal: 1600,
@@ -23,16 +24,7 @@ describe("<SummaryCard />", () => {
     // see: https://on.cypress.io/mounting-react
     cy.mount(
       <NextIntlProvider locale={locale} messages={messages}>
-        <SummaryCard
-          img={mockProject.img}
-          title={mockProject.title}
-          goal={mockProject.goal}
-          raised={mockProject.raised}
-          category={mockProject.category}
-          creator={mockProject.creator}
-          viewCount={mockProject.viewCount}
-          endingDate={mockProject.endingDate}
-        />
+        <SummaryCard cardDetails={mockProject} creator={mockProject.creator} />
       </NextIntlProvider>
     );
 
