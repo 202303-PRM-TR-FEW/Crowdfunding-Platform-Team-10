@@ -38,7 +38,8 @@ const SummaryCard = ({
   const successState = isSuccessful(endingDate, raised, goal);
   const styles = {
     flex: "flex items-center gap-1",
-    card: "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[410px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
+    card:
+      "flex flex-col border-[1px] border-[#0000002d] self-stretch  bg-white bg-opacity-80 hover:-translate-y-3 gap-3 w-[410px] rounded mb-10  drop-shadow-sm  hover:drop-shadow-3xl  transition-all duration-300 ease-in-out",
     body: " flex flex-col gap-y-2 ",
     avatar: "  w-10 h-10  ",
     button: `bg-black hover:bg-orange-800 lg:hover:scale-[1.8] origin-left transform transition duration-500 hover:scale-[1.2] text-white font-bold py-2 px-4 rounded-md border border-black mt-8 w-80 text-center ms-0 md:w-100`,
@@ -82,7 +83,7 @@ const SummaryCard = ({
             unoptimized
             fill={true}
             style={{ objectFit: "cover" }}
-            className="  image-animated"
+            className="image-animated"
             src={img}
             alt="project img"
             sizes="(max-width: 768px) 100vw"

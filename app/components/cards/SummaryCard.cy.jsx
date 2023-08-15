@@ -6,7 +6,8 @@ describe("<SummaryCard />", () => {
   const locale = "en";
   const messages = require(`../../../messages/${locale}.json`);
   const mockProject = {
-    img: "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",
+    img:
+      "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",
     title: "Card Title",
     raised: 600,
     goal: 1600,

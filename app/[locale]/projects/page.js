@@ -63,15 +63,12 @@ const Home = () => {
 
   return (
     <section className="bg-[#fcfcfe] flex-col items-start justify-center">
-
       <Fade>
         <div className=" bg-gradient-to-t from-transparent to-teal-50">
           <div className="container mx-auto pt-28 p-3">
-          <Suspense fallback={<LoaderStyle />}>
-       
-            <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
-          </Suspense>
-              
+            <Suspense fallback={<LoaderStyle />}>
+              <ProjectOfTheWeek projectOfWeek={projectOfWeek} />
+            </Suspense>
           </div>
         </div>
         <div className="container mx-auto p-3">
