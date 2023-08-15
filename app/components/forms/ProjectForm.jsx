@@ -348,7 +348,7 @@ const ProjectForm = ({ openProjectForm, setOpenProjectForm, authUser }) => {
               </div>
             </div>
             <button
-              className="btn-primary flex flex-row items-center justify-center"
+              className="btn-primary h-[40px] flex flex-row items-center justify-center"
               type="submit"
             >
               {t("upload-project")}
