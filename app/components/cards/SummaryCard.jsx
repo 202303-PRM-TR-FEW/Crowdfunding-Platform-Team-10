@@ -35,11 +35,7 @@ const SummaryCard = ({
       return "Active";
     }
   }
-  const successState = isSuccessful(
-    endingDate,
-    raised,
-    goal
-  );
+  const successState = isSuccessful(endingDate, raised, goal);
   const styles = {
     flex: "flex items-center gap-1",
     card:
@@ -88,7 +84,7 @@ const SummaryCard = ({
             fill={true}
             style={{ objectFit: "cover" }}
             className="image-animated"
-            src={url}
+            src={img}
             alt="project img"
             sizes="(max-width: 768px) 100vw"
           />
