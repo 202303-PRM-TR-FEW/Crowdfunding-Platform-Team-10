@@ -8,7 +8,17 @@ import CategoryIcon from "../helper/CategoryIcon";
 import Image from "next/image";
 import Link from "next-intl/link";
 
-const SummaryCard = ({ cardDetails, creator }) => {
+const SummaryCard = ({
+  endingDate,
+  img,
+  title,
+  raised,
+  goal,
+  category,
+  creator,
+  viewCount,
+  projectId,
+}) => {
   function isSuccessful(endingDate, raised, goal) {
     const endDate = new Date(endingDate);
     const today = new Date();
@@ -69,16 +79,16 @@ const SummaryCard = ({ cardDetails, creator }) => {
             : "bg-[#ffffffb7]"
         }  custom-clip-path items-start opacity-0 hover:opacity-100 `}
       >
-        <ViewCount viewCount={cardDetails.viewCount} />
+        <ViewCount viewCount={viewCount} />
       </div>
-      <Link href={`/projects/${cardDetails.projectId} `}>
+      <Link href={`/projects/${projectId} `}>
         <div className="overflow-hidden  rounded-lg relative h-[222px] w-full cursor-pointer">
           <Image
             unoptimized
             fill={true}
             style={{ objectFit: "cover" }}
             className="image-animated"
-            src={cardDetails.url}
+            src={url}
             alt="project img"
             sizes="(max-width: 768px) 100vw"
           />
@@ -93,15 +103,15 @@ const SummaryCard = ({ cardDetails, creator }) => {
                 data-cy="card-title"
                 className="header-5 text-start text-[#2f2f2f]  overflow-hidden w-full h-7"
               >
-                {cardDetails.title}
+                {title}
               </h4>
             </div>
             <div className="flex justify-end">
-              <CategoryIcon category={cardDetails.category} color={"#00c1a2"} />
+              <CategoryIcon category={category} color={"#00c1a2"} />
             </div>
           </div>
         </div>
-        <Target raised={cardDetails.raised} goal={cardDetails.goal} />
+        <Target raised={raised} goal={goal} />
 
         <hr className=" border-t-2  border-white"></hr>
 
@@ -119,11 +129,7 @@ const SummaryCard = ({ cardDetails, creator }) => {
             </Link>
           </div>
           <div className=" ">
-            <SuccessBadge
-              endingDate={cardDetails.endingDate}
-              raised={cardDetails.raised}
-              goal={cardDetails.goal}
-            />
+            <SuccessBadge endingDate={endingDate} raised={raised} goal={goal} />
           </div>
         </div>
       </div>

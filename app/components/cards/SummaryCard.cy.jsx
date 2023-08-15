@@ -24,7 +24,16 @@ describe("<SummaryCard />", () => {
     // see: https://on.cypress.io/mounting-react
     cy.mount(
       <NextIntlProvider locale={locale} messages={messages}>
-        <SummaryCard cardDetails={mockProject} creator={mockProject.creator} />
+        <SummaryCard
+          img={mockProject.img}
+          title={mockProject.title}
+          goal={mockProject.goal}
+          raised={mockProject.raised}
+          category={mockProject.category}
+          creator={mockProject.creator}
+          viewCount={mockProject.viewCount}
+          endingDate={mockProject.endingDate}
+        />
       </NextIntlProvider>
     );
 

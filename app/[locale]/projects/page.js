@@ -40,8 +40,15 @@ const Home = () => {
         return (
           <SummaryCard
             key={card.id}
-            cardDetails={card}
+            projectId={card.id}
+            img={card.url}
+            title={card.name}
+            goal={card.goal}
+            raised={card.raised}
+            category={card.category}
             creator={card.creator}
+            viewCount={card.viewCount}
+            endingDate={card.endingDate}
           />
         );
       })
