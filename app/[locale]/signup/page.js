@@ -35,7 +35,7 @@ const circleBackgroundStyle = {
   borderRadius: "50%",
   background: "#00c1a1a5",
   transform: "rotate(45deg)",
-  zIndex: -10,
+  zIndex: -1,
 
   animation: `moveCircle2 10s linear infinite`,
 };
@@ -48,7 +48,7 @@ const circleBackgroundStyle2 = {
   height: "500px",
   borderRadius: "50%",
   background: "#00c1a144",
-  zIndex: -10,
+  zIndex: -1,
   filter: "blur(20px)",
   transform: "rotate(45deg)",
   animation: `moveCircle2  10s linear infinite`,

@@ -18,8 +18,11 @@ const Login = () => {
     <div className="relative flex justify-center items-center bg-gradient-to-t from-transparent   to-teal-50 lg:h-[100vh]  p-4   py-20  bg-no-repeat overflow-hidden bg-cover">
       <Fade>
         <div style={circleBackgroundStyle}></div>
-        <LoginForm />
+
         <div style={circleBackgroundStyle2}></div>
+        <div className=" z-50 relative">
+          <LoginForm />
+        </div>
       </Fade>
     </div>
   );

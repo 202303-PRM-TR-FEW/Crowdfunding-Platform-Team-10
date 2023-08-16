@@ -70,11 +70,11 @@ const LoginForm = () => {
       }
     }
   };
-  
+
   const t = useTranslations("LoginForm");
   return (
     <div className="grid lg:grid-cols-5 h-max drop-shadow-2xl lg:mt-16 max-w-4xl md:pt-10 ">
-      <div className="lg:col-span-3 flex flex-col justify-center gap-2 text-center bg-[#fffb] p-6 sm:p-12 md:p-16 lg:rounded-l rounded-t lg:rounded-tr-none">
+      <div className="lg:col-span-3 flex flex-col justify-center gap-2 text-center bg-[#ffffffcf] p-6 sm:p-12 md:p-16 lg:rounded-l rounded-t lg:rounded-tr-none">
         <p className="text-center text-gray-900 p-4 header-2">{t("header")}</p>
         <div className="flex flex-col gap-2">
           <p className="">{t("subHeader")}</p>
