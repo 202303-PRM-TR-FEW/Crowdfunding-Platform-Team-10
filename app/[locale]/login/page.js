@@ -18,8 +18,11 @@ const Login = () => {
     <div className="relative flex justify-center items-center bg-gradient-to-t from-transparent   to-teal-50 lg:h-[100vh]  p-4   py-20  bg-no-repeat overflow-hidden bg-cover">
       <Fade>
         <div style={circleBackgroundStyle}></div>
-        <LoginForm />
+
         <div style={circleBackgroundStyle2}></div>
+        <div className=" z-50 relative">
+          <LoginForm />
+        </div>
       </Fade>
     </div>
   );
@@ -35,7 +38,7 @@ const circleBackgroundStyle = {
   borderRadius: "50%",
   background: "#00c1a1a5",
   transform: "rotate(45deg)",
-  zIndex: -1,
+  zIndex: -10,
 
   animation: `moveCircle2 10s linear infinite`,
 };
@@ -48,7 +51,7 @@ const circleBackgroundStyle2 = {
   height: "500px",
   borderRadius: "50%",
   background: "#00c1a144",
-  zIndex: -1,
+  zIndex: -10,
   filter: "blur(20px)",
   transform: "rotate(45deg)",
   animation: `moveCircle2  10s linear infinite`,
