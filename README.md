@@ -1,4 +1,4 @@
-# openHanded Crowdfunding Platform
+# OpenHanded Crowdfunding Platform
 
 <img src="https://team-10-roan.vercel.app/_next/static/media/logo.d6d639ea.svg" alt="openHanded Logo" width="200">
 Welcome to openHanded, your go-to platform for turning dreams into reality through collective support and crowdfunding. Whether you're an entrepreneur, artist, nonprofit, or visionary individual, openHanded empowers you to share your projects, gain financial backing, and make a positive impact on the world.
@@ -12,7 +12,7 @@ Welcome to openHanded, your go-to platform for turning dreams into reality throu
 
 ## Summary
 
-openHanded is a robust crowdfunding platform that connects passionate individuals and innovative projects with a community of potential backers. Our user-friendly and secure website provides creators with a space to showcase their ideas, raise funds, and engage with supporters. With a focus on transparency and impact, we empower individuals, nonprofits, and startups to bring their visions to life through collective financial contributions.
+OpenHanded is a robust crowdfunding platform that connects passionate individuals and innovative projects with a community of potential backers. Our user-friendly and secure website provides creators with a space to showcase their ideas, raise funds, and engage with supporters. With a focus on transparency and impact, we empower individuals, nonprofits, and startups to bring their visions to life through collective financial contributions.
 
 ## Features
 
