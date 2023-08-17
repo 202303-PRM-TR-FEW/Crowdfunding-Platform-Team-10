@@ -26,8 +26,8 @@ OpenHanded is a robust crowdfunding platform that connects passionate individual
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/202303-PRM-TR-FEW/team-10.git`
-2. Navigate to the project directory: `cd .team10`
+1. Clone the repository: `git clone https://github.com/202303-PRM-TR-FEW/Crowdfunding-Platform-Team-10.git`
+2. Navigate to the project directory: `cd [file name]`
 3.  Install dependencies: `npm install`
 4.  Run the development server: `npm run dev`
 5. Open your browser and visit http://localhost:3000 to see openHanded in action!
