@@ -138,7 +138,7 @@ const OurTeam = () => {
             />
           </div>
           <a
-            href="https://github.com/kainy01"
+            href="https://github.com/zainab-salah"
             target="_blank"
             className="cursor-pointer"
           >
